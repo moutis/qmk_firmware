@@ -37,6 +37,7 @@ user_config_t user_config;
 static uint32_t keyhold_timer = 0;
 static uint32_t appmenu_timer = 0;
 static bool appmenu_on = false;
+static bool key_trap = false;
 
 
 #ifdef OLED_DRIVER_ENABLE

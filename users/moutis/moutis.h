@@ -5,8 +5,8 @@
 #endif
 
 enum my_layers {
-  L_QWERTY,
   L_HANDSDOWN,
+  L_QWERTY,
   L_PUNCT,
   L_FN,
   L_MEDIA_NAV,

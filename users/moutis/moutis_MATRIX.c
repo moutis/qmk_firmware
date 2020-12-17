@@ -1,7 +1,8 @@
 
-
+#ifdef LEADER_ENABLE
 bool did_leader_succeed;
 LEADER_EXTERNS();
+#endif
 
 void matrix_scan_user(void) {
 

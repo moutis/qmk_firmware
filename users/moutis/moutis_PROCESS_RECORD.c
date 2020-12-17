@@ -1,11 +1,12 @@
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     static uint8_t  saved_mods   = 0;
-    extern bool leading;
 //
 //  static uint16_t pre_keycode = KC_RCBR;
-           
+#ifdef LEADER_ENABLE
+    extern bool leading;
     if (!leading) {
+#endif
         uint16_t record_keycode = keycode;
         uint16_t record_timer = timer_read(); // for hold timing
         // Filter out the actual keycode from MT and LT keys.
@@ -41,21 +42,28 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     appmenu_timer = timer_read(); // time since last pressed
                 }
                 break;
-/*        case S(KC_BSPC):  // make S(KC_BSPC) = KC_DEL
-            if ((saved_mods & MOD_MASK_SHIFT)) { // shift down with KC_BSPC
+            case KC_BSPC:  // make S(KC_BSPC) = KC_DEL
                 saved_mods = get_mods(); // keep updating mods while held
-                clear_mods();
-                if (record->event.pressed) {
-                    register_code(KC_DEL);
-                } else {
-                    unregister_code(KC_DEL);
+                // This logic feels kludgey.  fix it.
+                if (record->event.pressed) { // key down
+                    if ((saved_mods & MOD_MASK_SHIFT)) { // shift down with KC_BSPC?
+                        set_mods(saved_mods & ~MOD_MASK_SHIFT); // turn off shift
+                        register_code(KC_DEL);
+                        set_mods(saved_mods); // restore shift state
+                        key_trap = true;  // mode monitor – enter state
+                        return false; // don't do more with this record.
+                    }
+                } else { // key up
+                    if (key_trap) { // did we snag this earlier?
+                        unregister_code(KC_DEL); // make sure KC_DEL isn't held down
+                        unregister_code(KC_BSPC);
+                        key_trap = false;  // mode monitor – exit state.
+                        return false; // don't do more with this record.
+                    }
                 }
-                set_mods(saved_mods);
-                return false; // handled it
-            }
-            return true;  // Didn't handle this
-            break;
-*/
+                return true; // Didn't handle this, do default
+                break;
+
 /*            case KC_Q:  // send "qu" if held
                 if (record->event.pressed) {
                     keyhold_timer = 0;
@@ -96,6 +104,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     return true;  // Didn't handle this
                     break;
             }
+#ifdef LEADER_ENABLE
         }
+#endif
     return true;  // keep processing record
 }

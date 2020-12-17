@@ -1,5 +1,18 @@
 #define combo_OLED_row 5
 
+// functions / state keys
+
+const uint16_t PROGMEM F_MAC_combo[] = {KC_MINS, KC_M, COMBO_END}; // Set MAC OS env var
+const uint16_t PROGMEM F_WIN_combo[] = {KC_MINS, KC_W, COMBO_END}; // Set WIN OS env var
+const uint16_t PROGMEM F_KILL_combo[] = {KC_MINS, KC_DOT, COMBO_END}; // Force quit
+const uint16_t PROGMEM F_SCLP_combo[] = {KC_MINS, KC_C, COMBO_END}; // SCREEN shot SELECTION to clipboard
+const uint16_t PROGMEM F_SCAP_combo[] = {KC_MINS, KC_O, COMBO_END}; //  SCREEN shot SELECTION to file
+const uint16_t PROGMEM F_CAPS_combo[] = {KC_D, KC_P, COMBO_END}; // CAPS LOCK
+const uint16_t PROGMEM F_LANG1_combo[] = {KC_L, KC_O, COMBO_END}; // LANG1/KANA
+const uint16_t PROGMEM F_LANG2_combo[] = {KC_L, KC_P, COMBO_END}; // LANG2/EISUU
+const uint16_t PROGMEM F_BACK_combo[] = {KC_M, KC_L, COMBO_END}; // CMD [
+const uint16_t PROGMEM F_FWD_combo[] = {KC_M, KC_B, COMBO_END}; // CMD ]
+
 //  (22) keypad combos
 const uint16_t PROGMEM PCM1_combo[] = {KC_COMM, KC_P1, COMBO_END};
 const uint16_t PROGMEM P01_combo[] = {KC_P0, KC_P1, COMBO_END};
@@ -24,111 +37,106 @@ const uint16_t PROGMEM P9M_combo[] = {KC_P9, KC_PMNS, COMBO_END};
 const uint16_t PROGMEM PSLT_combo[] = {KC_PSLS, KC_PAST, COMBO_END};
 const uint16_t PROGMEM PPLMN_combo[] = {KC_PPLS, KC_PMNS, COMBO_END};
 
-// (5) nemnonic same letter, moves with layout,  (ie. diacritics)
-//const uint16_t PROGMEM quote_combo[] = {KC_T, KC_E, COMBO_END};
-//const uint16_t PROGMEM quotr_combo[] = {KC_T, KC_R, COMBO_END};
-//const uint16_t PROGMEM quotu_combo[] = {KC_T, KC_U, COMBO_END};
-//const uint16_t PROGMEM quoti_combo[] = {KC_T, KC_I, COMBO_END};
-//const uint16_t PROGMEM quotn_combo[] = {KC_T, KC_N, COMBO_END};
+// spatially arranged characters and diacritics
 
-// (23) HANDSDOWN spatially arranged
-//const uint16_t PROGMEM Hlprn_combo[] = {KC_D, KC_R, COMBO_END}; // ( paren
-//const uint16_t PROGMEM Hrprn_combo[] = {KC_R, KC_F, COMBO_END}; // ) paren
-//const uint16_t PROGMEM Hlbrk_combo[] = {KC_G, KC_L, COMBO_END}; // [ bracket, l kagikakko
-//const uint16_t PROGMEM Hrbrk_combo[] = {KC_L, KC_C, COMBO_END}; // ] bracket, R kagikakko
-const uint16_t PROGMEM Hgrav_combo[] = {KC_G, KC_H, COMBO_END}; // ` grave
-const uint16_t PROGMEM Hcirc_combo[] = {KC_G, KC_K, COMBO_END}; // ˆ circumflex
-const uint16_t PROGMEM Hacut_combo[] = {KC_H, KC_K, COMBO_END}; // ´ acute
-const uint16_t PROGMEM Hmacr_combo[] = {KC_F, KC_COMM, COMBO_END}; // - macron
-//const uint16_t PROGMEM Hodot_combo[] = {KC_V, KC_O, COoMBO_END}; // ˚ hi o dot over char
-const uint16_t PROGMEM Hdier_combo[] = {KC_F, KC_O, COMBO_END}; // ¨ dieresis
+const uint16_t PROGMEM Hacut_combo[] = {KC_QUOT, KC_SLSH, COMBO_END}; // ´ acute (dead key)
+const uint16_t PROGMEM Hcirc_combo[] = {KC_QUOT, KC_O, COMBO_END}; // ˆ circumflex (dead key)
+const uint16_t PROGMEM Hgrv_combo[] = {KC_QUOT, KC_X, COMBO_END}; // ` grave
 
-const uint16_t PROGMEM Hdquot_combo[] = {KC_QUOT, KC_C, COMBO_END}; // " double quote
-const uint16_t PROGMEM Hdash_combo[] = {KC_Q, KC_J, COMBO_END}; // - dash/minus
-const uint16_t PROGMEM Hndsh_combo[] = {KC_C, KC_Q, COMBO_END}; // – n dash
-const uint16_t PROGMEM Hmdsh_combo[] = {KC_C, KC_J, COMBO_END}; // — m dash
-const uint16_t PROGMEM Hstrk_combo[] = {KC_C, KC_SLSH, COMBO_END}; // - strikethrough
-const uint16_t PROGMEM Htild_combo[] = {KC_Q, KC_SLSH, COMBO_END}; // ~ tilde
+const uint16_t PROGMEM Hmacr_combo[] = {KC_C, KC_X, COMBO_END}; // - macron (dead key)
+const uint16_t PROGMEM Hdier_combo[] = {KC_O, KC_X, COMBO_END}; // ¨ dieresis (dead key)
+const uint16_t PROGMEM Hstrk_combo[] = {KC_C, KC_SLSH, COMBO_END}; // — strikethrough (dead key)
+const uint16_t PROGMEM Hodot_combo[] = {KC_O, KC_SLSH, COMBO_END}; // ˚ hi o dot over char (dead key)
+
+const uint16_t PROGMEM Hbsls_combo[] = {KC_X, KC_SLSH, COMBO_END}; // \ backslash
+const uint16_t PROGMEM H_Q_combo[] = {KC_P, KC_O, COMBO_END}; // TYPE "q"
+const uint16_t PROGMEM H_Z_combo[] = {KC_O, KC_COMM, COMBO_END}; // TYPE "z"
+
+const uint16_t PROGMEM Hndsh_combo[] = {KC_MINS, KC_G, COMBO_END}; // – n dash
+const uint16_t PROGMEM Hmdsh_combo[] = {KC_MINS, KC_H, COMBO_END}; // — m dash
+const uint16_t PROGMEM Htild_combo[] = {KC_MINS, KC_K, COMBO_END}; // ~ tilde
+const uint16_t PROGMEM Henye_combo[] = {KC_G, KC_K, COMBO_END}; // ˜ enye (dead key)
+
+const uint16_t PROGMEM Hquot_combo[] = {KC_QUOT, KC_C, COMBO_END}; // " DOUBLE QUOTE
+
+const uint16_t PROGMEM Hhash_combo[] = {KC_W, KC_P, COMBO_END}; // #
+const uint16_t PROGMEM Hat_combo[] = {KC_W, KC_O, COMBO_END}; // @
+
+const uint16_t PROGMEM Hunds_combo[] = {KC_P, KC_COMM, COMBO_END}; // _ underscore
 const uint16_t PROGMEM Hcoln_combo[] = {KC_O, KC_DOT, COMBO_END}; // : colon
-const uint16_t PROGMEM Hunds_combo[] = {KC_O, KC_COMM, COMBO_END}; // _ underscore
-const uint16_t PROGMEM Hbsls_combo[] = {KC_J, KC_SLSH, COMBO_END}; // \ backslash
+const uint16_t PROGMEM Helip_combo[] = {KC_P, KC_DOT, COMBO_END}; // … colon
 
-// Bigram and other multi-input thingies
-const uint16_t PROGMEM H_JAPAN_combo[] = {KC_J, KC_P, COMBO_END}; // TYPE "Japan"
-//const uint16_t PROGMEM H_QU_combo[] = {KC_Q, KC_P, COMBO_END}; // TYPE "QU"
+// Bigram and other multi-output thingies
+const uint16_t PROGMEM H_QU_combo[] = {KC_C, KC_O, COMBO_END}; // TYPE "qu"
+const uint16_t PROGMEM H_GL_combo[] = {KC_G, KC_H, COMBO_END}; // TYPE "gl"
+const uint16_t PROGMEM H_LK_combo[] = {KC_H, KC_K, COMBO_END}; // TYPE "lk"
 
-//const uint16_t PROGMEM Hdbrce_combo[] = {KC_Z, KC_J, COMBO_END}; // {}
-//const uint16_t PROGMEM Hdparn_combo[] = {KC_P, KC_W, COMBO_END}; // ()
-//const uint16_t PROGMEM Hdbrak_combo[] = {KC_F, KC_Y, COMBO_END}; // []
+const uint16_t PROGMEM Hldaq_combo[] = {KC_M, KC_COMM, COMBO_END}; // «
+const uint16_t PROGMEM Hrdaq_combo[] = {KC_M, KC_DOT, COMBO_END}; // »
+const uint16_t PROGMEM Hlsaq_combo[] = {KC_W, KC_COMM, COMBO_END}; // ‹
+const uint16_t PROGMEM Hrsaq_combo[] = {KC_W, KC_DOT, COMBO_END}; // ›
 
 // Spatially arranged typical functions
-const uint16_t PROGMEM Htab_combo[] = {KC_Z, KC_G, COMBO_END}; // tab
-const uint16_t PROGMEM Hent_combo[] = {KC_D, KC_B, COMBO_END}; // Enter
-const uint16_t PROGMEM Hdel_combo[] = {KC_W, KC_F, COMBO_END}; // tab
+const uint16_t PROGMEM Qtab_combo[] = {KC_Q, KC_W, COMBO_END}; // tab QWERTY
 
-
-const uint16_t PROGMEM Hsall_combo[] = {KC_X, KC_D, COMBO_END}; // select all
-const uint16_t PROGMEM Hundo_combo[] = {KC_X, KC_M, COMBO_END}; // undo
-const uint16_t PROGMEM Hcut_combo[] = {KC_X, KC_L, COMBO_END}; // cut
-const uint16_t PROGMEM Hcopy_combo[] = {KC_L, KC_M, COMBO_END}; // copy
+const uint16_t PROGMEM Hent_combo[] = {KC_M, KC_D, COMBO_END}; // enter
+const uint16_t PROGMEM Hsall_combo[] = {KC_J, KC_D, COMBO_END}; // select all
+const uint16_t PROGMEM Hundo_combo[] = {KC_J, KC_B, COMBO_END}; // undo
+const uint16_t PROGMEM Hcut_combo[] = {KC_J, KC_L, COMBO_END}; // cut
+const uint16_t PROGMEM Hcopy_combo[] = {KC_L, KC_B, COMBO_END}; // copy
 const uint16_t PROGMEM Hpste_combo[] = {KC_L, KC_D, COMBO_END}; // paste
-const uint16_t PROGMEM Hpstm_combo[] = {KC_M, KC_D, COMBO_END}; // paste-match
+const uint16_t PROGMEM Hpstm_combo[] = {KC_B, KC_D, COMBO_END}; // paste-match
 
-// (15) QWERTY spatially arranged
-//const uint16_t PROGMEM Qlparn_combo[] = {KC_R, KC_T, COMBO_END}; // (
-//const uint16_t PROGMEM Qrparn_combo[] = {KC_E, KC_F, COMBO_END}; // )
-const uint16_t PROGMEM Qgrav_combo[] = {KC_W, KC_E, COMBO_END}; // ` grave
-const uint16_t PROGMEM Qcirc_combo[] = {KC_W, KC_R, COMBO_END}; // ˆ circumflex
-const uint16_t PROGMEM Qacut_combo[] = {KC_E, KC_R, COMBO_END}; // ´ acute
-const uint16_t PROGMEM Qmacr_combo[] = {KC_U, KC_O, COMBO_END}; // - macron
-//const uint16_t PROGMEM Qodot_combo[] = {KC_U, KC_I, COMBO_END}; // ˚ hi o dot over char
-const uint16_t PROGMEM Qdier_combo[] = {KC_U, KC_I, COMBO_END}; // ¨ dieresis
-const uint16_t PROGMEM Qstrk_combo[] = {KC_M, KC_DOT, COMBO_END}; // - strikethrough
-
-const uint16_t PROGMEM Qdquot_combo[] = {KC_O, KC_QUOT, COMBO_END}; // " double quote
-const uint16_t PROGMEM Qdash_combo[] = {KC_I, KC_O, COMBO_END}; // - dash/minus
-const uint16_t PROGMEM Qndsh_combo[] = {KC_N, KC_M, COMBO_END}; // – n-dash
-const uint16_t PROGMEM Qmdsh_combo[] = {KC_M, KC_COMM, COMBO_END}; // — m-dash
-//const uint16_t PROGMEM Qtild_combo[] = {KC_M, KC_DOT, COMBO_END}; // ~ tilde
-//const uint16_t PROGMEM Qdbrce_combo[] = {KC_T, KC_Y, COMBO_END}; // {|}
-//const uint16_t PROGMEM Qdparn_combo[] = {KC_G, KC_H, COMBO_END}; // (|)
-//const uint16_t PROGMEM Qdbrak_combo[] = {KC_B, KC_N, COMBO_END}; // [|]
-const uint16_t PROGMEM Qtab_combo[] = {KC_Q, KC_W, COMBO_END}; // tab
-const uint16_t PROGMEM Qent_combo[] = {KC_B, KC_V, COMBO_END}; // Enter
-const uint16_t PROGMEM Qsall_combo[] = {KC_Z, KC_V, COMBO_END}; // Select all
-const uint16_t PROGMEM Qundo_combo[] = {KC_Z, KC_X, COMBO_END}; // undo
-const uint16_t PROGMEM Qcut_combo[] = {KC_Z, KC_C, COMBO_END}; // cut
-const uint16_t PROGMEM Qcopy_combo[] = {KC_X, KC_C, COMBO_END}; // copy
-const uint16_t PROGMEM Qpste_combo[] = {KC_C, KC_V, COMBO_END}; // paste
-const uint16_t PROGMEM Qpmtch_combo[] = {KC_X, KC_V, COMBO_END}; // paste-match
 
 // (3) functional spatially arranged, but still same on both layouts (shared to conserve memory)
-const uint16_t PROGMEM quotq_combo[] = {KC_QUOT, KC_SLSH, COMBO_END};  // "|" double quote insert between
+const uint16_t PROGMEM quotq_combo[] = {KC_QUOT, KC_V, COMBO_END};  // "|" insert between double quote
+//const uint16_t PROGMEM Hdbrak_combo[] = {KC_V, KC_B, COMBO_END}; // [|] insert between brackets
+//const uint16_t PROGMEM Hdbrce_combo[] = {KC_Z, KC_J, COMBO_END}; // {|} insert between braces
+//const uint16_t PROGMEM Hdparn_combo[] = {KC_P, KC_W, COMBO_END}; // (|) insert between parens
 const uint16_t PROGMEM commdot_combo[] = {KC_COMM, KC_DOT, COMBO_END}; // ; semicolon
 const uint16_t PROGMEM dotslsh_combo[] = {KC_DOT, KC_SLSH, COMBO_END}; // \ backslash
 const uint16_t PROGMEM commslsh_combo[] = {KC_COMM, KC_SLSH, COMBO_END}; // _ underscore
 
 enum my_combos {
-    CC_SCLN,   // SIMPLE COMBO must be first-used as FALSE for combo_on
+    CC_SCLN, // ; SIMPLE COMBO must be first-used as FALSE for combo_on
+    HC_COLN, // :
+    HC_BSLS, // \ backslash
+    HC_UNDS, // _ underscore
+    HC_QUOT, // "
+    HC_NDSH, // – N-dash
+    HC_MDSH, // — M-dash
+    HC_TILD, // ~ tilde
+    HC_GRV, // ` grave
+    HC_HASH, // #
+    HC_AT, // @
     QC_TAB,
-    HC_TAB,
-    HC_DEL,
-    QC_ENT,
-    HC_ENT,
-    QC_SALL,
-    HC_SALL,
 
+    HC_Q, // Q is not on the map
+    HC_Z, // Z is not on the map
+
+    //
+    // ACTION COMBOS (ie, not simple combos above)
+    //
+    // This group all have actions on press (no hold-delay),
+    // may be repeated if held (register_code) or not (tap_code)
+    //
     PC_PENT, // <enter> on num
     PC_BSPC, // <bksp> on num
     PC_DEL, // <del> on num
     PC_TAB, // <tab> on num
 
-    // this block must be contiguous, all using the default hold threshold.
-    // puts out the held bigrams if the hold threshold is not met. Repeats if held.
+    //
+    // DELAYED ACTION COMBOS -- this block must be contiguous
+    //
+    // no action on press, action (in matrix_scan_user),
+    // underlying keys if the hold threshold is not met.
+    // may repeat if appropriate. (tap_code vs register_code)
+    //
     PC_STAB,  // Shift-<tab>
     PC_DASH, // – on number layer (keypad)
     PC_TILD, // ˜
     PC_ELIP, // …
+    HC_ELIP, // …
     PC_COLN, // :
     PC_DEG, //
     PC_NEQL, // ≠
@@ -144,91 +152,80 @@ enum my_combos {
     PC_LPRN,
     PC_RPRN,
     
+    FC_MAC, // Set MAC OS env var
+    FC_WIN, // Set WIN OS env var
+    FC_KILL, // Force quit
+    FC_SCAP, // Screen Capture Selection
+    FC_SCLP, // Screen Capture Selection to clipboard
+    FC_CAPS, // CAPS LOCK
+    FC_LANG1, // LANG1/KANA
+    FC_LANG2, // LANG2/EISUU
+    FC_BACK, // CMD [
+    FC_FWD, // CMD ]
+
     CC_2DQUO, // "|" insertion point between double quotes
 //    HC_LPRN,
-//    HC_RBRK,
-//    HC_LBRK,
 //    HC_RPRN,
 //    HC_2BRAC,
 //    HC_2PARN,
+    HC_LDAQ, // «
+    HC_RDAQ, // »
+    HC_RSAQ, // ‹
+    HC_LSAQ, // ›
 //    HC_2BRAK,
-    HC_DASH,
+    HC_ENYE, // ~ enye
+    HC_ACUT, // ´ acute
+    HC_CIRC, // ˆ circumflex
+    HC_MACR, // - macron
+    HC_DIER, // ¨ dieresis
+    HC_STRK, // — strikethrough
+    HC_ODOT, // ˚ hi o dot over char
 
-    HC_TYPE_JAPAN,
+    HC_TYPE_QU,
+    HC_TYPE_GL,
+    HC_TYPE_LK,
 
+    HC_ENT,
+    HC_SALL,
     HC_UNDO,
     HC_CUT,
     HC_COPY,
     HC_PSTE,
-    HC_PSTM,
-
-//    QC_LPRN,
-//    QC_RPRN,
-//    QC_2BRAC,
-//    QC_2PARN,
-//    QC_2BRAK,
-    QC_DASH,
-    QC_UNDO,
-    QC_CUT,
-    QC_COPY,
-    QC_PSTE,
-    QC_PSTM, // last of contiguous block
-
-    // This group all have custom actions on trigger (no hold-delay), repeat if held
-    QC_GRAV, //
-    HC_GRAV, // ` grave
-    HC_CIRC, // ˆ circumflex
-    QC_CIRC, // ˆ circumflex
-    HC_ACUT, // ´ acute
-    QC_ACUT, // ´ acute
-    HC_MACR, // - macron
-    QC_MACR, // - macron
-    HC_DIER, // ¨ dieresis
-    QC_DIER, // ¨ dieresis
-//    HC_ODOT, // ˚ hi o dot over char
-//    QC_ODOT, // ˚ hi o dot over char
-    HC_STRK, // - strikethrough
-    QC_STRK, // - strikethrough
-
-    HC_DQUO,
-    QC_DQUO,
-    HC_NDSH,
-    QC_NDSH,
-
-    HC_MDSH,
-    HC_TILD,
-    HC_COLN,
-    HC_UNDS,
-    HC_BSLS,
-//    QC_MDSH,
-//    QC_TILD,
-    QC_BSLS,
-    QC_UNDS
+    HC_PSTM  // END OF DELAY BLOCK
 };
 
 
 combo_t key_combos[COMBO_COUNT] = {
     // These simple combos trigger on press, repeat.
     [CC_SCLN] = COMBO(commdot_combo, KC_SCLN),  // must be first, used as FALSE for combo_on
-    [QC_TAB] = COMBO(Qtab_combo, KC_TAB),
-    [HC_TAB] = COMBO(Htab_combo, KC_TAB),
-    [HC_DEL] = COMBO(Hdel_combo, KC_DEL),
-    [HC_ENT] = COMBO(Hent_combo, KC_ENT),
-    [QC_ENT] = COMBO(Qent_combo, KC_ENT),
-    [HC_TILD] = COMBO(Htild_combo, KC_TILD),  // ~
     [HC_COLN] = COMBO(Hcoln_combo, KC_COLN),  // :
-//    [QC_TILD] = COMBO(Qtild_combo, KC_TILD),  // ~
+    [HC_BSLS] = COMBO(Hbsls_combo, KC_BSLS), // \ backslash
+    [HC_UNDS] = COMBO(Hunds_combo, KC_UNDS), // _
+    [HC_TILD] = COMBO(Htild_combo, KC_TILD),  // ~
+    [HC_GRV] = COMBO(Hgrv_combo, KC_GRV),  // `
+    [HC_QUOT] = COMBO(Hquot_combo, KC_DQUO), // " QUOTE (STRAIGHT)
+    [HC_HASH] = COMBO(Hhash_combo, KC_HASH), // #
+    [HC_AT] = COMBO(Hat_combo, KC_AT), // @
+    [QC_TAB] = COMBO(Qtab_combo, KC_TAB),
+
+    [HC_Q] = COMBO(H_Q_combo, KC_Q),
+    [HC_Z] = COMBO(H_Z_combo, KC_Z),
+
+
     [PC_PENT] = COMBO(P3E_combo, KC_PENT), // <enter> on num
     [PC_BSPC] = COMBO(P01_combo, KC_BSPC), // <bksp> on num
     [PC_DEL] = COMBO(P02_combo, KC_DEL), // <del> on num
     [PC_TAB] = COMBO(P05_combo, KC_TAB), // <tab> on num
 
     // action combos below
-    // this block should be contiguous,
-    // all using default COMBO_HOLD threshold. No repeat if held (tap_code)
-    // may send the held combo keys if COMBO_HOLD is not met.
+    // This group have custom actions on trigger (no hold-delay), repeat if held
+    [CC_2DQUO] = COMBO_ACTION(quotq_combo),
 
-    // Keypad combos (all need mods, so must be here)
+    // this block should be contiguous,
+    // Delayed action (COMBO_HOLD threshold). No repeat if held (tap_code)
+    // should send the underlying combo keys if COMBO_HOLD is not met.
+
+    // Keypad combos (all need actions or mods, so must be here)
     [PC_STAB] = COMBO_ACTION(P04_combo), // shift-<tab> on num
     [PC_DASH] = COMBO_ACTION(P12_combo), // – for time span on number layer
     [PC_TILD] = COMBO_ACTION(P13_combo), // ~ for time span on number layer
@@ -247,69 +244,50 @@ combo_t key_combos[COMBO_COUNT] = {
     [PC_PLMN] = COMBO_ACTION(PPLMN_combo), // ±
     [PC_NEQL] = COMBO_ACTION(P1E_combo), // ≠
 
+    [FC_MAC] = COMBO_ACTION(F_MAC_combo), // Set MAC OS env var
+    [FC_WIN] = COMBO_ACTION(F_WIN_combo), // Set WIN OS env var
+    [FC_KILL] = COMBO_ACTION(F_KILL_combo), // Force quit
+    [FC_SCAP] = COMBO_ACTION(F_SCAP_combo), // SCREEN CAPTURE SELECTION
+    [FC_SCLP] = COMBO_ACTION(F_SCLP_combo), // SCREEN CAPTURE SELECTION to clipboard
+    [FC_CAPS] = COMBO(F_CAPS_combo, KC_CAPS), // CAPS LOCK
+    [FC_LANG1] = COMBO(F_LANG1_combo, KC_LANG1), // LANG1/KANA
+    [FC_LANG2] = COMBO(F_LANG2_combo, KC_LANG2), // LANG2/EISUU
+    [FC_BACK] = COMBO_ACTION(F_BACK_combo),  // CMD [
+    [FC_FWD] = COMBO_ACTION(F_FWD_combo),  // CMD ]
+
 // HANDSDOWN
 //    [HC_LPRN] = COMBO_ACTION(Hlprn_combo),
 //    [HC_RPRN] = COMBO_ACTION(Hrprn_combo),
-//    [HC_LBRK] = COMBO_ACTION(Hlbrk_combo),
-//    [HC_RBRK] = COMBO_ACTION(Hrbrk_combo),
-//    [HC_2BRAC] = COMBO_ACTION(Hdbrce_combo), // left+right bracket, insertion in the middle
+//    [HC_2BRAC] = COMBO_ACTION(Hdbrce_combo),
 //    [HC_2PARN] = COMBO_ACTION(Hdparn_combo),
-//    [HC_2BRAK] = COMBO_ACTION(Hdbrak_combo),
-    [HC_UNDS] = COMBO_ACTION(Hunds_combo),
-    [HC_BSLS] = COMBO_ACTION(Hbsls_combo),
-    [HC_DASH] = COMBO_ACTION(Hdash_combo),
-    [HC_NDSH] = COMBO_ACTION(Hndsh_combo),
-    [HC_MDSH] = COMBO_ACTION(Hmdsh_combo),
-    [HC_GRAV] = COMBO_ACTION(Hgrav_combo), // ` grave
-    [HC_CIRC] = COMBO_ACTION(Hcirc_combo), // ˆ circumflex
+    [HC_LDAQ] = COMBO_ACTION(Hldaq_combo), // «
+    [HC_RDAQ] = COMBO_ACTION(Hrdaq_combo), // »
+    [HC_LSAQ] = COMBO_ACTION(Hlsaq_combo), // ‹
+    [HC_RSAQ] = COMBO_ACTION(Hrsaq_combo), // ›
+//    [HC_2BRAK] = COMBO_ACTION(Hdbrak_combo), // left+right bracket, insertion in the middle
+    [HC_NDSH] = COMBO_ACTION(Hndsh_combo), // – N-DASH
+    [HC_MDSH] = COMBO_ACTION(Hmdsh_combo), // — M-DASH
     [HC_ACUT] = COMBO_ACTION(Hacut_combo), // ´ acute
+    [HC_CIRC] = COMBO_ACTION(Hcirc_combo), // ˆ circumflex
     [HC_MACR] = COMBO_ACTION(Hmacr_combo), // - macron
     [HC_DIER] = COMBO_ACTION(Hdier_combo), // ¨ dieresis
     [HC_STRK] = COMBO_ACTION(Hstrk_combo), // - strikethrough
-    [HC_STRK] = COMBO_ACTION(Hstrk_combo), // - strikethrough
-//    [HC_ODOT] = COMBO_ACTION(Hodot_combo), // ˚ hi o dot over char
+    [HC_ENYE] = COMBO_ACTION(Henye_combo), // ˜ enye
+    [HC_ODOT] = COMBO_ACTION(Hodot_combo), // ˚ hi o dot over char
+    [HC_ELIP] = COMBO_ACTION(Helip_combo),  // …
 
 
-    [HC_TYPE_JAPAN] = COMBO_ACTION(H_JAPAN_combo),
+    [HC_TYPE_QU] = COMBO_ACTION(H_QU_combo),
+    [HC_TYPE_GL] = COMBO_ACTION(H_GL_combo),
+    [HC_TYPE_LK] = COMBO_ACTION(H_LK_combo),
 
+    [HC_ENT] = COMBO(Hent_combo, KC_ENT),
     [HC_SALL] = COMBO_ACTION(Hsall_combo),
     [HC_UNDO] = COMBO_ACTION(Hundo_combo),
     [HC_CUT] = COMBO_ACTION(Hcut_combo),
     [HC_COPY] = COMBO_ACTION(Hcopy_combo),
     [HC_PSTE] = COMBO_ACTION(Hpste_combo),
     [HC_PSTM] = COMBO_ACTION(Hpstm_combo),
-
-// QWERTY layer
-//    [QC_LPRN] = COMBO_ACTION(Qlparn_combo),
-//    [QC_RPRN] = COMBO_ACTION(Qrparn_combo),
-//    [QC_2BRAC] = COMBO_ACTION(Qdbrce_combo), // left+right brace, insertion in the middle
-//    [QC_2PARN] = COMBO_ACTION(Qdparn_combo),
-//    [QC_2BRAK] = COMBO_ACTION(Qdbrak_combo),
-    [QC_BSLS] = COMBO_ACTION(dotslsh_combo),
-    [QC_UNDS] = COMBO_ACTION(commslsh_combo), // _ underscore
-    [QC_DASH] = COMBO_ACTION(Qdash_combo),
-    [QC_NDSH] = COMBO_ACTION(Qndsh_combo),
-//    [QC_MDSH] = COMBO_ACTION(Qmdsh_combo),
-    [QC_GRAV] = COMBO_ACTION(Qgrav_combo), // ` grave
-    [QC_CIRC] = COMBO_ACTION(Qcirc_combo), // ˆ circumflex
-    [QC_ACUT] = COMBO_ACTION(Qacut_combo), // ´ acute
-    [QC_MACR] = COMBO_ACTION(Qmacr_combo), // - macron
-    [QC_DIER] = COMBO_ACTION(Qdier_combo), // ¨ dieresis
-    [QC_STRK] = COMBO_ACTION(Qstrk_combo), // - strikethrough
-//    [QC_ODOT] = COMBO_ACTION(Qodot_combo), // ˚ hi o dot over char
-
-    [QC_SALL] = COMBO_ACTION(Qsall_combo),
-    [QC_UNDO] = COMBO_ACTION(Qundo_combo),
-    [QC_CUT] = COMBO_ACTION(Qcut_combo),
-    [QC_COPY] = COMBO_ACTION(Qcopy_combo),
-    [QC_PSTE] = COMBO_ACTION(Qpste_combo),
-    [QC_PSTM] = COMBO_ACTION(Qpmtch_combo), // This is the last in the switch range below
-
-
-    // This group have custom actions on trigger (no hold-delay), repeat if held
-    [HC_DQUO] = COMBO_ACTION(Hdquot_combo),
-    [QC_DQUO] = COMBO_ACTION(Qdquot_combo),
-    [CC_2DQUO] = COMBO_ACTION(quotq_combo),
 };
 
 void process_combo_event(uint8_t combo_index, bool pressed) {
@@ -318,325 +296,156 @@ void process_combo_event(uint8_t combo_index, bool pressed) {
 #endif
     if (pressed) {
 #ifdef OLED_DRIVER_ENABLE
-//        oled_write_P(PSTR("Combo: "), false);
+        oled_write_P(PSTR("Combo: "), false);
 #endif
-        keyhold_timer = timer_read();
+        keyhold_timer = timer_read(); // timer for combo hold threshold
         switch(combo_index) {
-            case CC_SCLN ... QC_PSTM:  // these have a hold delay before triggering
+            case PC_STAB ... HC_PSTM:  // these have a hold delay before triggering
                 combo_on = combo_index; // queue for matrix_scan_user_process_combo
                 break;
-            case HC_DQUO:
-            case QC_DQUO:
-                register_code16(KC_DQUO);
-                break;
-            case HC_GRAV:
-            case QC_GRAV:
-                register_code16(KC_GRV);
-                break;
-            case HC_CIRC:
-            case QC_CIRC:
-                tap_code16(A(KC_6));
-                break;
-            case HC_ACUT:
-            case QC_ACUT:
-                tap_code16(A(KC_E));
-                break;
-            case HC_MACR:
-            case QC_MACR:
-                tap_code16(A(KC_A));
-                break;
-            case HC_DIER:
-//            case QC_DIER:
-                tap_code16(A(KC_U));
-                break;
-            case HC_STRK:
-            case QC_STRK:
-                tap_code16(A(KC_L));
-                break;
-/*            case HC_ODOT:
-            case QC_ODOT:
-                tap_code16(A(KC_K));
-                break;
-            case CC_ENYE:
-                register_code16(A(KC_N));
-                break;
-*/
             case HC_NDSH:
-            case QC_NDSH:
                 register_code16(A(KC_MINS));
                 break;
             case HC_MDSH:
-//            case QC_MDSH:
-                register_code16(A(S(KC_MINS)));
-                break;
-            case HC_UNDS:
-            case QC_UNDS:
-                register_code16(KC_UNDS);
-                break;
-            case HC_BSLS:
-            case QC_BSLS:
-                register_code(KC_BSLS);
+                 register_code16(A(S(KC_MINS)));
                 break;
         } // end switch (combo_index)
     } else { // end if (pressed)
 
-
-/*/
- 
- This is the NOT pressed switch (key up event)
- 
-/*/
 #ifdef OLED_DRIVER_ENABLE
         oled_set_cursor(0,combo_OLED_row);
         oled_write_P(PSTR("                     "), false);
 #endif
-        switch(combo_index) {
-// make this smarter/smaller. lookup keys to output from the key_combos table, bypassing switch
-            case PC_DASH:
-                if (combo_on && !combo_triggered) {// no combo, so send the keys
-                    tap_code(KC_P4);
-                    tap_code(KC_P5);
-                }
-                break;
-            case PC_TILD:
-                if (combo_on && !combo_triggered) {// no combo, so send the keys
-                    tap_code(KC_P5);
-                    tap_code(KC_P6);
-                }
-                break;
-            case PC_ELIP:
-                if (combo_on && !combo_triggered) {// no combo, so send the keys
-                    tap_code(KC_P2);
-                    tap_code(KC_P3);
-                }
-                break;
-            case PC_COLN:
-                if (combo_on && !combo_triggered) {// no combo, so send the keys
-                    tap_code(KC_P4);
-                    tap_code(KC_P6);
-                }
-                break;
-            case PC_PERC:
-                if (combo_on && !combo_triggered) {// no combo, so send the keys
+/*/
+ This is the NOT pressed switch (ie. it is the key up event)
+/*/
+        // make this smarter/smaller/faster.
+        // lookup keys to output from the key_combos[key_combos] table, bypassing this switch
+        if (combo_on && !combo_triggered) {// no combo, so send the underlying keys
+#ifdef OLED_DRIVER_ENABLE
+    oled_set_cursor(oled_max_chars() - 5, combo_OLED_row);
+    oled_write_P(PSTR("abort"), false);
+#endif
+            switch(combo_index) {
+                case PC_DASH:
                     tap_code(KC_P1);
                     tap_code(KC_P2);
-                }
-                break;
-            case PC_DOLR:
-                if (combo_on && !combo_triggered) {// no combo, so send the keys
+                    break;
+                case PC_TILD:
+                    tap_code(KC_P1);
+                    tap_code(KC_P3);
+                    break;
+                case PC_ELIP:
+                    tap_code(KC_P2);
+                    tap_code(KC_P3);
+                    break;
+                case PC_LPRN:
+                    tap_code(KC_P4);
+                    tap_code(KC_P5);
+                    break;
+                case PC_RPRN:
+                    tap_code(KC_P5);
+                    tap_code(KC_P6);
+                    break;
+                case PC_COLN:
+                    tap_code(KC_P4);
+                    tap_code(KC_P6);
+                    break;
+                case PC_PERC:
+                    tap_code(KC_P6);
+                    tap_code(KC_PPLS);
+                    break;
+                case PC_JYEN:
+                    tap_code(KC_SLSH);
+                    tap_code(KC_7);
+                    break;
+                case PC_DOLR:
                     tap_code(KC_7);
                     tap_code(KC_8);
-                }
-                break;
-            case PC_CENT:
-                if (combo_on && !combo_triggered) {// no combo, so send the keys
+                    break;
+                case PC_CENT:
                     tap_code(KC_7);
                     tap_code(KC_9);
-                }
-                break;
-            case PC_JYEN:
-                if (combo_on && !combo_triggered) {// no combo, so send the keys
+                    break;
+                case PC_EURO:
                     tap_code(KC_8);
                     tap_code(KC_9);
-                }
-                break;
-/*/            case QC_LPRN:
-                if (combo_on && !combo_triggered) {// no combo, so send the keys
-                    tap_code(KC_W);
-                    tap_code(KC_E);
-                }
-                break;
-            case QC_RPRN:
-                if (combo_on && !combo_triggered) {// no combo, so send the keys
-                    tap_code(KC_E);
-                    tap_code(KC_R);
-                }
-                break;
-            case QC_2BRAC:
-                if (combo_on && !combo_triggered) {// no combo, so send the keys
-                    tap_code(KC_T);
-                    tap_code(KC_Y);
-                }
-                break;
-            case QC_2PARN:
-                if (combo_on && !combo_triggered) {// no combo, so send the keys
+                    break;
+
+                case HC_TYPE_QU:
+                    tap_code(KC_C);
+                    tap_code(KC_O);
+                    break;
+                case HC_TYPE_GL:
                     tap_code(KC_G);
                     tap_code(KC_H);
-                }
-                break;
-            case QC_2BRAK:
-                if (combo_on && !combo_triggered) {// no combo, so send the keys
-                    tap_code(KC_B);
-                    tap_code(KC_N);
-                }
-                break;
-/*/
-            case HC_DASH:
-                if (combo_on && !combo_triggered) {// no combo, so send the keys
+                    break;
+                case HC_TYPE_LK:
+                    tap_code(KC_H);
                     tap_code(KC_K);
-                    tap_code(KC_L);
-                }
-                break;
-            case QC_DASH:
-                if (combo_on && !combo_triggered) {// no combo, so send the keys
-                    tap_code(KC_I);
-                    tap_code(KC_O);
-                }
-                break;
-            case CC_2DQUO:
-                if (combo_on && !combo_triggered) {// no combo, so send the keys
-                    tap_code(KC_Q);
-                    tap_code(KC_QUOT);
-                }
-                break;
-            case HC_DQUO:
-            case QC_DQUO:
-                unregister_code16(KC_DQUO);
-                break;
-            case HC_GRAV:
-            case QC_GRAV:
-                unregister_code16(KC_GRV);
-                break;
-            case HC_NDSH:
-                 if (combo_on && !combo_triggered) {// no combo, so send the keys
-                    tap_code(KC_V);
+                    break;
+
+                case HC_SALL:
+                    tap_code(KC_J);
                     tap_code(KC_D);
-                } else { // stop repeating
-                    unregister_code16(A(KC_MINS));
-                }
-                break;
-             case QC_NDSH:
-                if (combo_on && !combo_triggered) {// no combo, so send the keys
-                    tap_code(KC_N);
-                    tap_code(KC_M);
-                } else { // stop repeating
-                    unregister_code16(A(KC_MINS));
-                }
-                break;
-            case HC_MDSH:
-//            case QC_MDSH:
-                unregister_code16(A(S(KC_MINS)));
-                break;
-            case HC_BSLS:
-            case QC_BSLS:
-                unregister_code(KC_BSLS);
-                break;
-            case HC_UNDS:
-            case QC_UNDS:
-                unregister_code16(KC_UNDS);
-                break;
-            case HC_SALL:
-                if (combo_on && !combo_triggered) {// no combo, so send the keys
-                    tap_code(KC_Z);
-                    tap_code(KC_D);
-                }
-                break;
-            case QC_SALL:
-                if (combo_on && !combo_triggered) {// no combo, so send the keys
-                    tap_code(KC_X);
-                    tap_code(KC_V);
-                }
-                break;
-            case HC_UNDO:
-                if (combo_on && !combo_triggered) {// no combo, so send the keys
-                    tap_code(KC_Z);
-                    tap_code(KC_M);
-                } else {  // combo triggered, so unregister to stop repeating
-                    if (user_config.osIsWindows) {
-                        unregister_code16(C(KC_Z));
-                    } else {
-                        unregister_code16(G(KC_Z));
-                    }
-                }
-                break;
-            case QC_UNDO:
-                if (combo_on && !combo_triggered) {// no combo, so send the keys
-                    tap_code(KC_Z);
-                    tap_code(KC_X);
-                } else {  // combo triggered, so unregister to stop repeating
-                    if (user_config.osIsWindows) {
-                        unregister_code16(C(KC_Z));
-                    } else {
-                        unregister_code16(G(KC_Z));
-                    }
-                }
-                break;
-            case HC_CUT:
-                if (combo_on && !combo_triggered) {// no combo, so send the keys
-                    tap_code(KC_Z);
-                    tap_code(KC_L);
-                }
-                break;
-            case QC_CUT:
-                if (combo_on && !combo_triggered) {// no combo, so send the keys
-                    tap_code(KC_Z);
-                    tap_code(KC_X);
-                }
-                break;
-            case HC_COPY:
-                if (combo_on && !combo_triggered) {// no combo, so send the keys
-                    tap_code(KC_M);
-                    tap_code(KC_L);
-                }
-                break;
-            case QC_COPY:
-                if (combo_on && !combo_triggered) {// no combo, so send the keys
-                    tap_code(KC_X);
-                    tap_code(KC_C);
-                }
-                break;
-            case HC_PSTE:
-                if (combo_on && !combo_triggered) {// no combo, so send the keys
-                    tap_code(KC_L);
-                    tap_code(KC_D);
-                } else {  // combo triggered, so stop repeating
-                    if (user_config.osIsWindows) {
-                        unregister_code16(C(KC_V));
-                    } else {
-                        unregister_code16(G(KC_V));
-                    }
-                }
-                break;
-            case QC_PSTE:
-                if (combo_on && !combo_triggered) {// no combo, so send the keys
-                    tap_code(KC_C);
-                    tap_code(KC_V);
-                } else {  // combo triggered, so stop repeating
-                    if (user_config.osIsWindows) {
-                        unregister_code16(C(KC_V));
-                    } else {
-                        unregister_code16(G(KC_V));
-                    }
-                }
-                break;
-            case HC_PSTM:
-                if (combo_on && !combo_triggered) {// no combo, so send the keys
-                    tap_code(KC_M);
-                    tap_code(KC_D);
-                } else {  // combo triggered, so stop repeating
-                    if (user_config.osIsWindows) {
-                        unregister_code16(C(S(A(KC_V))));
-                    } else {
-                        unregister_code16(G(S(A(KC_V))));
-                    }
-                }
-                break;
-            case QC_PSTM:
-                if (combo_on && !combo_triggered) {// no combo, so send the keys
-                    tap_code(KC_V);
+                    break;
+                case HC_UNDO:
+                    tap_code(KC_J);
                     tap_code(KC_B);
-                } else {  // combo triggered, so stop repeating
+                    break;
+                case HC_CUT:
+                    tap_code(KC_J);
+                    tap_code(KC_L);
+                    break;
+                case HC_COPY:
+                    tap_code(KC_B);
+                    tap_code(KC_L);
+                    break;
+                case HC_PSTE:
+                    tap_code(KC_L);
+                    tap_code(KC_D);
+                    break;
+                case HC_PSTM:
+                    tap_code(KC_B);
+                    tap_code(KC_D);
+                    break;
+            }  // end switch(combo_index) {
+        } else {
+        // Key up, threshold met, so we'll resolve the combo action if neccessary.
+        // unregister_code for repeating keys, etc. that weren't handled in matrix_scan_user
+            switch(combo_index) {
+                case HC_NDSH:
+                    unregister_code16(A(KC_MINS));
+                    break;
+                case HC_MDSH:
+                    unregister_code16(A(S(KC_MINS)));
+                    break;
+                    
+                case HC_UNDO:
+                    if (user_config.osIsWindows) {
+                        unregister_code16(C(KC_Z));
+                    } else {
+                        unregister_code16(G(KC_Z));
+                    }
+                    break;
+                case HC_PSTE:
+                    if (user_config.osIsWindows) {
+                        unregister_code16(C(KC_V));
+                    } else {
+                        unregister_code16(G(KC_V));
+                    }
+                    break;
+                case HC_PSTM:
                     if (user_config.osIsWindows) {
                         unregister_code16(C(S(A(KC_V))));
                     } else {
                         unregister_code16(G(S(A(KC_V))));
                     }
-                }
-                break;
-        }  // end switch(combo_index) {
-        combo_on = 0;
-        combo_triggered = false;
-    } // else if (pressed)
+                    break;
+            }  // end switch(combo_index) {
+        } // else if (threshold met)
+        combo_on = combo_triggered = false;
+    } // ELSE IF (pressed) meaning keyup
 #ifdef OLED_DRIVER_ENABLE
 //    oled_render();
 #endif
@@ -647,26 +456,19 @@ void matrix_scan_user_process_combo() {  // called from matrix_scan_user
 
     // These combos are to be held for TAPPING_TERM before triggering
     // to avoid accidental triggers while fast typing these common rolls.
-    // I've used tap_code here because repeats aren't deemed necessary for these
-    // combos, though holds could be enabled with register_code and adding
-    // unregister_code to the !pressed switch in process_combo_event above.
+    // If repeats aren't deemed necessary, use tap_code here, otherwise register_code here
+    // and add unregister_code to the !pressed switch in process_combo_event above.
     // Checking combo_triggered above can enable sending untriggered keys
     // and thus allow for longer COMBO_TERM. (recommend < TAPPING_TERM / 2)
     // still, really fast rolls, esp if they can go both ways, are going to be
-    // a problem for this (ex er, re; io oi), so maybe best to avoid them.
+    // a problem for this (ex er, re; io oi), so maybe best to avoid them as
+    // combos. On Hands Down, this means no combos on home row, but that's fine,
+    // because home already has modifiers, so it all works out.
     if (!combo_triggered) {
         // do simple "on" on first press actions here,
-        // then turn on combo state for hold acions
+        // then turn on combo state for hold acions to be resolved in keyup event above
         if (combo_on && (timer_elapsed(keyhold_timer) > COMBO_HOLD)) {
             switch(combo_on) {  // combo_on is global, set in process_combo above
-/*/                case CC_WERE:
-                    tap_code(KC_W);
-                    tap_code(KC_E);
-                    tap_code(KC_QUOT);
-                    tap_code(KC_R);
-                    tap_code(KC_E);
-                    break;
-/*/
                 case PC_STAB:
                     tap_code16(S(KC_TAB));
                     break;
@@ -676,6 +478,7 @@ void matrix_scan_user_process_combo() {  // called from matrix_scan_user
                 case PC_TILD:
                     tap_code16(KC_TILD);
                     break;
+                case HC_ELIP:
                 case PC_ELIP:
                     tap_code16(A(KC_SCLN));
                     break;
@@ -713,70 +516,145 @@ void matrix_scan_user_process_combo() {  // called from matrix_scan_user
                     tap_code16(A(KC_0));
                     break;
                 case PC_LPRN:
-//                case HC_LPRN:
-//                case QC_LPRN:
                     tap_code16(KC_LPRN);
                     break;
                 case PC_RPRN:
-//                case HC_RPRN:
-//                case QC_RPRN:
                     tap_code16(KC_RPRN);
                     break;
-/*                case HC_LBRK:
-                    tap_code16(KC_LCBR);
-                    break;
-                case HC_RBRK:
-                    tap_code16(KC_RCBR);
-                    break;
-                case NC_2BRAC:
-                case QC_2BRAC:
+/*                case NC_2BRAC:
                     tap_code16(KC_LCBR);
                     tap_code16(KC_RCBR);
                     tap_code(KC_LEFT);
                     break;
                 case NC_2PARN:
-                case QC_2PARN:
                     tap_code16(KC_LPRN);
                     tap_code16(KC_RPRN);
                     tap_code(KC_LEFT);
                     break;
-                case NC_2BRAK:
-                case QC_2BRAK:
+ */
+                case HC_LDAQ:
+                    tap_code16(A(KC_BSLS));
+                    break;
+                case HC_RDAQ:
+                    tap_code16(A(S(KC_BSLS)));
+                    break;
+                case HC_LSAQ:
+                    tap_code16(S(A(KC_3)));
+                    break;
+                case HC_RSAQ:
+                    tap_code16(S(A(KC_4)));
+                    break;
+/*                case HC_2BRAK:
                     tap_code16(KC_LBRC);
                     tap_code16(KC_RBRC);
                     tap_code(KC_LEFT);
                     break;
 */
+                case FC_MAC: // Set current OS indicator to macOs
+                    user_config.osIsWindows = false;
+                    eeconfig_update_user(user_config.raw);
+#ifdef OLED_DRIVER_ENABLE
+                    oled_set_cursor(oled_max_chars() - 3, 0);
+                    oled_write_P(PSTR("MAC"), false);
+#endif // OLED_DRIVER_ENABLE
+                    break;
+                case FC_WIN: // Set current OS indicator to Windows
+                    user_config.osIsWindows = true;
+                    eeconfig_update_user(user_config.raw);
+#ifdef OLED_DRIVER_ENABLE
+                    oled_set_cursor(oled_max_chars() - 3, 0);
+                    oled_write_P(PSTR("WIN"), false);
+#endif // OLED_DRIVER_ENABLE
+                    break;
+                case FC_KILL:
+                    if (user_config.osIsWindows) {
+                        tap_code16(C(A(KC_DEL)));
+                    } else {
+                        tap_code16(G(A(KC_ESC)));
+                    }
+                    break;
+                case FC_BACK:
+                    if (user_config.osIsWindows) {
+                        tap_code16(C(KC_LBRC));
+                    } else {
+                        tap_code16(G(KC_LBRC));
+                    }
+                    break;
+                case FC_FWD:
+                    if (user_config.osIsWindows) {
+                        tap_code16(C(KC_RBRC));
+                    } else {
+                        tap_code16(G(KC_RBRC));
+                    }
+                    break;
+
+                case FC_SCAP:
+                    if (user_config.osIsWindows) {
+                        tap_code16(KC_PSCR);
+                    } else {
+                        tap_code16(S(G(KC_4)));
+                    }
+                    break;
+                case FC_SCLP:
+                    if (user_config.osIsWindows) {
+                        tap_code16(A(KC_PSCR));
+                    } else {
+                        tap_code16(C(S(G(KC_4))));
+                    }
+                    break;
                 case CC_2DQUO:
                     tap_code16(A(KC_LBRC));
                     tap_code16(A(S(KC_LBRC)));
                     tap_code(KC_LEFT);
                     break;
-                case HC_DASH:
-                case QC_DASH:
-                    tap_code(KC_MINS);
+
+                case HC_ENYE:
+                    tap_code16(A(KC_N));
                     break;
-                case HC_TYPE_JAPAN:
-                    SEND_STRING("Japan");
+                case HC_ACUT:
+                     tap_code16(A(KC_E));
                     break;
+                case HC_CIRC:
+                     tap_code16(A(KC_6));
+                    break;
+                case HC_MACR:
+                    tap_code16(A(KC_A));
+                    break;
+                case HC_DIER:
+                     tap_code16(A(KC_U));
+                    break;
+                case HC_STRK:
+                    tap_code16(A(KC_L));
+                    break;
+                case HC_ODOT:
+                    tap_code16(A(KC_K));
+                    break;
+
+                case HC_TYPE_QU:
+                    SEND_STRING("qu");
+                    break;
+                case HC_TYPE_GL:
+                    SEND_STRING("gl");
+                    break;
+                case HC_TYPE_LK:
+                    SEND_STRING("lk");
+                    break;
+
                 case HC_SALL:
-                case QC_SALL:
-                    if (user_config.osIsWindows) { // eventuall this will be replaced with smart table lookup by platform (mac, ios, win, linux, vim, etc.)
+                    if (user_config.osIsWindows) { // eventually this will be replaced with smart table lookup by platform (mac/ios, win, linux, vim, etc.)
                         tap_code16(C(KC_A));
                     } else {
                         tap_code16(G(KC_A));
                     }
                     break;
                 case HC_UNDO:
-                case QC_UNDO:
-                    if (user_config.osIsWindows) { // eventuall this will be replaced with smart table lookup by platform (mac, ios, win, linux, vim, etc.)
+                    if (user_config.osIsWindows) { // eventually this will be replaced with smart table lookup by platform (mac/ios, win, linux, vim, etc.)
                         register_code16(C(KC_Z));
                     } else {
                         register_code16(G(KC_Z));
                     }
                     break;
                 case HC_CUT:
-                case QC_CUT:
                     if (user_config.osIsWindows) {
                         tap_code16(C(KC_X));
                     } else {
@@ -784,15 +662,13 @@ void matrix_scan_user_process_combo() {  // called from matrix_scan_user
                     }
                     break;
                 case HC_COPY:
-                case QC_COPY:
                     if (user_config.osIsWindows) {
                         tap_code16(C(KC_C));
                     } else {
                         tap_code16(G(KC_C));
                     }
                     break;
-                case HC_PSTE:  // These may be held and repeated
-                case QC_PSTE:  // These may be held and repeated
+                case HC_PSTE:
                     if (user_config.osIsWindows) {
                         register_code16(C(KC_V));
                     } else {
@@ -800,7 +676,6 @@ void matrix_scan_user_process_combo() {  // called from matrix_scan_user
                     }
                     break;
                 case HC_PSTM:
-                case QC_PSTM:
                     if (user_config.osIsWindows) {
                         register_code16(C(S(A(KC_V))));
                     } else {

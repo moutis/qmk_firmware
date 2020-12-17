@@ -46,15 +46,6 @@ this is included in the scan_matrix_user function
       SEQ_TWO_KEYS(KC_G, KC_R) {
           SEND_STRING("Gratefully,\n");
       }
-      SEQ_TWO_KEYS(KC_D, KC_Q) {
-          SEND_STRING("cd /users/alan/dev/qmk_firmware\n");
-      }
-      SEQ_TWO_KEYS(KC_J, KC_C) {
-          SEND_STRING("QMK json2c -o users/moutis/kyria_ansi_moutis_homemods.c users/moutis/kyria_ansi_moutis_homemods.json\n");
-      }
-      SEQ_TWO_KEYS(KC_M, KC_K) {
-          SEND_STRING("qmk flash -kb kyria -km moutis\n");
-      }
       SEQ_TWO_KEYS(KC_A, KC_R) {
           SEND_STRING("Alan Reiser");
       }
