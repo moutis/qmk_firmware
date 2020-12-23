@@ -290,7 +290,7 @@ combo_t key_combos[COMBO_COUNT] = {
     [HC_PSTM] = COMBO_ACTION(Hpstm_combo),
 };
 
-void process_combo_event(uint8_t combo_index, bool pressed) {
+void process_combo_event(uint16_t combo_index, bool pressed) {
 #ifdef OLED_DRIVER_ENABLE
     oled_set_cursor(0, combo_OLED_row);
 #endif
