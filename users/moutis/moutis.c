@@ -45,7 +45,7 @@ static bool key_trap = false;
 #endif
 
 #ifdef COMBO_ENABLE
-    #include "moutis_COMBO_hd_alt-t.c"
+    #include "moutis_COMBO_hd_alt-tx.c"
 #endif
 
 #include "moutis_PROCESS_RECORD.c"
