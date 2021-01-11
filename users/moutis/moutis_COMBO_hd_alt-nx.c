@@ -8,10 +8,10 @@ const uint16_t PROGMEM F_WIN_combo[] = {KC_SLSH, KC_V, COMBO_END}; // Set WIN OS
 const uint16_t PROGMEM F_KILL_combo[] = {KC_LBRC, KC_SLSH, COMBO_END}; // Force quit
 const uint16_t PROGMEM F_SCLP_combo[] = {KC_LBRC, KC_K, COMBO_END}; // SCREEN shot SELECTION to clipboard
 const uint16_t PROGMEM F_SCAP_combo[] = {KC_LBRC, KC_M, COMBO_END}; //  SCREEN shot SELECTION to file
-const uint16_t PROGMEM F_CAPS_combo[] = {KC_D, KC_C, COMBO_END}; // CAPS LOCK
-const uint16_t PROGMEM H_CAPS_combo[] = {KC_H, KC_I, COMBO_END}; // CAPS LOCK
-const uint16_t PROGMEM F_LANG1_combo[] = {KC_L, KC_COMM, COMBO_END}; // LANG1/KANA
-const uint16_t PROGMEM F_LANG2_combo[] = {KC_L, KC_C, COMBO_END}; // LANG2/EISUU
+const uint16_t PROGMEM F_CAPS_combo[] = {KC_L, KC_C, COMBO_END}; // CAPS LOCK
+const uint16_t PROGMEM H_CAPS_combo[] = {KC_N, KC_A, COMBO_END}; // CAPS LOCK
+const uint16_t PROGMEM F_LANG1_combo[] = {KC_D, KC_COMM, COMBO_END}; // LANG1/KANA
+const uint16_t PROGMEM F_LANG2_combo[] = {KC_D, KC_C, COMBO_END}; // LANG2/EISUU
 //const uint16_t PROGMEM F_BACK_combo[] = {KC_M, KC_L, COMBO_END}; // CMD [
 //const uint16_t PROGMEM F_FWD_combo[] = {KC_M, KC_B, COMBO_END}; // CMD ]
 
@@ -70,8 +70,8 @@ const uint16_t PROGMEM Helip_combo[] = {KC_C, KC_SLSH, COMBO_END}; // … elipse
 
 // Bigram and other multi-output thingies
 const uint16_t PROGMEM H_CCOMM_combo[] = {KC_C, KC_COMM, COMBO_END}; // TYPE "qu"
-const uint16_t PROGMEM H_GM_combo[] = {KC_G, KC_M, COMBO_END}; // TYPE "gl"
-const uint16_t PROGMEM H_MK_combo[] = {KC_M, KC_K, COMBO_END}; // TYPE "lk"
+const uint16_t PROGMEM H_GM_combo[] = {KC_G, KC_K, COMBO_END}; // TYPE "gl"
+const uint16_t PROGMEM H_MK_combo[] = {KC_K, KC_M, COMBO_END}; // TYPE "lk"
 const uint16_t PROGMEM H_tion_combo[] = {KC_V, KC_W, COMBO_END}; // TYPE "tion"
 
 const uint16_t PROGMEM Hldaq_combo[] = {KC_W, KC_COMM, COMBO_END}; // «
@@ -83,12 +83,13 @@ const uint16_t PROGMEM Hrsaq_combo[] = {KC_V, KC_DOT, COMBO_END}; // ›
 const uint16_t PROGMEM Qtab_combo[] = {KC_Q, KC_W, COMBO_END}; // tab QWERTY
 const uint16_t PROGMEM Htab_combo[] = {KC_LBRC, KC_G, COMBO_END}; // tab HANDS DOWN
 
-const uint16_t PROGMEM Hent_combo[] = {KC_V, KC_D, COMBO_END}; // enter
+const uint16_t PROGMEM Hdel_combo[] = {KC_V, KC_D, COMBO_END}; // bspc
+const uint16_t PROGMEM Hent_combo[] = {KC_V, KC_L, COMBO_END}; // enter
 const uint16_t PROGMEM Hsall_combo[] = {KC_X, KC_D, COMBO_END}; // select all
 const uint16_t PROGMEM Hundo_combo[] = {KC_X, KC_B, COMBO_END}; // undo
 const uint16_t PROGMEM Hcut_combo[] = {KC_X, KC_L, COMBO_END}; // cut
 const uint16_t PROGMEM Hcopy_combo[] = {KC_L, KC_B, COMBO_END}; // copy
-const uint16_t PROGMEM Hpste_combo[] = {KC_L, KC_D, COMBO_END}; // paste
+const uint16_t PROGMEM Hpste_combo[] = {KC_D, KC_L, COMBO_END}; // paste
 const uint16_t PROGMEM Hpstm_combo[] = {KC_B, KC_D, COMBO_END}; // paste-match
 
 
@@ -193,6 +194,7 @@ enum my_combos {
     HC_TYPE_GL,
     HC_TYPE_LK,
 
+    HC_DEL,
     HC_ENT,
     HC_SALL,
     HC_UNDO,
@@ -293,6 +295,7 @@ combo_t key_combos[COMBO_COUNT] = {
     [HC_TYPE_LK] = COMBO_ACTION(H_MK_combo),
     [HC_TYPE_TION] = COMBO_ACTION(H_tion_combo),
 
+    [HC_DEL] = COMBO(Hdel_combo, KC_BSPC),
     [HC_ENT] = COMBO(Hent_combo, KC_ENT),
     [HC_SALL] = COMBO_ACTION(Hsall_combo),
     [HC_UNDO] = COMBO_ACTION(Hundo_combo),
@@ -399,7 +402,7 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
 
                 case HC_SALL:
                     tap_code(KC_X);
-                    tap_code(KC_D);
+                    tap_code(KC_L);
                     break;
                 case HC_UNDO:
                     tap_code(KC_X);
@@ -407,11 +410,11 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
                     break;
                 case HC_CUT:
                     tap_code(KC_X);
-                    tap_code(KC_L);
+                    tap_code(KC_D);
                     break;
                 case HC_COPY:
                     tap_code(KC_B);
-                    tap_code(KC_L);
+                    tap_code(KC_D);
                     break;
                 case HC_PSTE:
                     tap_code(KC_L);
@@ -419,7 +422,7 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
                     break;
                 case HC_PSTM:
                     tap_code(KC_B);
-                    tap_code(KC_D);
+                    tap_code(KC_L);
                     break;
             }  // end switch(combo_index) {
         } else {
