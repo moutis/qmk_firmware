@@ -16,7 +16,8 @@ combo_t key_combos[COMBO_COUNT] = {COMBO(test_combo, KC_ESC)};
 
 This will send "Escape" if you hit the A and B keys.
 
-As of [PR#8591](https://github.com/qmk/qmk_firmware/pull/8591/), it is possible to fire combos from ModTap keys and LayerTap keys. So in the above example you could have keys `LSFT_T(KC_A)` and `LT(_LAYER, KC_B)` and it would work. So Home Row Mods and Home Row Combos at same time is now a thing!
+As of [PR#8591](https://github.com/qmk/qmk_firmware/pull/8591/), it is possible to fire combos from ModTap keys and LayerTap keys. So in the above example you could have keys `LSFT_T(KC_A)` and `LT(_LAYER, KC_B)` and it would work. So Home Row Mods and Home 
+Row Combos at same time is now a thing!
 
 It is also now possible to overlap combos. Before, with the example below both combos would activate when all three keys were pressed. Now only the three key combo will activate.
 

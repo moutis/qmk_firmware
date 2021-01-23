@@ -53,36 +53,6 @@ static bool key_trap = false;
 // leader is handled in matrix.c
 #include "moutis_MATRIX.c"
 
-#ifdef ENCODER_ENABLE
-void encoder_update_user(uint8_t index, bool clockwise) {
-  /* With an if statement we can check which encoder was turned. */
-  if (index == 0) { /* First encoder */
-    /* And with another if statement we can check the direction. */
-    if (clockwise) {
-      /* This is where the actual magic happens: this bit of code taps on the
-         Page Down key. You can do anything QMK allows you to do here.
-         You'll want to replace these lines with the things you want your
-         encoders to do. */
-      tap_code(KC_VOLD);
-    } else {
-      /* And likewise for the other direction, this time Page Down is pressed. */
-      tap_code(KC_VOLU);
-    }
-  /* You can copy the code and change the index for every encoder you have. Most
-     keyboards will only have two, so this piece of code will suffice. */
-
-      /* Second encoder */
-
- } else if (index == 1) {
-    if (clockwise) {
-      tap_code(KC_MPRV);
-    } else {
-      tap_code(KC_MNXT);
-    }
-  }
-
-}
-#endif
 
 void keyboard_post_init_user(void) {
     // swap ctrl-cmd-alt keys as appropriate for platform

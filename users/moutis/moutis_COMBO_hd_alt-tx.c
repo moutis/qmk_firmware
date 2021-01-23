@@ -2,18 +2,16 @@
 
 // functions / state keys
 
-const uint16_t PROGMEM F_ESC_combo[] = {KC_X, KC_V, COMBO_END}; // ESCape
-const uint16_t PROGMEM F_MAC_combo[] = {KC_SLSH, KC_M, COMBO_END}; // Set MAC OS env var
+const uint16_t PROGMEM F_ESC_combo[] = {KC_LBRC, KC_MINS, COMBO_END}; // ESCape
+const uint16_t PROGMEM F_MAC_combo[] = {KC_SLSH, KC_C, COMBO_END}; // Set MAC OS env var
 const uint16_t PROGMEM F_WIN_combo[] = {KC_SLSH, KC_V, COMBO_END}; // Set WIN OS env var
 const uint16_t PROGMEM F_KILL_combo[] = {KC_LBRC, KC_SLSH, COMBO_END}; // Force quit
-const uint16_t PROGMEM F_SCLP_combo[] = {KC_LBRC, KC_K, COMBO_END}; // SCREEN shot SELECTION to clipboard
-const uint16_t PROGMEM F_SCAP_combo[] = {KC_LBRC, KC_M, COMBO_END}; //  SCREEN shot SELECTION to file
-const uint16_t PROGMEM F_CAPS_combo[] = {KC_D, KC_C, COMBO_END}; // CAPS LOCK
+const uint16_t PROGMEM F_SCLP_combo[] = {KC_LBRC, KC_P, COMBO_END}; // SCREEN shot SELECTION to clipboard
+const uint16_t PROGMEM F_SCAP_combo[] = {KC_LBRC, KC_C, COMBO_END}; //  SCREEN shot SELECTION to file
+const uint16_t PROGMEM F_CAPS_combo[] = {KC_D, KC_M, COMBO_END}; // CAPS LOCK
 const uint16_t PROGMEM H_CAPS_combo[] = {KC_H, KC_I, COMBO_END}; // CAPS LOCK
 const uint16_t PROGMEM F_LANG1_combo[] = {KC_L, KC_COMM, COMBO_END}; // LANG1/KANA
-const uint16_t PROGMEM F_LANG2_combo[] = {KC_L, KC_C, COMBO_END}; // LANG2/EISUU
-//const uint16_t PROGMEM F_BACK_combo[] = {KC_M, KC_L, COMBO_END}; // CMD [
-//const uint16_t PROGMEM F_FWD_combo[] = {KC_M, KC_B, COMBO_END}; // CMD ]
+const uint16_t PROGMEM F_LANG2_combo[] = {KC_L, KC_M, COMBO_END}; // LANG2/EISUU
 
 //  (22) keypad combos
 const uint16_t PROGMEM PCM1_combo[] = {KC_COMM, KC_P1, COMBO_END};
@@ -41,37 +39,36 @@ const uint16_t PROGMEM PPLMN_combo[] = {KC_PPLS, KC_PMNS, COMBO_END};
 
 // spatially arranged characters and diacritics
 
-const uint16_t PROGMEM Hacut_combo[] = {KC_P, KC_RBRC, COMBO_END}; // ´ acute (dead key)
-const uint16_t PROGMEM Hcirc_combo[] = {KC_U, KC_RBRC, COMBO_END}; // ˆ circumflex (dead key)
+const uint16_t PROGMEM Hacut_combo[] = {KC_K, KC_RBRC, COMBO_END}; // ´ acute (dead key)
 const uint16_t PROGMEM Hgrv_combo[] = {KC_J, KC_RBRC, COMBO_END}; // ` grave
-
-const uint16_t PROGMEM Hmacr_combo[] = {KC_P, KC_J, COMBO_END}; // - macron (dead key)
-const uint16_t PROGMEM Hdier_combo[] = {KC_QUOT, KC_U, COMBO_END}; // ¨ dieresis (dead key)
 const uint16_t PROGMEM Hstrk_combo[] = {KC_QUOT, KC_RBRC, COMBO_END}; // — strikethrough (dead key)
 const uint16_t PROGMEM Hodot_combo[] = {KC_QUOT, KC_J, COMBO_END}; // ˚ hi o dot over char (dead key)
+const uint16_t PROGMEM Hdier_combo[] = {KC_U, KC_RBRC, COMBO_END}; // ¨ dieresis (dead key)
+const uint16_t PROGMEM Hmacr_combo[] = {KC_K, KC_J, COMBO_END}; // - macron (dead key)
+const uint16_t PROGMEM Hcirc_combo[] = {KC_QUOT, KC_U, COMBO_END}; // ˆ circumflex (dead key)
 
 const uint16_t PROGMEM Hbsls_combo[] = {KC_DOT, KC_SLSH, COMBO_END}; // \ backslash
-const uint16_t PROGMEM H_Q_combo[] = {KC_P, KC_U, COMBO_END}; // TYPE "q"
+const uint16_t PROGMEM H_Q_combo[] = {KC_K, KC_U, COMBO_END}; // TYPE "q"
 const uint16_t PROGMEM H_Z_combo[] = {KC_J, KC_U, COMBO_END}; // TYPE "z"
 
-const uint16_t PROGMEM Hndsh_combo[] = {KC_MINS, KC_K, COMBO_END}; // – n dash
-const uint16_t PROGMEM Hmdsh_combo[] = {KC_MINS, KC_M, COMBO_END}; // — m dash
+const uint16_t PROGMEM Hndsh_combo[] = {KC_MINS, KC_P, COMBO_END}; // – n dash
+const uint16_t PROGMEM Hmdsh_combo[] = {KC_MINS, KC_C, COMBO_END}; // — m dash
 const uint16_t PROGMEM Htild_combo[] = {KC_MINS, KC_G, COMBO_END}; // ~ tilde
-const uint16_t PROGMEM Henye_combo[] = {KC_G, KC_K, COMBO_END}; // ˜ enye (dead key)
+const uint16_t PROGMEM Henye_combo[] = {KC_G, KC_P, COMBO_END}; // ˜ enye (dead key)
 
-const uint16_t PROGMEM Hquot_combo[] = {KC_QUOT, KC_P, COMBO_END}; // " DOUBLE QUOTE
+const uint16_t PROGMEM Hquot_combo[] = {KC_QUOT, KC_K, COMBO_END}; // " DOUBLE QUOTE
 
-const uint16_t PROGMEM Hhash_combo[] = {KC_W, KC_C, COMBO_END}; // #
+const uint16_t PROGMEM Hhash_combo[] = {KC_W, KC_M, COMBO_END}; // #
 const uint16_t PROGMEM Hat_combo[] = {KC_W, KC_SLSH, COMBO_END}; // @
 
-const uint16_t PROGMEM Hunds_combo[] = {KC_C, KC_DOT, COMBO_END}; // _ underscore
+const uint16_t PROGMEM Hunds_combo[] = {KC_M, KC_DOT, COMBO_END}; // _ underscore
 const uint16_t PROGMEM Hcoln_combo[] = {KC_COMM, KC_SLSH, COMBO_END}; // : colon
-const uint16_t PROGMEM Helip_combo[] = {KC_C, KC_SLSH, COMBO_END}; // … elipses
+const uint16_t PROGMEM Helip_combo[] = {KC_M, KC_SLSH, COMBO_END}; // … elipses
 
 // Bigram and other multi-output thingies
-const uint16_t PROGMEM H_CCOMM_combo[] = {KC_C, KC_COMM, COMBO_END}; // TYPE "qu"
-const uint16_t PROGMEM H_GM_combo[] = {KC_G, KC_M, COMBO_END}; // TYPE "gl"
-const uint16_t PROGMEM H_MK_combo[] = {KC_M, KC_K, COMBO_END}; // TYPE "lk"
+const uint16_t PROGMEM H_CCOMM_combo[] = {KC_M, KC_COMM, COMBO_END}; // TYPE "qu"
+const uint16_t PROGMEM H_GM_combo[] = {KC_G, KC_C, COMBO_END}; // TYPE "gl"
+const uint16_t PROGMEM H_CP_combo[] = {KC_C, KC_P, COMBO_END}; // TYPE "cl"
 const uint16_t PROGMEM H_tion_combo[] = {KC_V, KC_W, COMBO_END}; // TYPE "tion"
 
 const uint16_t PROGMEM Hldaq_combo[] = {KC_W, KC_COMM, COMBO_END}; // «
@@ -191,7 +188,7 @@ enum my_combos {
 
     HC_TYPE_QU,
     HC_TYPE_GL,
-    HC_TYPE_LK,
+    HC_TYPE_CL,
 
     HC_ENT,
     HC_SALL,
@@ -290,7 +287,7 @@ combo_t key_combos[COMBO_COUNT] = {
 
     [HC_TYPE_QU] = COMBO_ACTION(H_CCOMM_combo),
     [HC_TYPE_GL] = COMBO_ACTION(H_GM_combo),
-    [HC_TYPE_LK] = COMBO_ACTION(H_MK_combo),
+    [HC_TYPE_CL] = COMBO_ACTION(H_CP_combo),
     [HC_TYPE_TION] = COMBO_ACTION(H_tion_combo),
 
     [HC_ENT] = COMBO(Hent_combo, KC_ENT),
@@ -393,8 +390,8 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
                 case HC_TYPE_GL:
                     SEND_STRING("gm");
                     break;
-                case HC_TYPE_LK:
-                    SEND_STRING("mk");
+                case HC_TYPE_CL:
+                    SEND_STRING("cp");
                     break;
 
                 case HC_SALL:
@@ -648,8 +645,8 @@ void matrix_scan_user_process_combo() {  // called from matrix_scan_user
                 case HC_TYPE_GL:
                     SEND_STRING("gl");
                     break;
-                case HC_TYPE_LK:
-                    SEND_STRING("lk");
+                case HC_TYPE_CL:
+                    SEND_STRING("cl");
                     break;
 
                 case HC_SALL:
