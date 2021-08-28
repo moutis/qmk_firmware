@@ -82,6 +82,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 
             case CG_SWAP: // SINCE MAC IS MY DEFAULT switch to windows
                 user_config.osIsWindows = true;
+                OSIndex = 1;
                 eeconfig_update_user(user_config.raw);
 #ifdef OLED_DRIVER_ENABLE
                 oled_set_cursor(oled_max_chars() - 3, 0);
@@ -90,6 +91,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 break;
             case CG_NORM: // Back to mac
                 user_config.osIsWindows = false;
+                OSIndex = 0;
                 eeconfig_update_user(user_config.raw);
 #ifdef OLED_DRIVER_ENABLE
                 oled_set_cursor(oled_max_chars() - 3, 0);

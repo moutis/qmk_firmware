@@ -3,9 +3,8 @@
 // functions / state keys
 
 const uint16_t PROGMEM Macro_combo[] = {KC_G, KC_F, COMBO_END}; // a macro placeholder
-const uint16_t PROGMEM F_WINLOGIN_combo[] = {KC_X, KC_J, COMBO_END}; // CTRL-ALT-DEL
 const uint16_t PROGMEM F_ESC_combo[] = {KC_X, KC_B, COMBO_END}; // ESCape
-const uint16_t PROGMEM F_KILL_combo[] = {KC_X, KC_W, COMBO_END}; // Force quit
+const uint16_t PROGMEM F_KILL_combo[] = {KC_X, KC_W, COMBO_END}; // Force quit OR CTRL-ALT-DEL
 const uint16_t PROGMEM F_SCLP_combo[] = {KC_J, KC_V, COMBO_END}; // SCREEN shot SELECTION to clipboard
 const uint16_t PROGMEM F_SCAP_combo[] = {KC_J, KC_K, COMBO_END}; //  SCREEN shot SELECTION to file
 const uint16_t PROGMEM F_CAPS_combo[] = {KC_D, KC_U, COMBO_END}; // CAPS LOCK other shift lock
@@ -49,7 +48,7 @@ const uint16_t PROGMEM PPLMN_combo[] = {KC_P4, KC_PPLS, COMBO_END};
 
 const uint16_t PROGMEM Hndsh_combo[] = {KC_MINS, KC_U, COMBO_END}; // – n dash
 const uint16_t PROGMEM Hmdsh_combo[] = {KC_MINS, KC_O, COMBO_END}; // — m dash
-const uint16_t PROGMEM Hunds_combo[] = {KC_U, KC_W, COMBO_END}; // _ underscore
+const uint16_t PROGMEM Hunds_combo[] = {KC_U, KC_Y, COMBO_END}; // _ underscore
 const uint16_t PROGMEM Htild_combo[] = {KC_MINS, KC_Y, COMBO_END}; // ~ tilde (not the dead one)
 const uint16_t PROGMEM Hequal_combo[] = {KC_Y, KC_W, COMBO_END}; // = equal
 
@@ -74,7 +73,7 @@ const uint16_t PROGMEM Hring_combo[] = {KC_O, KC_Y, COMBO_END}; // ˚ ring (dead
 // TEXT ENTRY (ANY ROW/ MIXED ROWS
 const uint16_t PROGMEM H_Z_combo[] = {KC_M, KC_F, COMBO_END}; // TYPE "z"
 const uint16_t PROGMEM H_Q_combo[] = {KC_J, KC_M, COMBO_END}; // TYPE "q"
-const uint16_t PROGMEM H_Q2_combo[] = {KC_Y, KC_U, COMBO_END}; // TYPE "q"
+const uint16_t PROGMEM H_Q2_combo[] = {KC_U, KC_W, COMBO_END}; // TYPE "q"
 const uint16_t PROGMEM H_LM_combo[] = {KC_M, KC_P, COMBO_END}; // TYPE "lp"
 const uint16_t PROGMEM H_tion_combo[] = {KC_N, KC_T, COMBO_END}; // TYPE "tion"
 const uint16_t PROGMEM H_Japan_combo[] = {KC_J, KC_P, COMBO_END}; // TYPE "Japan"
@@ -113,115 +112,6 @@ const uint16_t PROGMEM HUV_combo[] = {KC_P, KC_U, COMBO_END};  // Û
 const uint16_t PROGMEM HOV_combo[] = {KC_P, KC_O, COMBO_END};  // Ô
 const uint16_t PROGMEM HUF_combo[] = {KC_V, KC_U, COMBO_END};  // Ú
 const uint16_t PROGMEM HOF_combo[] = {KC_V, KC_O, COMBO_END};  // Ó
-
-
-
-enum my_combos {
-    FC_ESC, // ESCape SIMPLE COMBO must be first-used as FALSE for combo_on
-    FC_CTRLALTDEL, // ONE COMBO FOR THIS STUPID COMBO
-
-    HC_EQL, // = equal
-    HC_QUES, // ?
-    HC_EXLM, // !
-    HC_AT, // @
-    HC_UNDS, // _ underscore
-    HC_NDSH, // – N-dash
-    HC_MDSH, // — M-dash
-    HC_TILD, // ~ tilde
-    HC_TIC, // ` tic (not a dead key)
-    HC_GRV, // ` grave (dead key)
-    HC_TAB,
-    QC_TAB,
-
-    HC_Q, // Q is not on the map
-    HC_Q2, // Q is not on the map
-    HC_Z, // Z is not on the map
-
-    //
-    // ACTION COMBOS (ie, not simple combos as above)
-    //
-    // This group all have actions on press (no hold-delay),
-    // may be repeated if held (register_code) or not (tap_code)
-    // to be handled in process_combo_event and/or matrix_scan_user_process_combo
-    //
-    PC_PENT, // <enter> on num
-    PC_BSPC, // <bksp> on num
-    PC_DEL, // <del> on num
-    PC_TAB, // <tab> on num
-    HC_TYPE_TION,
-    HC_TYPE_JAPAN,
-
-    //
-    // DELAYED ACTION COMBOS -- this block must be contiguous
-    //
-    // no action on press, action (in matrix_scan_user),
-    // underlying keys if the hold threshold is not met.
-    // may repeat if appropriate. (tap_code vs register_code)
-    //
-    PC_STAB,  // Shift-<tab>
-    PC_TGNM, // TOGGLE NUM LAYER
-    PC_DASH, // – on number layer (keypad)
-    PC_TILD, // ˜
-    PC_ELIP, // …
-    HC_ELIP, // …
-    PC_COLN, // :
-    PC_DEG, //
-    PC_NEQL, // ≠
-    PC_ENTR, // <enter> on num layer
-    PC_SENT,  // Shift-<enter>
-    PC_DIV, // ÷
-    PC_PLMN, // ±
-    PC_PERC, // %
-    PC_EURO, // €
-    PC_DOLR, // $
-    PC_CENT, // ¢
-    PC_JYEN, // ¥
-    PC_BPND, // £
-    PC_LPRN,
-    PC_RPRN,
-    PC_CLR,
-    PC_AC,
-    
-    FC_KILL, // Force quit
-    FC_SCAP, // Screen Capture Selection
-    FC_SCLP, // Screen Capture Selection to clipboard
-    FC_CAPS, // CAPS LOCK
-    HC_CAPS, // CAPS LOCK
-
-    HC_2DQUO, // "|" insertion point between double quotes
-    HC_2DBRC, // [|] insertion point between double BRACKETS (japanese quote)
-
-    HC_ENYE, // ~ enye
-    HC_ACUT, // ´ acute
-    HC_CIRC, // ˆ circumflex
-    HC_MACR, // - macron
-    HC_DIER, // ¨ dieresis
-    HC_RING, // ˚ ring
-
-    HC_UM, // Ü
-    HC_OM, // Ö
-    HC_UK, // Ů
-    HC_OK, // O̊
-    HC_UV, // Û
-    HC_OV, // Ô
-    HC_UF, // Ú
-    HC_OF, // Ó
-
-    MYMACRO,
-    HC_TYPE_LM,
-    
-    HC_ENT,
-    HC_CLOSE,
-    HC_QUIT,
-    HC_FIND, // Find the selection
-    HC_SALL,
-    HC_UNDO,
-    HC_CUT,
-    HC_COPY,
-    HC_PSTE,
-    HC_PSTM  // END OF DELAY BLOCK
-
-};
 
 
 combo_t key_combos[COMBO_COUNT] = {
@@ -281,7 +171,6 @@ combo_t key_combos[COMBO_COUNT] = {
     [PC_PLMN] = COMBO_ACTION(PPLMN_combo), // ±
 
     [FC_ESC] = COMBO(F_ESC_combo, KC_ESC),  // ESCape
-    [FC_CTRLALTDEL] = COMBO(F_WINLOGIN_combo, C(A(KC_DEL))),  // ctrl-alt-del
     [FC_KILL] = COMBO_ACTION(F_KILL_combo), // Force quit
     [FC_SCAP] = COMBO_ACTION(F_SCAP_combo), // SCREEN CAPTURE SELECTION
     [FC_SCLP] = COMBO_ACTION(F_SCLP_combo), // SCREEN CAPTURE SELECTION to clipboard
@@ -317,7 +206,7 @@ combo_t key_combos[COMBO_COUNT] = {
 
 //    [HC_APP] = COMBO(Happ_combo, KC_APP), // app menu
     [HC_ENT] = COMBO_ACTION(Hent_combo), // ENTER
-    [HC_CLOSE] = COMBO_ACTION(Hclose_combo),
+    [HC_CLOZ] = COMBO_ACTION(Hclose_combo),
     [HC_QUIT] = COMBO_ACTION(Hquit_combo),
     [HC_FIND] = COMBO_ACTION(Hfind_combo), // Find the selection (COPY, FIND, PASTE)
     [HC_SALL] = COMBO_ACTION(Hsall_combo),
@@ -374,7 +263,7 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
         if (combo_on && !combo_triggered) {// no combo, so send the underlying keys
 #ifdef OLED_DRIVER_ENABLE
     oled_set_cursor(oled_max_chars() - 5, combo_OLED_row);
-    oled_write_P(PSTR("abort"), false);
+    oled_write_P(PSTR("abort"), true);
 #endif
             switch(combo_index) {
                 case PC_DASH:
@@ -484,40 +373,20 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
                     unregister_code16(A(S(KC_MINS)));
                     break;
                     
-                case HC_CLOSE:
-                    if (user_config.osIsWindows) { // eventually this will be replaced with smart table lookup by platform (mac/ios, win, linux, vim, etc.)
-                        unregister_code16(C(KC_W));
-                    } else {
-                        unregister_code16(G(KC_W));
-                    }
+                case HC_CLOZ:
+                    unregister_SemKey(SK_CLOZ);
                     break;
                 case HC_QUIT:
-                    if (user_config.osIsWindows) { // eventually this will be replaced with smart table lookup by platform (mac/ios, win, linux, vim, etc.)
-                        unregister_code16(C(KC_Q));
-                    } else {
-                        unregister_code16(G(KC_Q));
-                    }
+                    unregister_SemKey(SK_QUIT);
                     break;
                 case HC_UNDO:
-                    if (user_config.osIsWindows) {
-                        unregister_code16(C(KC_Z));
-                    } else {
-                        unregister_code16(G(KC_Z));
-                    }
+                    unregister_SemKey(SK_UNDO);
                     break;
                 case HC_PSTE:
-                    if (user_config.osIsWindows) {
-                        unregister_code16(C(KC_V));
-                    } else {
-                        unregister_code16(G(KC_V));
-                    }
+                    unregister_SemKey(SK_PSTE);
                     break;
                 case HC_PSTM:
-                    if (user_config.osIsWindows) {
-                        unregister_code16(C(S(A(KC_V))));
-                    } else {
-                        unregister_code16(G(S(A(KC_V))));
-                    }
+                    unregister_SemKey(SK_PSTM);
                     break;
             }  // end switch(combo_index) {
         } // else if (threshold met)
@@ -610,28 +479,6 @@ extern uint8_t  saved_mods; // global, so we're not wasting time allocating...
                     break;
 
 
-                case FC_KILL:
-                    if (user_config.osIsWindows) {
-                        tap_code16(C(A(KC_DEL)));
-                    } else {
-                        tap_code16(G(A(KC_ESC)));
-                    }
-                    break;
-                case FC_SCAP:
-                    if (user_config.osIsWindows) {
-                        tap_code16(KC_PSCR);
-                    } else {
-                        tap_code16(S(G(KC_4)));
-                    }
-                    break;
-                case FC_SCLP:
-                    if (user_config.osIsWindows) {
-                        tap_code16(A(KC_PSCR));
-                    } else {
-                        tap_code16(C(S(G(KC_4))));
-                    }
-                    break;
-
                 case HC_2DQUO: // "|"
                     tap_code16(A(KC_LBRC));
                     tap_code16(A(S(KC_LBRC)));
@@ -717,77 +564,60 @@ extern uint8_t  saved_mods; // global, so we're not wasting time allocating...
                     SEND_STRING("ese ");
                     break;
 
-                case HC_CLOSE:
-                    if (user_config.osIsWindows) { // eventually this will be replaced with smart table lookup by platform (mac/ios, win, linux, vim, etc.)
-                        register_code16(C(KC_W));
-                    } else {
-                        register_code16(G(KC_W));
-                    }
+                case FC_KILL:
+                    tap_SemKeys(SK_KILL);
+                    break;
+                case FC_SCAP:
+                    tap_SemKeys(SK_SCAP);
+                    break;
+                case FC_SCLP:
+                    tap_SemKeys(SK_SCLP);
+                    break;
+
+                case HC_CLOZ:
+                    register_SemKey(SK_CLOZ);
+//                    register_code16(G(KC_W));
                     break;
                 case HC_QUIT:
-                    if (user_config.osIsWindows) { // eventually this will be replaced with smart table lookup by platform (mac/ios, win, linux, vim, etc.)
-                        register_code16(C(KC_Q));
-                    } else {
-                        register_code16(G(KC_Q));
-                    }
+                    register_SemKey(SK_QUIT);
+//                    register_code16(G(KC_Q));
                     break;
                 case HC_FIND: // Find the selection
-                    if (user_config.osIsWindows) { // eventually this will be replaced with smart table lookup by platform (mac/ios, win, linux, vim, etc.)
-                        tap_code16(C(KC_C));
-                        tap_code16(C(KC_F));
-                        tap_code16(C(KC_V));
-                        tap_code16(C(KC_G));
-                    } else {
-                        tap_code16(G(KC_C));
-                        tap_code16(G(KC_F));
-                        tap_code16(G(KC_V));
-                        tap_code16(G(KC_G));
-                    }
-                    break;
+                    tap_SemKeys(SK_COPY);
+                    tap_SemKeys(SK_FIND);
+                    tap_SemKeys(SK_PSTE);
                 case HC_ENT:
                     tap_code(KC_ENT);
                     break;
                 case HC_SALL:
-                    if (user_config.osIsWindows) { // eventually this will be replaced with smart table lookup by platform (mac/ios, win, linux, vim, etc.)
-                        tap_code16(C(KC_A));
-                    } else {
-                        tap_code16(G(KC_A));
-                    }
+                    tap_SemKeys(SK_SALL);
+/*
+#ifdef OLED_DRIVER_ENABLE
+                    oled_set_cursor(6, combo_OLED_row-1);
+                    itoa(((SymanticCombos[SK_SALL][OSIndex])>>8),OLEDline,2);
+                    oled_write(OLEDline, true);
+                    oled_set_cursor(6, combo_OLED_row);
+                    oled_write_char((char) (0x61+(0xff & SymanticCombos[SK_SALL][OSIndex])), false);
+                    oled_write_char((char) SK_SALL+48, true);
+                    oled_write_char((char) OSIndex+48, true);
+#endif
+ */
+
                     break;
                 case HC_UNDO:
-                    if (user_config.osIsWindows) { // eventually this will be replaced with smart table lookup by platform (mac/ios, win, linux, vim, etc.)
-                        register_code16(C(KC_Z));
-                    } else {
-                        register_code16(G(KC_Z));
-                    }
+                    register_SemKey(SK_UNDO);
                     break;
                 case HC_CUT:
-                    if (user_config.osIsWindows) {
-                        tap_code16(C(KC_X));
-                    } else {
-                        tap_code16(G(KC_X));
-                    }
+                    tap_SemKeys(SK_CUT);
                     break;
                 case HC_COPY:
-                    if (user_config.osIsWindows) {
-                        tap_code16(C(KC_C));
-                    } else {
-                        tap_code16(G(KC_C));
-                    }
+                    tap_SemKeys(SK_COPY);
                     break;
                 case HC_PSTE:
-                    if (user_config.osIsWindows) {
-                        register_code16(C(KC_V));
-                    } else {
-                        register_code16(G(KC_V));
-                    }
+                    register_SemKey(SK_PSTE);
                     break;
                 case HC_PSTM:
-                    if (user_config.osIsWindows) {
-                        register_code16(C(S(A(KC_V))));
-                    } else {
-                        register_code16(G(S(A(KC_V))));
-                    }
+                    register_SemKey(SK_PSTM);
                     break;
             } // switch
             combo_triggered = true;
