@@ -6,12 +6,6 @@
 
 #include <quantum.h>
 
-#define tap_SemKeys(sk) tap_code16(SemKeys_t[sk][OSIndex])
-
-#define register_SemKey(sk) register_code16(SemKeys_t[sk][OSIndex])
-
-#define unregister_SemKey(sk) unregister_code16(SemKeys_t[sk][OSIndex])
-
 // this borrowed from Thomas Bart
 typedef union {
     uint32_t raw;
@@ -19,7 +13,12 @@ typedef union {
         bool osIsWindows; // index of platforms
     };
 } user_config_t;
+
 uint8_t  OSIndex = (uint8_t) 0;  // kludge, 'cause I'm stupid
+
+#define tap_SemKeys(sk) tap_code16(SemKeys_t[sk][OSIndex])
+#define register_SemKey(sk) register_code16(SemKeys_t[sk][OSIndex])
+#define unregister_SemKey(sk) unregister_code16(SemKeys_t[sk][OSIndex])
 
 enum SemKeys {
     SK_KILL,
