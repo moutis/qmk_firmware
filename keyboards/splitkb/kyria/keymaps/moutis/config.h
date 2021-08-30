@@ -6,8 +6,7 @@
     #endif
     #define OLED_TIMEOUT 9000
 #endif
-
-
+ 
 // Allows to use either side as the master. Look at the documentation for info:
 // https://docs.qmk.fm/#/config_options?id=setting-handedness
 #define EE_HANDS
@@ -38,9 +37,9 @@
     #ifdef COMBO_COUNT
         #undef COMBO_COUNT
     #endif
-    #define COMBO_COUNT 99
 
     #define COMBO_ALLOW_ACTION_KEYS
+    #define COMBO_STRICT_TIMER
 
     #ifdef COMBO_TERM
         #undef COMBO_TERM
@@ -49,7 +48,10 @@
     #define COMBO_HOLD (COMBO_TERM*3) // time to hold to trigger combo
 #endif
 
-#define ENCODER_DIRECTION_FLIP
+#ifdef ENCODER_ENABLE
+    #define ENCODER_DIRECTION_FLIP
+#endif
+
 
 // The Leader key allows to flexibly assign macros to key sequences.
 #ifdef LEADER_ENABLE

@@ -8,7 +8,6 @@
 #endif
 
 
-
 // Allows media codes to properly register in macros and rotary encoder code
 #define TAP_CODE_DELAY 5
 #define TAPPING_TOGGLE 2
@@ -26,9 +25,9 @@
     #ifdef COMBO_COUNT
         #undef COMBO_COUNT
     #endif
-    #define COMBO_COUNT 99
 
     #define COMBO_ALLOW_ACTION_KEYS
+    #define COMBO_STRICT_TIMER
 
     #ifdef COMBO_TERM
         #undef COMBO_TERM
@@ -37,7 +36,9 @@
     #define COMBO_HOLD (COMBO_TERM*3) // time to hold to trigger combo
 #endif
 
-#define ENCODER_DIRECTION_FLIP
+#ifdef ENCODER_ENABLE
+    #define ENCODER_DIRECTION_FLIP
+#endif
 
 // The Leader key allows to flexibly assign macros to key sequences.
 #ifdef LEADER_ENABLE
