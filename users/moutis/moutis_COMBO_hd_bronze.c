@@ -8,6 +8,7 @@ const uint16_t PROGMEM F_KILL_combo[] = {KC_X, KC_W, COMBO_END}; // Force quit O
 const uint16_t PROGMEM F_SCLP_combo[] = {KC_J, KC_V, COMBO_END}; // SCREEN shot SELECTION to clipboard
 const uint16_t PROGMEM F_SCAP_combo[] = {KC_J, KC_K, COMBO_END}; //  SCREEN shot SELECTION to file
 const uint16_t PROGMEM F_CAPS_combo[] = {KC_D, KC_U, COMBO_END}; // CAPS LOCK (on until hit again)
+//const uint16_t PROGMEM H_CAPS_combo[] = {LSFT_T(KC_BSPC), RSFT_T(KC_ENT), COMBO_END}; // CAPS WORD (on until delimiter)
 const uint16_t PROGMEM H_CAPS_combo[] = {LSFT_T(KC_T), RSFT_T(KC_A), COMBO_END}; // CAPS WORD (on until delimiter)
 
 //  (22) keypad combos
@@ -80,26 +81,45 @@ const uint16_t PROGMEM H_LM_combo[] = {KC_M, KC_P, COMBO_END}; // TYPE "lp"
 
 const uint16_t PROGMEM H_ing_combo[] = {RALT_T(KC_I), KC_G, COMBO_END}; // TYPE "ing" only a 3gram, let's see it it's worth it
 
-// Fast entry 4grams
-const uint16_t PROGMEM H_tion_combo[] = {LGUI_T(KC_N), LSFT_T(KC_T), COMBO_END}; // TYPE "tion" #1
-const uint16_t PROGMEM H_with_combo[] = {KC_W, LT(L_MEDIA_NAV,KC_H), COMBO_END}; // TYPE "with" #5
-const uint16_t PROGMEM H_ment_combo[] = {KC_M, LSFT_T(KC_T), COMBO_END}; // TYPE "ment" #6
-const uint16_t PROGMEM H_this_combo[] = {LSFT_T(KC_T), LALT_T(KC_S), COMBO_END}; // TYPE "this" #8
-const uint16_t PROGMEM H_here_combo[] = {LT(L_MEDIA_NAV,KC_H), RGUI_T(KC_E), COMBO_END}; // TYPE "here" #9
-const uint16_t PROGMEM H_ould_combo[] = {KC_O, KC_D, COMBO_END}; // TYPE "ould" #11
-const uint16_t PROGMEM H_ting_combo[] = {LSFT_T(KC_T), KC_G, COMBO_END}; // TYPE "ting" #12
-const uint16_t PROGMEM H_sion_combo[] = {LALT_T(KC_S), LGUI_T(KC_N), COMBO_END}; // TYPE "sion" #20
-const uint16_t PROGMEM H_they_combo[] = {LSFT_T(KC_T), KC_Y, COMBO_END}; // TYPE "they" #23
-const uint16_t PROGMEM H_ough_combo[] = {KC_O, LT(L_MEDIA_NAV,KC_H), COMBO_END}; // TYPE "ough" #25
+// Fast 4grams
+// FOR THUMB SHIFT
+/*
+const uint16_t PROGMEM H_tion_combo[] = {LGUI_T(KC_N), LT(L_LANG_NUM, KC_T), COMBO_END}; // "tion" #1
+const uint16_t PROGMEM H_with_combo[] = {KC_W, LSFT_T(KC_H), COMBO_END}; // "with" #5
+const uint16_t PROGMEM H_ment_combo[] = {KC_M, LT(L_LANG_NUM, KC_T), COMBO_END}; // "ment" #6
+const uint16_t PROGMEM H_this_combo[] = {LT(L_LANG_NUM, KC_T), LALT_T(KC_S), COMBO_END}; // "this" #8
+const uint16_t PROGMEM H_here_combo[] = {LSFT(KC_H), RCTL_T(KC_R), COMBO_END}; // "here" #9
+const uint16_t PROGMEM H_ould_combo[] = {KC_O, KC_D, COMBO_END}; // "ould" #11
+const uint16_t PROGMEM H_ting_combo[] = {LT(L_LANG_NUM, KC_T), KC_G, COMBO_END}; // "ting" #12
+const uint16_t PROGMEM H_sion_combo[] = {LALT_T(KC_S), LGUI_T(KC_N), COMBO_END}; // "sion" #20
+const uint16_t PROGMEM H_they_combo[] = {LT(L_LANG_NUM, KC_T), KC_J, COMBO_END}; // "they" #23
+const uint16_t PROGMEM H_their_combo[] = {LT(L_LANG_NUM, KC_T), KC_X, COMBO_END}; // "their" #6
+const uint16_t PROGMEM H_there_combo[] = {LT(L_LANG_NUM, KC_T), LCTL_T(KC_R), COMBO_END}; // "there" #7
+const uint16_t PROGMEM H_ough_combo[] = {KC_O, LSFT_T(KC_H), COMBO_END}; // "ough" #25
+ */
+// FOR INDEX SHIFT
 
-// Fast entry 5-7grams
-const uint16_t PROGMEM H_there_combo[] = {LSFT_T(KC_T), RGUI_T(KC_E), COMBO_END}; // TYPE "there"
-const uint16_t PROGMEM H_their_combo[] = {LSFT_T(KC_T), LCTL_T(KC_R), COMBO_END}; // TYPE "their"
-const uint16_t PROGMEM H_people_combo[] = {KC_P, RGUI_T(KC_E), COMBO_END}; // TYPE "people" #23
+const uint16_t PROGMEM H_tion_combo[] = {LGUI_T(KC_N), LSFT_T(KC_T), COMBO_END}; // "tion" #1
+const uint16_t PROGMEM H_with_combo[] = {KC_W, LT(L_MEDIA_NAV,KC_H), COMBO_END}; // "with" #5
+const uint16_t PROGMEM H_ment_combo[] = {KC_M, LSFT_T(KC_T), COMBO_END}; // "ment" #6
+const uint16_t PROGMEM H_this_combo[] = {LSFT_T(KC_T), LALT_T(KC_S), COMBO_END}; // "this" #8
+const uint16_t PROGMEM H_here_combo[] = {LT(L_MEDIA_NAV,KC_H), RGUI_T(KC_E), COMBO_END}; // "here" #9
+const uint16_t PROGMEM H_ould_combo[] = {KC_O, KC_D, COMBO_END}; // "ould" #11
+const uint16_t PROGMEM H_ting_combo[] = {LSFT_T(KC_T), KC_G, COMBO_END}; // "ting" #12
+const uint16_t PROGMEM H_sion_combo[] = {LALT_T(KC_S), LGUI_T(KC_N), COMBO_END}; // "sion" #20
+const uint16_t PROGMEM H_they_combo[] = {LSFT_T(KC_T), KC_Y, COMBO_END}; // "they" #23
+const uint16_t PROGMEM H_ough_combo[] = {KC_O, LT(L_MEDIA_NAV,KC_H), COMBO_END}; // "ough" #25
+
+
+// Fast 5-7grams
+
+const uint16_t PROGMEM H_their_combo[] = {LSFT_T(KC_T), KC_X, COMBO_END}; // TYPE "their" #6
+const uint16_t PROGMEM H_there_combo[] = {LSFT_T(KC_T), LCTL_T(KC_R), COMBO_END}; // TYPE "there" #7
+/*const uint16_t PROGMEM H_people_combo[] = {KC_P, RGUI_T(KC_E), COMBO_END}; // TYPE "people" #23
 const uint16_t PROGMEM H_present_combo[] = {KC_P, LSFT_T(KC_T), COMBO_END}; // TYPE "present" #1
 const uint16_t PROGMEM H_through_combo[] = {LSFT_T(KC_T), LT(L_MEDIA_NAV,KC_H), COMBO_END}; // TYPE "through" #3
 const uint16_t PROGMEM H_between_combo[] = {KC_B, LGUI_T(KC_N),  COMBO_END}; // TYPE "between" #4
-
+*/
 
 /* other examples or text entry combos */
 const uint16_t PROGMEM H_Japan_combo[] = {KC_J, KC_P, COMBO_END}; // TYPE "Japan"
@@ -115,7 +135,7 @@ const uint16_t PROGMEM Hspc_combo[] = {KC_D, KC_B, COMBO_END}; // SPACE
 
 // LOWER ROW
 
-// SEMANTIC FUNCTIONS Spatially arranged
+// SEMANTIC FUNCTIONS Spatially arranged  ** uses SemKeys **
 const uint16_t PROGMEM Hclose_combo[] = {KC_L, KC_B, COMBO_END}; // close
 const uint16_t PROGMEM Hquit_combo[] = {KC_G, KC_B, COMBO_END}; // quit
 const uint16_t PROGMEM Hfind_combo[] = {KC_F, KC_V, COMBO_END}; // find
@@ -130,7 +150,7 @@ const uint16_t PROGMEM Hpstm_combo[] = {KC_G, KC_D, COMBO_END}; // paste-match
 const uint16_t PROGMEM Hdquo_combo[] = {KC_HASH, KC_QUOT, COMBO_END};  // "|" insert between double quote
 const uint16_t PROGMEM Hdbrc_combo[] = {KC_MINS, KC_W, COMBO_END};  // [|] insert between double BRACKET
 
-// Major diacritic combos
+// Major diacritic combos will use SemKeys for platform independance
 /*
  const uint16_t PROGMEM HUM_combo[] = {KC_F, KC_U, COMBO_END};  // Ü
 const uint16_t PROGMEM HOM_combo[] = {KC_F, KC_O, COMBO_END};  // Ö
@@ -141,9 +161,11 @@ const uint16_t PROGMEM HOV_combo[] = {KC_P, KC_O, COMBO_END};  // Ô
 const uint16_t PROGMEM HUF_combo[] = {KC_V, KC_U, COMBO_END};  // Ú
 const uint16_t PROGMEM HOF_combo[] = {KC_V, KC_O, COMBO_END};  // Ó
 
-const uint16_t PROGMEM H1E_combo[] = {KC_P, KC_E, COMBO_END};  // É
-const uint16_t PROGMEM H2E_combo[] = {KC_M, KC_E, COMBO_END};  // Ē
-const uint16_t PROGMEM H3E_combo[] = {KC_P, KC_E, COMBO_END};  // Ê
+const uint16_t PROGMEM HGRAV_E_combo[] = {LT(L_LANG_NUM, KC_T), KC_E, COMBO_END};  // É
+const uint16_t PROGMEM HACUT_E_combo[] = {LGUI_T(KC_N), KC_E, COMBO_END};  // Ê
+const uint16_t PROGMEM HDIER_E_combo[] = {LCTL_T(KC_S), KC_E, COMBO_END};  // Ë
+const uint16_t PROGMEM HRING_E_combo[] = {LALT_T(KC_R), KC_E, COMBO_END};  // E̊
+const uint16_t PROGMEM HMACR_E_combo[] = {KC_M, KC_E, COMBO_END};  // Ē
 */
 
 
@@ -252,18 +274,22 @@ combo_t key_combos[] = {
     [HC_ough_4gram] = COMBO_ACTION(H_ough_combo), // TYPE "ough" #25
 
     // Fast entry 5-7grams
-    [HC_there_5gram] = COMBO_ACTION(H_there_combo), // TYPE "there" #4
-    [HC_their_5gram] = COMBO_ACTION(H_their_combo), // TYPE "their" #4
+
+    [HC_their_5gram] = COMBO_ACTION(H_their_combo), // TYPE "their" #6
+    [HC_there_5gram] = COMBO_ACTION(H_there_combo), // TYPE "there" #7
+
+/*
     [HC_people_6gram] = COMBO_ACTION(H_people_combo), // TYPE "people" #23
     [HC_present_7gram] = COMBO_ACTION(H_present_combo), // TYPE "present" #1
     [HC_through_7gram] = COMBO_ACTION(H_through_combo), // TYPE "through" #3
     [HC_between_7gram] = COMBO_ACTION(H_between_combo), // TYPE "between" #4
-
+*/
 
     [HC_TYPE_LM] = COMBO_ACTION(H_LM_combo),
     [HC_TYPE_JAPAN] = COMBO_ACTION(H_Japan_combo), // a personally useful 5-8gram!
     [MYMACRO] = COMBO_ACTION(Macro_combo), // a demonstrator, how long autotypes can be!
 
+/* Uses SemKeys */
 //    [HC_APP] = COMBO(Happ_combo, KC_APP), // app menu
     [HC_SPC] = COMBO(Hspc_combo, KC_SPC), // SPACE
     [HC_ENT] = COMBO(Hent_combo, KC_ENT), // ENTER
@@ -337,12 +363,13 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
                 SEND_STRING("ough");
                 break;
 
-            case HC_there_5gram: // TYPE "there"
-                SEND_STRING("there");
-                break;
-            case HC_their_5gram: // TYPE "their"
+            case HC_their_5gram: // TYPE "their" #6
                 SEND_STRING("their");
                 break;
+            case HC_there_5gram: // TYPE "there" #7
+                SEND_STRING("there");
+                break;
+/*
             case HC_people_6gram: // TYPE "people" #23
                 SEND_STRING("people");
                 break;
@@ -355,7 +382,7 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
             case HC_between_7gram: // TYPE "between" #4
                 SEND_STRING("between");
                 break;
-
+*/
                 
                 
             case HC_TYPE_JAPAN:
@@ -717,11 +744,9 @@ extern uint8_t  saved_mods; // global, so we're not wasting time allocating...
 
                 case HC_CLOZ:
                     register_SemKey(SK_CLOZ);
-//                    register_code16(G(KC_W));
                     break;
                 case HC_QUIT:
                     register_SemKey(SK_QUIT);
-//                    register_code16(G(KC_Q));
                     break;
                 case HC_FIND: // Find the selection
                     tap_SemKeys(SK_COPY);
@@ -729,17 +754,7 @@ extern uint8_t  saved_mods; // global, so we're not wasting time allocating...
                     tap_SemKeys(SK_PSTE);
                 case HC_SALL:
                     tap_SemKeys(SK_SALL);
-/*
-#ifdef OLED_DRIVER_ENABLE
-                    oled_set_cursor(6, combo_OLED_row-1);
-                    itoa(((SymanticCombos[SK_SALL][OSIndex])>>8),OLEDline,2);
-                    oled_write(OLEDline, true);
-                    oled_set_cursor(6, combo_OLED_row);
-                    oled_write_char((char) (0x61+(0xff & SymanticCombos[SK_SALL][OSIndex])), false);
-                    oled_write_char((char) SK_SALL+48, true);
-                    oled_write_char((char) OSIndex+48, true);
-#endif
- */
+
 
                     break;
                 case HC_UNDO:

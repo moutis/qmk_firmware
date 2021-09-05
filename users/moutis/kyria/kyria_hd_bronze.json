@@ -1,12 +1,13 @@
 {
   "version": 1,
-  "documentation": "This file is a QMK Configurator export. You can import this at <https://config.qmk.fm>. It can also be used directly with QMK's source code.\n\nTo setup your QMK environment check out the tutorial: <https://docs.qmk.fm/#/newbs>\n\nYou can convert this file to a keymap.c using this command: `qmk json2c {keymap}`\n\nYou can compile this keymap using this command: `qmk compile {keymap}`\n",
+  "notes": "Hands Down Kyria\n\n0—Hands Down (mods on home row, Layers on thumbs)\n1—QWERTY\n2—SYMBOL\n3—FN\n4—MEDIA/NAV\n5—NUM\n6—DIACRIT",
+  "documentation": "\"This file is a QMK Configurator export. You can import this at <https://config.qmk.fm>. It can also be used directly with QMK's source code.\n\nTo setup your QMK environment check out the tutorial: <https://docs.qmk.fm/#/newbs>\n\nYou can convert this file to a keymap.c using this command: `qmk json2c {keymap}`\n\nYou can compile this keymap using this command: `qmk compile {keymap}`\"\n",
   "keyboard": "splitkb/kyria/rev1",
   "keymap": "kyria_hd_bronze",
   "layout": "LAYOUT",
   "layers": [
     [
-      "KC_UNDO",
+      "KC_COPY",
       "KC_J",
       "KC_F",
       "KC_M",
@@ -30,7 +31,7 @@
       "RALT_T(KC_I)",
       "RCTL_T(KC_C)",
       "KC_FIND",
-      "KC_COPY",
+      "KC_UNDO",
       "KC_X",
       "KC_G",
       "KC_L",
@@ -173,7 +174,7 @@
       "KC_F10",
       "KC_F4",
       "KC_F6",
-      "DEBUG",
+      "KC_NO",
       "KC_NO",
       "LCTL_T(KC_9)",
       "LALT_T(KC_3)",
@@ -279,8 +280,8 @@
       "KC_PMNS",
       "KC_NO",
       "KC_NO",
-      "ANY(A(S(KC_EQL)))",
-      "LALT(KC_EQL)",
+      "KC_LT",
+      "KC_GT",
       "KC_LPRN",
       "KC_RPRN",
       "LALT(KC_7)",
@@ -291,10 +292,10 @@
       "KC_PPLS",
       "KC_NO",
       "KC_NO",
-      "RALT(KC_1)",
-      "KC_NO",
-      "KC_LT",
-      "KC_GT",
+      "LCTL_T(KC_LBRC)",
+      "LALT_T(KC_RBRC)",
+      "KC_LCBR",
+      "KC_RCBR",
       "RALT(KC_5)",
       "LALT(KC_MINS)",
       "KC_TRNS",
@@ -474,6 +475,5 @@
       "RESET"
     ]
   ],
-  "author": "Hands Down Kyria",
-  "notes": "Hands Down Kyria\n\n0—Hands Down (mods on home row, Layers on thumbs)\n1—QWERTY\n2—SYMBOL\n3—FN\n4—MEDIA/NAV\n5—NUM\n6—DIACRIT"
+  "author": "Hands Down Kyria"
 }

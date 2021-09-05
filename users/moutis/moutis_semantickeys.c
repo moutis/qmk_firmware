@@ -12,6 +12,7 @@
  Integrate all combo and keymap processing so they both queue
  SemKeys to be handled in process_record_user, reducing the code
  and simplifying maintenance.
+  -- IN PROCESS --
  
  Phase 3: expand to multi-keystrokes, which would enable sending
  different compose sequences based on platform (diacritics),
@@ -36,6 +37,13 @@ enum SemKeys {
     SK_SCAP,
     SK_SCLP,
     SK_SECT,
+/*
+    SK_GRAV_E,
+    SK_ACUT_E,
+    SK_DIER_E,
+    SK_RING_E,
+    SK_MACR_E,
+*/
     SemKeys_COUNT
 };
 
@@ -61,5 +69,7 @@ const uint16_t SemKeys_t[SemKeys_COUNT][SemKeys_OS_COUNT] = {
     [SK_SCAP] = {S(G(KC_4)),KC_PSCR}, // Screen Capture
     [SK_SCLP] = {C(S(G(KC_4))),A(KC_PSCR)}, // Selection Capture
     [SK_SECT] = {A(KC_5),A(KC_5)}, // §
+
+
 };
 

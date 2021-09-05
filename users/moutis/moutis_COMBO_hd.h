@@ -50,14 +50,15 @@ enum my_combos {
     HC_they_4gram, // TYPE "they" #23
     HC_ough_4gram, // TYPE "ough" #25
 
-    HC_there_5gram, // TYPE "there"
-    HC_their_5gram, // TYPE "their" #4
 
+    HC_their_5gram, // TYPE "their" #6
+    HC_there_5gram, // TYPE "there" #7
+/*
     HC_people_6gram, // TYPE "people" #23
     HC_present_7gram, // TYPE "present" #1
     HC_through_7gram, // TYPE "through" #3
     HC_between_7gram, // TYPE "between" #4
-
+*/
     
     HC_TYPE_JAPAN, // TYPE "Japan" and hold for "ese"
     HC_CAPSWORD, // CAPS WORD
