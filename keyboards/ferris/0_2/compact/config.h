@@ -21,3 +21,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define PRODUCT_ID 0x0003
 #undef PRODUCT
 #define PRODUCT Ferris 0.2 - Compact
+
+
