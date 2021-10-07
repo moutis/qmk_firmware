@@ -9,14 +9,14 @@ void matrix_scan_user(void) {
 #endif
 
     if (state_reset_timer) { // is there an active state to check on?
-    
+
         if (caps_word_on) { // caps_word mode on, (no mods) check if it needs to be cleared
             if (timer_elapsed(state_reset_timer) > STATE_RESET_TIME * 4) {// linger time over?
                 disable_caps_word(); // turn off all open states
                 state_reset_timer = 0;
             }
         }
-        
+
         if (appmenu_on) { // App menu up, (no mods) check if it needs to be cleared
             if (timer_elapsed(state_reset_timer) > STATE_RESET_TIME) {// menu up time over?
                 if (user_config.osIsWindows) { // Y. stop the menu.
@@ -64,5 +64,7 @@ void matrix_scan_user(void) {
         }
 
     }
-}
+
+
+ }
 

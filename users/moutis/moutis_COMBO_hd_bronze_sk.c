@@ -57,7 +57,7 @@ const uint16_t PROGMEM Hcoln_combo[] = {KC_HASH, KC_DOT, COMBO_END}; // : colon
 // spatially arranged characters and diacritics
 const uint16_t PROGMEM Hexlm_combo[] = {KC_DOT, KC_SLSH, COMBO_END}; // !
 const uint16_t PROGMEM Hques_combo[] = {KC_SLSH, KC_QUOT, COMBO_END}; // ?
-const uint16_t PROGMEM Hat_combo[] = {KC_HASH, KC_DOT, COMBO_END}; // @ at mark
+const uint16_t PROGMEM Hat_combo[] = {KC_J, KC_F, COMBO_END}; // @ at mark
 const uint16_t PROGMEM Helip_combo[] = {KC_HASH, KC_SLSH, COMBO_END}; // … elipses
 const uint16_t PROGMEM Htic_combo[] = {KC_DQUO, KC_QUOT, COMBO_END}; // ` tic (not dead key grave)
 const uint16_t PROGMEM Hacut_combo[] = {KC_SLSH, KC_DQUO, COMBO_END}; // ´ acute (dead key)

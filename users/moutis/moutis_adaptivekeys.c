@@ -15,9 +15,9 @@
 
 
 bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
-static uint16_t prior_keycode = KC_NO; // for process_adaptive_key
-static uint16_t prior_keydown = 0;
-bool return_state = true; // assume we don't do anything.
+    bool return_state = true; // assume we don't do anything.
+    static uint16_t prior_keycode = KC_NO; // for process_adaptive_key
+    static uint16_t prior_keydown = 0;
 
     if (record->event.pressed) {
         keycode = keycode & 0xFF; // ignore all mods? or just shift?

@@ -118,4 +118,8 @@ enum my_layers {
 #include "moutis_semantickeys.h"
 
 #define register_linger_key(kc) {register_code16(kc);linger_key = kc;linger_timer = state_reset_timer = timer_read();}
-#define unregister_linger_key(kc) {unregister_code16(kc);linger_key = 0;}
+#define unregister_linger_key() {unregister_code16(linger_key);linger_key = 0;}
+/*
+#define register_linger_key(kc) register_code16(kc);
+#define unregister_linger_key(kc) unregister_code16(kc);
+*/
