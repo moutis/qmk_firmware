@@ -2,7 +2,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
   /* With an if statement we can check which encoder was turned. */
   if (!index) { /* First (left) encoder */
       switch(get_highest_layer(layer_state)){
-          case L_MEDIA_NAV: // media/nav layer
+          case L_NAV: // media/nav layer
               /* for audio scrub bk/fwd. */
               if (clockwise) {
                   tap_code16(KC_BRIU); // BRIGHTNESS UP
@@ -20,7 +20,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
       }
   } else  {  // Second (right) encoder
       switch(get_highest_layer(layer_state)){
-          case L_MEDIA_NAV: // media/nav layer
+          case L_NAV: // media/nav layer
               if (clockwise) {
                   tap_SemKey(SK_HISTPRV); // prev page
               } else {

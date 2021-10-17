@@ -1,7 +1,9 @@
 /*
  
  This is compatible with Hands Down Neu, Platinum (neu-lx), Silver (neu-nx), Bronze (neu-hx)
- Won't play nice with Hands Down Gold (neu-tx)
+ May not"" play nice with Hands Down Gold (neu-tx) without some duplication (working on it.)
+ 
+ Keyboard should report as ISO/JIS (not ANSI)
  
  */
 
@@ -15,13 +17,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return_state = true; // default is we didn't do anything
 
 
-
     // Do we turn off CAPS_WORD?
     if (!process_caps_word(keycode, record)) {
         return false; // took care of that key
     }
 
-        // Do we handle an adaptive key?
+        // Do we handle an adaptive key?  (Semkey may send Adaptive?)
     if (!process_adaptive_key(keycode, record)) {
         return false; // took care of that key
     }
@@ -32,25 +33,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
 
     switch (keycode) { // should switch off record_keycode?
-//        case KC_BSPC:  // make S(KC_BSPC) = KC_DEL; plus word_del L & R
-        case LT(L_LANG_NUM,KC_BSPC):  // make S(KC_BSPC) = KC_DEL; plus word_del L & R
-            // This logic feels kludgey (but it works).  fix it.
-            if (record->event.pressed) { // key down
-                if (saved_mods & MOD_MASK_SHIFT) { // shift down with KC_BSPC?
-                    clear_keyboard(); // clean record to tinker with.
-                    register_code16(KC_DEL);
-                    key_trap = true;  // mode monitor on to clear this on keyup
-                    return_state = false; // don't do more with this record.
-                    set_mods(saved_mods);
-                }
-            } else { // key up
-                if (key_trap) { // did we snag this earlier?
-                    unregister_code16(KC_DEL); // make sure KC_DEL isn't held down
-                    key_trap = false;  // mode monitor off.
-                    return_state = false; // don't do more with this record.
-                }
-            }
-            break;
         case KC_APP:  // mimic windows app key behavior (only better?)
             if (record->event.pressed) {
                 mods_held = (saved_mods & (MOD_MASK_GUI | MOD_MASK_ALT)); // were mods held?
@@ -94,30 +76,51 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             eeconfig_update_user(user_config.raw);
             break;
 
-            /*
-                overrides here for off-map keys
-             * QMK v14.1 overrides footprint is too big, so I'm still rolling my own.
-            */
-        case KC_Q:  //
+        case KC_Q:  // for linger Qu (ironically, need to handle this direclty w/o the macros.)
             if (record->event.pressed) { // key down
                 if ((!saved_mods) || (saved_mods & MOD_MASK_SHIFT)) { // can this linger?
-    //                    register_linger_key(kc);
                     linger_key =  keycode; // may add "u" in matrix_scan_user
                     linger_timer = state_reset_timer = timer_read(); // start timers threshold
                 } // can only linger on no mods or shift
                 register_code16(keycode);
-            } else {
+            } else { //
                 unregister_code16(keycode);
-                linger_key = 0; //
+                linger_key = 0; // make sure nothing lingers
             }
             return_state = false; // don't do more with this record.
             break;
 
             /*
-                Key overrides here. Should be updated to use SemKey
+             Key overrides here. use SemKey wherever possible (del_wd?)
             */
-        case KC_LPRN:  // send { FOR Shift (
-            // This logic feels kludgey, but it works. fix it? convert to SemKey
+#ifndef KEY_OVERRIDE_ENABLE
+            /*
+             QMK KEY_OVERRIDE in 14.1 doesn't release mods on time,
+             it is also much larger, and can't integrate semkeys or linger keys,
+             so for now I roll my own here.
+            */
+
+//        case KC_BSPC:  // make S(KC_BSPC) = KC_DEL; plus word_del L & R
+        case LT(L_LANG_NUM,KC_BSPC):  // make S(KC_BSPC) = KC_DEL; plus word_del L & R
+            // This logic feels kludgey (but it works).  fix it.
+            if (record->event.pressed) { // key down
+                if (saved_mods & MOD_MASK_SHIFT) { // shift down with KC_BSPC?
+                    clear_keyboard(); // clean record to tinker with.
+                    register_code16(KC_DEL);
+                    key_trap = true;  // mode monitor on to clear this on keyup
+                    return_state = false; // don't do more with this record.
+                    set_mods(saved_mods);
+                }
+            } else { // key up
+                if (key_trap) { // did we snag this earlier?
+                    unregister_code16(KC_DEL); // make sure KC_DEL isn't held down
+                    key_trap = false;  // mode monitor off.
+                    return_state = false; // don't do more with this record.
+                }
+            }
+            break;
+
+        case KC_LPRN:  // SHIFT = { (linger=(|))
             if (record->event.pressed) { // key down
                 if (!saved_mods) {
                     register_linger_key(keycode); // example of simple linger macro
@@ -145,7 +148,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             break;
         case KC_RPRN:  // send } FOR Shift )
-            // This logic feels kludgey, but it works. fix it? convert to SemKey
             if (record->event.pressed) { // key downSS
                 if ((saved_mods & MOD_MASK_SHIFT)) { // shift down with KC_RPRN?
                     clear_keyboard(); // clean record to tinker with.
@@ -164,9 +166,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
             }
             break;
-        case KC_LBRC:  //
-            // This logic feels kludgey, but it works. fix it? convert to SemKey
-            if (!saved_mods) { // this order saves code space in this case
+        case KC_LBRC:  // SHIFT = ( (linger=(|))
+            if (!saved_mods) {
                 if (record->event.pressed) { // key down
                     register_linger_key(keycode); // example of simple linger macro
                 } else { // keyup event
@@ -175,9 +176,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return_state = false; // don't do more with this record.
             }
             break;
-        case KC_LCBR:  //
-            // This logic feels kludgey, but it works. fix it? convert to SemKey
-            if (!saved_mods) { // this order saves code space in this case
+        case KC_LCBR:   // SHIFT = { (linger={|})
+            if (!saved_mods) {
                 if (record->event.pressed) { // key down
                     register_linger_key(keycode); // example of simple linger macro
                 } else { // keyup event
@@ -187,8 +187,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             break;
 
-        case KC_LT:  // send ≤ FOR Shift (
-            // This logic feels kludgey, but it works. fix it? convert to SemKey
+        case KC_LT:  // SHIFT = ≥,
             if (record->event.pressed) { // key down
                 if (saved_mods & MOD_MASK_SHIFT) { // shift down with KC_LT?
                     clear_keyboard(); // clean record to tinker with.
@@ -197,8 +196,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
             }
             break;
-        case KC_GT:  // send ≥ FOR Alt
-            // This logic feels kludgey, but it works. fix it? convert to SemKey
+        case KC_GT:  // SHIFT = ≥,
             if (record->event.pressed) { // key downSS
                 if (saved_mods & MOD_MASK_SHIFT) { // shift down with KC_GT?
                     clear_keyboard(); // clean record to tinker with.
@@ -208,8 +206,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             break;
 
-        case KC_COMM:  // send ; FOR SHIFT ,
-            // This logic feels kludgey, but it works. fix it? convert to SemKey
+        case KC_COMM:  // SHIFT = ;, ALT=_,
             if (record->event.pressed) { // key down
                 if (saved_mods & MOD_MASK_ALT) { // ALT down?
                     clear_keyboard(); // clean record to tinker with.
@@ -228,8 +225,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
             }
             break;
-        case KC_DOT:  // send : FOR SHIFT .
-            // This logic feels kludgey, but it works. fix it? convert to SemKey
+        case KC_DOT:  // SHIFT = :, ALT=…, ALT+SHIFT= \ backslash
             if (record->event.pressed) { // key down
                 if (saved_mods & MOD_MASK_ALT) { // ALT down?
                     clear_keyboard(); // clean record to tinker with.
@@ -249,8 +245,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             break;
 
-        case KC_QUOT:  //
-            // This logic feels kludgey, but it works. fix it? convert to SemKey
+        case KC_QUOT:  // SHIFT = [ (linger=[|]), ALT=‹, ALT+SHIFT=«
             if (record->event.pressed) { // key down
                 if (saved_mods & MOD_MASK_ALT) { // ALT (only) down?
                     clear_keyboard(); // clean record to tinker with.
@@ -271,8 +266,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return_state = false; // don't do more with this record.
             }
             break;
-        case KC_DQUO:  // send  on shift
-            // This logic feels kludgey, but it works. fix it? convert to SemKey
+        case HD_DQUO:
+        case KC_DQUO:  // SHIFT = ], ALT=›, ALT+SHIFT=»
             if (record->event.pressed) { // key down
                 if (saved_mods) { // any mods?
                     if (saved_mods & MOD_MASK_ALT) { // ALT (only) down?
@@ -300,9 +295,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             break;
 
-
-        case KC_QUES:
-            // This logic feels kludgey, but it works. fix it? convert to SemKey
+        case KC_QUES: // SHFT? = ¿
             if (record->event.pressed) { // key down
                 if (saved_mods & MOD_MASK_SHIFT) { // SHFT? = ¿
 //                  clear_keyboard(); // clean record to tinker with.
@@ -313,8 +306,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             break;
 
-        case KC_MINS:  // send + FOR SHIFT - (_)
-            // This logic feels kludgey, but it works. fix it? convert to SemKey
+        case KC_MINS:  // SHIFT = +, ALT=–(n-dash), ALT+SHIFT=±
             if (record->event.pressed) { // key down
                 if (saved_mods & MOD_MASK_SHIFT) { // shift down?
                     del_mods(MOD_MASK_CG); // turn off unused mods (timing off in 14.1)
@@ -330,8 +322,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
             }
             break;
-        case KC_SLSH:  // send  FOR ALT /(?)
-            // This logic feels kludgey, but it works. fix it? convert to SemKey
+
+        case KC_SLSH:  // SHIFT = *, ALT=\, ALT+SHIFT=⁄
             if (record->event.pressed) { // key down
                 if (saved_mods & MOD_MASK_ALT) { // ALT down?
                     if (saved_mods & MOD_MASK_SHIFT) { // SHFT too?
@@ -357,8 +349,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
             }
             break;
-        case KC_SCLN:  // send
-            // This logic feels kludgey, but it works. fix it? convert to SemKey
+        case KC_SCLN:  // SHIFT = ;, ALT=_,
             if (record->event.pressed) { // key down
                 if (saved_mods & MOD_MASK_ALT) { // ALT down?
                     if ((saved_mods & MOD_MASK_SHIFT)) { // SHFT too?
@@ -371,27 +362,34 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
             }
             break;
-        case KC_HASH:  // send @ FOR SHIFT #
-            // This logic feels kludgey, but it works. fix it? convert to SemKey
+
+            // KC_HASH and ilk are behaving weirdly after QMK 14.1
+        case HD_HASH:
+        case KC_HASH:  // SHIFT = @, ALT= , ALT+SHIFT=
             if (record->event.pressed) { // key down
                 if (saved_mods & MOD_MASK_SHIFT) { // shift down?
-                    clear_keyboard(); // clean record to tinker with.
+                    // clear_keyboard(); // clean record to tinker with.
                     register_code16(KC_AT);
                     key_trap = true;  // mode monitor – enter state
-                    return_state = false; // don't do more with this record.
+                } else {
+                    register_code16(KC_HASH);
                 }
+                return_state = false; // don't do more with this record.
             } else { // key up
                 if (key_trap) { // did we snag this earlier?
                     unregister_code16(KC_AT); //
                     key_trap = false;  // mode monitor – exit state.
-                    return_state = false; // don't do more with this record.
+                } else {
+                    unregister_code16(KC_HASH);
                 }
+                return_state = false; // don't do more with this record.
             }
  
             break;
+#endif // KEY_OVERRIDE_ENABLE
 
     } // switch (keycode) {
-
+//    if (!return_state) set_mods(saved_mods); // unnecessary? (false will dump state anyway)?
     return return_state;  // keep processing record
 }
 
