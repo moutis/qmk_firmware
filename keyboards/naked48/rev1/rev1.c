@@ -30,7 +30,3 @@ void led_set_kb(uint8_t usb_led) {
         4, 4, 4, 4, 4, 4, 4, 4
 } };
 #endif
-
-void matrix_init_kb(void) {
-	matrix_init_user();
-};

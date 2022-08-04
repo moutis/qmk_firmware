@@ -22,9 +22,11 @@
  
  */
 
-/*
+/*  This is in moutis.h for now
 enum SemKeys {
     SK_KILL,
+    SK_HENK,
+    SK_MHEN,
     SK_UNDO,
     SK_CUT,
     SK_COPY,
@@ -44,16 +46,50 @@ enum SemKeys {
     SK_DIER_E,
     SK_RING_E,
     SK_MACR_E,
+    SK_ENYE,
 
     SemKeys_COUNT
 };
 */
-
+/*
 enum SemKeys_OS {
     SKP_Mac,
-    SKP_Min,
+    SKP_Win,
     SemKeys_OS_COUNT
 };
+*/
+
+/*
+unsigned char BCD_TO_ASCII(uint8 src) {
+    return (unsigned char)((src - 0x30) * 0x10 + src[1] - 0x30);
+*/
+
+
+//
+// SemKey table is a uint16 keycode, unless MSB is high, then it
+// is BCD of the 3 digit Windows/DOS character codes
+//
+/*
+void tap_SemKey(uint16_t semkeycode) {
+
+    if (semkeycode && 0x8000 ) { // highest bit set = Windows AltGR code
+        clear_keyboard(); // must have clean buffer.
+        register_code(KC_RALT);
+        if (semkeycode && 0xE000 ) // need to send 4 digits
+            tap_code(KC_0); // send 4th to last digit (always 0)
+        if (semkeycode && 0xC000 ) // need to send 3 more digits
+            tap_code((uint16_t)(((semkeycode>>8) && 0x000F) + KC_0)); // send 3rd to last digit
+        if (semkeycode && 0xA000 ) // need to send 2 more digits
+            tap_code((uint16_t)(((semkeycode>>4) && 0x000F) + KC_0)); // send 2nd to last digit
+        tap_code((uint16_t)((semkeycode && 0x000F) + KC_0)); // send last digit
+        unregister_code(KC_RALT);
+    } else {
+        tap_code16(semkeycode); // Just send the keycode as-is
+    }
+}
+*/
+    
+    
 /*
 * based on the table at:
 * https://en.wikipedia.org/wiki/Table_of_keyboard_shortcuts
@@ -61,9 +97,12 @@ enum SemKeys_OS {
 *
 */
 
-const uint16_t SemKeys_t[SemKeys_COUNT - SK_KILL][SemKeys_OS_COUNT] = {
+const uint16_t SemKeys_t[SemKeys_COUNT - SK_KILL][OS_count] = {
     // Mac, Win, (Phase 3, add others if necessary, expand to multi-key?)
     [SK_KILL - SK_KILL] = {G(A(KC_ESC)),C(A(KC_DEL))}, // "KILL" OR Force quit / ctrl-alt-del
+    [SK_HENK - SK_KILL] = {KC_LANG1, KC_HENK}, // 変換
+    [SK_MHEN - SK_KILL] = {KC_LANG2, KC_MHEN}, // 無変換
+    [SK_HENT - SK_KILL] = {G(KC_ENT),C(KC_ENT)}, // Hard ENTER
     [SK_UNDO - SK_KILL] = {G(KC_Z),C(KC_Z)}, // undo
     [SK_CUT  - SK_KILL] = {G(KC_X),C(KC_X)}, // cut
     [SK_COPY - SK_KILL] = {G(KC_C),C(KC_C)}, // copy
@@ -88,16 +127,23 @@ const uint16_t SemKeys_t[SemKeys_COUNT - SK_KILL][SemKeys_OS_COUNT] = {
     [SK_PARANXT - SK_KILL] = {A(KC_DOWN),C(KC_DOWN)}, // Go to next paragraph
     [SK_HISTPRV - SK_KILL] = {G(KC_LBRC),A(KC_LEFT)}, // BROWSER BACK
     [SK_HISTNXT - SK_KILL] = {G(KC_RBRC),A(KC_RIGHT)}, // BROWSER FWD
-    [SK_ZOOMIN - SK_KILL] = {G(S(KC_EQL)),C(KC_EQL)}, // ZOOM IN
+    [SK_ZOOMIN - SK_KILL] = {G(KC_EQL),C(KC_EQL)}, // ZOOM IN
     [SK_ZOOMOUT - SK_KILL] = {G(KC_MINS),C(KC_MINS)}, // ZOOM OUT
     [SK_ZOOMRST - SK_KILL] = {G(KC_0),C(KC_0)}, // ZOOM RESET
-    [SK_SECT - SK_KILL] = {A(KC_5),A(KC_5)}, // § ** SAMPLE OF GLYPH. REALLY NEED UNICODE.
+    [SK_SECT - SK_KILL] = {A(KC_5),0xE167}, // § ** SAMPLE OF GLYPH. REALLY NEED UNICODE.
+    [SK_ENYE - SK_KILL] = {A(KC_N),A(KC_N)}, // ñ/Ñ ** SAMPLE OF GLYPH. REALLY NEED UNICODE?
+    [SK_SQUL - SK_KILL] = {A(KC_RBRC),A(KC_RBRC)}, // ’ ** Left single quote UNICODE?
+    [SK_SQUR - SK_KILL] = {S(A(KC_RBRC)),S(A(KC_RBRC))}, // ’ ** Right single quote UNICODE?
+    [SK_SDQL - SK_KILL] = {A(KC_LBRC),A(KC_LBRC)}, // ’ ** Left double quote UNICODE?
+    [SK_SDQR - SK_KILL] = {A(S(KC_LBRC)),A(S(KC_LBRC))}, // ’ ** Right double quote UNICODE?
 
 };
 
 bool process_semkey(uint16_t keycode, const keyrecord_t *record) {
     // custom processing could hapen here
+    uint8_t  saved_mods;
     if (keycode >= SK_KILL && keycode < SemKeys_COUNT) {
+        saved_mods = get_mods();
         if (record->event.pressed) {
             switch (keycode) {
 /*
@@ -164,6 +210,25 @@ bool process_semkey(uint16_t keycode, const keyrecord_t *record) {
                     break;
                 case SK_COPY:
                     tap_SemKey(SK_COPY);
+                    break;
+                case SK_ENYE: // ñ/Ñ ENYE
+                    // Doing it this way until proper multi-keystroke table is implemented
+                    if (user_config.AdaptiveKeys
+#ifdef JP_MODE_ENABLE
+                        && IS_ENGLISH_MODE
+#endif
+                        ) { // if  in English mode
+                        clear_keyboard(); // clean record to tinker with.
+                        tap_SemKey(SK_ENYE);
+                        set_mods(saved_mods & MOD_MASK_SHIFT); // Preserve shift state
+                        tap_code16(KC_N);
+                        // set_mods(saved_mods); // restore mods just in case? (not necessary?)
+#ifdef JP_MODE_ENABLE
+                    } else { // (if in Japanese mode, send ん)
+                        tap_code16(KC_N);  //
+                        tap_code16(KC_N);  //
+#endif
+                    }
                     break;
                 default: // default keydown event
                     register_SemKey(keycode);

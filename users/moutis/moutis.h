@@ -17,6 +17,21 @@
 #ifdef RGBLIGHT_ENABLE
 //Following line allows macro to read current RGB settings
 extern rgblight_config_t rgblight_config;
+
+    #ifdef RGBLIGHT_HUE_STEP
+        #undef RGBLIGHT_HUE_STEP
+    #endif
+    #define RGBLIGHT_HUE_STEP 4
+
+    #ifdef RGBLIGHT_SAT_STEP
+        #undef RGBLIGHT_SAT_STEP
+    #endif
+    #define RGBLIGHT_SAT_STEP 4
+
+    #ifdef RGBLIGHT_VAL_STEP
+        #undef RGBLIGHT_VAL_STEP
+    #endif
+    #define RGBLIGHT_VAL_STEP 4
 #endif
 
 #include "moutis_casemods.h"
@@ -26,35 +41,49 @@ extern rgblight_config_t rgblight_config;
 #endif
 
 
+enum OS_Platform { // Used for platform support via SemKeys
+    OS_Mac,
+    OS_Win,
+    OS_count
+};
 
 void matrix_scan_user_process_combo(void);
-// this borrowed from Thomas Bart
+
 typedef union {
     uint32_t raw;
     struct {
-        bool osIsWindows; // index of platforms
+        uint8_t LBRC_key;  // keycode for "["
+        uint8_t RBRC_key;  // keycode for "]"
+        uint8_t OSIndex; // index of platforms (0=mac, 1=win, 2=lux)?
+        bool AdaptiveKeys; // Adaptive Keys On?
     };
 } user_config_t;
 
 
 
-
 enum my_layers {
-    L_HANDSDOWN,
-    L_HDSILVER,
-    L_HDPLATINUM,
-    L_HDGOLD,
-    L_HDNEU,
+// enum my_layers for layout layers for HD Neu/Au/Ti/Rh
+//    L_HDNUE,     // N             RSNT AEIH (same home row as Rhodium)
+      L_HDBRONZE,  // B BR (Neu-hx) RSNT AECI
+//    L_HDSILVER,  // S Ag (Neu-nx) RSHT AECI
+//    L_HDPLATINUM,// P Pl (Neu-lx) RSNT AECI
+      L_HDTITANIUM,// T Ti (Neu-rx) CSNT AEIH
+      L_HDRHODIUM, // R Rh (Neu-cx) RSNT AEIH
+//    L_HDGOLD,    // G Au (Neu-tx) RSND AEIH
+//    L_QWERTY,    //
     L_PUNCT,
-    L_FN,
+    L_FN_NUM,
+    L_NUMPAD,
     L_NAV,
-    L_LANG_NUM,
-    L_SYMBOLS,
+//    L_SYMBOLS,
     L_MEDIA_KBD
 };
 
  enum my_keycodes {
      SK_KILL = SAFE_RANGE, // SK_KILL must be the first of contiguous block of SKs
+     SK_HENK,
+     SK_MHEN,
+     SK_HENT, // Hard-Enter
      SK_UNDO, // undo
      SK_CUT, // cut
      SK_COPY, // copy
@@ -84,9 +113,22 @@ enum my_layers {
      SK_ZOOMOUT, // ZOOM OUT
      SK_ZOOMRST, // ZOOM RESET
      SK_SECT, // §
+     SK_ENYE, // ñ/Ñ ENYE
+     SK_SQUL, // ’ ** Left single quote UNICODE?
+     SK_SQUR, // ’ ** Right single quote UNICODE?
+     SK_SDQL, // ’ ** Left double quote UNICODE?
+     SK_SDQR, // ’ ** Right double quote UNICODE?
      SemKeys_COUNT, // end of non-glyph SemKeys
-     HD_HASH, // Do we need our own unshifted shift symbols
-     HD_DQUO, // to avoid the QMK 14.1 bug on not-split boards?
+     HD_AdaptKeyToggle,
+     HD_L_Bronze,  // KC to switch default layout
+//     HD_L_Silver,
+//     HD_L_Platinum,
+//     HD_L_Neu,
+//     HD_L_Gold,
+     HD_L_Titanium,
+     HD_L_Rhodium,
+//     HD_L_QWERTY,
+
 
 /* Eventually…these should be handled as SemKeys?
     HD_aumlt,
@@ -129,3 +171,9 @@ enum my_layers {
 #define register_linger_key(kc) register_code16(kc);
 #define unregister_linger_key(kc) unregister_code16(kc);
 */
+
+#ifdef JP_MODE_ENABLE
+bool IS_ENGLISH_MODE;
+//#define IS_ENGLISH_MODE (myKC_C == KC_C)
+#define TOGGLE_ENGLISH_MODE {IS_ENGLISH_MODE ^= true;}
+#endif

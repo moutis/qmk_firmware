@@ -17,19 +17,3 @@
 
 #pragma once
 
-/* Select hand configuration */
-
-//#define MASTER_LEFT
-// #define MASTER_RIGHT
-// #define EE_HANDS
-
-//#define USE_SERIAL
-
-#ifdef RGBLED_NUM
-  #undef RGBLED_NUM
-#endif
-
-#define RGBLED_NUM 69    // Number of LEDs
-#define RGBLIGHT_SPLIT
-#define RGBLED_SPLIT { 48, 21 }
-#define DRIVER_LED_TOTAL 69
