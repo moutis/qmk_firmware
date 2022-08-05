@@ -1,8 +1,8 @@
 {
   "version": 1,
   "documentation": "This file is a QMK Configurator export. You can import this at <https://config.qmk.fm>. It can also be used directly with QMK's source code.\n\nTo setup your QMK environment check out the tutorial: <https://docs.qmk.fm/#/newbs>\n\nYou can convert this file to a keymap.c using this command: `qmk json2c {keymap}`\n\nYou can compile this keymap using this command: `qmk compile {keymap}`\n",
-  "keyboard": "boardsource/microdox",
-  "keymap": "microdox_hd_rh",
+  "keyboard": "barbellboards/rollow",
+  "keymap": "rollow_hd_rh",
   "layout": "LAYOUT_split_3x5_3",
   "layers": [
     [
@@ -36,12 +36,12 @@
       "KC_O",
       "KC_W",
       "KC_Y",
-      "KC_APP",
+      "LT(7,KC_MUTE)",
       "LT(4,KC_BSPC)",
       "LT(6,KC_H)",
       "LT(3,KC_SPC)",
       "LT(6,KC_ENT)",
-      "KC_MPLY"
+      "LT(7,KC_MPLY)"
     ],
     [
       "KC_TRNS",

@@ -443,43 +443,43 @@ linger_and_return:
                 user_config.AdaptiveKeys = false; // no adaptive keys on QWERTY
                 goto setLayer;
 #endif
-#ifdef HD_L_Bronze
+//#ifdef HD_L_Bronze
             case HD_L_Bronze:
-#endif
+//#endif
 #ifdef HD_L_Silver
             case HD_L_Silver:
 #endif
 #ifdef HD_L_Platinum
             case HD_L_Platinum:
 #endif
-#if defined(HD_L_Bronze) ||  defined(HD_L_Silver) || defined(HD_L_Platinum)
+//#ifdef HD_L_Rhodium
+            case HD_L_Rhodium:
+//#endif
+//#if defined(HD_L_Bronze) ||  defined(HD_L_Silver) || defined(HD_L_Platinum)
                 user_config.LBRC_key = KC_RBRC;  // swap keycode for "["
                 user_config.RBRC_key = KC_LBRC;  // swap keycode for "]"
-//                user_config.AdaptiveKeys = true;
-//                send_string("bronze");
+//                send_string("AECI");
+                user_config.AdaptiveKeys = true;
                 goto setLayer;
-#endif
+//#endif
 #ifdef HD_L_Neu
             case HD_L_Neu:
 #endif
 #ifdef HD_L_Gold
             case HD_L_Gold:
 #endif
-#ifdef HD_L_Titanium
+//#ifdef HD_L_Titanium
             case HD_L_Titanium:
-#endif
-#ifdef HD_L_Rhodium
-            case HD_L_Rhodium:
-#endif
-#if defined(HD_L_Neu) ||  defined(HD_L_Gold) || defined(HD_L_Titanium) || defined(HD_L_Rhodium)
+//#endif
+//#if defined(HD_L_Neu) ||  defined(HD_L_Gold) || defined(HD_L_Titanium) || defined(HD_L_Rhodium)
                 user_config.LBRC_key = KC_LBRC;  // swap keycode for "["
                 user_config.RBRC_key = KC_RBRC;  // swap keycode for "]"
-//                send_string("ti/rh");
-//                user_config.AdaptiveKeys = true;
-#endif
-#if defined(HD_L_QWERTY) || defined(HD_L_Bronze) ||  defined(HD_L_Silver) || defined(HD_L_Platinum)
+//                send_string("AEIH");
+                user_config.AdaptiveKeys = true;
+//#endif
+//#if defined(HD_L_QWERTY) || defined(HD_L_Bronze) ||  defined(HD_L_Silver) || defined(HD_L_Platinum)
 setLayer:
-#endif
+//#endif
                 return_state = false; // don't do more with this record.
                 set_single_persistent_default_layer(keycode-HD_L_Bronze);// Remember default layer after powerdown
 storeSettings:

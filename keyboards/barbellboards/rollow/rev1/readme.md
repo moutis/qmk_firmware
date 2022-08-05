@@ -6,7 +6,7 @@ Rollow is 5×3+2 keys column-staggered split keyboard with thumb encoders. Based
 
 The current (temporary) build guide and a build log is available here: [RollowKeyboard build log/guide](https://) TODO: Add rollow build guide
 
-* Keyboard Maintainer: [Barrington Campbell](https://) TODO: Add personal website? [Twitter:@](https://twitter.com/) TODO:Add My twitter and Insta
+* Keyboard Maintainer: [BarBell Boards](https://) TODO: Add personal website? [Twitter:@](https://twitter.com/) TODO:Add My twitter and Insta
 * Hardware Supported: RollowKeyboard PCB, ProMicro  
 * Hardware Availability: [PCB & Case Data](https://) TODO: Add my shop website
 

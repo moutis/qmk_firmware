@@ -3,7 +3,7 @@
   "documentation": "This file is a QMK Configurator export. You can import this at <https://config.qmk.fm>. It can also be used directly with QMK's source code.\n\nTo setup your QMK environment check out the tutorial: <https://docs.qmk.fm/#/newbs>\n\nYou can convert this file to a keymap.c using this command: `qmk json2c {keymap}`\n\nYou can compile this keymap using this command: `qmk compile {keymap}`\n",
   "keyboard": "ferris/0_2/compact",
   "keymap": "ferris_hd_rh",
-  "layout": "LAYOUT",
+  "layout": "LAYOUT_split_3x5_2",
   "layers": [
     [
       "KC_J",
@@ -258,13 +258,13 @@
       "ANY(SK_HISTNXT)"
     ],
     [
-      "RESET",
+      "QK_BOOT",
       "AG_SWAP",
       "CG_SWAP",
       "KC_NO",
       "LCA(KC_DEL)",
       "ANY(SK_KILL)",
-      "KC_NLCK",
+      "KC_NUM",
       "KC_EJCT",
       "KC_NO",
       "ANY(SK_ZOOMRST)",
@@ -278,7 +278,7 @@
       "KC_MUTE",
       "KC_MNXT",
       "ANY(SK_ZOOMOUT)",
-      "KC_NO",
+      "EE_CLR",
       "AG_NORM",
       "CG_NORM",
       "KC_NO",

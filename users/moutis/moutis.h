@@ -67,9 +67,9 @@ enum my_layers {
       L_HDBRONZE,  // B BR (Neu-hx) RSNT AECI
 //    L_HDSILVER,  // S Ag (Neu-nx) RSHT AECI
 //    L_HDPLATINUM,// P Pl (Neu-lx) RSNT AECI
+//    L_HDGOLD,    // G Au (Neu-tx) RSND AEIH
       L_HDTITANIUM,// T Ti (Neu-rx) CSNT AEIH
       L_HDRHODIUM, // R Rh (Neu-cx) RSNT AEIH
-//    L_HDGOLD,    // G Au (Neu-tx) RSND AEIH
 //    L_QWERTY,    //
     L_PUNCT,
     L_FN_NUM,
