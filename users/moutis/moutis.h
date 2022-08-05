@@ -6,162 +6,132 @@
 
 #include <quantum.h>
 
-// this borrowed from Thomas Bart
+#ifdef EE_HANDS
+    #include "split_util.h"
+#endif
+
+#ifdef COMBO_ENABLE
+    #include "process_combo.h"
+#endif
+
+#ifdef RGBLIGHT_ENABLE
+//Following line allows macro to read current RGB settings
+extern rgblight_config_t rgblight_config;
+
+    #ifdef RGBLIGHT_HUE_STEP
+        #undef RGBLIGHT_HUE_STEP
+    #endif
+    #define RGBLIGHT_HUE_STEP 4
+
+    #ifdef RGBLIGHT_SAT_STEP
+        #undef RGBLIGHT_SAT_STEP
+    #endif
+    #define RGBLIGHT_SAT_STEP 4
+
+    #ifdef RGBLIGHT_VAL_STEP
+        #undef RGBLIGHT_VAL_STEP
+    #endif
+    #define RGBLIGHT_VAL_STEP 4
+#endif
+
+#include "moutis_casemods.h"
+
+#ifdef COMBO_ENABLE
+    #include "moutis_COMBO_hd.h"
+#endif
+
+
+enum OS_Platform { // Used for platform support via SemKeys
+    OS_Mac,
+    OS_Win,
+    OS_count
+};
+
+void matrix_scan_user_process_combo(void);
+
 typedef union {
     uint32_t raw;
     struct {
-        bool osIsWindows; // index of platforms
+        uint8_t LBRC_key;  // keycode for "["
+        uint8_t RBRC_key;  // keycode for "]"
+        uint8_t OSIndex; // index of platforms (0=mac, 1=win, 2=lux)?
+        bool AdaptiveKeys; // Adaptive Keys On?
     };
 } user_config_t;
 
-uint8_t  OSIndex = (uint8_t) 0;  // kludge, 'cause I'm stupid
 
-#define tap_SemKeys(sk) tap_code16(SemKeys_t[sk][OSIndex])
-#define register_SemKey(sk) register_code16(SemKeys_t[sk][OSIndex])
-#define unregister_SemKey(sk) unregister_code16(SemKeys_t[sk][OSIndex])
-
-enum SemKeys {
-    SK_KILL,
-    SK_UNDO,
-    SK_CUT,
-    SK_COPY,
-    SK_PSTE,
-    SK_PSTM,
-    SK_SALL,
-    SK_CLOZ,
-    SK_QUIT,
-    SK_FIND,
-    SK_FAGN,
-    SK_SCAP,
-    SK_SCLP,
-    SemKeys_COUNT
-};
-
-enum SemKeys_OS {
-    SKP_Mac,
-    SKP_Min,
-    SemKeys_OS_COUNT
-};
-
-enum my_combos {
-    FC_ESC, // ESCape SIMPLE COMBO must be first-used as FALSE for combo_on
-
-    HC_EQL, // = equal
-    HC_QUES, // ?
-    HC_EXLM, // !
-    HC_AT, // @
-    HC_UNDS, // _ underscore
-    HC_NDSH, // – N-dash
-    HC_MDSH, // — M-dash
-    HC_TILD, // ~ tilde
-    HC_TIC, // ` tic (not a dead key)
-    HC_GRV, // ` grave (dead key)
-    HC_TAB,
-    QC_TAB,
-
-    HC_Q, // Q is not on the map
-    HC_Q2, // Q is not on the map
-    HC_Z, // Z is not on the map
-
-    //
-    // ACTION COMBOS (ie, not simple combos as above)
-    //
-    // This group all have actions on press (no hold-delay),
-    // may be repeated if held (register_code) or not (tap_code)
-    // to be handled in process_combo_event and/or matrix_scan_user_process_combo
-    //
-    PC_PENT, // <enter> on num
-    PC_BSPC, // <bksp> on num
-    PC_DEL, // <del> on num
-    PC_TAB, // <tab> on num
-    HC_TYPE_TION,
-    HC_TYPE_JAPAN,
-
-    //
-    // DELAYED ACTION COMBOS -- this block must be contiguous
-    //
-    // no action on press, action (in matrix_scan_user),
-    // underlying keys if the hold threshold is not met.
-    // may repeat if appropriate. (tap_code vs register_code)
-    //
-    PC_STAB,  // Shift-<tab>
-    PC_TGNM, // TOGGLE NUM LAYER
-    PC_DASH, // – on number layer (keypad)
-    PC_TILD, // ˜
-    PC_ELIP, // …
-    HC_ELIP, // …
-    PC_COLN, // :
-    PC_DEG, //
-    PC_NEQL, // ≠
-    PC_ENTR, // <enter> on num layer
-    PC_SENT,  // Shift-<enter>
-    PC_DIV, // ÷
-    PC_PLMN, // ±
-    PC_PERC, // %
-    PC_EURO, // €
-    PC_DOLR, // $
-    PC_CENT, // ¢
-    PC_JYEN, // ¥
-    PC_BPND, // £
-    PC_LPRN,
-    PC_RPRN,
-    PC_CLR,
-    PC_AC,
-    
-    MYMACRO,
-    HC_TYPE_LM,
-
-    HC_2DQUO, // "|" insertion point between double quotes
-    HC_2DBRC, // [|] insertion point between double BRACKETS (japanese quote)
-
-    HC_ENYE, // ~ enye
-    HC_ACUT, // ´ acute
-    HC_CIRC, // ˆ circumflex
-    HC_MACR, // - macron
-    HC_DIER, // ¨ dieresis
-    HC_RING, // ˚ ring
-
-    HC_UM, // Ü
-    HC_OM, // Ö
-    HC_UK, // Ů
-    HC_OK, // O̊
-    HC_UV, // Û
-    HC_OV, // Ô
-    HC_UF, // Ú
-    HC_OF, // Ó
-    
-    // THESE ALL USE SemKeys for platform independence
-    FC_KILL, // Force quit
-    FC_SCAP, // Screen Capture Selection
-    FC_SCLP, // Screen Capture Selection to clipboard
-    FC_CAPS, // CAPS LOCK
-    HC_CAPS, // CAPS LOCK
-
-    HC_ENT,
-    HC_CLOZ,
-    HC_QUIT,
-    HC_FIND, // Find the selection
-    HC_SALL,
-    HC_UNDO,
-    HC_CUT,
-    HC_COPY,
-    HC_PSTE,
-    HC_PSTM  // END OF DELAY BLOCK
-
-};
 
 enum my_layers {
-  L_HANDSDOWN,
-  L_QWERTY,
-  L_PUNCT,
-  L_FN,
-  L_MEDIA_NAV,
-  L_LANG_NUM,
-  L_DIACR
+// enum my_layers for layout layers for HD Neu/Au/Ti/Rh
+//    L_HDNUE,     // N             RSNT AEIH (same home row as Rhodium)
+      L_HDBRONZE,  // B BR (Neu-hx) RSNT AECI
+//    L_HDSILVER,  // S Ag (Neu-nx) RSHT AECI
+//    L_HDPLATINUM,// P Pl (Neu-lx) RSNT AECI
+      L_HDTITANIUM,// T Ti (Neu-rx) CSNT AEIH
+      L_HDRHODIUM, // R Rh (Neu-cx) RSNT AEIH
+//    L_HDGOLD,    // G Au (Neu-tx) RSND AEIH
+//    L_QWERTY,    //
+    L_PUNCT,
+    L_FN_NUM,
+    L_NUMPAD,
+    L_NAV,
+//    L_SYMBOLS,
+    L_MEDIA_KBD
 };
 
-/* enum my_keycodes {
-    HD_aumlt = SAFE_RANGE,
+ enum my_keycodes {
+     SK_KILL = SAFE_RANGE, // SK_KILL must be the first of contiguous block of SKs
+     SK_HENK,
+     SK_MHEN,
+     SK_HENT, // Hard-Enter
+     SK_UNDO, // undo
+     SK_CUT, // cut
+     SK_COPY, // copy
+     SK_PSTE, // paste
+     SK_PSTM, // paste_match
+     SK_SALL, // select all
+     SK_CLOZ, // close
+     SK_QUIT, // quit
+     SK_FIND, // find
+     SK_FAGN, // find again
+     SK_SCAP, // screen capture to clipboard
+     SK_SCLP, // selection capture to clipboard
+     SK_DELWDL, // Delete word left of cursor
+     SK_DELWDR, // Delete word right of cursor
+     
+     SK_WORDPRV, // WORD LEFT
+     SK_WORDNXT, // WORD RIGHT
+     SK_DOCBEG, // Go to start of document
+     SK_DOCEND, // Go to end of document
+     SK_LINEBEG, // Go to beg of line
+     SK_LINEEND, // Go to end of line
+     SK_PARAPRV, // Go to previous paragraph
+     SK_PARANXT, // Go to next paragraph
+     SK_HISTPRV, // BROWSER BACK
+     SK_HISTNXT, // BROWSER FWD
+     SK_ZOOMIN, // ZOOM IN
+     SK_ZOOMOUT, // ZOOM OUT
+     SK_ZOOMRST, // ZOOM RESET
+     SK_SECT, // §
+     SK_ENYE, // ñ/Ñ ENYE
+     SK_SQUL, // ’ ** Left single quote UNICODE?
+     SK_SQUR, // ’ ** Right single quote UNICODE?
+     SK_SDQL, // ’ ** Left double quote UNICODE?
+     SK_SDQR, // ’ ** Right double quote UNICODE?
+     SemKeys_COUNT, // end of non-glyph SemKeys
+     HD_AdaptKeyToggle,
+     HD_L_Bronze,  // KC to switch default layout
+//     HD_L_Silver,
+//     HD_L_Platinum,
+//     HD_L_Neu,
+//     HD_L_Gold,
+     HD_L_Titanium,
+     HD_L_Rhodium,
+//     HD_L_QWERTY,
+
+
+/* Eventually…these should be handled as SemKeys?
+    HD_aumlt,
     HD_amacr,
     HD_aacut,
     HD_acrcm,
@@ -190,15 +160,20 @@ enum my_layers {
     HD_uacut,
     HD_ucrcm,
     HD_ugrav
-
+*/
 };
 
+#include "moutis_semantickeys.h"
+
+#define register_linger_key(kc) {register_code16(kc);linger_key = kc;linger_timer = state_reset_timer = timer_read();}
+#define unregister_linger_key() {unregister_code16(linger_key);linger_key = 0;}
+/*
+#define register_linger_key(kc) register_code16(kc);
+#define unregister_linger_key(kc) unregister_code16(kc);
 */
 
-// static uint32_t appmenu_timer = 0;
-// static bool appmenu_on = false;
-
-uint8_t  combo_on = 0;           // for combo actions to hold before triggering
-bool  combo_triggered = false;   // for one-shot-combo-actions
-void matrix_scan_user_process_combo(void);
-char OLEDline[32];
+#ifdef JP_MODE_ENABLE
+bool IS_ENGLISH_MODE;
+//#define IS_ENGLISH_MODE (myKC_C == KC_C)
+#define TOGGLE_ENGLISH_MODE {IS_ENGLISH_MODE ^= true;}
+#endif

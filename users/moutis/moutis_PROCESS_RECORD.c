@@ -1,8 +1,5 @@
 #define ADAPTIVE_TERM COMBO_HOLD
 
-uint16_t prior_keycode = KC_NO;
-uint16_t prior_keydown = 0;
-
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     extern uint8_t  saved_mods; // global, so we're not wasting time allocating...
     bool return_state = true;
@@ -91,7 +88,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
             case KC_BSPC:  // make S(KC_BSPC) = KC_DEL
                 saved_mods = get_mods();
-                // This logic feels kludgey.  fix it.
                 if (record->event.pressed) { // key down
                     if ((saved_mods & MOD_MASK_SHIFT)) { // shift down with KC_BSPC?
                         set_mods(saved_mods & ~MOD_MASK_SHIFT); // turn off shift
@@ -111,7 +107,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 break;
             case KC_LPRN:  // send { FOR Shift (
                 saved_mods = get_mods();
-                // This logic feels kludgey.  fix it.
                 if (record->event.pressed) { // key down
                     if ((saved_mods & MOD_MASK_SHIFT)) { // shift down with KC_RPRN?
                         set_mods(saved_mods & ~MOD_MASK_SHIFT); // turn off shift
@@ -134,7 +129,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 break;
             case KC_RPRN:  // send } FOR Shift )
                 saved_mods = get_mods();
-                // This logic feels kludgey.  fix it.
                 if (record->event.pressed) { // key downSS
                     if ((saved_mods & MOD_MASK_SHIFT)) { // shift down with KC_RPRN?
                         set_mods(saved_mods & ~MOD_MASK_SHIFT); // turn off shift
@@ -157,19 +151,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 break;
             case KC_LT:  // send ≤ FOR Shift (
                 saved_mods = get_mods();
-                // This logic feels kludgey.  fix it.
                 if (record->event.pressed) { // key down
                     if ((saved_mods & MOD_MASK_SHIFT)) { // shift down with KC_LT?
                         clear_mods(); // turn off shift
                         tap_code16(A(KC_COMM));
                         set_mods(saved_mods); // restore mod state
                         return_state = false; // don't do more with this record.
+                       
                     }
                 }
                 break;
             case KC_GT:  // send ≥ FOR Alt )
                 saved_mods = get_mods();
-                // This logic feels kludgey.  fix it.
                 if (record->event.pressed) { // key downSS
                     if ((saved_mods & MOD_MASK_SHIFT)) { // shift down with KC_GT?
                         clear_mods(); // turn off ALT
@@ -181,7 +174,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 break;
             case KC_COMM:  // send ; FOR SHIFT ,
                 saved_mods = get_mods();
-                // This logic feels kludgey.  fix it.
                 if (record->event.pressed) { // key down
                     if ((saved_mods & MOD_MASK_SHIFT)) { // shift down with KC_COMM?
                         set_mods(saved_mods & ~MOD_MASK_SHIFT); // turn off shift
@@ -200,7 +192,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 break;
             case KC_DOT:  // send : FOR SHIFT .
                 saved_mods = get_mods();
-                // This logic feels kludgey.  fix it.
                 if (record->event.pressed) { // key down
                     if ((saved_mods & MOD_MASK_SHIFT)) { // shift down with KC_DOT?
                         register_code16(KC_COLN);
@@ -217,7 +208,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 break;
             case KC_QUOT:  //
                 saved_mods = get_mods();
-                // This logic feels kludgey.  fix it.
                 if (record->event.pressed) { // key down
                     if ((saved_mods & MOD_MASK_ALT)) { // ALT down?
                         if ((saved_mods & MOD_MASK_SHIFT)) { // SHFT too?
@@ -241,7 +231,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 break;
             case KC_DQUO:  //
                 saved_mods = get_mods();
-                // This logic feels kludgey.  fix it.
                 if (record->event.pressed) { // key down
                     if ((saved_mods & MOD_MASK_ALT)) { // ALT down?
                         if ((saved_mods & MOD_MASK_SHIFT)) { // SHFT too?
@@ -265,7 +254,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 break;
             case KC_HASH:  // send @ FOR SHIFT #
                 saved_mods = get_mods();
-                // This logic feels kludgey.  fix it.
                 if (record->event.pressed) { // key down
                     if ((saved_mods & MOD_MASK_SHIFT)) { // shift down with KC_HASH?
                         register_code16(KC_AT);
@@ -282,7 +270,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 break;
             case KC_MINS:  // send + FOR SHIFT - (_)
                 saved_mods = get_mods();
-                // This logic feels kludgey.  fix it.
                 if (record->event.pressed) { // key down
                     if ((saved_mods & MOD_MASK_SHIFT)) { // shift down with KC_HASH?
                         register_code16(KC_PLUS);
@@ -299,7 +286,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 break;
             case KC_SLSH:  // send ! FOR ALT /(?)
                 saved_mods = get_mods();
-                // This logic feels kludgey.  fix it.
                 if (record->event.pressed) { // key down
                     if ((saved_mods & MOD_MASK_ALT)) { // alt down?
                         clear_mods();
