@@ -41,10 +41,16 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
           default:
               if (held_mods & MOD_MASK_GUI) {
                   if (clockwise) { // Use SemKey for Platform flexible app switch
-                      tap_SemKey(SK_APPNXT); // app right
+                      tap_SemKey(SK_APPNXT); // last app (next)
                   } else {
                       tap_SemKey(SK_APPPRV); // app left
                   }
+              } else if (held_mods & MOD_MASK_CTRL) {
+                      if (clockwise) { // Use SemKey for Platform flexible app switch
+                          tap_code16(RCTL(LCTL(KC_TAB))); // next window
+                      } else {
+                          tap_code16(RCTL(LCTL(RSFT(LSFT(KC_TAB))))); // prv window
+                      }
               } else {
                   if (clockwise) {
                     tap_code(KC_VOLU); // media vol up
@@ -91,10 +97,16 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
           default:
               if (held_mods & MOD_MASK_GUI) {
                   if (clockwise) { // Use SemKey for Platform flexible app switch
-                      tap_SemKey(SK_APPNXT); // app right
+                      tap_SemKey(SK_APPNXT); // last app (next)
                   } else {
                       tap_SemKey(SK_APPPRV); // app left
                   }
+              } else if (held_mods & MOD_MASK_CTRL) {
+                      if (clockwise) { // Use SemKey for Platform flexible app switch
+                          tap_code16(RCTL(LCTL(KC_TAB))); // next window
+                      } else {
+                          tap_code16(RCTL(LCTL(RSFT(LSFT(KC_TAB))))); // prv window
+                      }
               } else {
                   if (clockwise) {
                     tap_code(KC_MNXT); // media next track
