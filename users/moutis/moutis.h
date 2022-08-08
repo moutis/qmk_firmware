@@ -10,13 +10,20 @@
     #include "split_util.h"
 #endif
 
-#ifdef COMBO_ENABLE
-    #include "process_combo.h"
-#endif
-
 #ifdef RGBLIGHT_ENABLE
 //Following line allows macro to read current RGB settings
 extern rgblight_config_t rgblight_config;
+    #define RGBLIGHT_SPLIT
+    #define RGBLIGHT_SLEEP
+
+    #ifdef RGBLIGHT_ANIMATIONS
+        #undef RGBLIGHT_ANIMATIONS
+    #endif
+    //#define RGBLIGHT_EFFECT_BREATHING
+    //#define RGBLIGHT_EFFECT_TWINKLE
+    //#define RGBLIGHT_SLEEP
+    //#define RGBLIGHT_EFFECT_SNAKE
+    //#define RGBLIGHT_MODE_ALTERNATING
 
     #ifdef RGBLIGHT_HUE_STEP
         #undef RGBLIGHT_HUE_STEP
@@ -32,6 +39,11 @@ extern rgblight_config_t rgblight_config;
         #undef RGBLIGHT_VAL_STEP
     #endif
     #define RGBLIGHT_VAL_STEP 4
+#endif
+
+
+#ifdef COMBO_ENABLE
+    #include "process_combo.h"
 #endif
 
 #include "moutis_casemods.h"
