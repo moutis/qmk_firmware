@@ -39,26 +39,15 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
               break;
 #endif
           default:
-              if (held_mods & MOD_MASK_GUI) {
-                  if (clockwise) { // Use SemKey for Platform flexible app switch
-                      tap_SemKey(SK_APPNXT); // last app (next)
-                  } else {
-                      tap_SemKey(SK_APPPRV); // app left
-                  }
-              } else if (held_mods & MOD_MASK_CTRL) {
-                      if (clockwise) { // Use SemKey for Platform flexible app switch
-                          tap_code16(RCTL(LCTL(KC_TAB))); // next window
-                      } else {
-                          tap_code16(RCTL(LCTL(RSFT(LSFT(KC_TAB))))); // prv window
-                      }
-              } else {
+              if (!held_mods) {
                   if (clockwise) {
-                    tap_code(KC_VOLU); // media vol up
-                  } else {
-                    tap_code(KC_VOLD); // media vol dn
+                      tap_code(KC_VOLU); // media vol up
+                    } else {
+                      tap_code(KC_VOLD); // media vol dn
                   }
+                  break;
               }
-              break;
+              goto twisttheknob;
       }
   } else  {  // Second (right) encoder
       switch(get_highest_layer(layer_state)){
@@ -95,25 +84,37 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
               break;
 #endif
           default:
-              if (held_mods & MOD_MASK_GUI) {
-                  if (clockwise) { // Use SemKey for Platform flexible app switch
+              if (!held_mods) {
+                  if (clockwise) {
+                      tap_code(KC_MNXT); // media next track
+                    } else {
+                      tap_code(KC_MPRV); // media prev track
+                  }
+                  break;
+              }
+twisttheknob:
+              if (held_mods & MOD_MASK_GUI) { // App switch // not platform saavy!
+//                  unregister_mods(MOD_MASK_CSAG); // lift all mods
+                  if (clockwise) { // Uses SemKey for Platform flexible app switch
                       tap_SemKey(SK_APPNXT); // last app (next)
                   } else {
                       tap_SemKey(SK_APPPRV); // app left
                   }
-              } else if (held_mods & MOD_MASK_CTRL) {
-                      if (clockwise) { // Use SemKey for Platform flexible app switch
-                          tap_code16(RCTL(LCTL(KC_TAB))); // next window
-                      } else {
-                          tap_code16(RCTL(LCTL(RSFT(LSFT(KC_TAB))))); // prv window
-                      }
-              } else {
-                  if (clockwise) {
-                    tap_code(KC_MNXT); // media next track
-                  } else {
-                    tap_code(KC_MPRV); // media prev track
-                  }
+                  break;
+              } else if (held_mods & MOD_MASK_CTRL) { // workspace switch
+                  unregister_mods(MOD_MASK_SAG); // lift all but ctrl
+                  goto justdoarrows;
+              } else if (held_mods & MOD_MASK_ALT) { // for scrubbing
+                  unregister_mods(MOD_MASK_CG); // lift all mods
+                  goto justdoarrows;
               }
+justdoarrows:
+              if (clockwise) {
+                  tap_code(KC_RIGHT); // fwd
+              } else {
+                  tap_code(KC_LEFT); // back
+              }
+              set_mods(held_mods);  // not sure if we need this
               break;
       }
   }
