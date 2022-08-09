@@ -46,15 +46,15 @@
       "KC_NO",
 
       "LT(7,KC_MUTE)",
-      "KC_APP",
       "LT(4,KC_BSPC)",
       "LT(6,KC_H)",
+      "KC_APP",
+      "LT(7,KC_MPLY)",
       "LT(3,KC_SPC)",
       "LT(6,KC_ENT)",
       "LT(7,KC_MPLY)",
-      "KC_TRNS",
 
-      "KC_TRNS"
+      "KC_NO"
     ],
     [
         "KC_NO",
@@ -96,16 +96,17 @@
         "KC_W",
         "KC_NO",
 
-        "KC_NO",
         "KC_TRNS",
         "KC_TRNS",
         "LT(6,KC_R)",
         "KC_TRNS",
-        "KC_TRNS",
-        "KC_TRNS",
-        "KC_NO",
 
-        "KC_NO"
+        "KC_TRNS",
+        "KC_TRNS",
+        "KC_TRNS",
+        "KC_TRNS",
+
+        "KC_TRNS"
     ],
     [
         "KC_NO",
@@ -149,8 +150,9 @@
 
       "KC_TRNS"
       "KC_TRNS",
-      "KC_TRNS",
       "LT(6,KC_C)",
+      "KC_TRNS",
+
       "KC_TRNS",
       "KC_TRNS",
       "KC_TRNS",
@@ -199,12 +201,13 @@
       "KC_TRNS",
 
       "KC_TRNS"
-      "KC_TRNS",
       "ANY(SK_DELWDL)",
       "ANY(SK_DELWDR)",
       "KC_TRNS",
-      "LSA(KC_8)",
+
       "KC_TRNS",
+      "KC_TRNS",
+      "LSA(KC_8)",
       "KC_TRNS",
 
       "KC_TRNS"
@@ -253,9 +256,10 @@
       "KC_TRNS",
       "KC_SCLN",
       "TG(5)",
+
+      "ANY(SK_ZOOMRST)",
       "KC_0",
       "KC_DOT",
-      "ANY(SK_ZOOMRST)",
       "KC_TRNS",
 
       "KC_TRNS"
@@ -301,12 +305,13 @@
       "KC_TRNS",
 
       "KC_TRNS"
-      "KC_TRNS",
       "LGUI_T(KC_BSPC)",
       "LSFT_T(KC_ENT)",
+      "KC_TRNS",
+
+      "ANY(SK_ZOOMRST)",
       "KC_P0",
       "KC_PDOT",
-      "ANY(SK_ZOOMRST)",
       "KC_TRNS",
 
       "KC_TRNS"
@@ -351,13 +356,14 @@
       "ANY(SK_PARANXT)",
       "KC_TRNS",
 
-      "KC_NO",
+      "KC_TRNS",
       "MO(7)",
       "KC_TRNS"
       "ANY(SK_ZOOMRST)",
+
+      "ANY(SK_ZOOMRST)",
       "ANY(SK_HISTPRV)",
       "ANY(SK_HISTNXT)",
-      "ANY(SK_ZOOMRST)",
       "KC_TRNS",
 
       "KC_TRNS"
@@ -403,12 +409,13 @@
       "KC_NO",
 
       "KC_TRNS",
-      "KC_TRNS",
       "AG_NORM",
       "CG_NORM",
+      "KC_MUTE",
+
+      "KC_MPLY",
       "KC_VOLD",
       "KC_VOLU",
-      "KC_TRNS",
       "KC_TRNS",
 
       "KC_TRNS"
