@@ -11,3 +11,10 @@
 #undef PRODUCT
 #define PRODUCT         HD-rollow
 #endif
+#ifdef ENCODER_ENABLE
+    #ifdef ENCODER_RESOLUTION
+        #undef ENCODER_RESOLUTION
+    #endif
+    #define ENCODER_DIRECTION_FLIP // old encoders/barrel encoders
+    #define ENCODER_RESOLUTION 4 // new encoders
+#endif

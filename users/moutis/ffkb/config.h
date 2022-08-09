@@ -12,3 +12,18 @@
 #undef PRODUCT
 #define PRODUCT         HD-FauxFox
 #endif
+
+#ifdef OLED_DRIVER_ENABLE
+    #ifdef OLED_TIMEOUT
+        #undef OLED_TIMEOUT
+    #endif
+    #define OLED_TIMEOUT 9000
+#endif
+
+#ifdef ENCODER_ENABLE
+    #ifdef ENCODER_RESOLUTION
+        #undef ENCODER_RESOLUTION
+    #endif
+//    #define ENCODER_DIRECTION_FLIP // old encoders
+    #define ENCODER_RESOLUTION 4 // new encoders
+#endif
