@@ -124,8 +124,10 @@ enum my_layers {
      SK_ZOOMIN, // ZOOM IN
      SK_ZOOMOUT, // ZOOM OUT
      SK_ZOOMRST, // ZOOM RESET
-     SK_APPNXT, // APP switcher FWD
-     SK_APPPRV, // APP switcher BACK
+     SK_APPNXT, // APP switcher Next (last used)
+     SK_APPPRV, // APP switcher Prev (least recently used)
+     SK_WINNXT, // Window/tab switcher Next
+     SK_WINPRV, // Window/tab switcher Prev
      SK_SECT, // §
      SK_ENYE, // ñ/Ñ ENYE
      SK_SQUL, // ’ ** Left single quote UNICODE?

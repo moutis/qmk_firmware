@@ -92,18 +92,29 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
                   }
                   break;
               }
-twisttheknob:
+twisttheknob: // so much unorthodoxy here! Saves about 40 bytes...
               if (held_mods & MOD_MASK_GUI) { // App switch // not platform saavy!
 //                  unregister_mods(MOD_MASK_CSAG); // lift all mods
+                  if (held_mods & MOD_MASK_CTRL) { // workspace switch
+                      unregister_mods(MOD_MASK_SAG); // lift all but ctrl
+                      goto justdoarrows;
+                  }
                   if (clockwise) { // Uses SemKey for Platform flexible app switch
-                      tap_SemKey(SK_APPNXT); // last app (next)
+                      tap_SemKey(SK_APPNXT); // APP switcher Next (last used)
                   } else {
-                      tap_SemKey(SK_APPPRV); // app left
+                      tap_SemKey(SK_APPPRV); // APP switcher Prev (least recently used)
                   }
                   break;
-              } else if (held_mods & MOD_MASK_CTRL) { // workspace switch
+              } else if (held_mods & MOD_MASK_CTRL) { // just ctrl switch
                   unregister_mods(MOD_MASK_SAG); // lift all but ctrl
-                  goto justdoarrows;
+                  if (clockwise) { // Uses SemKey for Platform flexible app switch
+                      tap_code16(C(KC_TAB)); // fwd
+                      //tap_SemKey(SK_WINNXT); // Window/tab switcher Next
+                  } else {
+                      tap_code16(C(S(KC_TAB))); // fwd
+                      //tap_SemKey(SK_WINPRV); // Window/tab switcher Prev
+                  }
+                  break;
               } else if (held_mods & MOD_MASK_ALT) { // for scrubbing
                   unregister_mods(MOD_MASK_CG); // lift all mods
                   goto justdoarrows;
