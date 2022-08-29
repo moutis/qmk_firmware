@@ -452,9 +452,9 @@ linger_and_return:
 #ifdef HD_L_Platinum
             case HD_L_Platinum:
 #endif
-//#ifdef HD_L_Rhodium
+#ifdef HD_L_Rhodium
             case HD_L_Rhodium:
-//#endif
+#endif
 //#if defined(HD_L_Bronze) ||  defined(HD_L_Silver) || defined(HD_L_Platinum)
                 user_config.LBRC_key = KC_RBRC;  // swap keycode for "["
                 user_config.RBRC_key = KC_LBRC;  // swap keycode for "]"

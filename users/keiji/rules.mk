@@ -4,11 +4,12 @@
 
 # BACKLIGHT_ENABLE = no
 # RGB_ENABLE = no            # Enable per key RGB
-RGBLIGHT_ENABLE = yes       # Enable keyboard RGB underglow
 # OLED_ENABLE = no           # Enables the use of OLED displays
 # OLED_DRIVER = SSD1306
 
 # QMK software features
+LTO_ENABLE = yes
+EXTRAFLAGS += -flto
 
 LEADER_ENABLE = no       # Enable the Leader Key feature
 MOUSEKEY_ENABLE = no     # Mouse keys
@@ -22,11 +23,7 @@ TAP_DANCE_ENABLE = no
 SWAP_HANDS_ENABLE = no
 EXTRAKEY_ENABLE = yes    # Audio control and System control
 COMBO_ENABLE = yes       # chording
-LTO_ENABLE = yes
-EXTRAFLAGS += -flto
 
 SRC += keiji.c
 
 CFLAGS += -fcommon
-
-

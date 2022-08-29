@@ -53,12 +53,6 @@ extern rgblight_config_t rgblight_config;
 #endif
 
 
-enum OS_Platform { // Used for platform support via SemKeys
-    OS_Mac,
-    OS_Win,
-    OS_count
-};
-
 void matrix_scan_user_process_combo(void);
 
 typedef union {
@@ -72,111 +66,28 @@ typedef union {
 } user_config_t;
 
 
-
-enum my_layers {
+enum my_layers {  // must be difined before semantickeys.h
 // enum my_layers for layout layers for HD Neu/Au/Ti/Rh
 //    L_HDNUE,     // N             RSNT AEIH (same home row as Rhodium)
-      L_HDBRONZE,  // B BR (Neu-hx) RSNT AECI
+      L_HDBRONZE,  // B BR (Neu-hx) RSNT AECI (same home row as Platinum)
 //    L_HDSILVER,  // S Ag (Neu-nx) RSHT AECI
-//    L_HDPLATINUM,// P Pl (Neu-lx) RSNT AECI
+//    L_HDPLATINUM,// P Pl (Neu-lx) RSNT AECI (same home row as Bronze)
 //    L_HDGOLD,    // G Au (Neu-tx) RSND AEIH
       L_HDTITANIUM,// T Ti (Neu-rx) CSNT AEIH
-      L_HDRHODIUM, // R Rh (Neu-cx) RSNT AEIH
+//    L_HDRHODIUM, // R Rh (Neu-cx) RSNT AEIH (same home row as Neu)
 //    L_QWERTY,    //
-    L_PUNCT,
-    L_FN_NUM,
-    L_NUMPAD,
-    L_NAV,
-//    L_SYMBOLS,
-    L_MEDIA_KBD
+      L_PUNCT,      // 3
+      L_FN_NUM,     // 4
+      L_NUMPAD,     // 5
+      L_NAV,        // 6
+//    L_SYMBOLS,    // diacritics…maybe to be handled by semantickeys?
+      L_MEDIA_KBD   // 7
 };
 
- enum my_keycodes {
-     SK_KILL = SAFE_RANGE, // SK_KILL must be the first of contiguous block of SKs
-     SK_HENK,
-     SK_MHEN,
-     SK_HENT, // Hard-Enter
-     SK_UNDO, // undo
-     SK_CUT, // cut
-     SK_COPY, // copy
-     SK_PSTE, // paste
-     SK_PSTM, // paste_match
-     SK_SALL, // select all
-     SK_CLOZ, // close
-     SK_QUIT, // quit
-     SK_FIND, // find
-     SK_FAGN, // find again
-     SK_SCAP, // screen capture to clipboard
-     SK_SCLP, // selection capture to clipboard
-     SK_DELWDL, // Delete word left of cursor
-     SK_DELWDR, // Delete word right of cursor
-     
-     SK_WORDPRV, // WORD LEFT
-     SK_WORDNXT, // WORD RIGHT
-     SK_DOCBEG, // Go to start of document
-     SK_DOCEND, // Go to end of document
-     SK_LINEBEG, // Go to beg of line
-     SK_LINEEND, // Go to end of line
-     SK_PARAPRV, // Go to previous paragraph
-     SK_PARANXT, // Go to next paragraph
-     SK_HISTPRV, // BROWSER BACK
-     SK_HISTNXT, // BROWSER FWD
-     SK_ZOOMIN, // ZOOM IN
-     SK_ZOOMOUT, // ZOOM OUT
-     SK_ZOOMRST, // ZOOM RESET
-     SK_APPNXT, // APP switcher Next (last used)
-     SK_APPPRV, // APP switcher Prev (least recently used)
-     SK_WINNXT, // Window/tab switcher Next
-     SK_WINPRV, // Window/tab switcher Prev
-     SK_SECT, // §
-     SK_ENYE, // ñ/Ñ ENYE
-     SK_SQUL, // ’ ** Left single quote UNICODE?
-     SK_SQUR, // ’ ** Right single quote UNICODE?
-     SK_SDQL, // ’ ** Left double quote UNICODE?
-     SK_SDQR, // ’ ** Right double quote UNICODE?
-     SemKeys_COUNT, // end of non-glyph SemKeys
-     HD_AdaptKeyToggle,
-     HD_L_Bronze,  // KC to switch default layout
-//     HD_L_Silver,
-//     HD_L_Platinum,
-//     HD_L_Neu,
-//     HD_L_Gold,
-     HD_L_Titanium,
-     HD_L_Rhodium,
-//     HD_L_QWERTY,
-
-
-/* Eventually…these should be handled as SemKeys?
-    HD_aumlt,
-    HD_amacr,
-    HD_aacut,
-    HD_acrcm,
-    HD_agrav,
-
-    HD_eumlt,
-    HD_emacr,
-    HD_eacut,
-    HD_ecrcm,
-    HD_egrav,
-
-    HD_iumlt,
-    HD_imacr,
-    HD_iacut,
-    HD_icrcm,
-    HD_igrav,
-
-    HD_oumlt,
-    HD_omacr,
-    HD_oacut,
-    HD_ocrcm,
-    HD_ograv,
-
-    HD_uumlt,
-    HD_umacr,
-    HD_uacut,
-    HD_ucrcm,
-    HD_ugrav
-*/
+enum OS_Platform { // Used for platform support via SemKeys
+    OS_Mac,     // uses ANSI_US_EXTENDED layout
+    OS_Win,
+    OS_count
 };
 
 #include "moutis_semantickeys.h"

@@ -5,6 +5,7 @@
 
 #include "keiji.h"
 
+
 /*
     My globals
 */
@@ -117,27 +118,27 @@ uint32_t layer_state_set_user(uint32_t layer_state) {
 }
 
 
-#include "moutis_semantickeys.c" // anything could send a semantic, so…first
+#include "keiji_semantickeys.c" // anything could send a semantic, so…first
 
 #ifdef OLED_DRIVER_ENABLE
-    #include "moutis_OLED.c"
+    #include "keiji_OLED.c"
 #endif
 
 #ifdef ENCODER_ENABLE
-    #include "moutis_ENCODER.c"
+    #include "keiji_ENCODER.c"
 #endif
 
 #ifdef COMBO_ENABLE
-    #include "moutis_COMBO_hd_neu_sk.c"
+    #include "keiji_COMBO_hd_neu-hx.c"
 #endif
 
-#include "moutis_casemods.c"
+#include "keiji_casemods.c"
 
-#include "moutis_adaptivekeys.c"
+#include "keiji_adaptivekeys.c"
 
-#include "moutis_PROCESS_RECORD_hd_neu.c"
+#include "keiji_PROCESS_RECORD_hd_neu-hx.c"
 
-#include "moutis_MATRIX.c"
+#include "keiji_MATRIX.c"
 
 #ifdef KEY_OVERRIDE_ENABLE  // If using QMK's key overrides...
 const key_override_t delete_key_override = ko_make_basic(MOD_MASK_SHIFT, LT(L_LANG_NUM,KC_BSPC), KC_DELETE);

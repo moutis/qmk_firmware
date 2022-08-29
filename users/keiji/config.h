@@ -57,6 +57,8 @@
 #ifdef COMBO_HOLD
     #undef ADAPTIVE_TERM
     #define ADAPTIVE_TERM COMBO_HOLD  // use COMBO_HOLD time as a standard threshold (same recation time)
+#else
+    #define ADAPTIVE_TERM (TAPPING_TERM/5) // rolling threshold
 #endif
 
 #define LINGER_TIME TAPPING_TERM * 1.2 // how long to hold before a time-depentant behavior begins
@@ -68,3 +70,4 @@
 #define JP_MODE_ENABLE  // Japanese mode features switch output for Japanese input (552 bytes on AVR)
 #define JP_YOUON_COMBOS  // must have JP_MODE_ENABLE. min contracted sounds as combos (746 bytes on AVR)
 #define JP_YOUON_COMBOS_ALL  // must have JP_YOUON_COMBOS. all contracted sounds as combos (862 bytes on AVR)
+

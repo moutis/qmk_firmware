@@ -24,12 +24,10 @@
  
  */
 
-
-enum my_keycodes {
+enum sk_keycodes {
     SK_KILL = SAFE_RANGE, // SK_KILL must be the first of contiguous block of SKs
     SK_HENK,
     SK_MHEN,
-    SK_HENT, // Hard-Enter
     SK_UNDO, // undo
     SK_CUT, // cut
     SK_COPY, // copy
@@ -58,10 +56,6 @@ enum my_keycodes {
     SK_ZOOMIN, // ZOOM IN
     SK_ZOOMOUT, // ZOOM OUT
     SK_ZOOMRST, // ZOOM RESET
-    SK_APPNXT, // APP switcher Next (last used)
-    SK_APPPRV, // APP switcher Prev (least recently used)
-    SK_WINNXT, // Window/tab switcher Next
-    SK_WINPRV, // Window/tab switcher Prev
     SK_SECT, // §
     SK_ENYE, // ñ/Ñ ENYE
     SK_SQUL, // ’ ** Left single quote UNICODE?
@@ -70,30 +64,7 @@ enum my_keycodes {
     SK_SDQR, // ’ ** Right double quote UNICODE?
     SemKeys_COUNT, // end of non-glyph SemKeys
     HD_AdaptKeyToggle,
-#ifdef L_HDNUE
-     HD_L_Neu,
-#endif
-//#ifdef L_HDBRONZE
-    HD_L_Bronze,  // KC to switch default layout
-//#endif
-#ifdef L_HDSILVER
-     HD_L_Silver,
-#endif
-#ifdef L_HDPLATINUM
-     HD_L_Platinum,
-#endif
-#ifdef L_HDGOLD
-     HD_L_Gold,
-#endif
-//#ifdef L_HDTITANIUM
-    HD_L_Titanium,
-//#endif
-#ifdef L_HDRHODIUM
-    HD_L_Rhodium,
-#endif
-#ifdef L_QWERTY
-     HD_L_QWERTY,
-#endif
+
 
 
 /* Eventually…these should be handled as SemKeys?

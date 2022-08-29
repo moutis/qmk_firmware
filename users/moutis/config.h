@@ -55,9 +55,11 @@
     #define COMBO_HOLD (TAPPING_TERM) // time to hold to trigger delayed combo
 #endif
 
-#ifdef COMBO_HOLD // use COMBO_HOLD time as a standard reacation time threshold
-    #undef ADAPTIVE_TERM // ADAPTIVE_TERM should be smaller than TAPPING_TERM
-    #define ADAPTIVE_TERM COMBO_HOLD
+#ifdef COMBO_HOLD
+    #undef ADAPTIVE_TERM
+    #define ADAPTIVE_TERM COMBO_HOLD  // use COMBO_HOLD time as a standard threshold (same recation time)
+#else
+    #define ADAPTIVE_TERM (TAPPING_TERM/5) // rolling threshold
 #endif
 
 #define LINGER_TIME TAPPING_TERM * 1.2 // how long to hold before a time-depentant behavior begins

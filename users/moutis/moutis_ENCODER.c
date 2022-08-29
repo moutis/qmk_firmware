@@ -4,16 +4,54 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     uint8_t  held_mods;
 
     held_mods = get_mods(); // fetch mods
-  if (!index) { /* First (left) encoder */
-      switch(get_highest_layer(layer_state)){
-          case L_FN_NUM: // function layer
+      // Mod held Global (All layers) behaviors, all encoders
+    if (held_mods & MOD_MASK_GUI) { // App switch // not platform saavy!
+        if (held_mods & MOD_MASK_CTRL) { // workspace switch
+            unregister_mods(MOD_MASK_SAG); // lift all but ctrl
+            if (clockwise) {
+                tap_code(KC_RIGHT); // fwd
+            } else {
+                tap_code(KC_LEFT); // back
+            }
+        }
+        if (clockwise) { // Uses SemKey for Platform flexible app switch
+            tap_SemKey(SK_APPNXT); // APP switcher Next (last used)
+        } else {
+            tap_SemKey(SK_APPPRV); // APP switcher Prev (least recently used)
+        }
+        goto exit;
+    } else if (held_mods & MOD_MASK_CTRL) { // just ctrl switch
+        unregister_mods(MOD_MASK_SAG); // lift all but ctrl
+        if (clockwise) { // Uses SemKey for Platform flexible app switch
+            tap_code16(C(KC_TAB)); // fwd
+            //tap_SemKey(SK_WINNXT); // Window/tab switcher Next
+        } else {
+            tap_code16(C(S(KC_TAB))); // fwd
+            //tap_SemKey(SK_WINPRV); // Window/tab switcher Prev
+        }
+        goto exit;
+    }
+    
+    if (!index) { /* First (left) encoder */
+        switch(get_highest_layer(layer_state)){
+          case L_PUNCT: // puncuation layer
+          case L_FN_NUM:
+volbright:
               /* for audio scrub bk/fwd. */
-              if (clockwise) {
-                  tap_code16(KC_BRIU); // Screen BRIGHTNESS UP
+            if ((held_mods & MOD_MASK_SHIFT)) {
+                if (clockwise) {
+                    tap_code16(KC_BRIU); // Screen BRIGHTNESS UP
+                 } else {
+                    tap_code16(KC_BRID);  // Screen BRIGHTNESS DN
+                }
               } else {
-                  tap_code16(KC_BRID);  // Screen BRIGHTNESS DN
+                if (clockwise) {
+                    tap_code(KC_VOLU); // media vol up
+                } else {
+                    tap_code(KC_VOLD); // media vol dn
+                }
               }
-              break;
+              goto exit;
           case L_NUMPAD: // numpad layer (for navigating in spreadsheets)
               if (clockwise) {
                   tap_code16(KC_RGHT); //
@@ -29,7 +67,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
               }
               break;
 
-#ifdef RGBLIGHT_ENABLE
+    #ifdef RGBLIGHT_ENABLE
           case L_MEDIA_KBD: // media/kbd settings layer
               if (clockwise) {
                   rgblight_increase_val(); // val (brightness) +
@@ -37,20 +75,27 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
                   rgblight_decrease_val(); // val (brightness) -
               }
               break;
-#endif
+    #endif
           default:
-              if (!held_mods) {
-                  if (clockwise) {
-                      tap_code(KC_VOLU); // media vol up
-                    } else {
-                      tap_code(KC_VOLD); // media vol dn
-                  }
-                  break;
+              if (clockwise) {
+                  tap_code(KC_RIGHT); // fwd
+              } else {
+                  tap_code(KC_LEFT); // back
               }
-              goto twisttheknob;
+              break;
       }
   } else  {  // Second (right) encoder
       switch(get_highest_layer(layer_state)){
+          case L_PUNCT: // puncuation layer
+              goto volbright;
+          case L_FN_NUM: // function layer
+              /* for audio scrub bk/fwd. */
+              if (clockwise) {
+                  tap_code(KC_MNXT); // media next track
+                } else {
+                  tap_code(KC_MPRV); // media prev track
+              }
+              break;
           case L_NUMPAD: // numpad layer (for navigating in spreadsheets)
               if (clockwise) {
                   tap_code16(KC_DOWN);  //
@@ -84,50 +129,15 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
               break;
 #endif
           default:
-              if (!held_mods) {
-                  if (clockwise) {
-                      tap_code(KC_MNXT); // media next track
-                    } else {
-                      tap_code(KC_MPRV); // media prev track
-                  }
-                  break;
-              }
-twisttheknob: // so much unorthodoxy here! Saves about 40 bytes...
-              if (held_mods & MOD_MASK_GUI) { // App switch // not platform saavy!
-//                  unregister_mods(MOD_MASK_CSAG); // lift all mods
-                  if (held_mods & MOD_MASK_CTRL) { // workspace switch
-                      unregister_mods(MOD_MASK_SAG); // lift all but ctrl
-                      goto justdoarrows;
-                  }
-                  if (clockwise) { // Uses SemKey for Platform flexible app switch
-                      tap_SemKey(SK_APPNXT); // APP switcher Next (last used)
-                  } else {
-                      tap_SemKey(SK_APPPRV); // APP switcher Prev (least recently used)
-                  }
-                  break;
-              } else if (held_mods & MOD_MASK_CTRL) { // just ctrl switch
-                  unregister_mods(MOD_MASK_SAG); // lift all but ctrl
-                  if (clockwise) { // Uses SemKey for Platform flexible app switch
-                      tap_code16(C(KC_TAB)); // fwd
-                      //tap_SemKey(SK_WINNXT); // Window/tab switcher Next
-                  } else {
-                      tap_code16(C(S(KC_TAB))); // fwd
-                      //tap_SemKey(SK_WINPRV); // Window/tab switcher Prev
-                  }
-                  break;
-              } else if (held_mods & MOD_MASK_ALT) { // for scrubbing
-                  unregister_mods(MOD_MASK_CG); // lift all mods
-                  goto justdoarrows;
-              }
-justdoarrows:
               if (clockwise) {
-                  tap_code(KC_RIGHT); // fwd
+                  tap_code(KC_PGDN); //
               } else {
-                  tap_code(KC_LEFT); // back
+                  tap_code(KC_PGUP); //
               }
-              set_mods(held_mods);  // not sure if we need this
               break;
       }
   }
-    return false;
+exit:
+            set_mods(held_mods); // restore mods
+            return false;
 }
