@@ -76,6 +76,6 @@
 
 #define EN_PRONOUN_COMBOS // English First Person pronoun combos (I, I'm, I've I'd I'll etc) (184 bytes on AVR)
 #define EN_PRONOUN_COMBOS_ALL  // combos for you('ve), We('ve), They('ve) etc. (616 bytes on AVR)
-#define JP_MODE_ENABLE  // Japanese mode features switch output for Japanese input (552 bytes on AVR)
-#define JP_YOUON_COMBOS  // must have JP_MODE_ENABLE. min contracted sounds as combos (746 bytes on AVR)
-#define JP_YOUON_COMBOS_ALL  // must have JP_YOUON_COMBOS. all contracted sounds as combos (862 bytes on AVR)
+//#define JP_MODE_ENABLE  // Japanese mode features switch output for Japanese input (552 bytes on AVR)
+//#define JP_YOUON_COMBOS  // must have JP_MODE_ENABLE. min contracted sounds as combos (746 bytes on AVR)
+//#define JP_YOUON_COMBOS_ALL  // must have JP_YOUON_COMBOS. all contracted sounds as combos (862 bytes on AVR)

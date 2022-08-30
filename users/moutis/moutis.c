@@ -81,7 +81,7 @@ bool get_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
 
 
 
-uint32_t layer_state_set_user(uint32_t layer_state) {
+layer_state_t layer_state_set_user(layer_state_t layer_state) {
 
 /*
  Someday, when OLED is important again, rewrite to

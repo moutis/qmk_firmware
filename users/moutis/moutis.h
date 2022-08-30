@@ -67,7 +67,7 @@ typedef union {
 
 
 enum my_layers {  // must be difined before semantickeys.h
-// enum my_layers for layout layers for HD Neu/Au/Ti/Rh
+// enum my_layers for layout layers for HD Neu family
 //    L_HDNUE,     // N             RSNT AEIH (same home row as Rhodium)
       L_HDBRONZE,  // B BR (Neu-hx) RSNT AECI (same home row as Platinum)
 //    L_HDSILVER,  // S Ag (Neu-nx) RSHT AECI
@@ -75,7 +75,7 @@ enum my_layers {  // must be difined before semantickeys.h
 //    L_HDGOLD,    // G Au (Neu-tx) RSND AEIH
       L_HDTITANIUM,// T Ti (Neu-rx) CSNT AEIH
 //    L_HDRHODIUM, // R Rh (Neu-cx) RSNT AEIH (same home row as Neu)
-//    L_QWERTY,    //
+    L_QWERTY,    //
       L_PUNCT,      // 3
       L_FN_NUM,     // 4
       L_NUMPAD,     // 5
