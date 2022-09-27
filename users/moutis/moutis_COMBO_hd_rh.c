@@ -9,15 +9,32 @@
   
  */
 
+#include "combomacros.h"
 
+#ifndef JapanComboTapE
 #define JapanComboTapE "Japan "
+#endif
+#ifndef JapanComboHeldE
 #define JapanComboHeldE "Japanese "
+#endif
+#ifndef JapanComboTapJ
 #define JapanComboTapJ "arigatou"
+#endif
+#ifndef JapanComboHeldJ
 #define JapanComboHeldJ "yorosiku"
+#endif
+#ifndef EnglishComboTapE
 #define EnglishComboTapE "English "
-#define EnglishComboHeldE "End of times in 2020"
+#endif
+#ifndef EnglishComboHeldE
+#define EnglishComboHeldE ".edu"
+#endif
+#ifndef EnglishComboTapJ
 #define EnglishComboTapJ "gozaimasu."
+#endif
+#ifndef EnglishComboHeldJ
 #define EnglishComboHeldJ "onegaisimasu."
+#endif
 
 uint16_t COMBO_LEN = COMBO_LENGTH;
 

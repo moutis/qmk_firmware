@@ -75,7 +75,7 @@ enum my_layers {  // must be difined before semantickeys.h
 //    L_HDGOLD,    // G Au (Neu-tx) RSND AEIH
       L_HDTITANIUM,// T Ti (Neu-rx) CSNT AEIH
 //    L_HDRHODIUM, // R Rh (Neu-cx) RSNT AEIH (same home row as Neu)
-    L_QWERTY,    //
+//    L_QWERTY,    //
       L_PUNCT,      // 3
       L_FN_NUM,     // 4
       L_NUMPAD,     // 5

@@ -1,4 +1,9 @@
+# Controller stuff
 BOOTLOADER = atmel-dfu
+#MCU = RP2040
+#BOOTLOADER = rp2040
+#CONVERT_TO=stemcell
+
 # FauxFox hardware features
 BOOTMAGIC_ENABLE = no     # Enable Bootmagic Lite
 ENCODER_ENABLE = yes
@@ -10,3 +15,4 @@ OLED_DRIVER = SSD1306
 
 #POINTING_DEVICE_ENABLE = yes
 #POINTING_DEVICE_DRIVER = cirque_trackpad_i2c
+#MOUSEKEY_ENABLE = yes
