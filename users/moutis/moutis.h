@@ -49,7 +49,7 @@ extern rgblight_config_t rgblight_config;
 #include "moutis_casemods.h"
 
 #ifdef COMBO_ENABLE
-    #include "moutis_COMBO_hd.h"
+    #include "moutis_COMBO_hd_rlat.h"
 #endif
 
 

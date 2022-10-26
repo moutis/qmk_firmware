@@ -216,14 +216,14 @@ void keyboard_post_init_user(void) {
 #endif
 
 #ifdef COMBO_ENABLE
-    #include "moutis_COMBO_hd_rlat.c"
+    #include "moutis_COMBO_hd_rh.c"
 #endif
 
 #include "moutis_casemods.c"
 
-#include "moutis_adaptivekeys_hd_rlat.c"
+#include "moutis_adaptivekeys.c"
 
-#include "moutis_PROCESS_RECORD_hd_rlat.c"
+#include "moutis_PROCESS_RECORD_hd_rh.c"
 
 #include "moutis_MATRIX.c"
 

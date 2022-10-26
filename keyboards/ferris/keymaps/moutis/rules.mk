@@ -1,6 +1,3 @@
-#　ferris hardware
-# Bootloader selection
-#BOOTLOADER = atmel-dfu
 
 #SPLIT_KEYBOARD = yes        # Use shared split_common code
 #DEFAULT_FOLDER = ferris/
@@ -22,7 +19,8 @@ RGBLIGHT_ENABLE = no        # Enable keyboard RGB underglow
 BLUETOOTH_ENABLE = no       # Enable Bluetooth
 AUDIO_ENABLE = no           # Audio output
 CUSTOM_MATRIX = lite
-NO_USB_STARTUP_CHECK = yes
-LTO_ENABLE = yes
+NO_USB_STARTUP_CHECK = no
+LTO_ENABLE = no
 
 ENCODER_ENABLE = no        # Enables the use of one or more encoders
+
