@@ -1,4 +1,10 @@
 
+# MCU name
+MCU = STM32F072
+
+# Bootloader selection
+BOOTLOADER = stm32-dfu
+
 #SPLIT_KEYBOARD = yes        # Use shared split_common code
 #DEFAULT_FOLDER = ferris/
 #SRC += keymap.c
@@ -19,7 +25,7 @@ RGBLIGHT_ENABLE = no        # Enable keyboard RGB underglow
 BLUETOOTH_ENABLE = no       # Enable Bluetooth
 AUDIO_ENABLE = no           # Audio output
 CUSTOM_MATRIX = lite
-NO_USB_STARTUP_CHECK = no
+NO_USB_STARTUP_CHECK = yes
 LTO_ENABLE = no
 
 ENCODER_ENABLE = no        # Enables the use of one or more encoders
