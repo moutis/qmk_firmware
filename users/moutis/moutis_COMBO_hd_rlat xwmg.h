@@ -9,6 +9,7 @@ enum my_combos {
     FC_CAPS, // CAPS LOCK (others)
     FC_LANG2, // eisuu (others)
     FC_LANG1, // kana (others)
+//    FC_LANG1_2, // kana (others)
 
     HC_TAB,
     HC_EQL, // = equal
@@ -56,11 +57,10 @@ enum my_combos {
     // Fast entry 4grams
     // since combos are a bit slower,
     // needs to be a 4gram+ or more to be worth it
-    HC_Sc, // treat as digraph 'SC'
-    HC_Sch, // treat as digraph 'SCH'
-    HC_Gh, // treat as digraph 'GH'
-    // these all have a unified delay...getting into spaghetti land with so many of these tricks...
     HC_Ch, // treat as digraph 'CH'
+//    HC_Tch, // treat as trigraph 'TCH'
+    HC_Sch, // treat as trigraph 'SCH'
+    HC_Gh, // treat as digraph 'GH'
     HC_Ph, // treat as φ
     HC_Th, // treat as θ
     HC_Sh, // TYPE "sh"
@@ -69,38 +69,33 @@ enum my_combos {
 #ifdef EN_PRONOUN_COMBOS
 // Pronoun combos. KEEP these together!
     HC_I, // Cap I + "'ve " if lingered
-    HC_I2, // Cap I + "'ve " if lingered
     HC_Id, // "I'd " …
     HC_Ill, // "I'll " …
     HC_Im, // "I'm " …
     HC_Iv, // "I've " …
 
 #ifdef EN_PRONOUN_COMBOS_ALL
+
     HC_wed_4gram, // we'd
     HC_well_5gram, // we'll
     HC_were_5gram, // we're
-    HC_were2_5gram, // we're
     HC_weve_5gram, // we've
+
+//    HC_there_5gram, // "there" #7
+//    HC_here_4gram, // TYPE "here" #9
+//    HC_where_5gram, // TYPE "where"
 
     HC_youd_5gram,
     HC_youll_6gram,
     HC_youre_6gram,
-    HC_youre2_6gram,
     HC_youve_6gram,
     HC_your_4gram,
-    HC_your2_4gram,
-
-    HC_there_5gram, // "there" #7
-    HC_here_4gram, // TYPE "here" #9
-    HC_where_5gram, // TYPE "where"
 
     HC_they_4gram, // TYPE "they" #23
     HC_theyd_6gram, // TYPE "they'd " #23
     HC_theyll_7gram, // TYPE "they'll" #23
     HC_theyre_7gram, // "they're"
-    HC_theyre2_7gram, // "they're"
     HC_theyve_7gram, // "they've"
-    HC_their2_5gram, // "their" #6
     HC_their_5gram, // "their" #6
 
 // END of PRONOUN combos ()
@@ -168,7 +163,7 @@ enum my_combos {
     jp_nya,  // にゃ
     jp_nyu,  // にゅ
     jp_nyo,  // にょ
-    jp_hya,  // ひゃ
+//    jp_hya,  // ひゃ
     jp_hyu,  // ひゅ
     jp_hyo,  // ひょ
     jp_bya,  // びゃ

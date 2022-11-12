@@ -39,21 +39,20 @@
 uint16_t COMBO_LEN = COMBO_LENGTH;
 
 // for 34 key boards
-const uint16_t PROGMEM H_menu_combo[] = {LT(L_FN_NUM, KC_BSPC), LT(L_NAV, KC_H), COMBO_END}; // MENU
-const uint16_t PROGMEM H_menu2_combo[] = {LT(L_FN_NUM, KC_BSPC), LT(L_NAV, KC_H), COMBO_END}; // MENU
+const uint16_t PROGMEM H_menu_combo[] = {LT(L_FN_NUM, KC_BSPC), LT(L_NAV, KC_R), COMBO_END}; // MENU
 
 /* examples of text entry combos */
-const uint16_t PROGMEM H_Japan_combo[] = {KC_B, KC_M, KC_G, COMBO_END}; // TYPE EnglishComboTapE
+const uint16_t PROGMEM H_Japan_combo[] = {KC_W, KC_M, KC_G, COMBO_END}; // TYPE EnglishComboTapE
 const uint16_t PROGMEM H_English_combo[] = {KC_DOT, KC_SLSH, KC_J, COMBO_END}; // some demonstrator macro placeholder
 
 const uint16_t PROGMEM F_KILL_combo[] = {KC_LPRN, KC_RPRN, COMBO_END}; // KILL = Force quit OR CTRL-ALT-DEL
 const uint16_t PROGMEM F_SCLP_combo[] = {KC_M, KC_G, KC_LPRN, COMBO_END}; // SCREEN shot SELECTION to clipboard
-const uint16_t PROGMEM F_SCAP_combo[] = {KC_B, KC_M, KC_G, KC_LPRN, COMBO_END}; //  SCREEN shot SELECTION to file
+const uint16_t PROGMEM F_SCAP_combo[] = {KC_W, KC_M, KC_G, KC_LPRN, COMBO_END}; //  SCREEN shot SELECTION to file
 
 
-const uint16_t PROGMEM F_CAPS_combo[] = {RALT_T(KC_S), RGUI_T(KC_N), RGUI_T(KC_E), RALT_T(KC_I), COMBO_END}; // CAPS LOCK (on until hit again)
+const uint16_t PROGMEM F_CAPS_combo[] = {RALT_T(KC_C), RGUI_T(KC_N), RGUI_T(KC_E), RALT_T(KC_I), COMBO_END}; // CAPS LOCK (on until hit again)
 const uint16_t PROGMEM H_CAPW_combo[] = {RSFT_T(KC_T), RGUI_T(KC_N), RSFT_T(KC_A), RGUI_T(KC_E), COMBO_END}; // CAPS WORD (on until word delimiter)
-const uint16_t PROGMEM H_EISUU_combo[] = {RALT_T(KC_S), RGUI_T(KC_N), RSFT_T(KC_T), COMBO_END}; // KC_MHEN
+const uint16_t PROGMEM H_EISUU_combo[] = {RALT_T(KC_C), RGUI_T(KC_N), RSFT_T(KC_T), COMBO_END}; // KC_MHEN
    // for Bronze/Ag/Pl
 const uint16_t PROGMEM H_KANA_combo[] = {RALT_T(KC_I), RGUI_T(KC_E), RSFT_T(KC_A), COMBO_END}; // KC_HENK
 
@@ -93,57 +92,55 @@ const uint16_t PROGMEM PPLMN_combo[] = {KC_P4, KC_PPLS, COMBO_END};
 // RIGHT HAND
 
   // for HANDS DOWN Chromium
-const uint16_t PROGMEM F_ESC_combo[] = {RCTL_T(KC_C), RSFT_T(KC_T), COMBO_END}; // ESCape
+const uint16_t PROGMEM F_ESC_combo[] = {RCTL_T(KC_S), RSFT_T(KC_T), COMBO_END}; // ESCape
 const uint16_t PROGMEM Hndsh_combo[] = {KC_MINS, KC_U, COMBO_END}; // – n dash
 const uint16_t PROGMEM Hmdsh_combo[] = {KC_MINS, KC_O, COMBO_END}; // — m dash
-const uint16_t PROGMEM Htild_combo[] = {KC_MINS, KC_X, COMBO_END}; // ~ tilde (not the deadkey for eñye)
-const uint16_t PROGMEM Hunds_combo[] = {KC_U, KC_X, COMBO_END}; // _ underscore
-const uint16_t PROGMEM Hequal_combo[] = {KC_Y, KC_X, COMBO_END}; // = equal
+const uint16_t PROGMEM Htild_combo[] = {KC_MINS, KC_W, COMBO_END}; // ~ tilde (not the deadkey for eñye)
+const uint16_t PROGMEM Hunds_combo[] = {KC_U, KC_F, COMBO_END}; // _ underscore
+const uint16_t PROGMEM Hequal_combo[] = {KC_Y, KC_F, COMBO_END}; // = equal
 
 
 // spatially arranged characters and diacritics
 const uint16_t PROGMEM Hscln_combo[] = {KC_DOT, KC_J, COMBO_END}; // ; semicolon
-const uint16_t PROGMEM Hcoln_combo[] = {KC_DOT, KC_QUOT, COMBO_END}; // : colon
-const uint16_t PROGMEM Hexlm_combo[] = {KC_DOT, KC_SLSH, COMBO_END}; // !
-const uint16_t PROGMEM Hques_combo[] = {KC_SLSH, KC_J, COMBO_END}; // ?
-const uint16_t PROGMEM Hdquo_combo[] = {KC_J, KC_QUOT, COMBO_END}; // " DOUBLE QUOTE
-const uint16_t PROGMEM Htic_combo[] = {KC_SLSH, KC_QUOT, COMBO_END}; // ` tic (not dead key grave)
+const uint16_t PROGMEM Hcoln_combo[] = {KC_DOT, KC_B, COMBO_END}; // : colon
+const uint16_t PROGMEM Hexlm_combo[] = {KC_DOT, KC_QUOT, COMBO_END}; // !
+const uint16_t PROGMEM Hques_combo[] = {KC_J, KC_B, COMBO_END}; // ?
+const uint16_t PROGMEM Hdquo_combo[] = {KC_QUOT, KC_J, COMBO_END}; // " DOUBLE QUOTE
+const uint16_t PROGMEM Htic_combo[] = {KC_QUOT, KC_B, COMBO_END}; // ` tic (not dead key grave)
 
 const uint16_t PROGMEM Hhash_combo[] = {KC_RPRN, KC_DOT, COMBO_END}; // # HASH
 const uint16_t PROGMEM Hat_combo[] = {KC_G, KC_LPRN, COMBO_END}; // @
 
 // spatially arranged diacritics
 const uint16_t PROGMEM Hdier_combo[] = {KC_U, KC_O, COMBO_END}; // ¨ dieresis (dead key)
-const uint16_t PROGMEM Henye_combo[] = {KC_V, KC_G, COMBO_END}; // ˜ enye (dead key) (ñ only?)
+const uint16_t PROGMEM Henye_combo[] = {KC_W, KC_G, COMBO_END}; // ˜ enye (dead key) (ñ only?)
 const uint16_t PROGMEM Hacut_combo[] = {RSFT_T(KC_A), RGUI_T(KC_E), COMBO_END}; // ´ acute (dead key)é
 
  // for Neu/Au/Ti/Rh
 const uint16_t PROGMEM Hgrv_combo[] = {RGUI_T(KC_E), RALT_T(KC_I), COMBO_END}; // ` grave (dead key)
 const uint16_t PROGMEM Hcirc_combo[] = {RSFT_T(KC_A), RALT_T(KC_I), COMBO_END}; // ˆ circumflex (dead key)
-const uint16_t PROGMEM Hmacr_combo[] = {RGUI_T(KC_E), RCTL_T(KC_R), COMBO_END}; // - macron (dead key)
-const uint16_t PROGMEM Hmacr2_combo[] = {RGUI_T(KC_E), RCTL_T(KC_H), COMBO_END}; // - macron (dead key)
-const uint16_t PROGMEM Hring_combo[] = {RSFT_T(KC_A), RCTL_T(KC_R), COMBO_END}; // ˚ ring (dead key)
-const uint16_t PROGMEM Hring2_combo[] = {RSFT_T(KC_A), RCTL_T(KC_H), COMBO_END}; // ˚ ring (dead key)
-const uint16_t PROGMEM Hcedi_combo[] = {RCTL_T(KC_C), RGUI_T(KC_N), COMBO_END}; // ¸ cedille (dead key)
+const uint16_t PROGMEM Hmacr_combo[] = {RGUI_T(KC_E), RCTL_T(KC_H), COMBO_END}; // - macron (dead key)
+const uint16_t PROGMEM Hring_combo[] = {RSFT_T(KC_A), RCTL_T(KC_H), COMBO_END}; // ˚ ring (dead key)
+const uint16_t PROGMEM Hcedi_combo[] = {RCTL_T(KC_S), RGUI_T(KC_N), COMBO_END}; // ¸ cedille (dead key)
 const uint16_t PROGMEM Hae_combo[] = {LT(L_FN_NUM, KC_COMM), RGUI_T(KC_E), COMBO_END}; // Æ
 const uint16_t PROGMEM Hoe_combo[] = {KC_MINS, KC_O, COMBO_END}; // Æ
 //const uint16_t PROGMEM Hoslsh_combo[] = {KC_O, KC_W, COMBO_END}; // ø/Ø or Wh
 
 // TEXT ENTRY - off map standard alphas (also on Layer L_PUNCT @ J & G respectively)byby=
-const uint16_t PROGMEM H_Z_combo[] = {KC_B, KC_M, COMBO_END}; // TYPE "z"
+const uint16_t PROGMEM H_Z_combo[] = {KC_W, KC_M, COMBO_END}; // TYPE "z
 const uint16_t PROGMEM H_Q_combo[] = {KC_U, KC_Y, COMBO_END}; // TYPE "q" (Qu & Linger deletes u)
 //const uint16_t PROGMEM H_NG_combo[] = {KC_W, KC_L, COMBO_END}; // TYPE "ん"
 
 // H digraphs
 
 const uint16_t PROGMEM H_Th_combo[] = {RGUI_T(KC_N), RSFT_T(KC_T), COMBO_END}; // "th"
-const uint16_t PROGMEM H_Sh_combo[] = {RALT_T(KC_S), RGUI_T(KC_N), COMBO_END}; // "sh"
-const uint16_t PROGMEM H_Ch_combo[] = {RALT_T(KC_S), RSFT_T(KC_T), COMBO_END}; // TYPE "ch"
-const uint16_t PROGMEM H_Wh_combo[] = {KC_B, KC_G, COMBO_END}; // TYPE "wh"
-const uint16_t PROGMEM H_Ph_combo[] = {KC_F, KC_D, COMBO_END}; // TYPE "ph"
+const uint16_t PROGMEM H_Sh_combo[] = {RCTL_T(KC_S), RALT_T(KC_C), COMBO_END}; // "sh"
+const uint16_t PROGMEM H_Ch_combo[] = {RALT_T(KC_C), RSFT_T(KC_T), COMBO_END}; // TYPE "ch"
+const uint16_t PROGMEM H_Wh_combo[] = {KC_W, KC_G, COMBO_END}; // TYPE "wh"
+const uint16_t PROGMEM H_Ph_combo[] = {KC_P, KC_D, COMBO_END}; // TYPE "ph"
 const uint16_t PROGMEM H_Gh_combo[] = {KC_G, KC_M, COMBO_END}; // TYPE "gh"
-const uint16_t PROGMEM H_Sc_combo[] = {RCTL_T(KC_C), RALT_T(KC_S), COMBO_END}; // TYPE "Sc" (SC is 5.6x more common than "CS", so this is the single worst roll on this incarnation. Fix it with a combo, since swapping pinky and ring finger columns creates a bunch of other undesirable things that, individually aren't nearly as severe but add up to close to the same problem. Collectively they are very annoying, and are very hard to solve, because they are so many smaller annoyances. So this one combo, bandaid that it is, actually relieves a lot of other potential problems.)
-const uint16_t PROGMEM H_Sch_combo[] = {RCTL_T(KC_C), RALT_T(KC_S), RGUI_T(KC_N), COMBO_END}; // TYPE "Sch"
+const uint16_t PROGMEM H_Sch_combo[] = {RCTL_T(KC_S), RALT_T(KC_C), RGUI_T(KC_N), COMBO_END}; // TYPE "sch"
+//const uint16_t PROGMEM H_Tch_combo[] = {RCTL_T(KC_C), RALT_T(KC_S), RSFT_T(KC_T), COMBO_END}; // TYPE "tch"
 // TEXT ENTRY - (ANY ROW/ MIXED ROWS)schchsh
 
 
@@ -183,8 +180,7 @@ const uint16_t PROGMEM H_ough_combo[] = {KC_O, RCTL_T(KC_H), COMBO_END}; // "oug
 
 // for HD Neu/Au/Ti/Rh
 
-const uint16_t PROGMEM H_Icap_combo[] = {RALT_T(KC_I), RCTL_T(KC_R), COMBO_END}; // TYPE "I" for Gold/Neu
-const uint16_t PROGMEM H_Icap2_combo[] = {RALT_T(KC_I), RCTL_T(KC_H), COMBO_END}; // TYPE "I" for Gold/Neu
+const uint16_t PROGMEM H_Icap_combo[] = {RALT_T(KC_I), RCTL_T(KC_H), COMBO_END}; // TYPE "I" for Gold/Neu
 const uint16_t PROGMEM H_Id_combo[] = {KC_D, RALT_T(KC_I), COMBO_END}; // TYPE "I'd"+"'ve " for Gold/Neu
 const uint16_t PROGMEM H_Ill_combo[] = {KC_L, RALT_T(KC_I), COMBO_END}; // TYPE "I'll"+"'ve " for Gold/Neu
 const uint16_t PROGMEM H_Im_combo[] = {KC_M, RALT_T(KC_I), COMBO_END}; // TYPE "I'm " for Gold/Neu
@@ -194,29 +190,24 @@ const uint16_t PROGMEM H_Iv_combo[] = {KC_V, RALT_T(KC_I), COMBO_END}; // TYPE "
 
 // should these all be Adaptive keys instead? (Maybe less overhead.)
 
-const uint16_t PROGMEM H_there_combo[] = {RSFT_T(KC_T), KC_X, COMBO_END}; // TYPE "there" #7 + 's
-const uint16_t PROGMEM H_here_combo[] = {LT(L_NAV, KC_H), KC_X, COMBO_END}; // TYPE "here" #5 + 's
-const uint16_t PROGMEM H_where_combo[] = {KC_W, KC_X, COMBO_END}; // "where" + 's
+//const uint16_t PROGMEM H_there_combo[] = {RSFT_T(KC_T), KC_X, COMBO_END}; // TYPE "there" #7 + 's
+//const uint16_t PROGMEM H_here_combo[] = {RCTL_T(KC_H), KC_X, COMBO_END}; // TYPE "here" #5 + 's
+//const uint16_t PROGMEM H_where_combo[] = {KC_W, KC_X, COMBO_END}; // "where" + 's
 
-// THESE "PULL UP"
-const uint16_t PROGMEM H_wed_combo[] = {KC_W, KC_G, COMBO_END}; // TYPE "we'd" + 've
-const uint16_t PROGMEM H_well_combo[] = {KC_W, KC_M, COMBO_END}; // TYPE "we'll" + 've
-const uint16_t PROGMEM H_were_combo[] = {KC_W, RCTL_T(KC_R), COMBO_END}; // TYPE "we're"
-const uint16_t PROGMEM H_were2_combo[] = {KC_W, LT(L_NAV, KC_R), COMBO_END}; // TYPE "we're"
-const uint16_t PROGMEM H_weve_combo[] = {KC_W, KC_LPRN, COMBO_END}; // TYPE "we've"
-
+const uint16_t PROGMEM H_wed_combo[] = {KC_W, KC_D, COMBO_END}; // TYPE "we'd" + 've
+const uint16_t PROGMEM H_well_combo[] = {KC_W, KC_L, COMBO_END}; // TYPE "we'll" + 've
+const uint16_t PROGMEM H_were_combo[] = {KC_W, LT(L_NAV, KC_R), COMBO_END}; // TYPE "we're"
+const uint16_t PROGMEM H_weve_combo[] = {KC_W, KC_V, COMBO_END}; // TYPE "we've"
 const uint16_t PROGMEM H_youd_combo[] = {KC_Y, KC_D, COMBO_END}; // TYPE "you'd" + 've
 const uint16_t PROGMEM H_youll_combo[] = {KC_Y, KC_L, COMBO_END}; // TYPE "you'll" + 've
-const uint16_t PROGMEM H_youre_combo[] = {KC_Y, RCTL_T(KC_R), COMBO_END}; // TYPE "you're"
-const uint16_t PROGMEM H_youre2_combo[] = {KC_Y, LT(L_NAV, KC_R), COMBO_END}; // TYPE "you're"
+const uint16_t PROGMEM H_youre_combo[] = {KC_Y, LT(L_NAV, KC_R), COMBO_END}; // TYPE "you're"
 const uint16_t PROGMEM H_youve_combo[] = {KC_Y, KC_V, COMBO_END}; // TYPE "you've"
 const uint16_t PROGMEM H_your_combo[] = {KC_Y, KC_P, COMBO_END}; // TYPE "your" "P" for "possessive" case
 const uint16_t PROGMEM H_their_combo[] = {RSFT_T(KC_T), KC_P, COMBO_END}; // TYPE "their" #6
 const uint16_t PROGMEM H_they_combo[] = {RSFT_T(KC_T), KC_Y, COMBO_END}; // "they" #23 + 've
 const uint16_t PROGMEM H_theyd_combo[] = {RSFT_T(KC_T), KC_D, COMBO_END}; // "they'd" #23 + 've
 const uint16_t PROGMEM H_theyll_combo[] = {RSFT_T(KC_T), KC_L, COMBO_END}; // "they'll" #23 + 've
-const uint16_t PROGMEM H_theyre_combo[] = {RSFT_T(KC_T), RCTL_T(KC_R), COMBO_END}; // "they're"
-const uint16_t PROGMEM H_theyre2_combo[] = {RSFT_T(KC_T), LT(L_NAV, KC_R), COMBO_END}; // "they're"
+const uint16_t PROGMEM H_theyre_combo[] = {RSFT_T(KC_T), LT(L_NAV, KC_R), COMBO_END}; // "they're"
 
 #endif // EN_PRONOUN_COMBOS_ALL
 
@@ -227,21 +218,21 @@ const uint16_t PROGMEM H_theyre2_combo[] = {RSFT_T(KC_T), LT(L_NAV, KC_R), COMBO
 // FUNCTIONS/COMMANDS Spatially arranged
 
 
-const uint16_t PROGMEM Htab_combo[] = {KC_W, KC_B, COMBO_END}; // tab
+const uint16_t PROGMEM Htab_combo[] = {KC_X, KC_W, COMBO_END}; // tab
 const uint16_t PROGMEM Hspc_combo[] = {RSFT_T(KC_T), LT(L_NUMPAD, KC_K), COMBO_END}; // SPACE
-const uint16_t PROGMEM Hent_combo[] = {KC_D, KC_V, COMBO_END}; // ENTER
-const uint16_t PROGMEM Hent2_combo[] = {KC_L, KC_D, KC_V,  COMBO_END}; // hard-ENTER/page break
+const uint16_t PROGMEM Hent_combo[] = {KC_D, KC_SLSH, COMBO_END}; // ENTER
+const uint16_t PROGMEM Hent2_combo[] = {KC_L, KC_D, KC_SLSH,  COMBO_END}; // hard-ENTER/page break
 
 // LOWER ROW
 
 // SEMANTIC FUNCTIONS Spatially arranged  ** uses SemKeys **
-const uint16_t PROGMEM Hclose_combo[] = {KC_L, KC_V, COMBO_END}; // close
-const uint16_t PROGMEM Hquit_combo[] = {KC_F, KC_V, COMBO_END}; // quit
-const uint16_t PROGMEM Hfind_combo[] = {RCTL_T(KC_C), LT(L_NUMPAD, KC_K), COMBO_END}; // find
-const uint16_t PROGMEM Hsall_combo[] = {KC_P, KC_D, COMBO_END}; // select all
-const uint16_t PROGMEM Hundo_combo[] = {KC_P, KC_F, COMBO_END}; // undo
-const uint16_t PROGMEM Hcut_combo[] = {KC_P, KC_F, KC_L, COMBO_END}; // cut
-const uint16_t PROGMEM Hcopy_combo[] = {KC_F, KC_L, COMBO_END}; // copy
+const uint16_t PROGMEM Hclose_combo[] = {KC_L, KC_SLSH, COMBO_END}; // close
+const uint16_t PROGMEM Hquit_combo[] = {KC_F, KC_SLSH, COMBO_END}; // quit
+//const uint16_t PROGMEM Hfind_combo[] = {KC_G, KC_V, COMBO_END}; // find [using layer option instead]
+const uint16_t PROGMEM Hsall_combo[] = {KC_V, KC_D, COMBO_END}; // select all
+const uint16_t PROGMEM Hundo_combo[] = {KC_V, KC_P, COMBO_END}; // undo
+const uint16_t PROGMEM Hcut_combo[] = {KC_V, KC_SLSH, KC_L, COMBO_END}; // cut
+const uint16_t PROGMEM Hcopy_combo[] = {KC_P, KC_L, COMBO_END}; // copy
 const uint16_t PROGMEM Hpste_combo[] = {KC_L, KC_D, COMBO_END}; // paste
 const uint16_t PROGMEM Hpstm_combo[] = {KC_P, KC_L, KC_D, COMBO_END}; // paste-match
 
@@ -258,13 +249,13 @@ const uint16_t PROGMEM Hpstm_combo[] = {KC_P, KC_L, KC_D, COMBO_END}; // paste-m
 const uint16_t PROGMEM kya_combo[] = {KC_L, RSFT_T(KC_A), COMBO_END};  // きゃ
 const uint16_t PROGMEM kyu_combo[] = {KC_L, KC_U, COMBO_END};  //　きゅ
 const uint16_t PROGMEM kyo_combo[] = {KC_L, KC_O, COMBO_END};  //　きょ
-const uint16_t PROGMEM sya_combo[] = {RALT_T(KC_S), RSFT_T(KC_A), COMBO_END};  // しゃ
-const uint16_t PROGMEM syu_combo[] = {RALT_T(KC_S), KC_U, COMBO_END};  //　しゅ
-const uint16_t PROGMEM sye_combo[] = {RALT_T(KC_S), RGUI_T(KC_E), COMBO_END};  //　しぇ
-const uint16_t PROGMEM syo_combo[] = {RALT_T(KC_S), KC_O, COMBO_END};  //　しょ
-const uint16_t PROGMEM zya_combo[] = {RCTL_T(KC_C), RSFT_T(KC_A), COMBO_END};  // じゃ
-const uint16_t PROGMEM zyu_combo[] = {RCTL_T(KC_C), KC_U, COMBO_END};  //　じゅ
-const uint16_t PROGMEM zyo_combo[] = {RCTL_T(KC_C), KC_O, COMBO_END};  //　じょ
+const uint16_t PROGMEM sya_combo[] = {RCTL_T(KC_S), RSFT_T(KC_A), COMBO_END};  // しゃ
+const uint16_t PROGMEM syu_combo[] = {RCTL_T(KC_S), KC_U, COMBO_END};  //　しゅ
+const uint16_t PROGMEM sye_combo[] = {RCTL_T(KC_S), RGUI_T(KC_E), COMBO_END};  //　しぇ
+const uint16_t PROGMEM syo_combo[] = {RCTL_T(KC_S), KC_O, COMBO_END};  //　しょ
+const uint16_t PROGMEM zya_combo[] = {RALT_T(KC_C), RSFT_T(KC_A), COMBO_END};  // じゃ
+const uint16_t PROGMEM zyu_combo[] = {RALT_T(KC_C), KC_U, COMBO_END};  //　じゅ
+const uint16_t PROGMEM zyo_combo[] = {RALT_T(KC_C), KC_O, COMBO_END};  //　じょ
 const uint16_t PROGMEM tya_combo[] = {RSFT_T(KC_T), RSFT_T(KC_A), COMBO_END};  // ちゃ
 const uint16_t PROGMEM tyu_combo[] = {RSFT_T(KC_T), KC_U, COMBO_END};  //　ちゅ
 const uint16_t PROGMEM tye_combo[] = {RSFT_T(KC_T), RGUI_T(KC_E), COMBO_END};  // ちぇ
@@ -277,7 +268,7 @@ const uint16_t PROGMEM pyo_combo[] = {KC_P, KC_O, COMBO_END};  //　ぴょ
 
 const uint16_t PROGMEM naa_combo[] = {KC_X, RSFT_T(KC_A), COMBO_END};  // アー
 const uint16_t PROGMEM nii_combo[] = {KC_X, RALT_T(KC_I), COMBO_END};  // イー
-//const uint16_t PROGMEM nuu_combo[] = {KC_X, KC_U, COMBO_END};  // ウー
+const uint16_t PROGMEM nuu_combo[] = {KC_X, KC_U, COMBO_END};  // ウー
 const uint16_t PROGMEM nee_combo[] = {KC_X, RGUI_T(KC_E), COMBO_END};  // エー
 const uint16_t PROGMEM noo_combo[] = {KC_X, KC_O, COMBO_END};  // オー
 const uint16_t PROGMEM nnn_combo[] = {RCTL_T(KC_C), RSFT_T(KC_T), COMBO_END};  // ん
@@ -298,19 +289,19 @@ const uint16_t PROGMEM dho_combo[] = {KC_L, KC_D, KC_O, COMBO_END};  //　でょ
 const uint16_t PROGMEM nya_combo[] = {RGUI_T(KC_N), RSFT_T(KC_A), COMBO_END};  // にゃ
 const uint16_t PROGMEM nyu_combo[] = {RGUI_T(KC_N), KC_U, COMBO_END};  //　にゅ
 const uint16_t PROGMEM nyo_combo[] = {RGUI_T(KC_N), KC_O, COMBO_END};  //　にょ
-const uint16_t PROGMEM hya_combo[] = {LT(L_NAV, KC_H), RSFT_T(KC_A), COMBO_END};  // ひゃ
+// const uint16_t PROGMEM hya_combo[] = {RCTL_T(KC_H), RSFT_T(KC_A), COMBO_END};  // びゃ
 // shares a diacritic combo, so procecessed differently there (for ˚=å)
-const uint16_t PROGMEM hyu_combo[] = {LT(L_NAV, KC_H), KC_U, COMBO_END};  //　ひゅ
-const uint16_t PROGMEM hyo_combo[] = {LT(L_NAV, KC_H), KC_O, COMBO_END};  //　ひょ
+const uint16_t PROGMEM hyu_combo[] = {RCTL_T(KC_H), KC_U, COMBO_END};  //　びゅ
+const uint16_t PROGMEM hyo_combo[] = {RCTL_T(KC_H), KC_O, COMBO_END};  //　びょ
 const uint16_t PROGMEM bya_combo[] = {KC_B, RSFT_T(KC_A), COMBO_END};  // びゃ
-const uint16_t PROGMEM byu_combo[] = {KC_B, KC_U, COMBO_END};  //　びゅ
+//const uint16_t PROGMEM byu_combo[] = {KC_B, KC_U, COMBO_END};  //　びゅ
 const uint16_t PROGMEM byo_combo[] = {KC_B, KC_O, COMBO_END};  //　びょ
 const uint16_t PROGMEM mya_combo[] = {KC_M, RSFT_T(KC_A), COMBO_END};  // みゃ
 const uint16_t PROGMEM myu_combo[] = {KC_M, KC_U, COMBO_END};  //　みゅ
 const uint16_t PROGMEM myo_combo[] = {KC_M, KC_O, COMBO_END};  //　みょ
-const uint16_t PROGMEM rya_combo[] = {RCTL_T(KC_R), RSFT_T(KC_A), COMBO_END};  // りゃ
-const uint16_t PROGMEM ryu_combo[] = {RCTL_T(KC_R), KC_U, COMBO_END};  //　りゅ
-const uint16_t PROGMEM ryo_combo[] = {RCTL_T(KC_R), KC_O, COMBO_END};  //　りょ
+const uint16_t PROGMEM rya_combo[] = {LT(L_NAV, KC_R), RSFT_T(KC_A), COMBO_END};  // りゃ
+const uint16_t PROGMEM ryu_combo[] = {LT(L_NAV, KC_R), KC_U, COMBO_END};  //　りゅ
+const uint16_t PROGMEM ryo_combo[] = {LT(L_NAV, KC_R), KC_O, COMBO_END};  //　りょ
 #endif // JP_YOUON_COMBOS_ALL
 #endif // JP_YOUON_COMBOS
 #endif // JP_MODE_ENABLE
@@ -356,8 +347,8 @@ combo_t key_combos[] = {
     [HC_Q] = COMBO_ACTION(H_Q_combo),
     [HC_Z] = COMBO(H_Z_combo, KC_Z),
     [HC_Ch] = COMBO_ACTION(H_Ch_combo),
-    [HC_Sc] = COMBO_ACTION(H_Sc_combo),
     [HC_Sch] = COMBO_ACTION(H_Sch_combo),
+//    [HC_Tch] = COMBO_ACTION(H_Tch_combo),
     [HC_Gh] = COMBO_ACTION(H_Gh_combo),
     [HC_Ph] = COMBO_ACTION(H_Ph_combo),
     [HC_Th] = COMBO_ACTION(H_Th_combo),
@@ -390,7 +381,7 @@ combo_t key_combos[] = {
 
     [jp_aa] = COMBO_ACTION(naa_combo),  // アー
     [jp_ii] = COMBO_ACTION(nii_combo),  // イー
-//    [jp_uu] = COMBO_ACTION(nuu_combo),  // ウー
+    [jp_uu] = COMBO_ACTION(nuu_combo),  // ウー
     [jp_ee] = COMBO_ACTION(nee_combo),  // エー
     [jp_oo] = COMBO_ACTION(noo_combo),  // オー
 //    [jp_nn] = COMBO_ACTION(nnn_combo),  // ん
@@ -411,11 +402,11 @@ combo_t key_combos[] = {
     [jp_nya] = COMBO_ACTION(nya_combo),  // にゃ
     [jp_nyu] = COMBO_ACTION(nyu_combo),  // にゅ
     [jp_nyo] = COMBO_ACTION(nyo_combo),  // にょ
-    [jp_hya] = COMBO_ACTION(hya_combo),  // ひゃ
+//    [jp_hya] = COMBO_ACTION(bya_combo),  // ひゃ　// shared by ˚=å, so needs mode switch
     [jp_hyu] = COMBO_ACTION(hyu_combo),  // ひゅ
     [jp_hyo] = COMBO_ACTION(hyo_combo),  // ひょ
     [jp_bya] = COMBO_ACTION(bya_combo),  // びゃ
-    [jp_byu] = COMBO_ACTION(byu_combo),  // びゅ
+//    [jp_byu] = COMBO_ACTION(byu_combo),  // びゅ // conflicts with underscore
     [jp_byo] = COMBO_ACTION(byo_combo),  // びょ
     [jp_mya] = COMBO_ACTION(mya_combo),  // みゃ
     [jp_myu] = COMBO_ACTION(myu_combo),  // みゅ
@@ -474,6 +465,7 @@ combo_t key_combos[] = {
 
     [FC_LANG2] = COMBO(H_EISUU_combo, KC_MHEN), // eisuu (others)
     [FC_LANG1] = COMBO(H_KANA_combo, KC_HENK), // kana (others)
+//    [FC_LANG1_2] = COMBO(H_KANA2_combo, KC_HENK), // kana (others)
 
     [HC_NDSH] = COMBO_ACTION(Hndsh_combo), // – N-DASH
     [HC_MDSH] = COMBO_ACTION(Hmdsh_combo), // — M-DASH
@@ -520,7 +512,6 @@ combo_t key_combos[] = {
 #ifdef EN_PRONOUN_COMBOS
 // PRONOUNS Fast entry 4-7gram PRONOUNS (an English quirk)
     [HC_I] = COMBO_ACTION(H_Icap_combo),// TYPE "I"+"'ve "
-    [HC_I2] = COMBO_ACTION(H_Icap2_combo),// TYPE "I"+"'ve "
     [HC_Id] = COMBO_ACTION(H_Id_combo),// TYPE "I'd "
     [HC_Ill] = COMBO_ACTION(H_Ill_combo),// TYPE "I'll "
     [HC_Im] = COMBO_ACTION(H_Im_combo),// TYPE "I'm  "
@@ -530,24 +521,20 @@ combo_t key_combos[] = {
     [HC_wed_4gram] = COMBO_ACTION(H_wed_combo),// TYPE "we'd"
     [HC_well_5gram] = COMBO_ACTION(H_well_combo),// TYPE "we'll"
     [HC_were_5gram] = COMBO_ACTION(H_were_combo),// TYPE "we're"
-    [HC_were2_5gram] = COMBO_ACTION(H_were_combo),// TYPE "we're"
     [HC_weve_5gram] = COMBO_ACTION(H_weve_combo),// TYPE "we've"
     [HC_youd_5gram] = COMBO_ACTION(H_youd_combo),// TYPE "you'd"
     [HC_youll_6gram] = COMBO_ACTION(H_youll_combo),// TYPE "you'll"
     [HC_youre_6gram] = COMBO_ACTION(H_youre_combo),// TYPE "you're"
-    [HC_youre2_6gram] = COMBO_ACTION(H_youre_combo),// TYPE "you're"
     [HC_youve_6gram] = COMBO_ACTION(H_youve_combo),// TYPE "you've"
     [HC_your_4gram] = COMBO_ACTION(H_your_combo),// TYPE "your"
     [HC_they_4gram] = COMBO_ACTION(H_they_combo), // TYPE "they" #23
     [HC_their_5gram] = COMBO_ACTION(H_their_combo), // TYPE "their" #6
-    [HC_their2_5gram] = COMBO_ACTION(H_their_combo), // TYPE "their" #6
     [HC_theyre_7gram] = COMBO_ACTION(H_theyre_combo), // TYPE "they're"
-    [HC_theyre2_7gram] = COMBO_ACTION(H_theyre_combo), // TYPE "they're"
-
+/*
     [HC_there_5gram] = COMBO_ACTION(H_there_combo), // TYPE "there" #7
     [HC_here_4gram] = COMBO_ACTION(H_here_combo), // TYPE "here" #9
     [HC_where_5gram] = COMBO_ACTION(H_where_combo), // TYPE "where"
-
+*/
 #endif // EN_PRONOUN_COMBOS_ALL
 #endif // EN_PRONOUN_COMBOS
 
@@ -568,7 +555,7 @@ combo_t key_combos[] = {
 /* These all use SemKeys, even as simple combos (handled by process_semkey from process_record_user) */
     [HC_CLOZ] = COMBO(Hclose_combo, SK_CLOZ),
     [HC_QUIT] = COMBO(Hquit_combo, SK_QUIT),
-    [HC_FIND] = COMBO_ACTION(Hfind_combo),
+//    [HC_FIND] = COMBO(Hfind_combo, SK_FIND),
     [HC_SALL] = COMBO(Hsall_combo, SK_SALL),
     [HC_UNDO] = COMBO(Hundo_combo, SK_UNDO),
     [HC_CUT] = COMBO(Hcut_combo, SK_CUT), // also hold copy
@@ -788,18 +775,6 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
                 combo_on = combo_index; // if held, delete the 'u' in matrix_scan_user_process_combo
                 break;
 
-            case HC_Gh:
-                tap_code(KC_G); // send "G" honoring caps
-                unregister_mods(MOD_MASK_SHIFT);  //
-                tap_code16(KC_H); //
-                combo_on = combo_index; // if held, add 't' in matrix_scan_user_process_combo
-                break;
-            case HC_Sc: // to avoid outward roll on ring->pinky fingers moving in unison is easier
-                tap_code(KC_S); // send "S"
-                unregister_mods(MOD_MASK_SHIFT);  //
-                tap_code(KC_C); // send "C"
-                combo_on = combo_index; // if held, addd 'h' for "Sch" in matrix_scan_user_process_combo
-                break;
             case HC_ACUT:
                 tap_code16(A(KC_E)); // this should use semkeys
                 combo_on = combo_index; // may add "e" in matrix_scan_user_process_combo
@@ -859,7 +834,6 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
 #ifdef EN_PRONOUN_COMBOS // the entirely unnecessary pronoun combo shenanigans
 
             case HC_I:
-            case HC_I2:
 #ifdef JP_MODE_ENABLE
                 if (IS_ENGLISH_MODE) { // if in English mode
 #endif // JP_MODE_ENABLE
@@ -902,7 +876,6 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
                 combo_on = combo_index; // may add "'ve " in matrix_scan_user_process_combo
                 break;
             case HC_your_4gram:
-            case HC_your2_4gram:
                 tap_code(KC_Y);
                 unregister_mods(MOD_MASK_SHIFT);  //
                 send_string("our");
@@ -911,7 +884,6 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
             case HC_wed_4gram:
             case HC_well_5gram:
             case HC_were_5gram:
-            case HC_were2_5gram:
             case HC_weve_5gram:
                 tap_code(KC_W); // send "W" honoring caps
                 unregister_mods(MOD_MASK_SHIFT);  //
@@ -920,7 +892,6 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
             case HC_youd_5gram:
             case HC_youll_6gram:
             case HC_youre_6gram:
-            case HC_youre2_6gram:
             case HC_youve_6gram:
                 tap_code(KC_Y); // send "Y" honoring caps
                 unregister_mods(MOD_MASK_SHIFT);  //
@@ -929,7 +900,6 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
             case HC_theyd_6gram: // TYPE "they'd " #23
             case HC_theyll_7gram:
             case HC_theyre_7gram:
-            case HC_theyre2_7gram:
             case HC_theyve_7gram: // "they've"
                 tap_code(KC_T); // send "Y" honoring caps
                 unregister_mods(MOD_MASK_SHIFT);  //
@@ -968,9 +938,6 @@ addonsuffix: // sharing this saves about 100 bytes (10 bytes per instance)
                     case HC_were_5gram: // we're
                     case HC_youre_6gram:
                     case HC_theyre_7gram: // "they're"
-                    case HC_were2_5gram: // we're
-                    case HC_youre2_6gram:
-                    case HC_theyre2_7gram: // "they're"
 //                    case HC_theyreg_7gram: // "they're"
                         send_string("re ");
                         break;
@@ -988,14 +955,13 @@ addonsuffix: // sharing this saves about 100 bytes (10 bytes per instance)
 
 #ifdef EN_PRONOUN_COMBOS_ALL
             case HC_their_5gram: // TYPE "their" #6
-            case HC_their2_5gram: // TYPE "their" #6
 //            case HC_theirg_5gram: // TYPE "their" #6
                 tap_code(KC_T);
                 unregister_mods(MOD_MASK_SHIFT);  //
                 send_string("heir");
                 combo_on = combo_index; // may add "'s " if held
                 break;
-
+/*
             case HC_here_4gram: // TYPE "here" #9
                 tap_code(KC_H);
                 unregister_mods(MOD_MASK_SHIFT);  //
@@ -1012,7 +978,8 @@ ADD_HERE:
                 send_string("here");
                 combo_on = combo_index; // may add "'ve " if held
                 break;
-
+*/
+//                break;  // Is this needed?
 #endif // EN_PRONOUN_COMBOS_ALL
 #endif // EN_PRONOUN_COMBOS
         } // end switch (combo_index)
@@ -1037,9 +1004,14 @@ ADD_HERE:
 #endif
             switch(combo_index) {
 // the H digraphs
-
-                case HC_Sch: // to avoid outward roll on ring->pinky fingers moving in unison is easier
+/*
+                case HC_Tch: // to avoid outward roll on ring->pinky fingers moving in unison is easier
+                    tap_code(KC_T); // send "T"
+                    goto Tap_CH_and_exit;
+ */
+                 case HC_Sch: // to avoid outward roll on ring->pinky fingers moving in unison is easier
                     tap_code(KC_S); // send "S"
+//Tap_CH_and_exit:
                     unregister_mods(MOD_MASK_SHIFT);  //
                 case HC_Ch:
                      tap_code(KC_C); // send "C"
@@ -1053,11 +1025,9 @@ H_DIGRAPH_EXIT:  //  Th is most common, so is default (no goto = 4 bytes less to
                     unregister_mods(MOD_MASK_SHIFT);  //
                     tap_code(KC_H); // send "h" honoring CAPSLK state
                     break;
-/*
                 case HC_Gh:
-                    tap_code(KC_G); // send "G" honoring caps
+                    tap_code(KC_G); // send "P" honoring caps
                     goto H_DIGRAPH_EXIT;
-*/
                 case HC_Ph:
                     tap_code(KC_P); // send "P" honoring caps
                     goto H_DIGRAPH_EXIT;
@@ -1076,9 +1046,6 @@ H_DIGRAPH_EXIT:  //  Th is most common, so is default (no goto = 4 bytes less to
 
 // END the H digraphs
 
-                case HC_FIND:
-                    tap_SemKey(SK_FIND);
-                    break;
                 case HC_COPY: // not held, so simple copy
                     tap_SemKey(SK_COPY);
                     break;
@@ -1223,12 +1190,6 @@ void matrix_scan_user_process_combo() {  // called from matrix_scan_user if comb
             clear_mods();
             switch(combo_on) {  // combo_on is global, set in process_combo above
 
-                case HC_FIND: // Held, so find selection (should work with most apps/platforms)
-                    tap_SemKey(SK_COPY); // copy the selection
-                    tap_SemKey(SK_FIND); // start find
-                    tap_SemKey(SK_PSTE); // paste the copy. will find the selection
-                    tap_SemKey(SK_FAGN); // now find the next...
-                    break;
                 case HC_COPY: // held, so cut
                     tap_SemKey(SK_CUT);
                     break;
@@ -1236,21 +1197,14 @@ void matrix_scan_user_process_combo() {  // called from matrix_scan_user if comb
                     tap_SemKey(SK_PSTM);
                     break;
 
-                    
-                case HC_Gh: //
-                    tap_code(KC_T); // add "t" ("ght" is 55% of all "gh" occurrences)
-                    break;
-                case HC_Sc: //
-                    tap_code(KC_H); // add "h" (for "Sch", since were already on these keys.)
-                    break;
                 case HC_AT:
                     send_string("alanreiser.com");
                     break;
                 case HC_COLN:
-                    tap_code16(A(KC_SCLN)); // held, so … (this could use semkeys)
+                    tap_code16(A(KC_SCLN)); // held, so … (this should use semkeys)
                     break;
                 case HC_Q:
-                    tap_code16(KC_BSPC); // held, so delete u
+                    tap_code16(KC_BSPC); // held, so delete u (this should use lingerkeys)
                     break;
 
                 case PC_STAB:
@@ -1329,30 +1283,26 @@ addHIthenBreak:  //  because hi/ci can be awkward on Neu/Au/Ti or Bronze/Ag/Pl
                     unregister_mods(MOD_MASK_SHIFT);  //
                     send_string("hi");
                     break;
-/*
                 case HC_Gh:
                     tap_code(KC_G); // send "G" honoring caps
                     //  because G&T are on same finger, so this would cause a SFB w/combo
                     unregister_mods(MOD_MASK_SHIFT);  //
                    send_string("ht");
                     break;
-
+/*
                 case HC_Ph:
                     send_string("lp"); // no CAPS, never is mixed case
                     break;
 */
 // PRONOUN shenanigans
 #ifdef EN_PRONOUN_COMBOS_ALL
-
+/*
                 case HC_here_4gram:
                 case HC_there_5gram: // TYPE "there's" #7
                 case HC_where_5gram: //
-
+*/
                 case HC_your_4gram: // TYPE "your's"
                 case HC_their_5gram: // TYPE "their's" #6
-
-                case HC_your2_4gram: // TYPE "your's"
-                case HC_their2_5gram: // TYPE "their's" #6
                     tap_code(KC_QUOT);
 #endif
                     SEND_STRING("s ");

@@ -44,29 +44,30 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
             }
             break;
 
-        case KC_W: //
+        case KC_B: //
             switch (prior_keycode) { //
 
-                case KC_M: // pull up "P" from bottom row
+                case KC_M:
+                case KC_X:  // pull up "P" from bottom row
                     tap_code(KC_P);  // pull up "P" (mp 3x more common than mb)
                     return_state = false; // done.
                     break;
+               case KC_G:  //
+                    goto ReplacePriorWithL; // results in "LB"
             }
             break;
 
-        case KC_B: //
+        case KC_X: //
             switch (prior_keycode) { //
                 case KC_M:
-                    goto ReplacePriorWithL; // results in "LB"
-                case KC_G:  //
-                    tap_code(KC_S);  // pull up "S"
-                    return_state = false; // done.
-                    break;
+                    goto PullUpLAndExit;
+                case KC_B:
+                    goto ReplacePriorWithL; // short jumps save bytes
             }
             break;
-
         case KC_G:
             switch (prior_keycode) {
+                case KC_B:
                 case KC_K:
 PullUpLAndExit:
                     tap_code(KC_L);  // pull up "L" (statistically more common)
@@ -78,17 +79,12 @@ ReplacePriorWithL:
                     tap_code(KC_L);
                     return_state = true; // send the keycode.
                     break;
-                case KC_W:
-                    tap_code(KC_BSPC);
-                    send_string("lml"); // for "calmly" but not quite intuitive…
-                    return_state = false; // done.
-                    break;
             }
             break;
 
         case KC_M: // M becomes L (pull up "L" to same row)
             switch (prior_keycode) {
-                case KC_W:
+                case KC_X:
                     goto ReplacePriorWithL; // short jumps save bytes
                 case KC_B:
                 case KC_G:
@@ -141,29 +137,22 @@ ReplacePriorWithL:
                     goto tapUbreak;
             }
             break;
-        case KC_H: // H becomes the SFB vowel
+        case KC_COMM:
             switch (prior_keycode) {
                 case KC_A:
 tapUbreak:
-                    tap_code(KC_U); // "AH" yields "AU"
-                    return_state = false; // done.
+                    tap_code(KC_U); // "/A" yields "UA" eliminating SFB
+                    return_state = false; // send the keycode.
                     break;
-                case KC_E:
-                    tap_code(KC_O); // "EH" yields "EO"
-                    return_state = false; // done.
-                    break;
-                case KC_O:
-                    tap_code(KC_E); // "OH" yields "OE"
-                    return_state = false; // done.
-                    break;
-                case KC_U:
-                    tap_code(KC_A); // "UH" yields "UA"
-                    return_state = false; // done.
-                    break;
+                case KC_E: // tight roll controls...so this works
+                    tap_code(KC_O); // "E." or "E," yields "EO" eliminating SFB
+                    return_state = false; // send the keycode.
             }
             break;
         case KC_SLSH:
             switch (prior_keycode) {
+                case KC_A:
+                    goto tapUbreak; // "'a" yields "UA" eliminating SFB
                 case KC_DOT:
                     tap_code(KC_BSPC); // get rid of the prior
                     send_string(".com");
@@ -178,17 +167,7 @@ tapUbreak:
                     break;
             }
             break;
-/*
-        case KC_J:
-            switch (prior_keycode) {
-                case KC_QUOT: // Making it easier to get a BJ with one hand!
-                    tap_code(KC_BSPC); // get rid of the prior
-                    tap_code(KC_B); // get rid of the prior
-                    return_state = true; // done.
-                    break;
-            }
-            break;
-*/
+
         case KC_Y:
             switch (prior_keycode) {
                 case KC_W: //
