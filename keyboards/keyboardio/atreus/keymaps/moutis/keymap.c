@@ -12,5 +12,5 @@
 * "QMK json2c -o users/moutis/atreus/atreus_hd_keymap.c users/moutis/atreus/atreus_hd_neu_sk.json"
 */
 
-#include <users/moutis/atreus/atreus_hd_keymap.c>
+#include <users/moutis/mykeyboards/atreus/atreus_hd_keymap.c>
 

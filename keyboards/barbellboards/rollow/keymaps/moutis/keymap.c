@@ -6,5 +6,5 @@
 
 // QMK json2c -o users/moutis/rollow/rollow_hd_keymap.c users/moutis/rollow/rollow_hd_rh.json
 
-#include <users/moutis/rollow/rollow_hd_keymap.c>
+#include <users/moutis/mykeyboards/rollow/rollow_hd_keymap.c>
 

@@ -8,5 +8,5 @@
 * "QMK json2c -o users/outis/kyria_ansi_moutis_homemods.c users/outis/kyria_ansi_moutis_homemods.json"
 */
 
-#include <users/moutis/kyria/kyria_hd_keymap.c>
+#include <users/moutis/mykeyboards/kyria/kyria_hd_keymap.c>
 

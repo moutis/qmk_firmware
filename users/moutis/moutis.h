@@ -48,11 +48,11 @@ extern rgblight_config_t rgblight_config;
 
 #include "moutis_casemods.h"
 
-#include "vb/moutis_COMBO_hd.h"
+#include "HDvariations/vb/moutis_COMBO_hd.h"
 
-#define HD_combo_code "vb/moutis_COMBO_hd.c"
-#define HD_adaptive_code "vb/moutis_adaptivekeys_hd.c"
-#define HD_process_record_code "vb/moutis_PROCESS_RECORD_hd.c"
+#define HD_combo_code "HDvariations/vb/moutis_COMBO_hd.c"
+#define HD_adaptive_code "HDvariations/vb/moutis_adaptivekeys_hd.c"
+#define HD_process_record_code "HDvariations/vb/moutis_PROCESS_RECORD_hd.c"
 
 
 void matrix_scan_user_process_combo(void);

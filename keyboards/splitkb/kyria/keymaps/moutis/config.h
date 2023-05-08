@@ -1,1 +1,1 @@
-#include <users/moutis/kyria/config.h>
+#include <users/moutis/mykeyboards/kyria/config.h>

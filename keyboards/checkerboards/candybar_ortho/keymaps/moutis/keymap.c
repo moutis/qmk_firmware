@@ -1,4 +1,4 @@
-#include QMK_KEYBOARD_H
+//#include QMK_KEYBOARD_H
 
 #include <users/moutis/config.h>
 #include <users/moutis/moutis.h>
@@ -8,5 +8,5 @@
 * "QMK json2c -o users/outis/kyria_ansi_moutis_homemods.c users/outis/kyria_ansi_moutis_homemods.json"
 */
 
-#include <users/moutis/candy/candy_hd_keymap.c>
+#include <users/moutis/mykeyboards/candy/candy_hd_keymap.c>
 

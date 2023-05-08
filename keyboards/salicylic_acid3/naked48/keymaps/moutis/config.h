@@ -1,2 +1,2 @@
-#include <users/moutis/naked48/config.h>
+#include <users/moutis/mykeyboards/naked48/config.h>
 

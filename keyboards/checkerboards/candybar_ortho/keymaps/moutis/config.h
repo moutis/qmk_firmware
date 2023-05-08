@@ -1,13 +1,10 @@
 
 #pragma once
 
-// Kyria hardware specific bits
+// hardware specific bits
 //
 // Allows to use either side as the master. Look at the documentation for info:
 // https://docs.qmk.fm/#/config_options?id=setting-handedness
-//#define EE_HANDS
-
-//#define SPLIT_USB_DETECT
 
 #ifdef RGBLIGHT_ENABLE
     #define RGBLIGHT_SLEEP

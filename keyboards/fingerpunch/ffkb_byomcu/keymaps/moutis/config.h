@@ -1,3 +1,3 @@
 #pragma once
 
-#include <users/moutis/ffkb/config.h>
+#include <users/moutis/mykeyboards/ffkb/config.h>

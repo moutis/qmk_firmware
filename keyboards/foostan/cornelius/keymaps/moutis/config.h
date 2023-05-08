@@ -1,2 +1,2 @@
-#include <users/moutis/cornelius/config.h>
+#include <users/moutis/mykeyboards/cornelius/config.h>
 

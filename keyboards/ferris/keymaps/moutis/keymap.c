@@ -1,4 +1,4 @@
-#include QMK_KEYBOARD_H
+//#include QMK_KEYBOARD_H
 
 #include <users/moutis/moutis.h>
 
@@ -6,4 +6,4 @@
 * "QMK json2c -o users/moutis/ferris/ferris_hd_keymap.c users/moutis/ferris/ferris_hd_neu_sk-trim.json"
 */
 
-#include <users/moutis/ferris/ferris_hd_keymap.c>
+#include <users/moutis/mykeyboards/ferris/ferris_hd_keymap.c>
