@@ -424,15 +424,9 @@ ReplacePriorWithL:
             break;
 
     }
-//    (return_state) ? (set_mods(saved_mods);prior_keycode = keycode = 0) : (prior_keycode = keycode);
-    if (return_state) {
+    if (return_state) { // no adaptive processed, cancel state and pass it on.
         set_mods(saved_mods);
-//        prior_prior_keycode = 
         prior_keycode = keycode = 0;
     }
-/*    else {
-        prior_keycode = keycode;
-    }
-*/
     return return_state; //
 }
