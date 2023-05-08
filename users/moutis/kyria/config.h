@@ -7,10 +7,10 @@
 // https://docs.qmk.fm/#/config_options?id=setting-handedness
 #define EE_HANDS
 
-#ifdef PRODUCT
-#undef PRODUCT
-#define PRODUCT         HD-Kyria
-#endif
+//#ifdef PRODUCT
+//#undef PRODUCT
+//#define PRODUCT         HD-Kyria
+//#endif
 
 #ifdef OLED_DRIVER_ENABLE
   #define OLED_DISPLAY_128X64

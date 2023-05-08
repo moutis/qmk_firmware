@@ -8,10 +8,10 @@
 //#define EE_HANDS
 //#define SPLIT_USB_DETECT
 
-#ifdef PRODUCT
-#undef PRODUCT
-#define PRODUCT         HD-FauxFox
-#endif
+//#ifdef PRODUCT
+//#undef PRODUCT
+//#define PRODUCT         HD-FauxFox
+//#endif
 
 #ifdef OLED_DRIVER_ENABLE
     #ifdef OLED_TIMEOUT

@@ -381,8 +381,10 @@
       "CG_SWAP",
       "AG_SWAP",
       "KC_NO",
+
       "RGB_MOD",
       "RGB_VAI",
+
       "KC_MPRV",
       "KC_MNXT",
       "KC_MUTE",
@@ -393,8 +395,10 @@
       "ANY(HD_L_Gold)",
       "ANY(HD_L_QWERTY)",
       "RGB_SAI",
+
       "RGB_HUI",
       "RGB_VAD",
+
       "KC_MRWD",
       "KC_MFFD",
       "KC_MSTP",
@@ -410,6 +414,7 @@
       "KC_NO",
       "RGB_SAD",
       "RGB_HUD",
+
       "KC_NO",
       "KC_NO",
       "KC_PAUS",
