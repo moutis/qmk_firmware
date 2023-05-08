@@ -1,7 +1,14 @@
-{
-    "keyboard_name": "rollow rev. 1",
-    "url": "",
+    {
+    "manufacturer": "Barbell Boards",
+    "keyboard_name": "Rollow w/HD-Vibranium",
+    "url": "https://www.barbellboards.com",
     "maintainer": "BarBell Boards TODO: Do the layout over",
+    "usb": {
+        "vid": "0xFEED",
+        "pid": "0x7E57",
+        "device_version": "0.0.1"
+    },
+
     "layouts": {
       "LAYOUT_split_3x6_3": {
         "layout": [
