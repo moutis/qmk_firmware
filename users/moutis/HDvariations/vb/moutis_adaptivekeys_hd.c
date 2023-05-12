@@ -80,7 +80,7 @@ ReplacePriorWithL:
         case KC_D: // (for KD=KL; least code, no side effects)
             switch (prior_keycode) { //
                 case KC_K:
-                    goto ReplacePriorWithL; // short jumps save bytes
+                    goto PullUpLAndExit; // short jumps save bytes
             }
             break;
 
@@ -100,6 +100,8 @@ ReplacePriorWithL:
             break;
         case KC_G:
             switch (prior_keycode) {
+                case KC_K:
+                    goto PullUpLAndExit; // short jumps save bytes
                case KC_M:
                     goto ReplacePriorWithL;
                 case KC_W:
