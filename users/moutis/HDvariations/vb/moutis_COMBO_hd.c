@@ -365,7 +365,6 @@ combo_t key_combos[] = {
     // These simple combos trigger on press, repeat. HC_kbd_combo
     [HC_KBD] = COMBO(HC_kbd_combo, MO(L_MEDIA_KBD)), // keyboard/media settings/config layer
     [HC_APP] = COMBO(H_menu_combo, KC_APP), // app menu
-    [HC_EQL] = COMBO(Hequal_combo, KC_EQL), // =
     [HC_PCT] = COMBO(Hpercent_combo, KC_PERC), // %
     [HC_SCLN] = COMBO(Hscln_combo, KC_SCLN), // ;
     [HC_COLN] = COMBO_ACTION(Hcoln_combo), // :  (hold for elipsis)
@@ -479,6 +478,7 @@ combo_t key_combos[] = {
     // Keypad combos (all need actions or mods, so must be here)
     [PC_STAB] = COMBO_ACTION(PCM2_combo), // shift-<tab> on num
     
+    [HC_EQL] = COMBO_ACTION(Hequal_combo), // =  (hold for %)
     [PC_SENT] = COMBO_ACTION(P2E_combo), // shift-<enter> on num
     [PC_TGNM] = COMBO(PNLCK_combo, KC_NUM), // toggle num lock
     [PC_DASH] = COMBO_ACTION(P12_combo), // – for time span on number layer
@@ -655,7 +655,6 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
                 tap_code16(KC_U); //
                 combo_on = combo_index; // if held, delete the 'u' in matrix_scan_user_process_combo
                 break;
-
                 
 /*
  * H digraphs here
@@ -1269,8 +1268,12 @@ ADD_HERE:
                     break;
 #endif
                 case HC_Q: //
-                        unregister_code16(KC_Q); //
-                        linger_key = 0;
+                    unregister_code16(KC_Q); //
+                    linger_key = 0;
+                    break;
+                case HC_EQL: //
+                    tap_code16(KC_EQL); // Not held, so…
+                    linger_key = 0;
                     break;
 
             }  // end switch(combo_index) {
@@ -1368,6 +1371,9 @@ void matrix_scan_user_process_combo() {  // called from matrix_scan_user if comb
                 case HC_OE:
                 case HC_Q:
                     tap_code16(KC_BSPC); // held, so delete u
+                    break;
+                case HC_EQL:
+                    tap_code16(KC_PERC); // Held, so send % (instead of =)
                     break;
 
                 case PC_STAB:

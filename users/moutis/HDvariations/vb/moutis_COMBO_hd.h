@@ -12,7 +12,6 @@ enum my_combos {
     FC_LANG1, // kana (others)
 
     HC_TAB,
-    HC_EQL, // = equal
     HC_PCT, // % percent
     HC_DQUO, // " hijacked for $
     HC_HASH, // #
@@ -219,6 +218,7 @@ enum my_combos {
     PC_DASH, // – on number layer (keypad)
     PC_TILD, // ˜
     PC_ELIP, // …
+    HC_EQL, // = equal
     HC_ELIP, // …
     PC_COLN, // :
     PC_DEG, //

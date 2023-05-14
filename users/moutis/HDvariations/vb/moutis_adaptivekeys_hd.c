@@ -132,7 +132,10 @@ ReplacePriorWithL:
             switch (prior_keycode) {
                 case KC_W:
                     goto PullUpLAndExit;
-                case KC_M:
+                case KC_M: // "MF" is 107x more frequent than "MX"
+                    tap_code(KC_F);
+                    return_state = false; // done.
+                    break;
                 case KC_G:
                     tap_code(KC_T); // eliminate SFB.
                     return_state = false; // done.
