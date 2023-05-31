@@ -2,25 +2,21 @@
  Adaptive Keys
  Called from within process_record_user
  
- ** This will misbehave w/o QMK 14.1 or later (Sevanteri's early combos)
-
- Tailored for HD Titanium (ti)
-
- Finally getting to the last of imagined features that spurred Hands Down design!
+ Tailored for HD Vibranium-p (vp)
  
  NOTE: assumed dual-function keys (MOD_TAP, LAYER_TAP) have already been handled AND
     FILTERED OUT! The combos handler will have already taken out combo candidates,
     which have a shorter keydown threshhold (COMBO_TERM).
  
  All the goto shenanigans should be resolved after complete migration to STM/RP controllersr
- (not totally possible, as some of my boards have embedded AVR mcus
+ (not totally possible, as many of my boards have embedded AVR mcus)
 
  */
 
 
-bool process_adaptive_key(uint16_t *calling_keycode, const keyrecord_t *record) {
+bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
     bool return_state = true; // assume we don't do anything.
-    uint16_t keycode = *calling_keycode;
+
     
     // Are we in an adaptive context? (adaptive on is assumed).
     if (timer_elapsed(prior_keydown) > ADAPTIVE_TERM) { // outside adaptive threshhold
@@ -42,12 +38,8 @@ bool process_adaptive_key(uint16_t *calling_keycode, const keyrecord_t *record) 
 */
         case KC_F: //
             switch (prior_keycode) { //
-              case KC_D: // eliminate "DT" SFB
-                    tap_code(KC_T);
-                    return_state = false; // done.
-                    break;
-                case KC_P: //
-                    tap_code(KC_S); //
+              case KC_D: // hande "DG" SFB with D leading (DG is more than 10x more common.
+                    tap_code(KC_G);  // pull over "G"
                     return_state = false; // done.
                     break;
             }
@@ -61,16 +53,22 @@ bool process_adaptive_key(uint16_t *calling_keycode, const keyrecord_t *record) 
             }
             break;
 
+        case KC_J:
+            switch (prior_keycode) { //
+                case KC_P:  // quickly typing "PJ" yields "PDF" (rolling shortcut for PDF, awk SFB)
+                    send_string("df");
+                    return_state = false; // done.
+                    break;
+            }
             break;
         case KC_M: // M becomes L (pull up "L" to same row)
             switch (prior_keycode) {
-                case KC_P: // tricksy fake out
                 case KC_G: // pull up "L" (GL is 5x more common than GM)
 PullUpLAndExit:
                     tap_code(KC_L);  // pull up "L" (PL is 15x more common than PM)
                     return_state = false; // done.
                     break;
-                case KC_W: // WM = LM (LM 20x more common)
+                case KC_X: // XM = LM (97x more common)
 ReplacePriorWithL:
                     tap_code(KC_BSPC);
                     tap_code(KC_L);
@@ -80,20 +78,18 @@ ReplacePriorWithL:
         case KC_D: // (for KD=KL; least code, no side effects)
             switch (prior_keycode) { //
                 case KC_K:
-                    goto PullUpLAndExit; // short jumps save bytes
+                    goto ReplacePriorWithL; // short jumps save bytes
+                case KC_G:
+                    goto ReplacePriorWithL; // short jumps save bytes
             }
             break;
 
         case KC_W:
             switch (prior_keycode) {
-                case KC_X:  // W becomes P (pull up "L" to same row) after X or M
                 case KC_M:
-                    *calling_keycode = KC_P; // tricksy fake out
-                    tap_code(KC_P); // pull up P from bottom row.
-                    return_state = false; // done.
-                    break;
+                case KC_X:
                 case KC_G:
-                    tap_code(KC_D); // eliminate SFB.
+                    tap_code(KC_P); // pull up P from bottom row.
                     return_state = false; // done.
                     break;
             }
@@ -119,6 +115,15 @@ ReplacePriorWithL:
                     goto ReplacePriorWithL; // short jumps save bytes
             }
             break;
+        case KC_S: //
+            switch (prior_keycode) { //
+                case KC_C: // invert "SC" outward roll (5.6x more common than "CS")
+                    tap_code(KC_BSPC);
+                    send_string("sc");
+                    return_state = false; // done.
+                    break;
+            }
+            break;
         case KC_T:  // alt fingering remedy for middle-index splits
             switch (prior_keycode) {
                 case KC_K: // quickly typing "k?" yields "kn"
@@ -130,27 +135,16 @@ ReplacePriorWithL:
 
         case KC_X:
             switch (prior_keycode) {
-                case KC_W:
-                    goto PullUpLAndExit;
-                case KC_M: // "MF" is 107x more frequent than "MX"
-                    tap_code(KC_F);
-                    return_state = false; // done.
-                    break;
-                case KC_G:
-                    tap_code(KC_T); // eliminate SFB.
+                case KC_M: // MX = ML (129x more common)
+                    tap_code(KC_L); //
                     return_state = false; // done.
                     break;
             }
         case KC_P:
             switch (prior_keycode) {
                 case KC_D: // DP = DT eliminate SFB (DT is 2.5x more common)
-                    tap_code(KC_G);
+                    tap_code(KC_T);
                     return_state = false; // done.
-                    break;
-                case KC_F: // Pull S down from middle row.
-                    tap_code(KC_BSPC);
-                    tap_code(KC_S);
-                    return_state = true; // not done (process this key normally)
                     break;
             }
             break;
@@ -217,15 +211,15 @@ ReplacePriorWithL:
         case KC_B:
             switch (prior_keycode) {
                 case KC_Y: //
-                    tap_code(KC_I); // YB = YI (eliminate SFB on ring finger)
+                    tap_code(KC_I); // eliminate SFB on ring finger
                     return_state = false; // done.
                     break;
             }
             break;
 
 #ifdef THUMB_REPEATER
-        case HD_REPEATER_A: // Make a repeat key of the secondary thumb key on both sides
-        case HD_REPEATER_B: // for most common double letters (inherently SFBs)
+        case KC_BSPC: // Make a repeat key of the secondary thumb key on both sides
+        case KC_ENT: // for most common double letters (inherently SFBs)
             switch (prior_keycode) {
                 case KC_A ... KC_SLASH: // Any alpha can be repeated?
 /* double-letter frequencies from Peter Norvig's data <https://norvig.com/mayzner.html>
@@ -255,7 +249,7 @@ ReplacePriorWithL:
             }
             break;
 #endif
-        case ADAPTIVE_TRAILER: // Using Adaptives for macros (flexible LeaderKey)
+        case KC_MINS: // Using Adaptives for macros (flexible LeaderKey)
             switch (prior_keycode) {
 #ifdef adaptAMINS
                 case KC_A: //
@@ -429,9 +423,15 @@ ReplacePriorWithL:
             break;
 
     }
-    if (return_state) { // no adaptive processed, cancel state and pass it on.
+//    (return_state) ? (set_mods(saved_mods);prior_keycode = keycode = 0) : (prior_keycode = keycode);
+    if (return_state) {
         set_mods(saved_mods);
+//        prior_prior_keycode = 
         prior_keycode = keycode = 0;
     }
+/*    else {
+        prior_keycode = keycode;
+    }
+*/
     return return_state; //
 }

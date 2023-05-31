@@ -1,5 +1,7 @@
 
-
+//
+// The Hands Down Variation dependent files
+//
 #define HD_combo_header "HDvariations/vb/moutis_COMBO_hd.h"
 #define HD_combo_code "HDvariations/vb/moutis_COMBO_hd.c"
 #define HD_adaptive_code "HDvariations/vb/moutis_adaptivekeys_hd.c"

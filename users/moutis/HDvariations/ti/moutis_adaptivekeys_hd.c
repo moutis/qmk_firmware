@@ -2,18 +2,14 @@
  Adaptive Keys
  Called from within process_record_user
  
- ** This will misbehave w/o QMK 14.1 or later (Sevanteri's early combos)
-
  Tailored for HD Titanium (ti)
-
- Finally getting to the last of imagined features that spurred Hands Down design!
  
  NOTE: assumed dual-function keys (MOD_TAP, LAYER_TAP) have already been handled AND
     FILTERED OUT! The combos handler will have already taken out combo candidates,
     which have a shorter keydown threshhold (COMBO_TERM).
  
  All the goto shenanigans should be resolved after complete migration to STM/RP controllersr
- (not totally possible, as some of my boards have embedded AVR mcus
+ (not totally possible, as many of my boards have embedded AVR mcus)
 
  */
 

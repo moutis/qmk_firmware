@@ -1,8 +1,12 @@
 
-#define HD_combo_header "HDvariations/vb/moutis_COMBO_hd.h"
-#define HD_combo_code "HDvariations/vb/moutis_COMBO_hd.c"
-#define HD_adaptive_code "HDvariations/vb/moutis_adaptivekeys_hd.c"
-#define HD_process_record_code "HDvariations/vb/moutis_PROCESS_RECORD_hd.c"
+//
+// The Hands Down Variation dependent files
+//
+#define HD_combo_header "HDvariations/vp/moutis_COMBO_hd.h"
+#define HD_combo_code "HDvariations/vp/moutis_COMBO_hd.c"
+#define HD_adaptive_code "HDvariations/vp/moutis_adaptivekeys_hd.c"
+#define HD_process_record_code "HDvariations/vp/moutis_PROCESS_RECORD_hd.c"
+
 
 //       Alpha Layer for a 34 key formfactor
 // ╭─────────────────────╮ ╭─────────────────────╮

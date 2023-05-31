@@ -43,8 +43,8 @@ extern rgblight_config_t rgblight_config;
 
 //
 // which alpha variation are we using?
-//
-#include "HDvariations/hd-vb.h"  // defines in all variation dependent constants/files
+// #include #(file_##AA##_##BB)
+#include "HDvariations/hd-vb.h"  // defines all variation dependent constants/files
 
 
 #ifdef COMBO_ENABLE

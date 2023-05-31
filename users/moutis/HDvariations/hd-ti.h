@@ -1,4 +1,13 @@
 
+//
+// The Hands Down Variation dependent files
+//
+#define HD_combo_header "HDvariations/ti/moutis_COMBO_hd.h"
+#define HD_combo_code "HDvariations/ti/moutis_COMBO_hd.c"
+#define HD_adaptive_code "HDvariations/ti/moutis_adaptivekeys_hd.c"
+#define HD_process_record_code "HDvariations/ti/moutis_PROCESS_RECORD_hd.c"
+
+
 //       Alpha Layer for a 34 key formfactor
 // ╭─────────────────────╮ ╭─────────────────────╮
 // │ LT4 LT3 LT2 LT1 LT0 │ │ RT0 RT1 RT2 RT3 RT4 │
