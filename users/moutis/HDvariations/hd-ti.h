@@ -6,11 +6,11 @@
 // │ LB4 LB3 LB2 LB1 LB0 │ │ RB0 RB1 RB2 RB3 RB4 │
 // ╰───────────╮ LH2 LH1 │ │ RH1 RH2  ╭──────────╯
 //             ╰─────────╯ ╰──────────╯
-//              Hands Down Vibranium C
+//              Hands Down Titanium
 //     ╭─────────────────╮ ╭─────────────────╮
-//     │  X  W  M  G  J  │ │ #$  .: /* "[ '] │
-//     │  S  C  N  T  K  | | ,;   A  E  I  H │
-//     │  B  P  L  D  V  │ │ -+   U  O  Y  F │
+//     │  J  G  M  P  V  │ │ #$  .: /* "[ '] │
+//     │  C  S  N  T  K  | | ,;   A  E  I  H │
+//     │  X  F  L  D  W  │ │ -+   U  O  Y  B │
 //     ╰───────╮  BSP R  │ │ SPC RET  ╭──────╯
 //             ╰─────────╯ ╰──────────╯
 
@@ -18,19 +18,19 @@
 // This will morph to being entirel properly abstracted
 // similar to Miryoku, (if HD is not somehow integrated with Miryoku someday.)
 
-#define HD_LT4 KC_X
-#define HD_LT3 KC_W
+#define HD_LT4 KC_J
+#define HD_LT3 KC_G
 #define HD_LT2 KC_M
-#define HD_LT1 KC_G
-#define HD_LT0 KC_J
+#define HD_LT1 KC_P
+#define HD_LT0 KC_V
 #define HD_RT0 KC_HASH
 #define HD_RT1 KC_DOT
 #define HD_RT2 KC_SLSH
 #define HD_RT3 KC_DQUO
 #define HD_RT4 KC_QUOT
 
-#define HD_LM4 RCTL_T(KC_S)
-#define HD_LM3 RALT_T(KC_C)
+#define HD_LM4 RCTL_T(KC_C)
+#define HD_LM3 RALT_T(KC_S)
 #define HD_LM2 RGUI_T(KC_N)
 #define HD_LM1 RSFT_T(KC_T)
 #define HD_LM0 LT(L_NUMPAD, KC_K)
@@ -40,8 +40,8 @@
 #define HD_RM3 RALT_T(KC_I)
 #define HD_RM4 RCTL_T(KC_H)
 
-#define HD_LB4 KC_B
-#define HD_LB3 KC_P
+#define HD_LB4 KC_X
+#define HD_LB3 KC_F
 #define HD_LB2 KC_L
 #define HD_LB1 KC_D
 #define HD_LB0 KC_V
@@ -49,7 +49,7 @@
 #define HD_RB1 KC_U
 #define HD_RB2 KC_O
 #define HD_RB3 KC_Y
-#define HD_RB4 KC_F
+#define HD_RB4 KC_B
 
 #define HD_LH2 LT(L_FN_NUM, KC_BSPC)
 #define HD_LH1 LT(L_NAV, KC_R)
