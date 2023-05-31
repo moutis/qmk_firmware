@@ -201,7 +201,7 @@ const uint16_t PROGMEM H_Icap_combo[] = {HD_RM3, HD_RM4, COMBO_END}; // TYPE "I"
 const uint16_t PROGMEM H_Id_combo[] = {HD_LB1, HD_RM3, COMBO_END}; // TYPE "I'd"+"'ve "
 const uint16_t PROGMEM H_Ill_combo[] = {HD_LB2, HD_RM3, COMBO_END}; // TYPE "I'll"+"'ve "
 const uint16_t PROGMEM H_Im_combo[] = {HD_LT2, HD_RM3, COMBO_END}; // TYPE "I'm "
-const uint16_t PROGMEM H_Iv_combo[] = {HD_LB4, HD_RM3, COMBO_END}; // TYPE "I've "
+const uint16_t PROGMEM H_Iv_combo[] = {HD_LB0, HD_RM3, COMBO_END}; // TYPE "I've "
 
 #ifdef EN_PRONOUN_COMBOS_ALL
 
