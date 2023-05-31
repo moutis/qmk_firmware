@@ -215,16 +215,16 @@ void keyboard_post_init_user(void) {
 #endif
 
 #ifdef COMBO_ENABLE
-    #include HD_combo_code
+    #include HD_combo_code  // variation dependent
 #endif
 
 #include "moutis_casemods.c"
 
 #ifdef ADAPTIVE_ENABLED
-#include HD_adaptive_code
+#include HD_adaptive_code   // variation dependent
 #endif
 
-#include HD_process_record_code
+#include HD_process_record_code   // variation dependent
 
 
 #include "moutis_MATRIX.c"

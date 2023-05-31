@@ -1,4 +1,11 @@
 
+
+#define HD_combo_header "HDvariations/vb/moutis_COMBO_hd.h"
+#define HD_combo_code "HDvariations/vb/moutis_COMBO_hd.c"
+#define HD_adaptive_code "HDvariations/vb/moutis_adaptivekeys_hd.c"
+#define HD_process_record_code "HDvariations/vb/moutis_PROCESS_RECORD_hd.c"
+
+
 //       Alpha Layer for a 34 key formfactor
 // ╭─────────────────────╮ ╭─────────────────────╮
 // │ LT4 LT3 LT2 LT1 LT0 │ │ RT0 RT1 RT2 RT3 RT4 │
@@ -6,11 +13,11 @@
 // │ LB4 LB3 LB2 LB1 LB0 │ │ RB0 RB1 RB2 RB3 RB4 │
 // ╰───────────╮ LH2 LH1 │ │ RH1 RH2  ╭──────────╯
 //             ╰─────────╯ ╰──────────╯
-//              Hands Down Vibranium B
+//              Hands Down Vibranium b
 //     ╭─────────────────╮ ╭─────────────────╮
 //     │  X  W  M  G  J  │ │ #$  .: /* "[ '] │
 //     │  S  C  N  T  K  | | ,;   A  E  I  H │
-//     │  F  P  L  D  V  │ │ -+   U  O  Y  B │
+//     │  B  P  L  D  V  │ │ -+   U  O  Y  F │
 //     ╰───────╮  BSP R  │ │ SPC RET  ╭──────╯
 //             ╰─────────╯ ╰──────────╯
 
@@ -40,7 +47,7 @@
 #define HD_RM3 RALT_T(KC_I)
 #define HD_RM4 RCTL_T(KC_H)
 
-#define HD_LB4 KC_F
+#define HD_LB4 KC_B
 #define HD_LB3 KC_P
 #define HD_LB2 KC_L
 #define HD_LB1 KC_D
@@ -49,7 +56,7 @@
 #define HD_RB1 KC_U
 #define HD_RB2 KC_O
 #define HD_RB3 KC_Y
-#define HD_RB4 KC_B
+#define HD_RB4 KC_F
 
 #define HD_LH2 LT(L_FN_NUM, KC_BSPC)
 #define HD_LH1 LT(L_NAV, KC_R)

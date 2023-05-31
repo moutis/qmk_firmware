@@ -42,9 +42,9 @@ extern rgblight_config_t rgblight_config;
 #endif
 
 //
-// which alpha lavariation are we using?
+// which alpha variation are we using?
 //
-#include "HDvariations/hd-vbc.h"
+#include "HDvariations/hd-vb.h"  // defines in all variation dependent constants/files
 
 
 #ifdef COMBO_ENABLE
@@ -53,12 +53,7 @@ extern rgblight_config_t rgblight_config;
 
 #include "moutis_casemods.h"
 
-#include "HDvariations/vb/moutis_COMBO_hd.h"
-
-#define HD_combo_code "HDvariations/vb/moutis_COMBO_hd.c"
-#define HD_adaptive_code "HDvariations/vb/moutis_adaptivekeys_hd.c"
-#define HD_process_record_code "HDvariations/vb/moutis_PROCESS_RECORD_hd.c"
-
+#include HD_combo_header     // variation dependent–shouldn't be, but it is atm.
 
 void matrix_scan_user_process_combo(void);
 

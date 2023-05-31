@@ -1,4 +1,9 @@
 
+#define HD_combo_header "HDvariations/vb/moutis_COMBO_hd.h"
+#define HD_combo_code "HDvariations/vb/moutis_COMBO_hd.c"
+#define HD_adaptive_code "HDvariations/vb/moutis_adaptivekeys_hd.c"
+#define HD_process_record_code "HDvariations/vb/moutis_PROCESS_RECORD_hd.c"
+
 //       Alpha Layer for a 34 key formfactor
 // ╭─────────────────────╮ ╭─────────────────────╮
 // │ LT4 LT3 LT2 LT1 LT0 │ │ RT0 RT1 RT2 RT3 RT4 │
@@ -6,11 +11,11 @@
 // │ LB4 LB3 LB2 LB1 LB0 │ │ RB0 RB1 RB2 RB3 RB4 │
 // ╰───────────╮ LH2 LH1 │ │ RH1 RH2  ╭──────────╯
 //             ╰─────────╯ ╰──────────╯
-//              Hands Down Vibranium A
+//              Hands Down Vibranium f
 //     ╭─────────────────╮ ╭─────────────────╮
-//     │  W  X  M  G  J  │ │ #$  .: /* "[ '] │
-//     │  C  S  N  T  K  | | ,;   A  E  I  H │
-//     │  P  F  L  D  V  │ │ -+   U  O  Y  B │
+//     │  X  W  M  G  J  │ │ #$  .: /* "[ '] │
+//     │  S  C  N  T  K  | | ,;   A  E  I  H │
+//     │  F  P  L  D  V  │ │ -+   U  O  Y  B │
 //     ╰───────╮  BSP R  │ │ SPC RET  ╭──────╯
 //             ╰─────────╯ ╰──────────╯
 
@@ -18,8 +23,8 @@
 // This will morph to being entirel properly abstracted
 // similar to Miryoku, (if HD is not somehow integrated with Miryoku someday.)
 
-#define HD_LT4 KC_W
-#define HD_LT3 KC_X
+#define HD_LT4 KC_X
+#define HD_LT3 KC_W
 #define HD_LT2 KC_M
 #define HD_LT1 KC_G
 #define HD_LT0 KC_J
@@ -29,8 +34,8 @@
 #define HD_RT3 KC_DQUO
 #define HD_RT4 KC_QUOT
 
-#define HD_LM4 RCTL_T(KC_C)
-#define HD_LM3 RALT_T(KC_S)
+#define HD_LM4 RCTL_T(KC_S)
+#define HD_LM3 RALT_T(KC_C)
 #define HD_LM2 RGUI_T(KC_N)
 #define HD_LM1 RSFT_T(KC_T)
 #define HD_LM0 LT(L_NUMPAD, KC_K)
@@ -40,8 +45,8 @@
 #define HD_RM3 RALT_T(KC_I)
 #define HD_RM4 RCTL_T(KC_H)
 
-#define HD_LB4 KC_P
-#define HD_LB3 KC_F
+#define HD_LB4 KC_F
+#define HD_LB3 KC_P
 #define HD_LB2 KC_L
 #define HD_LB1 KC_D
 #define HD_LB0 KC_V
