@@ -48,7 +48,7 @@
     ],
     [
       "KC_X",
-      "KC_P",
+      "KC_W",
       "KC_M",
       "KC_G",
       "KC_J",
@@ -69,11 +69,11 @@
       "RALT_T(KC_I)",
       "RCTL_T(KC_H)",
 
-      "KC_V",
       "KC_F",
+      "KC_P",
       "KC_L",
       "KC_D",
-      "KC_W",
+      "KC_V",
       "KC_MINS",
       "KC_U",
       "KC_O",

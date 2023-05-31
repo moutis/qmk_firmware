@@ -263,7 +263,7 @@ enum my_combos {
     HC_CUT,
     HC_COPY,
     HC_PSTE,
-//    HC_PSTM,
+    HC_PSTM,
 
 
     COMBO_LENGTH // END OF DELAY BLOCK

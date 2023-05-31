@@ -41,6 +41,11 @@ extern rgblight_config_t rgblight_config;
     #define RGBLIGHT_VAL_STEP 4
 #endif
 
+//
+// which alpha lavariation are we using?
+//
+#include "HDvariations/hd-vbc.h"
+
 
 #ifdef COMBO_ENABLE
     #include "process_combo.h"

@@ -2,14 +2,18 @@
  Adaptive Keys
  Called from within process_record_user
  
- Tailored for HD Vibranium-C (vbc)
+ ** This will misbehave w/o QMK 14.1 or later (Sevanteri's early combos)
+
+ Tailored for HD Titanium (ti)
+
+ Finally getting to the last of imagined features that spurred Hands Down design!
  
  NOTE: assumed dual-function keys (MOD_TAP, LAYER_TAP) have already been handled AND
     FILTERED OUT! The combos handler will have already taken out combo candidates,
     which have a shorter keydown threshhold (COMBO_TERM).
  
  All the goto shenanigans should be resolved after complete migration to STM/RP controllersr
- (not totally possible, as many of my boards have embedded AVR mcus)
+ (not totally possible, as some of my boards have embedded AVR mcus
 
  */
 
@@ -36,7 +40,6 @@ bool process_adaptive_key(uint16_t *calling_keycode, const keyrecord_t *record) 
 /*
 // Left hand adaptives (most are single-handed neighbor fingers, bc speed, dexterity limits)
 */
-/*
         case KC_F: //
             switch (prior_keycode) { //
               case KC_D: // eliminate "DT" SFB
@@ -49,7 +52,6 @@ bool process_adaptive_key(uint16_t *calling_keycode, const keyrecord_t *record) 
                     break;
             }
             break;
-*/
         case KC_C:
             switch (prior_keycode) {
                 case KC_T: // roll for tch
@@ -110,7 +112,6 @@ ReplacePriorWithL:
             }
             break;
 
-        case KC_B:
         case KC_K:
             switch (prior_keycode) {
                 case KC_T: // TK = LK (remedy mid-index split by shift fingering)
@@ -120,8 +121,6 @@ ReplacePriorWithL:
             break;
         case KC_T:  // alt fingering remedy for middle-index splits
             switch (prior_keycode) {
-                case KC_B: // quickly typing "bt" yields "bl"
-                    goto PullUpLAndExit; // short jumps save bytes
                 case KC_K: // quickly typing "k?" yields "kn"
                     tap_code(KC_N);
                     return_state = false; // done.
@@ -148,7 +147,7 @@ ReplacePriorWithL:
                     tap_code(KC_G);
                     return_state = false; // done.
                     break;
-                case KC_V: // Pull S down from middle row.
+                case KC_F: // Pull S down from middle row.
                     tap_code(KC_BSPC);
                     tap_code(KC_S);
                     return_state = true; // not done (process this key normally)
@@ -215,10 +214,10 @@ ReplacePriorWithL:
             }
             break;
                     
-        case KC_F:
+        case KC_B:
             switch (prior_keycode) {
                 case KC_Y: //
-                    tap_code(KC_I); // YF = YI (eliminate SFB on ring finger YI is 37x YF)
+                    tap_code(KC_I); // YB = YI (eliminate SFB on ring finger)
                     return_state = false; // done.
                     break;
             }
