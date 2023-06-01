@@ -36,20 +36,6 @@ bool process_adaptive_key(uint16_t *calling_keycode, const keyrecord_t *record) 
 /*
 // Left hand adaptives (most are single-handed neighbor fingers, bc speed, dexterity limits)
 */
-/*
-        case KC_F: //
-            switch (prior_keycode) { //
-              case KC_D: // eliminate "DT" SFB
-                    tap_code(KC_T);
-                    return_state = false; // done.
-                    break;
-                case KC_P: //
-                    tap_code(KC_S); //
-                    return_state = false; // done.
-                    break;
-            }
-            break;
-*/
         case KC_C:
             switch (prior_keycode) {
                 case KC_T: // roll for tch
@@ -113,6 +99,7 @@ ReplacePriorWithL:
         case KC_B:
         case KC_K:
             switch (prior_keycode) {
+                case KC_D: // TK = LK (remedy mid-index split by shift fingering)
                 case KC_T: // TK = LK (remedy mid-index split by shift fingering)
                 case KC_G: // PK = LK
                     goto ReplacePriorWithL; // short jumps save bytes
@@ -148,6 +135,7 @@ ReplacePriorWithL:
                     tap_code(KC_G);
                     return_state = false; // done.
                     break;
+                case KC_V: // Pull S down from middle row.
                 case KC_B: // Pull S down from middle row.
                     tap_code(KC_BSPC);
                     tap_code(KC_S);
@@ -184,7 +172,7 @@ ReplacePriorWithL:
                 }
                 break;
 
-        case KC_H: // H becomes the SFB vowel
+        case KC_BSPC: // How often are we likely to hit BS so quickly after?
             switch (prior_keycode) {
                 case KC_A:
                     tap_code(KC_U); // "AH" yields "AU"

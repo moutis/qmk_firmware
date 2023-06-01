@@ -247,11 +247,11 @@ const uint16_t PROGMEM Hent2_combo[] = {HD_LB0, HD_LB2, HD_LB1,  COMBO_END}; // 
 // LOWER ROW
 
 // SEMANTIC FUNCTIONS Spatially arranged  ** uses SemKeys **
-const uint16_t PROGMEM Hnew_combo[] = {HD_LM4, HD_LM0, COMBO_END}; // new
-const uint16_t PROGMEM Hopen_combo[] = {HD_LT4, HD_LM0, COMBO_END}; // open
-const uint16_t PROGMEM Hclose_combo[] = {HD_LM3, HD_LM0, COMBO_END}; // close
+const uint16_t PROGMEM Hnew_combo[] = {HD_LM2, HD_LB2, COMBO_END}; // new
+const uint16_t PROGMEM Hopen_combo[] = {HD_LM1, HD_LB1, COMBO_END}; // open
+const uint16_t PROGMEM Hclose_combo[] = {HD_LM3, HD_LB3, COMBO_END}; // close
 const uint16_t PROGMEM Hquit_combo[] = {HD_LB0, HD_LM0, COMBO_END}; // quit
-const uint16_t PROGMEM Hfind_combo[] = {HD_LM3, HD_LB4, COMBO_END}; // find selection
+const uint16_t PROGMEM Hfind_combo[] = {HD_RM4, HD_RB4, COMBO_END}; // find selection
 const uint16_t PROGMEM Hsall_combo[] = {HD_LB4, HD_LB1, COMBO_END}; // select all
 const uint16_t PROGMEM Hswrd_combo[] = {HD_LB4, HD_LB0, COMBO_END}; // select word
 const uint16_t PROGMEM Hundo_combo[] = {HD_LB4, HD_LB3, COMBO_END}; // undo (need to add semantic redo)
