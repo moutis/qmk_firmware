@@ -42,9 +42,19 @@ bool process_adaptive_key(uint16_t *calling_keycode, const keyrecord_t *record) 
                     send_string("ch"); // 85% of tc is tch, so this saves a lot of key press "H"
                     return_state = false; // done.
                     break;
+                case KC_B: // roll for tch
+                    tap_code(KC_S);  // S (BS is 23x more common than BC)
+                    return_state = false; // done.
+                    break;
             }
             break;
-
+        case KC_B:
+            switch (prior_keycode) {
+                case KC_C: //
+                    tap_code(KC_BSPC);  // SB (SB is 1x more common than CB)
+                    tap_code(KC_S);  // S (BS is 23x more common than BC)
+                    break;
+           }
             break;
         case KC_M: // M becomes L (pull up "L" to same row)
             switch (prior_keycode) {
@@ -69,6 +79,7 @@ ReplacePriorWithL:
         case KC_D: // (for KD=KL; least code, no side effects)
             switch (prior_keycode) { //
                 case KC_K:
+                case KC_V:
                     goto PullUpLAndExit; // short jumps save bytes
             }
             break;
@@ -96,25 +107,17 @@ ReplacePriorWithL:
             }
             break;
 
-        case KC_B:
         case KC_K:
+        case KC_V:
             switch (prior_keycode) {
-<<<<<<< Updated upstream:users/moutis/HDvariations/vb/moutis_adaptivekeys_hd.c
-                case KC_D: // TK = LK (remedy mid-index split by shift fingering)
-                case KC_T: // TK = LK (remedy mid-index split by shift fingering)
-                case KC_G: // PK = LK
-=======
                 case KC_D: // DV/TV/GV = LV (remedy mid-index split by shifting fingering)
                 case KC_T: // TK/DK/GK = LK (remedy mid-index split by shifting fingering)
                 case KC_G: //
->>>>>>> Stashed changes:users/moutis/HDvariations/vb/vb-adaptive.c
                     goto ReplacePriorWithL; // short jumps save bytes
-            }
+           }
             break;
         case KC_T:  // alt fingering remedy for middle-index splits
             switch (prior_keycode) {
-                case KC_B: // quickly typing "bt" yields "bl"
-                    goto PullUpLAndExit; // short jumps save bytes
                 case KC_K: // quickly typing "k?" yields "kn"
                     tap_code(KC_N);
                     return_state = false; // done.
@@ -178,37 +181,32 @@ ReplacePriorWithL:
                 }
                 break;
 
-        case KC_BSPC: // How often are we likely to hit BS so quickly after?
-            switch (prior_keycode) {
+        case KC_E: //
+            switch (prior_keycode) { //
                 case KC_A:
-                    tap_code(KC_U); // "AH" yields "AU"
+                    tap_code(KC_U); // "AE" yields "AU" (8x more common)
                     return_state = false; // done.
                     break;
+            }
+            break;
+        case KC_H: // How often are we likely to hit BS so quickly after?
+            switch (prior_keycode) { // maybe OK? What about xxR? resulting in a SFB on thumb?
                 case KC_E:
-                    tap_code(KC_O); // "EH" yields "EO"
+                    tap_code(KC_O); // "EH" yields "EO" (1.75:1)
                     return_state = false; // done.
                     break;
                 case KC_O:
-                    tap_code(KC_E); // "OH" yields "OE"
+                    tap_code(KC_E); // "OH" yields "OE" (almost 1:1, but eliminates an SFB?)
                     return_state = false; // done.
                     break;
                 case KC_U:
-                    tap_code(KC_A); // "UH" yields "UA"
+                    tap_code(KC_A); // "UH" yields "UA" (126x more common)
                     return_state = false; // done.
                     break;
 
             }
             break;
-        
-        case KC_Y:
-            switch (prior_keycode) {
-                case KC_W: //
-                    send_string("hy ");  // bc "HY" is pinky->ring on diff rows
-                    return_state = false; // done.
-                    break;
-            }
-            break;
-                    
+
         case KC_F:
             switch (prior_keycode) {
                 case KC_Y: //
@@ -217,6 +215,7 @@ ReplacePriorWithL:
                     break;
             }
             break;
+            
 
 #ifdef THUMB_REPEATER
         case HD_REPEATER_A: // Make a repeat key of the secondary thumb key on both sides

@@ -1,5 +1,6 @@
 #include QMK_KEYBOARD_H
 
+#include HD_combo_def // this is the layout specific definition
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {

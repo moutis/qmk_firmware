@@ -1,12 +1,11 @@
 
 //
 // The Hands Down Variation dependent files
+// that get included in keymap.c and userspace.c
 //
-#define HD_combo_header "HDvariations/vb/moutis_COMBO_hd.h"
-#define HD_combo_code "HDvariations/vb/moutis_COMBO_hd.c"
-#define HD_adaptive_code "HDvariations/vb/moutis_adaptivekeys_hd.c"
-#define HD_process_record_code "HDvariations/vb/moutis_PROCESS_RECORD_hd.c"
-
+#define HD_combo_def "HDvariations/vv/vv-combo_def.c"
+#define HD_adaptive_code "HDvariations/vv/vv-adaptive.c"
+#define HD_process_record_code "HDvariations/vv/vv-process_record.c"
 
 //       Alpha Layer for a 34 key formfactor
 // ╭─────────────────────╮ ╭─────────────────────╮
@@ -15,11 +14,11 @@
 // │ LB4 LB3 LB2 LB1 LB0 │ │ RB0 RB1 RB2 RB3 RB4 │
 // ╰───────────╮ LH2 LH1 │ │ RH1 RH2  ╭──────────╯
 //             ╰─────────╯ ╰──────────╯
-//              Hands Down Vibranium b
+//              Hands Down Vibranium v
 //     ╭─────────────────╮ ╭─────────────────╮
-//     │  X  W  M  G  J  │ │ #$  .: /* "[ '] │
+//     │  X  W  M  G  [« │ │ ]»  .: '"  J  B │
 //     │  S  C  N  T  K  | | ,;   A  E  I  H │
-//     │  B  P  L  D  V  │ │ -+   U  O  Y  F │
+//     │  V  P  L  D  /* │ │ -+   U  O  Y  F │
 //     ╰───────╮  BSP R  │ │ SPC RET  ╭──────╯
 //             ╰─────────╯ ╰──────────╯
 
@@ -31,12 +30,12 @@
 #define HD_LT3 KC_W
 #define HD_LT2 KC_M
 #define HD_LT1 KC_G
-#define HD_LT0 KC_J
-#define HD_RT0 KC_HASH
+#define HD_LT0 KC_LBRC
+#define HD_RT0 KC_RBRC
 #define HD_RT1 KC_DOT
-#define HD_RT2 KC_SLSH
-#define HD_RT3 KC_DQUO
-#define HD_RT4 KC_QUOT
+#define HD_RT2 KC_QUOT
+#define HD_RT3 KC_J
+#define HD_RT4 KC_B
 
 #define HD_LM4 RCTL_T(KC_S)
 #define HD_LM3 RALT_T(KC_C)
@@ -49,11 +48,11 @@
 #define HD_RM3 RALT_T(KC_I)
 #define HD_RM4 RCTL_T(KC_H)
 
-#define HD_LB4 KC_B
+#define HD_LB4 KC_V
 #define HD_LB3 KC_P
 #define HD_LB2 KC_L
 #define HD_LB1 KC_D
-#define HD_LB0 KC_V
+#define HD_LB0 KC_SLSH
 #define HD_RB0 KC_MINS
 #define HD_RB1 KC_U
 #define HD_RB2 KC_O
@@ -65,8 +64,10 @@
 #define HD_RH1 LT(L_PUNCT,KC_SPC)
 #define HD_RH2 LT(L_NAV,KC_ENT)
 
-
-// TEXT ENTRY - off map standard alphas (also on Layer L_PUNCT @ J & G respectively)
+//
+// combo definitions that may change by alpha layout geometry
+//
+// TEXT ENTRY - off map standard alphas (also on Layer L_PUNCT)
 #define HD_Z_combo HD_LM3, HD_LM1 // TYPE "z"
 #define HD_Qu_combo HD_LT3, HD_LT1 // TYPE "q" (Qu & Linger deletes u)
 

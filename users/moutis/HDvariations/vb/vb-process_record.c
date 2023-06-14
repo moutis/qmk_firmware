@@ -1,8 +1,5 @@
 /*
- 
- This is compatible with Hands Down Platinum (neu-lx), Silver (neu-nx), Bronze (neu-hx)
- May not play nice with Hands Down Neu & Gold (neu-tx) (shift '&" for [&] are backwards)
- 
+
  Set keyboard on host to ANSI (not ISO/JIS for now. will eventually invert this.)
  
  */

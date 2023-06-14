@@ -2,12 +2,9 @@
 //
 // The Hands Down Variation dependent files
 //
-// Uses same as vb
-//
-#define HD_combo_header "HDvariations/vb/moutis_COMBO_hd.h"
-#define HD_combo_code "HDvariations/vb/moutis_COMBO_hd.c"
-#define HD_adaptive_code "HDvariations/vb/moutis_adaptivekeys_hd.c"
-#define HD_process_record_code "HDvariations/vb/moutis_PROCESS_RECORD_hd.c"
+#define HD_adaptive_code "HDvariations/vb/vb-adaptive.c"
+#define HD_process_record_code "HDvariations/vb/vb-process_record.c"
+#define HD_combo_def "HDvariations/vb/vb-combo_def.c"
 
 
 //       Alpha Layer for a 34 key formfactor
@@ -20,8 +17,8 @@
 //              Hands Down Vibranium b
 //     ╭─────────────────╮ ╭─────────────────╮
 //     │  X  W  M  G  J  │ │ #$  .: /* "[ '] │
-//     │  S  C  N  T  B  | | ,;   A  E  I  H │
-//     │  V  P  L  D  K  │ │ -+   U  O  Y  F │
+//     │  S  C  N  T  K  | | ,;   A  E  I  H │
+//     │  B  P  L  D  V  │ │ -+   U  O  Y  F │
 //     ╰───────╮  BSP R  │ │ SPC RET  ╭──────╯
 //             ╰─────────╯ ╰──────────╯
 
@@ -44,29 +41,36 @@
 #define HD_LM3 RALT_T(KC_C)
 #define HD_LM2 RGUI_T(KC_N)
 #define HD_LM1 RSFT_T(KC_T)
-#define HD_LM0 LT(L_NUMPAD, KC_B)
+#define HD_LM0 LT(L_NUMPAD, KC_K)
 #define HD_RM0 LT(L_FN_NUM, KC_COMM)
 #define HD_RM1 RSFT_T(KC_A)
 #define HD_RM2 RGUI_T(KC_E)
 #define HD_RM3 RALT_T(KC_I)
 #define HD_RM4 RCTL_T(KC_H)
 
-#define HD_LB4 KC_V
+#define HD_LB4 KC_B
 #define HD_LB3 KC_P
 #define HD_LB2 KC_L
 #define HD_LB1 KC_D
-#define HD_LB0 KC_K
+#define HD_LB0 KC_V
 #define HD_RB0 KC_MINS
 #define HD_RB1 KC_U
 #define HD_RB2 KC_O
 #define HD_RB3 KC_Y
 #define HD_RB4 KC_F
 
+//Primary Thumbs (others unique to the board)
 #define HD_LH2 LT(L_FN_NUM, KC_BSPC)
 #define HD_LH1 LT(L_NAV, KC_R)
 #define HD_RH1 LT(L_PUNCT,KC_SPC)
 #define HD_RH2 LT(L_NAV,KC_ENT)
 
+//
+// Combo definitions that rely on mnemonics for their locations.
+//
+// Combos that are spacially organized don't need to be redefined
+// to match the base alpha layer.
+//
 
 // TEXT ENTRY - off map standard alphas (also on Layer L_PUNCT @ J & G respectively)
 #define HD_Z_combo HD_LM3, HD_LM1 // TYPE "z"

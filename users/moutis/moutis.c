@@ -98,54 +98,10 @@ layer_state_t layer_state_set_user(layer_state_t layer_state) {
 
 
     switch (biton32(layer_state)) {
-#ifdef L_HDNEU
-        case L_HDNEU:
-#ifdef RGBLIGHT_ENABLE
-#endif
-#endif
-#ifdef L_HDGOLD
-        case L_HDGOLD:
-#ifdef RGBLIGHT_ENABLE
-            rgblight_sethsv_noeeprom(36, 240, 240);
-            break;
-#endif
-#endif
-//#ifdef L_HDTITANIUM
-        case L_HDTITANIUM:
-//#endif
-#ifdef L_HDRHODIUM
-        case L_HDRHODIUM:
+        case L_HDALPHA:
 #ifdef RGBLIGHT_ENABLE
             rgblight_sethsv_noeeprom(128, 128, 128);
             break;
-#endif
-#endif
-#if defined(L_HDNEU) || defined(L_HDGOLD) || defined(L_HDTITANIUM) || defined(L_HDRHODIUM)
-           LBRC_key = KC_LBRC;  // keycode for "["
-           RBRC_key = KC_RBRC;  // keycode for "]"
-           break;
-#endif
-#ifdef L_HDBRONZE
-        case L_HDBRONZE:
-#ifdef RGBLIGHT_ENABLE
-            rgblight_sethsv_noeeprom(12, 228, 228);
-            break;
-#endif
-#endif
-#ifdef L_HDSILVER
-        case L_HDSILVER,
-#ifdef RGBLIGHT_ENABLE
-#endif
-#endif
-#ifdef L_HDPLATINUM
-        case L_HDPLATINUM,
-#ifdef RGBLIGHT_ENABLE
-#endif
-#endif
-#if defined(L_HDBRONZE) || defined(L_HDSILVER) || defined(L_HDPLATINUM) || defined(L_HDRHODIUM)
-//        LBRC_key = KC_RBRC;  // keycode for "]"
-//        RBRC_key = KC_LBRC;  // keycode for "["
-//        break;
 #endif
         case L_PUNCT:
 #ifdef RGBLIGHT_ENABLE
@@ -215,16 +171,16 @@ void keyboard_post_init_user(void) {
 #endif
 
 #ifdef COMBO_ENABLE
-    #include HD_combo_code  // variation dependent
+    #include "moutis_combo.c"  // variation independent combo processing
 #endif
 
 #include "moutis_casemods.c"
 
 #ifdef ADAPTIVE_ENABLED
-#include HD_adaptive_code   // variation dependent
+#include HD_adaptive_code   // this is HD variation dependent
 #endif
 
-#include HD_process_record_code   // variation dependent
+#include HD_process_record_code   // this is HD variation dependent
 
 
 #include "moutis_MATRIX.c"

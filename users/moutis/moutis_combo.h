@@ -2,6 +2,38 @@
 
 #define EXTRA_SHORT_COMBOS // because I don't believ in big combos-use layers or leader_key
 
+
+#include "personalizedmacros.h"
+
+#ifndef At_ComboHeld
+#define At_ComboHeld ".com"
+#endif
+#ifndef LeftComboTapE
+#define LeftComboTapE "LeftCombo tapped"
+#endif
+#ifndef LeftComboHeldE
+#define LeftComboHeldE "LeftCombo held"
+#endif
+#ifndef LeftComboTapJ
+#define LeftComboTapJ "hidarikombotappu"
+#endif
+#ifndef LeftComboHeldJ
+#define LeftComboHeldJ "hidarikombochouosi"
+#endif
+#ifndef RightComboTapE
+#define RightComboTapE "RightCombo tapped"
+#endif
+#ifndef RightComboHeldE
+#define RightComboHeldE "RightCombo held"
+#endif
+#ifndef RightComboTapJ
+#define RightComboTapJ "migikombotappu"
+#endif
+#ifndef RightComboHeldJ
+#define RightComboHeldJ "migikombochouosi"
+#endif
+
+
 enum my_combos {
     FC_ESC, // ESCape SIMPLE COMBO must be first-used as FALSE for combo_on
     HC_KBD,
@@ -260,6 +292,7 @@ enum my_combos {
     HC_SALL, // select all
 
     HC_UNDO,
+    HC_REDO,
     HC_CUT,
     HC_COPY,
     HC_PSTE,

@@ -1,5 +1,12 @@
 #pragma once
 
+//
+// which alpha variation are we using?
+//
+//
+#include "HDvariations/vb/hd-vb.h"  // defines all variation dependent constants/files
+
+
 #ifndef USERSPACE
     #define USERSPACE
 #endif
@@ -41,11 +48,6 @@ extern rgblight_config_t rgblight_config;
     #define RGBLIGHT_VAL_STEP 4
 #endif
 
-//
-// which alpha variation are we using?
-//
-//
-#include "HDvariations/hd-vv.h"  // defines all variation dependent constants/files
 
 
 #ifdef COMBO_ENABLE
@@ -54,7 +56,7 @@ extern rgblight_config_t rgblight_config;
 
 #include "moutis_casemods.h"
 
-#include HD_combo_header     // variation dependent–shouldn't be, but it is atm.
+#include "moutis_combo.h"  //
 
 void matrix_scan_user_process_combo(void);
 
@@ -78,14 +80,8 @@ typedef union {
 
 enum my_layers {  // must be difined before semantickeys.h
 // enum my_layers for layout layers for HD Neu family
-    L_QWERTY,    //
-//    L_HDNUE,     // N             RSNT AEIH
-//      L_HDBRONZE,  // B BR (Neu-hx) RSNT AECI (same home row as Platinum)
-//    L_HDSILVER,  // S Ag (Neu-nx) RSHT AECI
-//    L_HDPLATINUM,// P Pl (Neu-lx) RSNT AECI (same home row as Bronze)
-//    L_HDGOLD,    // G Au (Neu-tx) RSND AEIH
-      L_HDTITANIUM,// T Ti (Neu-rx) CSNT AEIH
-//    L_HDRHODIUM, // R Rh (Neu-rxm) CSNT AEIM
+    L_QWERTY,      // 0
+      L_HDALPHA,    // 1
       L_PUNCT,     // 2
       L_FN_NUM,    // 3
       L_NUMPAD,    // 4
