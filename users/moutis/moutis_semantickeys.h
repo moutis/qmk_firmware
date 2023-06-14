@@ -27,8 +27,8 @@
 
 enum my_keycodes {
     SK_KILL = SAFE_RANGE, // SK_KILL must be the first of contiguous block of SKs
-    SK_HENK,
-    SK_MHEN,
+    SK_HENK,  // kana (others)
+    SK_MHEN, // eisuu (others)
     SK_HENT, // Hard-Enter
     SK_UNDO, // undo
     SK_REDO, // redo
@@ -79,10 +79,10 @@ enum my_keycodes {
     SemKeys_COUNT, // end of non-glyph SemKeys
     HD_AdaptKeyToggle,
     HD_L_QWERTY,
-    HD_L_Titanium,
+    HD_L_ALPHA,
 
 
-/* Eventually…these should be handled as SemKeys?
+/* Eventually…these should be handled as SemKeys with BCD Alt-gr?
    HD_aumlt,
    HD_amacr,
    HD_aacut,

@@ -65,8 +65,8 @@ void tap_SemKey(uint16_t semkeycode) {
 const uint16_t SemKeys_t[SemKeys_COUNT - SK_KILL][OS_count] = {
     // Mac, Win, (Phase 3, add others if necessary, expand to multi-key?)
     [SK_KILL - SK_KILL] = {G(A(KC_ESC)),C(A(KC_DEL))}, // "KILL" OR Force quit / ctrl-alt-del
-    [SK_HENK - SK_KILL] = {KC_INT4, KC_INT4}, // 変換
-    [SK_MHEN - SK_KILL] = {KC_INT5, KC_INT5}, // 無変換
+    [SK_HENK - SK_KILL] = {KC_LNG1, KC_INT4}, // 変換
+    [SK_MHEN - SK_KILL] = {KC_LNG2, KC_INT5}, // 無変換
     [SK_HENT - SK_KILL] = {G(KC_ENT),C(KC_ENT)}, // Hard ENTER
     [SK_UNDO - SK_KILL] = {G(KC_Z),C(KC_Z)}, // undo
     [SK_REDO - SK_KILL] = {G(S(KC_Z)),C(S(KC_Z))}, // Redo
@@ -211,6 +211,20 @@ bool process_semkey(uint16_t keycode, const keyrecord_t *record) {
                         tap_code16(KC_N);  //
 #endif
                     }
+                    break;
+                case SK_HENK: // Japanese
+#ifdef JP_MODE_ENABLE
+                    IS_ENGLISH_MODE = false;
+#endif
+                    tap_SemKey(SK_HENK); // Mac/Win/iOS all different?
+//                    return_state = false; // stop processing this record.
+                    break;
+                case SK_MHEN: // English
+#ifdef JP_MODE_ENABLE
+                    IS_ENGLISH_MODE = true;
+#endif
+                    tap_SemKey(SK_MHEN); // Mac/Win/iOS all different?
+//                    return_state = false; // stop processing this record.
                     break;
                 default: // default keydown event
                     register_SemKey(keycode);

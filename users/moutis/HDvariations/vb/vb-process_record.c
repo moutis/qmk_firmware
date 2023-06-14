@@ -106,8 +106,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 */
 #ifndef KEY_OVERRIDE_ENABLE
 /*
-    QMK KEY_OVERRIDE in 14.1 is much larger than this,
-    and can't integrate semkeys or linger keys,
+    QMK KEY_OVERRIDE can't integrate semkeys or linger keys,
     so for now I roll my own here.
 */
 
@@ -359,39 +358,22 @@ byteshave: // CAUTION: messing w/stack frame here!!
                 break;
 
 #ifdef JP_MODE_ENABLE
-/*
-            case KC_A: // long 長母音・ん if held in Japanese mode
-            case KC_I: // KC_I won't work with (home row) mod_taps…
-            case KC_U:
-            case KC_E: // KC_E won't work with (home row) mod_taps…
-            case KC_O:
-            case KC_N: // KC_N won't work with (home row) mod_taps…
-                if (IS_ENGLISH_MODE)
-                    register_linger_key(keycode); // example of simple linger macro
+            case KC_L: // L if English, ん if Japanese mode
+                if (!IS_ENGLISH_MODE) {
+                    tap_code(KC_N);
+                    tap_code(KC_N);
+                    return_state = false; // stop processing this record.
+                }
                 break;
- */
             case KC_C: // C if English, z if Japanese mode
-            case KC_X: // X if English, - if Japanese mode
-//            case KC_L: // L if English, K if Japanese mode
-//            case KC_K: // K if English, L if Japanese mode
-                if (!(saved_mods & MOD_MASK_ALT)) {  // allow only SHFT?
-                    switch (keycode) {
-                        case KC_C: // C if English, z if Japanese mode
-                            register_code16(myKC_C);
-                            break;
-                        case KC_X: // X if English, - if Japanese mode
-                            register_code16(myKC_X);
-                            break;
-/*
-                        case KC_L: // L if English, K if Japanese mode
-                            register_code16(myKC_L);
-                            break;
-                        case KC_K: // K if English, L if Japanese mode
-                            register_code16(myKC_K);
-                            break;
-*/
-
-                    }
+                if (!IS_ENGLISH_MODE) {
+                    register_code(KC_Z);
+                    return_state = false; // stop processing this record.
+                }
+                break;
+           case KC_X: // X if English, - if Japanese mode
+                if (!IS_ENGLISH_MODE) {
+                    register_code(KC_MINS);
                     return_state = false; // stop processing this record.
                 }
                 break;
@@ -412,28 +394,22 @@ linger_and_return:
                 register_linger_key(keycode); // example of simple linger macro
                 return_state = false; // stop processing this record.
                 break;
-            case KC_INT4: // Japanese
+/*
+            case KC_LNG1: // Japanese
 #ifdef JP_MODE_ENABLE
                 IS_ENGLISH_MODE = false;
-//                myKC_L = KC_K;  // keycode for "L"  (K if Japanese mode)
-//                myKC_K = KC_L;  // keycode for "K"  (L if Japanese mode)
-                myKC_C = KC_Z;  // keycode for "C"  (Z if Japanese mode)
-                myKC_X = KC_MINS;  // keycode for "X"  (- if Japanese mode)
 #endif
-                tap_SemKey(SK_HENK);
+                tap_SemKey(SK_HENK); // Mac/Win/iOS all different?
                 return_state = false; // stop processing this record.
                 break;
-            case KC_INT5: // English
+            case KC_LNG2: // English
 #ifdef JP_MODE_ENABLE
                 IS_ENGLISH_MODE = true;
-//                myKC_L = KC_L;  // keycode for "L"  (could be K if Japanese mode)
-//                myKC_K = KC_K;  // keycode for "K"  (could be L if Japanese mode)
-                myKC_C = KC_C;  // keycode for "C"  ("unused" (used redundantly) in Japanese)
-                myKC_X = KC_X;  // keycode for "X"  (could be - if Japanese mode)
 #endif
-                tap_SemKey(SK_MHEN);
+                tap_SemKey(SK_MHEN); // Mac/Win/iOS all different?
                 return_state = false; // stop processing this record.
                 break;
+*/
             case CG_SWAP: // SINCE MAC IS MY LAYOUT DEFAULT switch to windows
                 user_config.OSIndex = 1; // for Windows Semkeys
                 return_state = true; // let QMK do it's swap thing.
@@ -443,48 +419,20 @@ linger_and_return:
                 return_state = true; // let QMK do it's swap thing.
                 goto storeSettings;
             case HD_AdaptKeyToggle: // toggle AdaptiveKeys (& LingerKeys, linger combos)
+#ifdef ADAPTIVE_ENABLED
                 user_config.AdaptiveKeys = !user_config.AdaptiveKeys;
+#endif
                 return_state = false; // stop processing this record.
                 goto storeSettings;
-//#ifdef HD_L_QWERTY
             case HD_L_QWERTY: // are we changing default layers?
+#ifdef ADAPTIVE_ENABLED
                 user_config.AdaptiveKeys = false; // no adaptive keys on QWERTY
+#endif
                 goto setLayer;
-//#endif
-#ifdef HD_L_Bronze
-            case HD_L_Bronze:
+            case HD_L_ALPHA:
+#ifdef ADAPTIVE_ENABLED
+                user_config.AdaptiveKeys = true; // assume adaptive keys on Hands Down
 #endif
-#ifdef HD_L_Silver
-            case HD_L_Silver:
-#endif
-#ifdef HD_L_Platinum
-            case HD_L_Platinum:
-#endif
-#ifdef HD_L_Rhodium
-            case HD_L_Rhodium:
-#endif
-//#if defined(HD_L_Bronze) ||  defined(HD_L_Silver) || defined(HD_L_Platinum)
-//                user_config.LBRC_key = KC_RBRC;  // swap keycode for "["
-//                user_config.RBRC_key = KC_LBRC;  // swap keycode for "]"
-//                send_string("AECI");
-//                user_config.AdaptiveKeys = true;
-//                goto setLayer;
-//#endif
-#ifdef HD_L_Neu
-            case HD_L_Neu:
-#endif
-#ifdef HD_L_Gold
-            case HD_L_Gold:
-#endif
-//#ifdef HD_L_Titanium
-            case HD_L_Titanium:
-//#endif
-//#if defined(HD_L_Neu) ||  defined(HD_L_Gold) || defined(HD_L_Titanium) || defined(HD_L_Rhodium)
-//                user_config.LBRC_key = KC_LBRC;  // swap keycode for "["
-//                user_config.RBRC_key = KC_RBRC;  // swap keycode for "]"
-//                send_string("AEIH");
-//                user_config.AdaptiveKeys = true;
-//#endif
 setLayer:
                 return_state = false; // don't do more with this record.
                 set_single_persistent_default_layer(keycode-L_BASELAYER);// Remember default layer after powerdown
@@ -497,7 +445,7 @@ storeSettings:
 
 #ifdef ADAPTIVE_ENABLED
         prior_keydown = timer_read(); // (re)start prior_key timing
-        prior_keycode = keycode; // this keycode is stripped of mods+taps
+        prior_keycode = keycode; // this keycode is now stripped of mods+taps
 #endif
         
     } else { // key up event
@@ -507,27 +455,15 @@ storeSettings:
         switch (keycode) { // clean up on keyup.
 
 #ifdef JP_MODE_ENABLE
-            case KC_C: // C if English, Z if Japanese  (won't sync w/host)
-            case KC_X: // X if English, - if Japanese
-//            case KC_L: // L if English, K if Japanese mode
-//            case KC_K: // K if English, L if Japanese mode
-                if (!saved_mods || (saved_mods & MOD_MASK_SHIFT)) { // only shift allowed
-                    switch (keycode) {
-                        case KC_C: // C if English, z if Japanese mode
-                            unregister_code16(myKC_C);
-                            break;
-                        case KC_X: // X if English, - if Japanese mode
-                            unregister_code16(myKC_X);
-                            break;
-/*
-                        case KC_L: // L if English, K if Japanese mode
-                            unregister_code16(myKC_L);
-                            break;
-                        case KC_K: // K if English, L if Japanese mode
-                            unregister_code16(myKC_K);
-                            break;
-*/
-                    }
+            case KC_C: // C if English, z if Japanese mode
+                if (!IS_ENGLISH_MODE) {
+                    unregister_code(KC_Z);
+                    return_state = false; // stop processing this record.
+                }
+                break;
+           case KC_X: // X if English, - if Japanese mode
+                if (!IS_ENGLISH_MODE) {
+                    unregister_code(KC_MINS);
                     return_state = false; // stop processing this record.
                 }
                 break;

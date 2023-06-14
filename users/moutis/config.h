@@ -75,13 +75,6 @@
 // how long to leave a state active before resetting like APPMENU or SHIFTWORD
 #define STATE_RESET_TIME LINGER_TIME * 4
 
-//#define BILATERAL_COMBINATIONS LINGER_TIME * 2
-/*
-#define RETRO_SHIFT 500
-#define AUTO_SHIFT_TIMEOUT LINGER_TIME
-#define NO_AUTO_SHIFT_SPECIAL
-#define NO_AUTO_SHIFT_NUMERIC
- */
 
 #define EN_PRONOUN_COMBOS // English First Person pronoun combos (I, I'm, I've I'd I'll etc) (184 bytes on AVR)
 #define EN_PRONOUN_COMBOS_ALL  // combos for you('ve), We('ve), They('ve) etc. (616 bytes on AVR)

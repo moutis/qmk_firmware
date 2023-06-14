@@ -66,28 +66,28 @@ void matrix_scan_user_process_combo(void);
 #define SQUO_S  KC_LBRC // [
 #define SQUO_A  A(KC_BSLS) // «
 #define SQUO_SA A(S(KC_3)) // ‹
+#define JRQU KC_RBRC // keycode for "[" in Japanese mode
+#define JLQU KC_LBRC // keycode for "]" in Japanese mode
 
 typedef union {
     uint32_t raw;
     struct {
-        uint8_t LBRC_key;  // keycode for "["
-        uint8_t RBRC_key;  // keycode for "]"
-        uint8_t OSIndex; // index of platforms (0=mac, 1=win, 2=lux)?
-        bool AdaptiveKeys; // Adaptive Keys On?
+        uint8_t OSIndex; // index of platforms (0=mac, 1=win, 2=lux)? // used by semantickeys
+        bool AdaptiveKeys; // Adaptive Keys On? (and advanced combos)
     };
 } user_config_t;
 
 
 enum my_layers {  // must be difined before semantickeys.h
 // enum my_layers for layout layers for HD Neu family
-    L_QWERTY,      // 0
-      L_HDALPHA,    // 1
-      L_PUNCT,     // 2
-      L_FN_NUM,    // 3
-      L_NUMPAD,    // 4
-      L_NAV,       // 5
-//    L_SYMBOLS,   //  diacritics…maybe to be handled by semantickeys?
-      L_MEDIA_KBD  // 6
+    L_QWERTY,    // 0
+    L_HDALPHA,   // 1
+    L_PUNCT,     // 2
+    L_FN_NUM,    // 3
+    L_NUMPAD,    // 4
+    L_NAV,       // 5
+//  L_SYMBOLS,   //  diacritics are better handled by combos and semantickeys?
+    L_MEDIA_KBD  // 6
 };
 
 enum OS_Platform { // Used for platform support via SemKeys
@@ -100,13 +100,3 @@ enum OS_Platform { // Used for platform support via SemKeys
 
 #define register_linger_key(kc) {register_code16(kc);linger_key = kc;linger_timer = state_reset_timer = timer_read();}
 #define unregister_linger_key() {unregister_code16(linger_key);linger_key = 0;}
-/*
-#define register_linger_key(kc) register_code16(kc);
-#define unregister_linger_key(kc) unregister_code16(kc);
-*/
-
-#ifdef JP_MODE_ENABLE
-bool IS_ENGLISH_MODE;
-//#define IS_ENGLISH_MODE (myKC_C == KC_C)
-#define TOGGLE_ENGLISH_MODE {IS_ENGLISH_MODE ^= true;}
-#endif

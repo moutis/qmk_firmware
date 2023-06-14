@@ -325,7 +325,6 @@ addonsuffix: // sharing this saves about 100 bytes (10 bytes per instance)
 
 #ifdef EN_PRONOUN_COMBOS_ALL
             case HC_their_5gram: // TYPE "their" #6
-//            case HC_theirg_5gram: // TYPE "their" #6
                 tap_code(KC_T);
                 unregister_mods(MOD_MASK_SHIFT);  //
                 send_string("heir");
@@ -662,10 +661,10 @@ ADD_HERE:
 #ifdef EN_PRONOUN_COMBOS_ALL
                 case HC_wed_4gram ... HC_their_5gram:
 #endif
+#endif
                     tap_code(KC_SPC); // add space after a composed pronoun
                     combo_on = 0;  // done w/these shenanigans
                     break;
-#endif
                 case HC_Q: //
                     unregister_code16(KC_Q); //
                     linger_key = 0;
@@ -833,6 +832,7 @@ void matrix_scan_user_process_combo() {  // called from matrix_scan_user if comb
 
 
 // PRONOUN shenanigans
+#ifdef EN_PRONOUN_COMBOS
 #ifdef EN_PRONOUN_COMBOS_ALL
 
                 case HC_here_4gram:
@@ -843,7 +843,7 @@ void matrix_scan_user_process_combo() {  // called from matrix_scan_user if comb
                 case HC_their_5gram: // TYPE "their's" #6
 
                     tap_code(KC_QUOT);
-#endif
+#endif // EN_PRONOUN_COMBOS_ALL
                     SEND_STRING("s ");
                     break;
 
@@ -856,13 +856,14 @@ void matrix_scan_user_process_combo() {  // called from matrix_scan_user if comb
                 case HC_well_5gram:
                 case HC_youd_5gram:
                 case HC_youll_6gram:
-#endif // I've become accustomed to using the pronoun combos so I don't disable them
+#endif // EN_PRONOUN_COMBOS_ALL
                 case HC_I:
                 case HC_Id:
                 case HC_Ill:
                     unregister_mods(MOD_MASK_SHIFT);  //
                     send_string("'ve "); // or should it be "'nt"?
                     break;
+#endif // EN_PRONOUN_COMBOS
 
 // END PRONOUN shenanigans
 

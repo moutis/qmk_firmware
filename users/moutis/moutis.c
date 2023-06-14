@@ -26,13 +26,7 @@ bool mods_held = false;  // nood to remember how we entered the appmenu state
 
 #ifdef JP_MODE_ENABLE
 bool IS_ENGLISH_MODE = true;
-uint16_t myKC_C = KC_C;  // keycode for "C"  (could be Z if Japanese mode)
-uint16_t myKC_X = KC_X;  // keycode for "X"  (could be - if Japanese mode)
-//uint16_t myKC_L = KC_L;  // keycode for "L"  (could be K if Japanese mode)
-//uint16_t myKC_K = KC_K;  // keycode for "K"  (could be L if Japanese mode)
 #endif
-//uint16_t LBRC_key = KC_LBRC;  // keycode for "[" // Bronze/Ag/Pl are swapped
-//uint16_t RBRC_key = KC_RBRC;  // keycode for "]" // unneeded if only one map onboard.
 
 #ifdef RGBLIGHT_ENABLE
 int RGB_current_mode;
@@ -41,45 +35,6 @@ int RGB_current_mode;
 
 uint8_t  combo_on = 0;           // for combo actions to hold before triggering
 bool  combo_triggered = false;   // for one-shot-combo-actions
-
-
-#ifdef AUTO_SHIFT_ENABLE
-bool get_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
-    switch(keycode) {
-#    ifndef NO_AUTO_SHIFT_ALPHA
-        case KC_A ... KC_Z:
-#    endif
-#    ifndef NO_AUTO_SHIFT_NUMERIC
-        case KC_1 ... KC_0:
-#    endif
-#    ifndef NO_AUTO_SHIFT_SPECIAL
-        case KC_TAB:
-        case KC_MINUS ... KC_SLASH:
-        case KC_NONUS_BSLASH:
-#    endif
-        case LCTL_T(KC_C): // #ifdef Rh
-        case LT(6,KC_H):  // #ifdef Bronze
-        case LT(6,KC_R):  // #elseif Ti
-        case RALT_T(KC_I):
-        case RCTL_T(KC_H):
-        case LCTL_T(KC_R):
-        case LALT_T(KC_S):
-        case LGUI_T(KC_N):
-        case LSFT_T(KC_T):
-        case RSFT_T(KC_A):
-        case RGUI_T(KC_E):
-        case RALT_T(KC_C):
-        case RCTL_T(KC_I):
-        case LT(4,KC_COMM):
-        case LT(5,KC_B): // #std B
-        case LT(5,KC_K): // #alt K
-            return true;
-        default:
-            return false;
-    }
-}
-#endif // AUTO_SHIFT_ENABLE
-
 
 
 layer_state_t layer_state_set_user(layer_state_t layer_state) {
@@ -184,26 +139,3 @@ void keyboard_post_init_user(void) {
 
 
 #include "moutis_MATRIX.c"
-// This
-
-#ifdef KEY_OVERRIDE_ENABLE  // If using QMK's key overrides...
-const key_override_t delete_key_override = ko_make_basic(MOD_MASK_SHIFT, LT(L_NUMPAD,KC_BSPC), KC_DELETE);
-const key_override_t ques_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_QUES, KC_EXLM);
-const key_override_t hash_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_HASH, KC_AT);
-const key_override_t dot_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_DOT, KC_COLN);
-const key_override_t comm_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_COMM, KC_SCLN);
-const key_override_t slsh_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_SLSH, KC_ASTR);
-const key_override_t bsls_key_override = ko_make_basic(MOD_MASK_ALT, KC_SLSH, KC_BSLS);
-
-// This globally defines all key overrides to be used
-const key_override_t **key_overrides = (const key_override_t *[]){
-    &delete_key_override,
-    &ques_key_override,
-    &hash_key_override,
-    &dot_key_override,
-    &comm_key_override,
-    &slsh_key_override,
-    &bsls_key_override,
-    NULL // Null terminate the array of overrides!
-};
-#endif
