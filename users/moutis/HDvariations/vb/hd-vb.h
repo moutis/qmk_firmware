@@ -1,9 +1,8 @@
 
 //
-// The Hands Down Variation dependent files
+// The Hands Down Variation dependent defs & files
 //
 #define HD_adaptive_code "HDvariations/vb/vb-adaptive.c"
-#define HD_process_record_code "HDvariations/vb/vb-process_record.c"
 #define HD_combo_def "HDvariations/vb/vb-combo_def.c"
 
 
@@ -24,7 +23,7 @@
 
 // for now...
 // This will morph to being entirel properly abstracted
-// similar to Miryoku, (if HD is not somehow integrated with Miryoku someday.)
+// similar to Miryoku, (maybe someone will make an HD Miryoku someday?)
 
 #define HD_LT4 KC_X
 #define HD_LT3 KC_W
@@ -66,10 +65,10 @@
 #define HD_RH2 LT(L_NAV,KC_ENT)
 
 //
-// Combo definitions that rely on mnemonics for their locations.
+// Combo definitions that rely on phonetics/mnemonics for their locations.
 //
 // Combos that are spacially organized don't need to be redefined
-// to match the base alpha layer.
+// to match the base alpha layer, so they are not included here.
 //
 
 // TEXT ENTRY - off map standard alphas (also on Layer L_PUNCT @ J & G respectively)
@@ -88,3 +87,72 @@
 #define HD_Gh_combo HD_LT2, HD_LT1 // TYPE "gh"
 #define HD_Sch_combo HD_LM3, HD_LM4, HD_LM2 // TYPE "Sch"
 
+#ifdef JP_MODE_ENABLE
+#ifdef JP_YOUON_COMBOS
+// Major Japanese contracted consonants as combos
+//
+// These will conflict with some diacritics (noted below),
+// so some sort of mode-switch in process_combo_event is necessary
+// for both to be used on the same board.
+//
+// There is also risk of conflict with spatial any phonetically/mnemonically coded combos.
+//
+// Major (high frequency) Japanese contracted sounds
+#define JP_kya_combo HD_LM0, HD_RM1 // きゃ
+#define JP_kyu_combo HD_LM0, HD_RB1 //　きゅ
+#define JP_kyo_combo HD_LM0, HD_RB2 //　きょ
+#define JP_sya_combo HD_LM4, HD_RM1 // しゃ
+#define JP_syu_combo HD_LM4, HD_RB1 //　しゅ
+#define JP_sye_combo HD_LM4, HD_RM2 //　しぇ
+#define JP_syo_combo HD_LM4, HD_RB2 //　しょ
+#define JP_zya_combo HD_LM3, HD_RM1 // じゃ
+#define JP_zyu_combo HD_LM3, HD_RB1 //　じゅ
+#define JP_zyo_combo HD_LM3, HD_RB2 //　じょ
+#define JP_tya_combo HD_LM1, HD_RM1 // ちゃ
+#define JP_tyu_combo HD_LM1, HD_RB1 //　ちゅ
+#define JP_tye_combo HD_LM1, HD_RM2 // ちぇ
+#define JP_tyo_combo HD_LM1, HD_RB2 //　ちょ
+#define JP_pya_combo HD_LB3, HD_RM1 // ぴゃ
+#define JP_pyu_combo HD_LB3, HD_RB1 //　ぴゅ
+#define JP_pyo_combo HD_LB3, HD_RB2 //　ぴょ
+
+#ifdef JP_YOUON_COMBOS_ALL // All Japanese contracted sounds
+
+#define JP_gya_combo HD_LT1, HD_RM1 // ぎゃ
+#define JP_gyu_combo HD_LT1, HD_RB1 //　ぎゅ
+#define JP_gyo_combo HD_LT1, HD_RB2 //　ぎょ
+#define JP_tha_combo HD_LM2, HD_LM1, HD_RM1 // てゃ
+#define JP_thi_combo HD_LM2, HD_LM1, HD_RM3 // てぃ
+#define JP_thu_combo HD_LM2, HD_LM1, HD_RB1 //　てゅ
+#define JP_the_combo HD_LM2, HD_LM1, HD_RM2 // てぇ
+#define JP_tho_combo HD_LM2, HD_LM1, HD_RB2 //　てょ
+#define JP_dha_combo HD_LB1, HD_RM1 // でゃ
+#define JP_dhi_combo HD_LB1, HD_RM3 // でぃ
+#define JP_dhu_combo HD_LB1, HD_RB1 //　でゅ
+#define JP_dhe_combo HD_LB1, HD_RM2 // でぇ
+#define JP_dho_combo HD_LB1, HD_RB2 //　でょ
+#define JP_nya_combo HD_LM2, HD_RM1 // にゃ
+#define JP_nyu_combo HD_LM2, HD_RB1 //　にゅ
+#define JP_nyo_combo HD_LM2, HD_RB2 //　にょ
+
+//#define JP_hya_combo HD_RM4, HD_RM1 // ひゃ conflicts with diacritic
+#define JP_hyu_combo HD_RM4, HD_RB1 //　ひゅ
+#define JP_hyo_combo HD_RM4, HD_RB2 //　ひょ
+//#define JP_fya_combo HD_RM4, HD_RM1 // ふぁ unnecessary?
+//#define JP_fyu_combo HD_RM4, HD_RB1 //　ふぃ
+//#define JP_fye_combo HD_RM4, HD_RB1 //　ふぇ
+//#define JP_fyo_combo HD_RM4, HD_RB2 //　ふぉ
+
+#define JP_bya_combo HD_LB4, HD_RM1 // びゃ
+#define JP_byu_combo HD_LB4, HD_RB1 //　びゅ  conflicts with diacritic?
+#define JP_byo_combo HD_LB4, HD_RB2 //　びょ
+#define JP_mya_combo HD_LT2, HD_RM1 // みゃ
+#define JP_myu_combo HD_LT2, HD_RB1 //　みゅ
+#define JP_myo_combo HD_LT2, HD_RB2 //　みょ
+#define JP_rya_combo HD_LH1, HD_RM1 // りゃ
+#define JP_ryu_combo HD_LH1, HD_RB1 //　りゅ
+#define JP_ryo_combo HD_LH1, HD_RB2 //　りょ
+
+#endif // JP_YOUON_COMBOS_ALL // All Japanese contracted sounds
+#endif // JP_YOUON_COMBOS  // Major Japanese contracted sounds as combos
+#endif // JP_MODE_ENABLE // All Japanese mode features

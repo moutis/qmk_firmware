@@ -58,8 +58,16 @@ extern rgblight_config_t rgblight_config;
 
 #include "moutis_combo.h"  //
 
-void matrix_scan_user_process_combo(void);
-
+//
+// These COULD be made variation dependent, to allow
+// them to adapt to geometry differences. Ex.
+// most NEU variations have " ' on ring/pinky
+// but Bronze/Silver heve ' " (inverted)
+// since [ ] and « » are SHIFT/ALT of " '
+// the paired brackets would be inverted.
+// Perhaps simply redefinind these in the variation.h
+// to override these defs would be the right approach?
+//
 #define DQUO_S  KC_RBRC // ]
 #define DQUO_A  A(S(KC_BSLS)) // »
 #define DQUO_SA A(S(KC_4)) // ›
@@ -68,6 +76,7 @@ void matrix_scan_user_process_combo(void);
 #define SQUO_SA A(S(KC_3)) // ‹
 #define JRQU KC_RBRC // keycode for "[" in Japanese mode
 #define JLQU KC_LBRC // keycode for "]" in Japanese mode
+
 
 typedef union {
     uint32_t raw;
@@ -100,3 +109,7 @@ enum OS_Platform { // Used for platform support via SemKeys
 
 #define register_linger_key(kc) {register_code16(kc);linger_key = kc;linger_timer = state_reset_timer = timer_read();}
 #define unregister_linger_key() {unregister_code16(linger_key);linger_key = 0;}
+
+
+
+void matrix_scan_user_process_combo(void);

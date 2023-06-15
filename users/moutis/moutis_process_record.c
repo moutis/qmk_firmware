@@ -13,7 +13,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     saved_mods = get_mods(); // preserve mods
 
-#ifdef ADAPTIVE_ENABLED
+#ifdef ADAPTIVE_ENABLE
     // Should we handle an adaptive key?  (Semkey may send Adaptive?)
     if (record->event.pressed // keyup = not rolling = no adaptive -> return.
         && user_config.AdaptiveKeys // AdaptiveKeys is on
@@ -27,7 +27,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false; // took care of that key
         }
     }
-#endif // #ifdef ADAPTIVE_ENABLED
+#endif // #ifdef ADAPTIVE_ENABLE
     
     // Do we need to filter multi-function keys?
     switch (keycode) {
@@ -386,18 +386,18 @@ linger_and_return:
                 return_state = true; // let QMK do it's swap thing.
                 goto storeSettings;
             case HD_AdaptKeyToggle: // toggle AdaptiveKeys (& LingerKeys, linger combos)
-#ifdef ADAPTIVE_ENABLED
+#ifdef ADAPTIVE_ENABLE
                 user_config.AdaptiveKeys = !user_config.AdaptiveKeys;
 #endif
                 return_state = false; // stop processing this record.
                 goto storeSettings;
             case HD_L_QWERTY: // are we changing default layers?
-#ifdef ADAPTIVE_ENABLED
+#ifdef ADAPTIVE_ENABLE
                 user_config.AdaptiveKeys = false; // no adaptive keys on QWERTY
 #endif
                 goto setLayer;
             case HD_L_ALPHA:
-#ifdef ADAPTIVE_ENABLED
+#ifdef ADAPTIVE_ENABLE
                 user_config.AdaptiveKeys = true; // assume adaptive keys on Hands Down
 #endif
 setLayer:
@@ -410,7 +410,7 @@ storeSettings:
 #endif // KEY_OVERRIDE_ENABLE
         } // switch (keycode) {
 
-#ifdef ADAPTIVE_ENABLED
+#ifdef ADAPTIVE_ENABLE
         prior_keydown = timer_read(); // (re)start prior_key timing
         prior_keycode = keycode; // this keycode is now stripped of mods+taps
 #endif

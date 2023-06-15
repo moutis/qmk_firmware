@@ -65,33 +65,31 @@ enum my_combos {
     HC_ENYE, // ñ/Ñ enye
 //    HC_OSLSH, // ø/Ø
 
-//    HC_J, // J is not on the map
+//    HC_J, // if J is not on the map
     HC_Q, // Q is not on the map
     HC_Z, // Z is not on the map
-//    HC_NG, // japanese ん Done in Japanese mode on enye
 
     
 
     HC_OE, // Œ
     HC_AE, // Æ
 /*
-    HC_1E, // É
-    HC_2E, // È
-    HC_3E, // Ê
-    HC_4E, // Ë
-    HC_5E, // Ē
+    HC_1E, // É acute
+    HC_2E, // È grave
+    HC_3E, // Ê circumflex
+    HC_4E, // Ë diarisis/umlaut
+    HC_5E, // Ē macron
     HC_6E, // E̊
-*/
-    /*
-        HC_UM, // Ü
-        HC_OM, // Ö
-        HC_UK, // Ů
-        HC_OK, // O̊
-        HC_UV, // Û
-        HC_OV, // Ô
-        HC_UF, // Ú
-        HC_OF, // Ó
-     */
+
+    HC_UM, // Ü
+    HC_OM, // Ö
+    HC_UK, // Ů
+    HC_OK, // O̊
+    HC_UV, // Û
+    HC_OV, // Ô
+    HC_UF, // Ú
+    HC_OF, // Ó
+ */
 
 
     
@@ -179,14 +177,8 @@ enum my_combos {
     jp_pya,  // ぴゃ
     jp_pyu,  // ぴゅ
     jp_pyo,  // ぴょ
-#ifdef JP_YOUON_COMBOS_ALL
-    jp_aa,  // アー
-    jp_ii,  //　イー
-    jp_uu,  //　ウー
-    jp_ee,  //　エー
-    jp_oo,  //　オー
-    jp_nn,  //　ン
 
+#ifdef JP_YOUON_COMBOS_ALL
     jp_gya,  // ぎゃ
     jp_gyu,  // ぎゅ
     jp_gyo,  // ぎょ
@@ -206,9 +198,8 @@ enum my_combos {
 //    jp_hya,  // ひゃ // conflicts with diacritic combo, handled individually
     jp_hyu,  // ひゅ
     jp_hyo,  // ひょ
-//    jp_hya2,  // ひゃ // conflicts with diacritic combo, handled individually
     jp_bya,  // びゃ
-//    jp_byu,  // びゅ // conflicts with diacritic combo, handled individually
+    jp_byu,  // びゅ // potential conflict
     jp_byo,  // びょ
     jp_mya,  // みゃ
     jp_myu,  // みゅ

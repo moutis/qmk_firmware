@@ -55,7 +55,7 @@
     #define COMBO_HOLD (TAPPING_TERM) // time to hold to trigger delayed combo
 #endif
 
-#define ADAPTIVE_ENABLED
+#define ADAPTIVE_ENABLE
 #define ADAPTIVE_TRAILER KC_3
 
 //#define THUMB_REPEATER

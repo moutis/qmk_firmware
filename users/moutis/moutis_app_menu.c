@@ -48,7 +48,7 @@ void process_APP_MENU(keyrecord_t *record) {
     state_reset_timer = 0;  // stop the timer
   }
   return; // handled this record.
-};
+}
 
 
 //
@@ -66,4 +66,4 @@ void matrix_APP_MENU(void) {
             appmenu_on = false;
         }
     }
-};
+}

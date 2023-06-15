@@ -1,9 +1,7 @@
 /*
  Combos
- 
- ** This will misbehave w/o QMK 14.1 or later (Sevanteri's early combos)
 
- Tailored for Hands Down Neu-rx a.k.a. Rhodium
+ Tailored for Hands Down Neu related variations
  Others have been removed, but I'll try to get everything in here soon enough.
  Finally getting to the last of imagined features that spurred Hands Down design!
   
@@ -403,17 +401,16 @@ ADD_HERE:
             case jp_pya:  // ぴゃ:
                 send_string("pya");  //
                 break;
-/*
             case jp_pyu:  // ぴゅ
                 send_string("pyu");  //
                 break;
- */
             case jp_pyo:  // ぴょ
                 send_string("pyo");  //
                 break;
-#ifdef JP_YOUON_COMBOS_ALL // JP_YOUON_COMBOS_ALL
 
-            case jp_aa:  // アー
+#ifdef JP_YOUON_COMBOS_ALL // JP_YOUON_COMBOS_ALL
+/* Unnecessary?
+            case ch:  // アー
                 send_string("a-");  //
                 break;
             case jp_ii:  //　イー
@@ -431,7 +428,7 @@ ADD_HERE:
             case jp_nn:  //　ン
                 send_string("nn");  //
                 break;
-
+*/
 
             case jp_gya:  // ぎゃ:
                 send_string("gya");  //
@@ -445,7 +442,7 @@ ADD_HERE:
             case jp_tha:  // てゃ
                 send_string("tha");  //
                 break;
-            case jp_thi:  // てぃ                send_string("thi");  //
+            case jp_thi:  // てぃ
                 send_string("thi");  //
                 break;
             case jp_thu:  // てゅ
@@ -483,8 +480,7 @@ ADD_HERE:
                 break;
 /*
             case jp_hya:  // ひゃ
-            case jp_hya2:  // ひゃ
-                send_string("hyu");  //
+                send_string("hyu");  // handled with diacritic
                 break;
 */
             case jp_hyu:  // ひゅ
@@ -496,11 +492,9 @@ ADD_HERE:
             case jp_bya:  // びゃ:
                 send_string("bya");  //
                 break;
-/*
             case jp_byu:  // びゅ
                 send_string("byu");  // conflicts, handled in the main section
                 break;
-*/
             case jp_byo:  // びょ
                 send_string("byo");  //
                 break;

@@ -13,7 +13,7 @@ user_config_t user_config;
 uint8_t  saved_mods = 0; // to pass state between process_record_user and matrix_scan_user
 uint16_t record_keycode = 0; // the keykcode we poke at in process_record
 uint16_t key_trap = 0; // the actual keycode registered (need to unregister)
-#ifdef ADAPTIVE_ENABLED
+#ifdef ADAPTIVE_ENABLE
 uint16_t prior_keycode = KC_NO;
 uint16_t prior_keydown = 0; // timer of keydown for adaptive threshhold.
 #endif
@@ -132,11 +132,11 @@ void keyboard_post_init_user(void) {
 
 #include "moutis_casemods.c"
 
-#ifdef ADAPTIVE_ENABLED
+#ifdef ADAPTIVE_ENABLE
 #include HD_adaptive_code   // this is HD variation dependent
 #endif
 
-#include HD_process_record_code   // this is HD variation dependent
+// #include HD_process_record_code   // this might need to be HD variation dependent?
+#include "moutis_process_record.c"
 
-
-#include "moutis_MATRIX.c"
+#include "moutis_matrix.c"

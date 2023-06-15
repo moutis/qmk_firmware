@@ -42,17 +42,17 @@ bool process_adaptive_key(uint16_t *calling_keycode, const keyrecord_t *record) 
                     send_string("ch"); // 85% of tc is tch, so this saves a lot of key press "H"
                     return_state = false; // done.
                     break;
-                case KC_B: // eliminate BS SFB (BS is 23x more common than BC)
-                    tap_code(KC_S);  //
+                case KC_B: // roll for tch
+                    tap_code(KC_S);  // S (BS is 23x more common than BC)
                     return_state = false; // done.
                     break;
             }
             break;
         case KC_B:
             switch (prior_keycode) {
-                case KC_C: // eliminate SB SFB (CB is 11x more common than SB)
-                    tap_code(KC_BSPC);
-                    tap_code(KC_S);
+                case KC_C: //
+                    tap_code(KC_BSPC);  // SB (SB is 1x more common than CB)
+                    tap_code(KC_S);  // S (BS is 23x more common than BC)
                     break;
            }
             break;
@@ -145,9 +145,9 @@ ReplacePriorWithL:
                     return_state = false; // done.
                     break;
                 case KC_V: // Pull S down from middle row.
-                case KC_B: // Pull S down from middle row to make SP roll
+                case KC_B: // Pull S down from middle row.
                     tap_code(KC_BSPC);
-                    tap_code(KC_S); //(but maybe should be BS? SP/BS are about equal...)
+                    tap_code(KC_S);
                     return_state = true; // not done (process this key normally)
                     break;
             }

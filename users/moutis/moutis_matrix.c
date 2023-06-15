@@ -3,12 +3,13 @@
 void matrix_scan_user(void) {
 
 #ifdef COMBO_ENABLE
-    if (combo_on) { // Is a combo_action being held?
+// Is a combo_action being held for delayed action/linger combos)?
+    if (combo_on) {
         matrix_scan_user_process_combo();
     }
 #endif
 
-    if (state_reset_timer) { // is there an active state to check on?
+    if (state_reset_timer) { // is there an active state to check on (caps_word)?
 
         if (caps_word_on) { // caps_word mode on, (no mods) check if it needs to be cleared
             if (timer_elapsed(state_reset_timer) > STATE_RESET_TIME * 3) {// caps time over?
@@ -17,8 +18,16 @@ void matrix_scan_user(void) {
             }
         }
 
+//
+// quick check in with the APP_MENU process
+// This was inline, to avoid the call/return before the test in matrix,
+// but doesn't seem to be an issue, even on AVR.
+//
         matrix_APP_MENU();
 
+//
+// prior register_linger_key(kc) needs to be handled here
+//
         if (linger_key && user_config.AdaptiveKeys) { // A linger key is being held down
             if (timer_elapsed(linger_timer) > LINGER_TIME) { // linger triggered
                 saved_mods = get_mods();
@@ -70,30 +79,11 @@ void matrix_scan_user(void) {
                         break;
                     case KC_DQUO: //
                         tap_code16(KC_BSPC);
-                        clear_keyboard(); // QMK doesn't let go of shift properly?
+                        clear_keyboard();       // QMK doesn't let go of shift here?
                         tap_SemKey(SK_SDQL);
                         tap_SemKey(SK_SDQR);
                         tap_code(KC_LEFT);
                         break;
-/*
-#ifdef JP_MODE_ENABLE
-                   case KC_A: // long 長母音・ん if held in Japanese mode
-                   case KC_I: // KC_I won't work with (home row) mod_taps…
-                   case KC_U:
-                   case KC_E: // KC_E won't work with (home row) mod_taps…
-                   case KC_O:
-                       if (IS_ENGLISH_MODE) {
-                           unregister_linger_key(); // example of simple linger macro
-                           tap_code16(KC_MINS);
-                       }
-                       break;
-                    case KC_N: // KC_N won't work with (home row) mod_taps…
-                        if (IS_ENGLISH_MODE) {
-                            unregister_linger_key(); // example of simple linger macro
-                            tap_code16(KC_N);
-                        }
-#endif
-*/
 
                     default:
                         break;
