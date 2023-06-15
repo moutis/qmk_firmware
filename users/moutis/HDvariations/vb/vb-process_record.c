@@ -52,47 +52,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!process_semkey(keycode, record)) {
         return false; // took care of that key
     }
-    
-    // APP_MENU gets special treatment
-    if  (keycode == KC_APP) {  // mimic windows app key behavior (only better?) also in scan_matrix
-        if (record->event.pressed) {
-            if (saved_mods & (MOD_MASK_CTRL)) {
-                unregister_code(KC_RALT);  // ignore these
-                unregister_code(KC_RGUI);
-                tap_code(KC_TAB);  // switch window w/in app (need semkey for this.)
-                return false; // stop processing this record.
-            }
-            mods_held = (saved_mods & (MOD_MASK_GUI | MOD_MASK_ALT)); // were mods held?
-            if (!mods_held) { // gui/alt not down, supply them
-                if (user_config.OSIndex) {  // Can't SemKey this bc hold mods & timer...
-                    register_code(KC_RALT); // Windows
-                } else {
-                    register_code(KC_RGUI); // Mac
-                }
-            }
-            tap_code(KC_TAB); // switch app
-            state_reset_timer = timer_read(); // (re)start timing hold for keyup below
-            return false; // stop processing this record.
-        } else {
-            if (!mods_held) {// just app key, so see if held for menu
-                if (!appmenu_on) {// menu not already up
-                    if (timer_elapsed(state_reset_timer) > LINGER_TIME) { // held for menu?
-                        appmenu_on = true; // turn on menu (taken down in matrix_scan_user)
-                        state_reset_timer = timer_read(); // start timer
-                    } else { // no, just a quick tap for app switch.
-                        if (user_config.OSIndex) { // let mod keys up now
-                            unregister_code(KC_RALT);
-                        } else {
-                            unregister_code(KC_RGUI);
-                        }
-                        state_reset_timer = 0;  // stop the timer
-                    }
-                }
-            }
-            return false; // stop processing this record.
-        }
-    }
 
+    // APP_MENU gets special treatment (also needs matrix_APP_MENU)
+
+    if  (keycode == KC_APP) {  // mimic windows app key behavior (only better?) also in scan_matrix
+        process_APP_MENU(record);
+        return false; // took care of that key
+    }
+    
     // only process for SHIFT/ALT & no CTRL or GUI mods
     if (saved_mods & MOD_MASK_CG)  // CTRL or GUI/CMD?
         return true; // do default if CTRL or GUI/CMD are down

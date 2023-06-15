@@ -17,19 +17,8 @@ void matrix_scan_user(void) {
             }
         }
 
-        if (appmenu_on) { // App menu up, (no mods) check if it needs to be cleared
-            if (timer_elapsed(state_reset_timer) > STATE_RESET_TIME) {// menu up time over?
-                if (user_config.OSIndex) { // Y. stop the menu.
-                    unregister_code(KC_RALT); // Windows
-                } else {
-                    unregister_code(KC_RGUI); // Mac
-                }
-                state_reset_timer = mods_held = 0;  // stop the timer            
-                appmenu_on = false;
-            }
-        }
+        matrix_APP_MENU();
 
-        
         if (linger_key && user_config.AdaptiveKeys) { // A linger key is being held down
             if (timer_elapsed(linger_timer) > LINGER_TIME) { // linger triggered
                 saved_mods = get_mods();

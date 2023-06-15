@@ -114,6 +114,7 @@ void keyboard_post_init_user(void) {
 #endif
 }
 
+#include "moutis_app_menu.c" // my custom app_menu handler (mac/win)
 
 #include "moutis_semantickeys.c" // anything could send a semantic, so…first
 

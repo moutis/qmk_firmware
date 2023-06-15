@@ -35,7 +35,7 @@
 
 
 enum my_combos {
-    FC_ESC, // ESCape SIMPLE COMBO must be first-used as FALSE for combo_on
+    FC_ESC, // ESCape SIMPLE COMBO must be first (used as FALSE for combo_on)
     HC_KBD,
     HC_APP,
     HC_CAPW, // CAPS WORD for all others
@@ -118,7 +118,6 @@ enum my_combos {
     HC_Ch, // treat as digraph 'CH'
     HC_Gh, // treat as digraph 'GH'
     HC_Ph, // treat as φ
-//    HC_Sc, // treat as digraph 'SC' // conflicts with home row tab
     HC_Sch, // treat as digraph 'SCH'
 
 #ifdef EN_PRONOUN_COMBOS
@@ -158,26 +157,11 @@ enum my_combos {
 #endif // EN_PRONOUN_COMBOS_ALL
 #endif // EN_PRONOUN_COMBOS
 
-//    HC_ing_3gram, // TYPE "ing" // #3 of 3-grams, #62 of all n-grams, 80% of "ng" bigrams
-//    HC_thing_5gram, // TYPE "thing" // worth it?
-/*
-    HC_with_4gram, // TYPE "with" #5
-    HC_ment_4gram, // TYPE "ment" #6
-    HC_ting_4gram, // TYPE "ting" #12
-    HC_ough_4gram, // TYPE "ough" #25
-
-    HC_ould_4gram, // TYPE "ould" #11
-*/
 
 // Japanese contract consonants.
 
 #ifdef JP_MODE_ENABLE  // Japanese mode switching
 #ifdef JP_YOUON_COMBOS  // Japanese contracted sounds as combos
-/*
-    jp_ya, // ゃ this is a row "push" so is this easier?
-    jp_yu, // ゅ
-    jp_yo, // ょ
-*/
     jp_kya,  // きゃ
     jp_kyu,  // きゅ
     jp_kyo,  // きょ
@@ -219,12 +203,12 @@ enum my_combos {
     jp_nya,  // にゃ
     jp_nyu,  // にゅ
     jp_nyo,  // にょ
-//    jp_hya,  // ひゃ
+//    jp_hya,  // ひゃ // conflicts with diacritic combo, handled individually
     jp_hyu,  // ひゅ
     jp_hyo,  // ひょ
-//    jp_hya2,  // ひゃ
+//    jp_hya2,  // ひゃ // conflicts with diacritic combo, handled individually
     jp_bya,  // びゃ
-//    jp_byu,  // びゅ
+//    jp_byu,  // びゅ // conflicts with diacritic combo, handled individually
     jp_byo,  // びょ
     jp_mya,  // みゃ
     jp_myu,  // みゅ
@@ -239,11 +223,11 @@ enum my_combos {
 // END Japanese contract consonants.
 
     //
-    // DELAYED ACTION COMBOS -- this block must be contiguous
+    // DELAYED ACTION COMBOS -- this block must be contiguous!!
     //
     // no action on press, action (in matrix_scan_user),
-    // underlying keys if the hold threshold is not met.
-    // may repeat if appropriate. (tap_code vs register_code)
+    // underlying keys seng if the hold threshold is not met.
+    // may repeat as appropriate. (tap_code vs register_code)
     //
     PC_STAB,  // Shift-<tab>
     PC_TGNM, // TOGGLE NUMLCK on numpad layer
@@ -268,7 +252,7 @@ enum my_combos {
     PC_LPRN,
     PC_RPRN,
     PC_CLR,
-    PC_AC,
+    PC_AC,   // END OF DELAY BLOCK
     
     HC_TYPE_LEFTCOMBO, // TYPE "LeftComboTapE" and hold for "LeftComboHeldE"
     HC_TYPE_RIGHTCOMBO, // TYPE "RightComboTapE" and hold for "RightComboHeldE"
@@ -293,11 +277,10 @@ enum my_combos {
 
     HC_UNDO,
     HC_REDO,
-    HC_CUT,
-    HC_COPY,
-    HC_PSTE,
-//    HC_PSTM,
+    HC_CUT,   // Do I use this anymore?
+    HC_COPY,  // hold for cut
+    HC_PSTE,  // hold for paste+match style
 
 
-    COMBO_LENGTH // END OF DELAY BLOCK
+    COMBO_LENGTH
 };
