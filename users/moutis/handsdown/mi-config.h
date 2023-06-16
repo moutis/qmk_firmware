@@ -84,7 +84,7 @@
 #define HD_LT3 HD_P
 #define HD_LT2 HD_G
 #define HD_LT1 HD_D
-#define HD_LT0 HD_J
+#define HD_LT0 HD_Z
 #define HD_RT0 HD_HASH
 #define HD_RT1 HD_DOT
 #define HD_RT2 HD_SLSH
