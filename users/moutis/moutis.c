@@ -127,7 +127,7 @@ void keyboard_post_init_user(void) {
 #endif
 
 #ifdef COMBO_ENABLE
-    #include "moutis_combo.c"  // variation independent combo processing
+    #include "moutis_combo.c"  // combo processing code (def in keymap)
 #endif
 
 #include "moutis_casemods.c"

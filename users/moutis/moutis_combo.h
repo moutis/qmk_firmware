@@ -3,6 +3,11 @@
 #define EXTRA_SHORT_COMBOS // because I don't believ in big combos-use layers or leader_key
 
 
+//
+// where's the file with the combo definitions to be included in the keymap.c
+//
+#define HD_combo_def "moutis_combo_def.c"
+
 #include "personalizedmacros.h"
 
 #ifndef At_ComboHeld
@@ -268,7 +273,7 @@ enum my_combos {
 
     HC_UNDO,
     HC_REDO,
-    HC_CUT,   // Do I use this anymore?
+//    HC_CUT,   // Do I use this anymore?
     HC_COPY,  // hold for cut
     HC_PSTE,  // hold for paste+match style
 

@@ -1,20 +1,21 @@
 
 //
-// Combo definitions
-//       Alpha Layer for a 34 key formfactor
+//      Alpha Layer for a 34 key form factor
 // ╭─────────────────────╮ ╭─────────────────────╮
 // │ LT4 LT3 LT2 LT1 LT0 │ │ RT0 RT1 RT2 RT3 RT4 │
 // │ LM4 LM3 LM2 LM1 LM0 | | RT0 RM1 RM2 RM3 RM4 │
 // │ LB4 LB3 LB2 LB1 LB0 │ │ RB0 RB1 RB2 RB3 RB4 │
 // ╰───────────╮ LH2 LH1 │ │ RH1 RH2  ╭──────────╯
 //             ╰─────────╯ ╰──────────╯
-//              Hands Down Vibranium b
-//     ╭─────────────────╮ ╭─────────────────╮
-//     │  X  W  M  G  J  │ │ #$  .: /* "[ '] │
-//     │  S  C  N  T  K  | | ,;   A  E  I  H │
-//     │  B  P  L  D  V  │ │ -+   U  O  Y  F │
-//     ╰───────╮  BSP R  │ │ SPC RET  ╭──────╯
-//             ╰─────────╯ ╰──────────╯
+//
+// These definitions based on Hands Down Neu
+// combo keycodes defined in the variation config
+// ex "HDvariations/nu/nu-config.h"
+//
+// Combo definitions defined spatially
+// Other variation dependent combos have predetermined
+//
+
 
 
 // for 34 key boards
@@ -40,8 +41,9 @@ const uint16_t PROGMEM H_KANA_combo[] = {HD_RM3, HD_RM2, HD_RM1, COMBO_END}; // 
 // Off map and other letter/symbol thingies typically on keyboard
 
 // RIGHT HAND
-
-  // for HANDS DOWN Vibranium
+// should work for most Neu variations (Gold/Titanium/Rhodium/Vibranium)
+// Bronze/Silver/Platinum (C on right hand, H on left/thumb) may need changes...
+//
 const uint16_t PROGMEM F_ESC_combo[] = {HD_LM4, HD_LM1, COMBO_END}; // ESCape
 const uint16_t PROGMEM Hndsh_combo[] = {HD_RB0, HD_RB1, COMBO_END}; // – n dash
 const uint16_t PROGMEM Hmdsh_combo[] = {HD_RB0, HD_RB2, COMBO_END}; // — m dash
@@ -76,24 +78,24 @@ const uint16_t PROGMEM Hcedi_combo[] = {HD_LM4, HD_LM2, COMBO_END}; // ¸ cedill
 //const uint16_t PROGMEM Hoslsh_combo[] = {HD_RB2, HD_LB0, COMBO_END}; // ø/Ø or Wh
 
 // TEXT ENTRY - off map standard alphas (also on Layer L_PUNCT @ J & G respectively)byby=
-const uint16_t PROGMEM H_Z_combo[] = {HD_Z_combo, COMBO_END}; // TYPE "z"
-const uint16_t PROGMEM H_Q_combo[] = {HD_Qu_combo, COMBO_END}; // TYPE "q" (Qu & Linger deletes u)
+const uint16_t PROGMEM H_Z_combo[] = {HD_Z_keys, COMBO_END}; // TYPE "z"
+const uint16_t PROGMEM H_Q_combo[] = {HD_Qu_keys, COMBO_END}; // TYPE "q" (Qu & Linger deletes u)
 
 // H digraph combos (ideally, these are phonetically/mnemonically arranged
 
-const uint16_t PROGMEM H_Th_combo[] = {HD_Th_combo, COMBO_END}; // TYPE "th"
-const uint16_t PROGMEM H_Ch_combo[] = {HD_Ch_combo, COMBO_END}; // TYPE "ch"
-const uint16_t PROGMEM H_Wh_combo[] = {HD_Wh_combo, COMBO_END}; // TYPE "wh"
-const uint16_t PROGMEM H_Sh_combo[] = {HD_Sh_combo, COMBO_END}; // TYPE "sh"
-const uint16_t PROGMEM H_Ph_combo[] = {HD_Ph_combo, COMBO_END}; // TYPE "ph"
-const uint16_t PROGMEM H_Gh_combo[] = {HD_Gh_combo, COMBO_END}; // TYPE "gh"
-const uint16_t PROGMEM H_Sch_combo[] = {HD_Sch_combo, COMBO_END}; // TYPE "Sch"
+const uint16_t PROGMEM H_Th_combo[] = {HD_Th_keys, COMBO_END}; // TYPE "th"
+const uint16_t PROGMEM H_Ch_combo[] = {HD_Ch_keys, COMBO_END}; // TYPE "ch"
+const uint16_t PROGMEM H_Wh_combo[] = {HD_Wh_keys, COMBO_END}; // TYPE "wh"
+const uint16_t PROGMEM H_Sh_combo[] = {HD_Sh_keys, COMBO_END}; // TYPE "sh"
+const uint16_t PROGMEM H_Ph_combo[] = {HD_Ph_keys, COMBO_END}; // TYPE "ph"
+const uint16_t PROGMEM H_Gh_combo[] = {HD_Gh_keys, COMBO_END}; // TYPE "gh"
+const uint16_t PROGMEM H_Sch_combo[] = {HD_Sch_keys, COMBO_END}; // TYPE "Sch"
 
 // TEXT ENTRY - (ANY ROW/ MIXED ROWS)
 
 
-const uint16_t PROGMEM HOE_lig_combo[] = {HD_RM2, HD_RB2, COMBO_END}; // Œ
-const uint16_t PROGMEM HAE_lig_combo[] = {HD_RM1, HD_RB1, COMBO_END}; // Æ
+const uint16_t PROGMEM HOE_lig_combo[] = {HD_OE_lig_keys, COMBO_END}; // Œ
+const uint16_t PROGMEM HAE_lig_combo[] = {HD_AE_lig_keys, COMBO_END}; // Æ
 
 
 // Fast 4grams
@@ -101,34 +103,34 @@ const uint16_t PROGMEM HAE_lig_combo[] = {HD_RM1, HD_RB1, COMBO_END}; // Æ
 #ifdef EN_PRONOUN_COMBOS // the entirely unnecessary pronoun combo shenanigans
 
 // PRONOUNS Fast 4-7grams
-const uint16_t PROGMEM H_Icap_combo[] = {HD_RM3, HD_RM4, COMBO_END}; // TYPE "I"
-const uint16_t PROGMEM H_Id_combo[] = {HD_LB1, HD_RM3, COMBO_END}; // TYPE "I'd"+"'ve "
-const uint16_t PROGMEM H_Ill_combo[] = {HD_LB2, HD_RM3, COMBO_END}; // TYPE "I'll"+"'ve "
-const uint16_t PROGMEM H_Im_combo[] = {HD_LT2, HD_RM3, COMBO_END}; // TYPE "I'm "
-const uint16_t PROGMEM H_Iv_combo[] = {HD_LB0, HD_RM3, COMBO_END}; // TYPE "I've "
+const uint16_t PROGMEM H_Icap_combo[] = {HD_Icap_keys, COMBO_END}; // TYPE "I"
+const uint16_t PROGMEM H_Id_combo[] = {HD_Id_keys, COMBO_END}; // TYPE "I'd"+"'ve "
+const uint16_t PROGMEM H_Ill_combo[] = {HD_Ill_keys, COMBO_END}; // TYPE "I'll"+"'ve "
+const uint16_t PROGMEM H_Im_combo[] = {HD_Im_keys, COMBO_END}; // TYPE "I'm "
+const uint16_t PROGMEM H_Iv_combo[] = {HD_Iv_keys, COMBO_END}; // TYPE "I've "
 
 #ifdef EN_PRONOUN_COMBOS_ALL
-const uint16_t PROGMEM H_there_combo[] = {HD_LM1, HD_LH1, COMBO_END}; // TYPE "there" #7 + 's
-const uint16_t PROGMEM H_here_combo[] = {HD_RM4, HD_LH1, COMBO_END}; // TYPE "here" #5 + 's
+const uint16_t PROGMEM H_youd_combo[] = {HD_youd_keys, COMBO_END}; // TYPE "you'd" + 've
+const uint16_t PROGMEM H_youll_combo[] = {HD_youll_keys, COMBO_END}; // TYPE "you'll" + 've
+const uint16_t PROGMEM H_youre_combo[] = {HD_youre_keys, COMBO_END}; // TYPE "you're"
+const uint16_t PROGMEM H_youve_combo[] = {HD_youve_keys, COMBO_END}; // TYPE "you've"
+const uint16_t PROGMEM H_your_combo[] = {HD_your_keys, COMBO_END}; // TYPE "your" "P" for "possessive" case
+const uint16_t PROGMEM H_their_combo[] = {HD_their_keys, COMBO_END}; // TYPE "their" #6
+const uint16_t PROGMEM H_they_combo[] = {HD_they_keys, COMBO_END}; // "they" #23 + 've
+const uint16_t PROGMEM H_theyd_combo[] = {HD_theyd_keys, COMBO_END}; // "they'd" #23 + 've
+const uint16_t PROGMEM H_theyll_combo[] = {HD_theyll_keys, COMBO_END}; // "they'll" #23 + 've
+const uint16_t PROGMEM H_theyre_combo[] = {HD_theyre_keys, COMBO_END}; // "they're"
+
+const uint16_t PROGMEM H_there_combo[] = {HD_there_keys, COMBO_END}; // TYPE "there" #7 + 's
+const uint16_t PROGMEM H_here_combo[] = {HD_here_keys, COMBO_END}; // TYPE "here" #5 + 's
 
 #ifdef EN_W_PRONOUNS
-const uint16_t PROGMEM H_where_combo[] = {HD_LT4, HD_LH1, COMBO_END}; // "where" + 's
-const uint16_t PROGMEM H_wed_combo[] = {HD_LT4, HD_LT1, COMBO_END}; // TYPE "we'd" + 've
-const uint16_t PROGMEM H_well_combo[] = {HD_LT4, HD_LT2, COMBO_END}; // TYPE "we'll" + 've
-const uint16_t PROGMEM H_were_combo[] = {HD_LT4, HD_RT4, COMBO_END}; // TYPE "we're"
-const uint16_t PROGMEM H_weve_combo[] = {HD_LT4, HD_LT0, COMBO_END}; // TYPE "we've"
+const uint16_t PROGMEM H_where_combo[] = {HD_where_keys, COMBO_END}; // "where" + 's
+const uint16_t PROGMEM H_wed_combo[] = {HD_wed_keys, COMBO_END}; // TYPE "we'd" + 've
+const uint16_t PROGMEM H_well_combo[] = {HD_well_keys, COMBO_END}; // TYPE "we'll" + 've
+const uint16_t PROGMEM H_were_combo[] = {HD_were_keys, COMBO_END}; // TYPE "we're"
+const uint16_t PROGMEM H_weve_combo[] = {HD_weve_keys, COMBO_END}; // TYPE "we've"
 #endif // EN_W_PRONOUNS
-
-const uint16_t PROGMEM H_youd_combo[] = {HD_RB3, HD_LB1, COMBO_END}; // TYPE "you'd" + 've
-const uint16_t PROGMEM H_youll_combo[] = {HD_RB3, HD_LB2, COMBO_END}; // TYPE "you'll" + 've
-const uint16_t PROGMEM H_youre_combo[] = {HD_RB3, HD_LH1, COMBO_END}; // TYPE "you're"
-const uint16_t PROGMEM H_youve_combo[] = {HD_RB3, HD_LB0, COMBO_END}; // TYPE "you've"
-const uint16_t PROGMEM H_your_combo[] = {HD_RB3, HD_LB3, COMBO_END}; // TYPE "your" "P" for "possessive" case
-const uint16_t PROGMEM H_their_combo[] = {HD_LM1, HD_LT3, COMBO_END}; // TYPE "their" #6
-const uint16_t PROGMEM H_they_combo[] = {HD_LM1, HD_RB3, COMBO_END}; // "they" #23 + 've
-const uint16_t PROGMEM H_theyd_combo[] = {HD_LM1, HD_LB1, COMBO_END}; // "they'd" #23 + 've
-const uint16_t PROGMEM H_theyll_combo[] = {HD_LM1, HD_LB2, COMBO_END}; // "they'll" #23 + 've
-const uint16_t PROGMEM H_theyre_combo[] = {HD_LM1, HD_LH1, COMBO_END}; // "they're"
 
 #endif // EN_PRONOUN_COMBOS_ALL
 
@@ -137,33 +139,35 @@ const uint16_t PROGMEM H_theyre_combo[] = {HD_LM1, HD_LH1, COMBO_END}; // "they'
 // UPPER ROW
 
 // FUNCTIONS/COMMANDS Spatially arranged
-const uint16_t PROGMEM Htab_combo[] = {HD_LT4, HD_LT3, COMBO_END}; // tab
-const uint16_t PROGMEM Hspc_combo[] = {HD_LM1, HD_LM0, COMBO_END}; // SPACE
-const uint16_t PROGMEM Hent_combo[] = {HD_LB0, HD_LB1, COMBO_END}; // ENTER
-const uint16_t PROGMEM Hent2_combo[] = {HD_LB0, HD_LB2, HD_LB1,  COMBO_END}; // hard-ENTER/page break
+const uint16_t PROGMEM Htab_combo[] = {HD_tab_keys, COMBO_END};    // tab
+const uint16_t PROGMEM Hspc_combo[] = {HD_spc_keys, COMBO_END};    // SPACE
+const uint16_t PROGMEM Hent_combo[] = {HD_ent_keys, COMBO_END};    // ENTER
+const uint16_t PROGMEM Hent2_combo[] = {HD_ent2_keys, COMBO_END};  // hard-ENTER/page break
 
 // LOWER ROW
 
-// SEMANTIC FUNCTIONS Spatially arranged  ** uses SemKeys **
-const uint16_t PROGMEM Hnew_combo[] = {HD_LM2, HD_LB2, COMBO_END}; // new
-const uint16_t PROGMEM Hopen_combo[] = {HD_LM1, HD_LB1, COMBO_END}; // open
-const uint16_t PROGMEM Hclose_combo[] = {HD_LM3, HD_LB3, COMBO_END}; // close
-const uint16_t PROGMEM Hquit_combo[] = {HD_LB0, HD_LM0, COMBO_END}; // quit
-const uint16_t PROGMEM Hfind_combo[] = {HD_RM4, HD_RB4, COMBO_END}; // find selection
-const uint16_t PROGMEM Hsall_combo[] = {HD_LB4, HD_LB1, COMBO_END}; // select all
-const uint16_t PROGMEM Hswrd_combo[] = {HD_LB4, HD_LB0, COMBO_END}; // select word
-const uint16_t PROGMEM Hundo_combo[] = {HD_LB4, HD_LB3, COMBO_END}; // undo
-const uint16_t PROGMEM Hredo_combo[] = {HD_LB4, HD_LB3, HD_LB2, COMBO_END}; // redo
-const uint16_t PROGMEM Hcut_combo[] = {HD_LB4, HD_LB2, COMBO_END}; // cut
-const uint16_t PROGMEM Hcopy_combo[] = {HD_LB3, HD_LB2, COMBO_END}; // copy (hold for cut)
-const uint16_t PROGMEM Hpste_combo[] = {HD_LB2, HD_LB1, COMBO_END}; // paste (hold for paste-match)
+// SEMANTIC FUNCTIONS  ** uses SemKeys **
+// Spatially arranged on the QWERTY ZXCV locations
+//
+const uint16_t PROGMEM Hnew_combo[] = {HD_new_keys, COMBO_END}; // new
+const uint16_t PROGMEM Hopen_combo[] = {HD_open_keys, COMBO_END}; // open
+const uint16_t PROGMEM Hclose_combo[] = {HD_close_keys, COMBO_END}; // close
+const uint16_t PROGMEM Hquit_combo[] = {HD_quit_keys, COMBO_END}; // quit
+const uint16_t PROGMEM Hfind_combo[] = {HD_find_keys, COMBO_END}; // find selection
+const uint16_t PROGMEM Hsall_combo[] = {HD_sall_keys, COMBO_END}; // select all
+const uint16_t PROGMEM Hswrd_combo[] = {HD_swrd_keys, COMBO_END}; // select word
+const uint16_t PROGMEM Hundo_combo[] = {HD_undo_keys, COMBO_END}; // undo
+const uint16_t PROGMEM Hredo_combo[] = {HD_redo_keys, COMBO_END}; // redo
+//const uint16_t PROGMEM Hcut_combo[] = {HD_cut_keys, COMBO_END}; // cut (not using this anymore?)
+const uint16_t PROGMEM Hcopy_combo[] = {HD_copy_keys, COMBO_END}; // copy (hold for cut)
+const uint16_t PROGMEM Hpste_combo[] = {HD_pste_keys, COMBO_END}; // paste (hold for paste-match)
 
 
 // TWO HANDS
 
-// Japanese contract consonants.
-// These will conflict with diacritics (below),
-// so some sort of mode-switch will be necessary for both to be used on the same board.
+// 53 Japanese contract consonant combos.
+// Some of these will conflict with diacritics (noted below),
+// so some sort of mode-switch is necessary for both to be used on the same board.
 //
 // Also, these should be coded phonetically, not spatially, but there is risk of
 // conflict with spatial and phonetically/mnemonically coded combos.
@@ -173,69 +177,56 @@ const uint16_t PROGMEM Hpste_combo[] = {HD_LB2, HD_LB1, COMBO_END}; // paste (ho
 
 #ifdef JP_MODE_ENABLE
 #ifdef JP_YOUON_COMBOS  // Major Japanese contracted sounds as combos
-const uint16_t PROGMEM kya_combo[] = {HD_LB2, HD_RM1, COMBO_END};  // きゃ
-const uint16_t PROGMEM kyu_combo[] = {HD_LB2, HD_RB1, COMBO_END};  //　きゅ
-const uint16_t PROGMEM kyo_combo[] = {HD_LB2, HD_RB2, COMBO_END};  //　きょ
-const uint16_t PROGMEM sya_combo[] = {HD_LM4, HD_RM1, COMBO_END};  // しゃ
-const uint16_t PROGMEM syu_combo[] = {HD_LM4, HD_RB1, COMBO_END};  //　しゅ
-const uint16_t PROGMEM sye_combo[] = {HD_LM4, HD_RM2, COMBO_END};  //　しぇ
-const uint16_t PROGMEM syo_combo[] = {HD_LM4, HD_RB2, COMBO_END};  //　しょ
-const uint16_t PROGMEM zya_combo[] = {HD_LM3, HD_RM1, COMBO_END};  // じゃ
-const uint16_t PROGMEM zyu_combo[] = {HD_LM3, HD_RB1, COMBO_END};  //　じゅ
-const uint16_t PROGMEM zyo_combo[] = {HD_LM3, HD_RB2, COMBO_END};  //　じょ
-const uint16_t PROGMEM tya_combo[] = {HD_LM1, HD_RM1, COMBO_END};  // ちゃ
-const uint16_t PROGMEM tyu_combo[] = {HD_LM1, HD_RB1, COMBO_END};  //　ちゅ
-const uint16_t PROGMEM tye_combo[] = {HD_LM1, HD_RM2, COMBO_END};  // ちぇ
-const uint16_t PROGMEM tyo_combo[] = {HD_LM1, HD_RB2, COMBO_END};  //　ちょ
-const uint16_t PROGMEM pya_combo[] = {HD_LT3, HD_RM1, COMBO_END};  // ぴゃ
-const uint16_t PROGMEM pyu_combo[] = {HD_LT3, HD_RB1, COMBO_END};  //　ぴゅ
-const uint16_t PROGMEM pyo_combo[] = {HD_LT3, HD_RB2, COMBO_END};  //　ぴょ
+const uint16_t PROGMEM kya_combo[] = {JP_kya_keys, COMBO_END};  // きゃ
+const uint16_t PROGMEM kyu_combo[] = {JP_kyu_keys, COMBO_END};  //　きゅ
+const uint16_t PROGMEM kyo_combo[] = {JP_kyo_keys, COMBO_END};  //　きょ
+const uint16_t PROGMEM sya_combo[] = {JP_sya_keys, COMBO_END};  // しゃ
+const uint16_t PROGMEM syu_combo[] = {JP_syu_keys, COMBO_END};  //　しゅ
+const uint16_t PROGMEM sye_combo[] = {JP_sye_keys, COMBO_END};  //　しぇ
+const uint16_t PROGMEM syo_combo[] = {JP_syo_keys, COMBO_END};  //　しょ
+const uint16_t PROGMEM zya_combo[] = {JP_zya_keys, COMBO_END};  // じゃ
+const uint16_t PROGMEM zyu_combo[] = {JP_zyu_keys, COMBO_END};  //　じゅ
+const uint16_t PROGMEM zyo_combo[] = {JP_zyo_keys, COMBO_END};  //　じょ
+const uint16_t PROGMEM tya_combo[] = {JP_tya_keys, COMBO_END};  // ちゃ
+const uint16_t PROGMEM tyu_combo[] = {JP_tyu_keys, COMBO_END};  //　ちゅ
+const uint16_t PROGMEM tye_combo[] = {JP_tye_keys, COMBO_END};  // ちぇ
+const uint16_t PROGMEM tyo_combo[] = {JP_tyo_keys, COMBO_END};  //　ちょ
+const uint16_t PROGMEM pya_combo[] = {JP_pya_keys, COMBO_END};  // ぴゃ
+const uint16_t PROGMEM pyu_combo[] = {JP_pyu_keys, COMBO_END};  //　ぴゅ
+const uint16_t PROGMEM pyo_combo[] = {JP_pyo_keys, COMBO_END};  //　ぴょ
 
 #ifdef JP_YOUON_COMBOS_ALL // All Japanese contracted sounds
 
-const uint16_t PROGMEM naa_combo[] = {HD_LT4, HD_RM1, COMBO_END};  // アー
-const uint16_t PROGMEM nii_combo[] = {HD_LT4, HD_RM3, COMBO_END};  // イー
-//const uint16_t PROGMEM nuu_combo[] = {HD_LT4, HD_RB1, COMBO_END};  // ウー
-const uint16_t PROGMEM nee_combo[] = {HD_LT4, HD_RM2, COMBO_END};  // エー
-const uint16_t PROGMEM noo_combo[] = {HD_LT4, HD_RB2, COMBO_END};  // オー
-const uint16_t PROGMEM nnn_combo[] = {HD_LM3, HD_LM1, COMBO_END};  // ん
+const uint16_t PROGMEM gya_combo[] = {JP_gya_keys, COMBO_END};  // ぎゃ
+const uint16_t PROGMEM gyu_combo[] = {JP_gyu_keys, COMBO_END};  //　ぎゅ
+const uint16_t PROGMEM gyo_combo[] = {JP_gyo_keys, COMBO_END};  //　ぎょ
+const uint16_t PROGMEM tha_combo[] = {JP_tha_keys, COMBO_END};  // てゃ
+const uint16_t PROGMEM thi_combo[] = {JP_thi_keys, COMBO_END};  // てぃ
+const uint16_t PROGMEM thu_combo[] = {JP_thu_keys, COMBO_END};  //　てゅ
+const uint16_t PROGMEM the_combo[] = {JP_the_keys, COMBO_END};  // てぇ
+const uint16_t PROGMEM tho_combo[] = {JP_tho_keys, COMBO_END};  //　てょ
+const uint16_t PROGMEM dha_combo[] = {JP_dha_keys, COMBO_END};  // でゃ
+const uint16_t PROGMEM dhi_combo[] = {JP_dhi_keys, COMBO_END};  // でぃ
+const uint16_t PROGMEM dhu_combo[] = {JP_dhu_keys, COMBO_END};  //　でゅ
+const uint16_t PROGMEM dhe_combo[] = {JP_dhe_keys, COMBO_END};  // でぇ
+const uint16_t PROGMEM dho_combo[] = {JP_dho_keys, COMBO_END};  //　でょ
+const uint16_t PROGMEM nya_combo[] = {JP_nya_keys, COMBO_END};  // にゃ
+const uint16_t PROGMEM nyu_combo[] = {JP_nyu_keys, COMBO_END};  //　にゅ
+const uint16_t PROGMEM nyo_combo[] = {JP_nyo_keys, COMBO_END};  //　にょ
 
-const uint16_t PROGMEM gya_combo[] = {HD_LT1, HD_RM1, COMBO_END};  // ぎゃ
-const uint16_t PROGMEM gyu_combo[] = {HD_LT1, HD_RB1, COMBO_END};  //　ぎゅ
-const uint16_t PROGMEM gyo_combo[] = {HD_LT1, HD_RB2, COMBO_END};  //　ぎょ
-const uint16_t PROGMEM tha_combo[] = {HD_LM2, HD_LM1, HD_RM1, COMBO_END};  // てゃ
-const uint16_t PROGMEM thi_combo[] = {HD_LM2, HD_LM1, HD_RM3, COMBO_END};  // てぃ
-const uint16_t PROGMEM thu_combo[] = {HD_LM2, HD_LM1, HD_RB1, COMBO_END};  //　てゅ
-const uint16_t PROGMEM the_combo[] = {HD_LM2, HD_LM1, HD_RM2, COMBO_END};  // てぇ
-const uint16_t PROGMEM tho_combo[] = {HD_LM2, HD_LM1, HD_RB2, COMBO_END};  //　てょ
-const uint16_t PROGMEM dha_combo[] = {HD_LB2, HD_LB1, HD_RM1, COMBO_END};  // でゃ
-const uint16_t PROGMEM dhi_combo[] = {HD_LB2, HD_LB1, HD_RM3, COMBO_END};  // でぃ
-const uint16_t PROGMEM dhu_combo[] = {HD_LB2, HD_LB1, HD_RB1, COMBO_END};  //　でゅ
-const uint16_t PROGMEM dhe_combo[] = {HD_LB2, HD_LB1, HD_RM2, COMBO_END};  // でぇ
-const uint16_t PROGMEM dho_combo[] = {HD_LB2, HD_LB1, HD_RB2, COMBO_END};  //　でょ
-const uint16_t PROGMEM nya_combo[] = {HD_LM2, HD_RM1, COMBO_END};  // にゃ
-const uint16_t PROGMEM nyu_combo[] = {HD_LM2, HD_RB1, COMBO_END};  //　にゅ
-const uint16_t PROGMEM nyo_combo[] = {HD_LM2, HD_RB2, COMBO_END};  //　にょ
+//fconst uint16_t PROGMEM hya_combo[] = {JP_hya_keys, COMBO_END};  // ひゃ　conflicts with diacritic?
+const uint16_t PROGMEM hyu_combo[] = {JP_hyu_keys, COMBO_END};  //　ひゅ
+const uint16_t PROGMEM hyo_combo[] = {JP_hyo_keys, COMBO_END};  //　ひょ
 
-// hya_combo shares a diacritic combo, so procecessed differently there (for ˚=å)
-/*
-const uint16_t PROGMEM hya_combo[] = {HD_RM4, HD_RM1, COMBO_END};  // ひゃ
-const uint16_t PROGMEM hya2_combo[] = {HD_RM4, HD_RM1, COMBO_END};  // ひゃ
-*/
-const uint16_t PROGMEM hyu2_combo[] = {HD_RM4, HD_RB1, COMBO_END};  //　ひゅ
-const uint16_t PROGMEM hyu_combo[] = {HD_RM4, HD_RB1, COMBO_END};  //　ひゅ
-const uint16_t PROGMEM hyo2_combo[] = {HD_RM4, HD_RB2, COMBO_END};  //　ひょ
-const uint16_t PROGMEM hyo_combo[] = {HD_RM4, HD_RB2, COMBO_END};  //　ひょ
-
-const uint16_t PROGMEM bya_combo[] = {HD_LB4, HD_RM1, COMBO_END};  // びゃ
-//const uint16_t PROGMEM byu_combo[] = {HD_LB4, HD_RB1, COMBO_END};  //　びゅ  conflicts, so handled in main section
-const uint16_t PROGMEM byo_combo[] = {HD_LB4, HD_RB2, COMBO_END};  //　びょ
-const uint16_t PROGMEM mya_combo[] = {HD_LT2, HD_RM1, COMBO_END};  // みゃ
-const uint16_t PROGMEM myu_combo[] = {HD_LT2, HD_RB1, COMBO_END};  //　みゅ
-const uint16_t PROGMEM myo_combo[] = {HD_LT2, HD_RB2, COMBO_END};  //　みょ
-const uint16_t PROGMEM rya_combo[] = {HD_LH1, HD_RM1, COMBO_END};  // りゃ
-const uint16_t PROGMEM ryu_combo[] = {HD_LH1, HD_RB1, COMBO_END};  //　りゅ
-const uint16_t PROGMEM ryo_combo[] = {HD_LH1, HD_RB2, COMBO_END};  //　りょ
+const uint16_t PROGMEM bya_combo[] = {JP_bya_keys, COMBO_END};  // びゃ
+const uint16_t PROGMEM byu_combo[] = {JP_byu_keys, COMBO_END};  //　びゅ  potential conflict?
+const uint16_t PROGMEM byo_combo[] = {JP_byo_keys, COMBO_END};  //　びょ
+const uint16_t PROGMEM mya_combo[] = {JP_mya_keys, COMBO_END};  // みゃ
+const uint16_t PROGMEM myu_combo[] = {JP_myu_keys, COMBO_END};  //　みゅ
+const uint16_t PROGMEM myo_combo[] = {JP_myo_keys, COMBO_END};  //　みょ
+const uint16_t PROGMEM rya_combo[] = {JP_rya_keys, COMBO_END};  // りゃ
+const uint16_t PROGMEM ryu_combo[] = {JP_ryu_keys, COMBO_END};  //　りゅ
+const uint16_t PROGMEM ryo_combo[] = {JP_ryo_keys, COMBO_END};  //　りょ
 #endif // JP_YOUON_COMBOS_ALL
 #endif // JP_YOUON_COMBOS
 #endif // JP_MODE_ENABLE
@@ -322,18 +313,10 @@ combo_t key_combos[] = {
     [jp_tye] = COMBO_ACTION(tye_combo),  // ちぇ
     [jp_tyo] = COMBO_ACTION(tyo_combo),  // ちょ
     [jp_pya] = COMBO_ACTION(pya_combo),  // ぴゃ
-//    [jp_pyu] = COMBO_ACTION(pyu_combo),  // ぴゅ
+    [jp_pyu] = COMBO_ACTION(pyu_combo),  // ぴゅ
     [jp_pyo] = COMBO_ACTION(pyo_combo),  // ぴょ
 
 #ifdef JP_YOUON_COMBOS_ALL // JP_YOUON_COMBOS_ALL
-
-    [jp_aa] = COMBO_ACTION(naa_combo),  // アー
-    [jp_ii] = COMBO_ACTION(nii_combo),  // イー
-//    [jp_uu] = COMBO_ACTION(nuu_combo),  // ウー
-    [jp_ee] = COMBO_ACTION(nee_combo),  // エー
-    [jp_oo] = COMBO_ACTION(noo_combo),  // オー
-//    [jp_nn] = COMBO_ACTION(nnn_combo),  // ん
-    
     [jp_gya] = COMBO_ACTION(gya_combo),  // ぎゃ
     [jp_gyu] = COMBO_ACTION(gyu_combo),  // ぎゅ
     [jp_gyo] = COMBO_ACTION(gyo_combo),  // ぎょ
@@ -350,12 +333,11 @@ combo_t key_combos[] = {
     [jp_nya] = COMBO_ACTION(nya_combo),  // にゃ
     [jp_nyu] = COMBO_ACTION(nyu_combo),  // にゅ
     [jp_nyo] = COMBO_ACTION(nyo_combo),  // にょ
-//    [jp_hya] = COMBO_ACTION(hya_combo),  // ひゃ
+//    [jp_hya] = COMBO_ACTION(hya_combo),  // ひゃ conflicts with diactric combos
     [jp_hyu] = COMBO_ACTION(hyu_combo),  // ひゅ
     [jp_hyo] = COMBO_ACTION(hyo_combo),  // ひょ
-//    [jp_hya2] = COMBO_ACTION(hya2_combo),  // ひゃ
     [jp_bya] = COMBO_ACTION(bya_combo),  // びゃ
-//    [jp_byu] = COMBO_ACTION(byu_combo),  // びゅ // handled in the main section
+    [jp_byu] = COMBO_ACTION(byu_combo),  // びゅ potential conflict with diactric combos
     [jp_byo] = COMBO_ACTION(byo_combo),  // びょ
     [jp_mya] = COMBO_ACTION(mya_combo),  // みゃ
     [jp_myu] = COMBO_ACTION(myu_combo),  // みゅ
@@ -484,9 +466,9 @@ combo_t key_combos[] = {
     [HC_SWRD] = COMBO(Hswrd_combo, SK_SWRD),
     [HC_UNDO] = COMBO(Hundo_combo, SK_UNDO),
     [HC_REDO] = COMBO(Hredo_combo, SK_REDO),
-    [HC_CUT] = COMBO(Hcut_combo, SK_CUT), // also hold copy
-    [HC_COPY] = COMBO_ACTION(Hcopy_combo),
-//    [HC_PSTM] = COMBO(Hpstm_combo, SK_PSTM),  // also hold paste
-    [HC_PSTE] = COMBO_ACTION(Hpste_combo)
+//    [HC_CUT] = COMBO(Hcut_combo, SK_CUT), // also hold copy (no longer used?)
+    [HC_COPY] = COMBO_ACTION(Hcopy_combo), // using hold for cut
+//    [HC_PSTM] = COMBO(Hpstm_combo, SK_PSTM),  // also hold paste (no longer used?)
+    [HC_PSTE] = COMBO_ACTION(Hpste_combo) // using hold for paste-match
     
 };

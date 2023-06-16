@@ -110,3 +110,47 @@ compile_commands.json
 # VIA(L) json files that don't belong in QMK repo
 via*.json
 users/moutis/personalizedmacros.h
+users/moutis/HDvariations/vb/vb-config.h
+users/moutis/HDvariations/vb/vb-combo_def.c
+users/moutis/HDvariations/vb/hd-vb.h
+users/moutis/HDvariations/vb copy/vb-combo_def.c
+users/moutis/HDvariations/vb copy/vb-adaptive.c
+users/moutis/HDvariations/vb copy/hd-vb.h
+users/moutis/HDvariations/ti/ti-config.h
+users/moutis/HDvariations/ti/ti-adaptive.c
+users/moutis/HDvariations/ti/moutis_PROCESS_RECORD_hd_ti.c
+users/moutis/HDvariations/ti/moutis_PROCESS_RECORD_hd.c
+users/moutis/HDvariations/ti/moutis_COMBO_hd.h
+users/moutis/HDvariations/ti/moutis_COMBO_hd.c
+users/moutis/HDvariations/ti/moutis_adaptivekeys_hd.c
+users/moutis/HDvariations/ti/hd-ti.h
+users/moutis/HDvariations/ti/config.h
+users/moutis/HDvariations/ti.old/moutis_PROCESS_RECORD_hd_ti.c
+users/moutis/HDvariations/ti.old/moutis_PROCESS_RECORD_hd.c
+users/moutis/HDvariations/ti.old/moutis_COMBO_hd.h
+users/moutis/HDvariations/ti.old/moutis_COMBO_hd.c
+users/moutis/HDvariations/ti.old/moutis_adaptivekeys_hd.c
+users/moutis/HDvariations/ti.old/hd-ti.h
+users/moutis/HDvariations/ti.old/config.h
+users/moutis/HDvariations/rh/rollow_hd_rh.json
+users/moutis/HDvariations/rh/rh-config.h
+users/moutis/HDvariations/rh/rh-adaptive.c
+users/moutis/HDvariations/rh/moutis_PROCESS_RECORD_hd_rh.c
+users/moutis/HDvariations/rh/moutis_PROCESS_RECORD_hd.c
+users/moutis/HDvariations/rh/moutis_COMBO_hd.h
+users/moutis/HDvariations/rh/moutis_COMBO_hd.c
+users/moutis/HDvariations/rh/moutis_adaptivekeys_hd.c
+users/moutis/HDvariations/rh/moutis.h
+users/moutis/HDvariations/rh/ferris_hd_rh.json
+users/moutis/HDvariations/rh/config.h
+users/moutis/HDvariations/rh.old/rollow_hd_rh.json
+users/moutis/HDvariations/rh.old/moutis_PROCESS_RECORD_hd_rh.c
+users/moutis/HDvariations/rh.old/moutis_PROCESS_RECORD_hd.c
+users/moutis/HDvariations/rh.old/moutis_COMBO_hd.h
+users/moutis/HDvariations/rh.old/moutis_COMBO_hd.c
+users/moutis/HDvariations/rh.old/moutis_adaptivekeys_hd.c
+users/moutis/HDvariations/rh.old/moutis.h
+users/moutis/HDvariations/rh.old/ferris_hd_rh.json
+users/moutis/HDvariations/rh.old/config.h
+users/moutis/HDvariations/au/au-config.h
+users/moutis/HDvariations/au/au-adaptive.c

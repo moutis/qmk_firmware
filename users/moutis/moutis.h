@@ -1,10 +1,10 @@
 #pragma once
 
 //
-// which alpha variation are we using?
+// which HD alpha variation are we using?
 //
-//
-#include "HDvariations/vb/hd-vb.h"  // defines all variation dependent constants/files
+// defines all variation dependent constants/files/keycodes, etc.
+#include "handsdown/nu-config.h"
 
 
 #ifndef USERSPACE
@@ -65,7 +65,7 @@ extern rgblight_config_t rgblight_config;
 // but Bronze/Silver heve ' " (inverted)
 // since [ ] and « » are SHIFT/ALT of " '
 // the paired brackets would be inverted.
-// Perhaps simply redefinind these in the variation.h
+// Perhaps simply redefining these in the xx-config.h
 // to override these defs would be the right approach?
 //
 #define DQUO_S  KC_RBRC // ]
@@ -89,14 +89,14 @@ typedef union {
 
 enum my_layers {  // must be difined before semantickeys.h
 // enum my_layers for layout layers for HD Neu family
-    L_QWERTY,    // 0
-    L_HDALPHA,   // 1
-    L_PUNCT,     // 2
-    L_FN_NUM,    // 3
-    L_NUMPAD,    // 4
-    L_NAV,       // 5
+    L_QWERTY,    // 0 - QWERTY compatibility layer
+    L_HDALPHA,   // 1 - Hands Down Alpha layer
+    L_PUNCT,     // 2 - symbols, punctuation, off-map alphas
+    L_FN_NUM,    // 3 - number row & function row
+    L_NUMPAD,    // 4 - numpad (right); navpad (left)
+    L_NAV,       // 5 - nav pad (right); meta keys (left)
 //  L_SYMBOLS,   //  diacritics are better handled by combos and semantickeys?
-    L_MEDIA_KBD  // 6
+    L_MEDIA_KBD  // 6 - Media/Consumer controls; Keyboard settings
 };
 
 enum OS_Platform { // Used for platform support via SemKeys
@@ -109,7 +109,6 @@ enum OS_Platform { // Used for platform support via SemKeys
 
 #define register_linger_key(kc) {register_code16(kc);linger_key = kc;linger_timer = state_reset_timer = timer_read();}
 #define unregister_linger_key() {unregister_code16(linger_key);linger_key = 0;}
-
 
 
 void matrix_scan_user_process_combo(void);
