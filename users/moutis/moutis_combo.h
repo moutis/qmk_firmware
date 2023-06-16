@@ -70,9 +70,10 @@ enum my_combos {
     HC_ENYE, // ñ/Ñ enye
 //    HC_OSLSH, // ø/Ø
 
-//    HC_J, // if J is not on the map
     HC_Q, // Q is not on the map
-    HC_Z, // Z is not on the map
+    HC_Z, // z not on the map (remappable)?
+//    HC_X, // x not on the map (remappable)?
+//    HC_J, // j not on the map (remappable)?
 
     
 

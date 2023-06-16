@@ -2,7 +2,7 @@
 //
 // The Hands Down Variation dependent defs & files
 //
-#define HD_adaptive_code "handsdown/nu-adaptive.c"
+#define HD_adaptive_code "handsdown/neu-adaptive.c"
 //
 //
 //       Alpha Layer for a 34 key formfactor
@@ -76,7 +76,7 @@
 //
 // Now let's also define the keycodes on the map for spatial referencing
 //
-// (is there anyway to combine these 2 steps?)
+// (is there any way to combine these 2 steps?)
 //
 #define HD_LT4 HD_W
 #define HD_LT3 HD_F
@@ -136,8 +136,10 @@
 
 // TEXT ENTRY - off map standard alphas (also on Layer L_PUNCT @ Z=LT4 & Q=LT3)
 //
-#define HD_Z_keys HD_LM3, HD_LM1 // TYPE "z"
 #define HD_Qu_keys HD_LT3, HD_LT1 // TYPE "q" (Qu & Linger deletes u)
+#define HD_Z_keys HD_LM3, HD_LM1 // TYPE "z"
+//#define HD_X_keys HD_LM3, HD_LM1 //
+//#define HD_J_keys HD_LM3, HD_LM1 //
 
 //
 // H digraph combos

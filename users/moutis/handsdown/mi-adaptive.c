@@ -2,7 +2,7 @@
  Adaptive Keys
  Called from within process_record_user
  
- Tailored for HD Neu (neu)
+ Tailored for HD Mithril (mi)
  
  NOTE: assumed dual-function keys (MOD_TAP, LAYER_TAP) have already been handled AND
     FILTERED OUT! The combos handler will have already taken out combo candidates,
@@ -12,14 +12,7 @@
  (not totally possible, as many of my boards have embedded AVR mcus)
 
  */
-//              Hands Down Neu
-// ╭─────────────────────╮ ╭─────────────────────╮
-// │  W   F   M   P   V  │ │  #$  .:  /*  "[  '] │
-// │  R   S   N   T   B  | |  ,;   A   E   I   H │
-// │  X   C   L   D   G  │ │  -+   U   O   Y   K │
-// ╰───────────╮ BSP SPC │ │ SPC  RET ╭──────────╯
-//             ╰─────────╯ ╰──────────╯
-// Q (LT3) & Z (LT4) are on the punc layer
+
 
 bool process_adaptive_key(uint16_t *calling_keycode, const keyrecord_t *record) {
     bool return_state = true; // assume we don't do anything.
@@ -43,85 +36,35 @@ bool process_adaptive_key(uint16_t *calling_keycode, const keyrecord_t *record) 
 /*
 // Left hand adaptives (most are single-handed neighbor fingers, bc speed, dexterity limits)
 */
-        case KC_B:  // avoid the index-middle split
-            switch (prior_keycode) {
-                case KC_P: // pull up M over
-                    tap_code(KC_M);
-                    return_state = false; // done.
-                case KC_D: // pull L over
-                    goto PullUpLAndExit; // short jumps save bytes
-                break;
-           }
-            break;
-        case KC_M: // M becomes L (pull up "L" to same row)
-            switch (prior_keycode) {
-                case KC_P: //
-                case KC_F: //
-PullUpLAndExit:
-                    tap_code(KC_L);  //
-                    return_state = false; // done.
-                    break;
-                case KC_W: // WM = LM (LM 20x more common)
-ReplacePriorWithL:
-                    tap_code(KC_BSPC);
-                    tap_code(KC_L);
-                    break;
-            }
-            break;
-        case KC_D: //
-            switch (prior_keycode) { //
-                case KC_G:
-                    goto PullUpLAndExit; // short jumps save bytes
-            }
-            break;
-        case KC_P:
-            switch (prior_keycode) {
-                case KC_F: // avoid the scissor
-                    goto ReplacePriorWithL; // short jumps save bytes
-                case KC_W:
-                    tap_code(KC_BSPC);
-                    send_string("lml"); // for "calmly" but not quite intuitive…
-                    return_state = false; // done.
-                    break;
-                case KC_V: // avoid the index-middle split
-                    goto PullUpLAndExit; // short jumps save bytes
-            }
-            break;
-        case KC_G: // avoid the index-middle split
-            switch (prior_keycode) {
-                case KC_T: // pull N over
-                    tap_code(KC_N);
-                    return_state = false; // done.
-               case KC_D: // pull L over
-                    goto ReplacePriorWithL;
-            }
-            break;
-
-        case KC_T:  // alt fingering remedy for middle-index splits
-            switch (prior_keycode) {
-                case KC_B: //
-                    goto PullUpLAndExit; // short jumps save bytes
-                    break;
-                case KC_G:
-                    send_string("ght"); // GHT is much more common
-                    return_state = false; // done.
-                    break;
-            }
-            break;
 
 
 /*
 // right hand adaptives
 */
+            
+          case KC_QUOT:
+              switch (prior_keycode) {
+                  case KC_DOT:
+                      send_string("edu");
+                      return_state = false; // done.
+                      break;
+                  case KC_SLSH:
+                      tap_code(KC_BSPC);
+                      send_string(".org");
+                      return_state = false; // done.
+                      break;
+              }
+              break;
+            case KC_SLSH:
+                switch (prior_keycode) {
+                    case KC_DOT:
+                        send_string("com");
+                        return_state = false; // done.
+                        break;
+      
+                }
+                break;
 
-        case KC_E: //
-            switch (prior_keycode) { //
-                case KC_A:
-                    tap_code(KC_U); // "AE" yields "AU" (8x more common)
-                    return_state = false; // done.
-                    break;
-            }
-            break;
         case KC_H: // How often are we likely to hit BS so quickly after?
             switch (prior_keycode) { // maybe OK? What about xxR? resulting in a SFB on thumb?
                 case KC_E:
@@ -132,31 +75,10 @@ ReplacePriorWithL:
                     tap_code(KC_E); // "OH" yields "OE" (almost 1:1, but eliminates an SFB?)
                     return_state = false; // done.
                     break;
-                case KC_U:
-                    tap_code(KC_A); // "UH" yields "UA" (126x more common)
-                    return_state = false; // done.
-                    break;
 
             }
             break;
-
-        case KC_K:
-            switch (prior_keycode) {
-                case KC_Y:  // eliminate SFB on ring finger
-                    tap_code(KC_I);
-                    return_state = false; // done.
-                    break;
-            }
-            break;
-        case KC_U:
-            switch (prior_keycode) {
-                case KC_K: // make KU send Qu
-                    tap_code(KC_BSPC);
-                    tap_code(KC_Q);
-                    break;
-            }
-            break;
-
+            
 
 #ifdef THUMB_REPEATER
         case HD_REPEATER_A: // Make a repeat key of the secondary thumb key on both sides
