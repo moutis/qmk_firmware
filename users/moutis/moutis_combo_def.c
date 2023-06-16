@@ -79,9 +79,9 @@ const uint16_t PROGMEM Hcedi_combo[] = {HD_LM4, HD_LM2, COMBO_END}; // ¸ cedill
 
 // TEXT ENTRY - off map standard alphas (also on Layer L_PUNCT @ J & G respectively)byby=
 const uint16_t PROGMEM H_Q_combo[] = {HD_Qu_keys, COMBO_END}; // TYPE "q" (Qu & Linger deletes u)
-const uint16_t PROGMEM H_Z_combo[] = {HD_Z_keys, COMBO_END}; // ex. TYPE "z"
-//const uint16_t PROGMEM H_X_combo[] = {HD_X_keys, COMBO_END}; // ex. TYPE "x"
-//const uint16_t PROGMEM H_J_combo[] = {HD_J_keys, COMBO_END}; // ex. TYPE "j"
+const uint16_t PROGMEM H_L1_combo[] = {HD_L1_keys, COMBO_END}; // ex. TYPE "z"
+//const uint16_t PROGMEM H_L2_combo[] = {HD_L2_keys, COMBO_END}; // ex. TYPE "x"
+//const uint16_t PROGMEM H_L3_combo[] = {HD_L3_keys, COMBO_END}; // ex. TYPE "j"
 
 // H digraph combos (ideally, these are phonetically/mnemonically arranged
 
@@ -285,9 +285,9 @@ combo_t key_combos[] = {
     [HC_TAB] = COMBO(Htab_combo, KC_TAB),
 
     [HC_Q] = COMBO_ACTION(H_Q_combo),
-    [HC_Z] = COMBO(H_Z_combo, HD_Z),
-//    [HC_X] = COMBO(H_X_combo, HD_X),
-//    [HC_J] = COMBO(H_J_combo, HD_J),
+    [HC_L1] = COMBO(H_L1_combo, HD_L1),
+//    [HC_L2] = COMBO(H_L2_combo, HD_L2),
+//    [HC_L3] = COMBO(H_L3_combo, HD_L3),
     [HC_Ch] = COMBO_ACTION(H_Ch_combo),
     [HC_Sch] = COMBO_ACTION(H_Sch_combo),
     [HC_Gh] = COMBO_ACTION(H_Gh_combo),

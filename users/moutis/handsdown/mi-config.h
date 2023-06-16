@@ -111,7 +111,7 @@
 #define HD_RB1 HD_U
 #define HD_RB2 HD_O
 #define HD_RB3 HD_DQUO
-#define HD_RB4 HD_F
+#define HD_RB4 HD_L
 
 //Primary Thumbs (others unique to the board)
 #define HD_LH2 HD_BSPC
@@ -139,9 +139,12 @@
 // TEXT ENTRY - off map standard alphas (also on Layer L_PUNCT @ Z=LT4 & Q=LT3)
 //
 #define HD_Qu_keys HD_LT3, HD_LT1 // TYPE "q" (Qu & Linger deletes u)
-#define HD_Z_keys HD_LM3, HD_LM1 // ex. TYPE "z"
-//#define HD_X_keys HD_LM3, HD_LM1 //
-//#define HD_J_keys HD_LM3, HD_LM1 //
+#define HD_L1_keys HD_LM3, HD_LM1 // ex. TYPE "z"
+#define HD_L1 HD_X
+//#define HD_L2_keys HD_LM3, HD_LM1 // ex. TYPE "x"
+//#define HD_L2 HD_X
+//#define HD_L3_keys HD_LM3, HD_LM1 // ex. TYPE "j"
+//#define HD_L3 HD_J
 //
 // H digraph combos
 // try to make these use the lead letter and a neighbor.

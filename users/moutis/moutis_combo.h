@@ -71,9 +71,9 @@ enum my_combos {
 //    HC_OSLSH, // ø/Ø
 
     HC_Q, // Q is not on the map
-    HC_Z, // z not on the map (remappable)?
-//    HC_X, // x not on the map (remappable)?
-//    HC_J, // j not on the map (remappable)?
+    HC_L1, // ex. z not on the map (remappable)?
+//    HC_L2, // ex. x not on the map (remappable)?
+//    HC_L3, // ex. j not on the map (remappable)?
 
     
 
