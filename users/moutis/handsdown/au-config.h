@@ -2,7 +2,7 @@
 //
 // The Hands Down Variation dependent defs & files
 //
-#define HD_adaptive_code "handsdown/nu-adaptive.c"
+#define HD_adaptive_code "handsdown/au-adaptive.c"
 //
 //
 //       Alpha Layer for a 34 key formfactor
@@ -12,12 +12,12 @@
 // │ LB4 LB3 LB2 LB1 LB0 │ │ RB0 RB1 RB2 RB3 RB4 │
 // ╰───────────╮ LH2 LH1 │ │ RH1 RH2  ╭──────────╯
 //             ╰─────────╯ ╰──────────╯
-//              Hands Down Neu
+//              Hands Down Gold
 // ╭─────────────────────╮ ╭─────────────────────╮
-// │  W   F   M   P   V  │ │  #$  .:  /*  "[  '] │
-// │  R   S   N   T   B  | |  ,;   A   E   I   H │
-// │  X   C   L   D   G  │ │  -+   U   O   Y   K │
-// ╰───────────╮ TAB BSP │ │ SPC  RET ╭──────────╯
+// │  J   G   M   P   V  │ │  #$  .:  /*  "[  '] │
+// │  R   S   N   D   B  | |  ,;   A   E   I   H │
+// │  X   F   L   C   W  │ │  -+   U   O   Y   K │
+// ╰───────────╮ BSP  T  │ │ SPC  RET ╭──────────╯
 //             ╰─────────╯ ╰──────────╯
 // Q (LT3) & Z (LT4) are on the punc layer
 // and on combos (defined below)
@@ -26,6 +26,8 @@
 // This will morph to being entirel properly abstracted
 // similar to Miryoku, (maybe someone will make an HD Miryoku someday?)
 //
+//
+
 //
 // We want to be able to define a combo either
 // by location for variation independent, spatial referencing, or
@@ -36,9 +38,9 @@
 // First, let's add any hold-taps to the keycodes
 //
 #define HD_A RSFT_T(KC_A)
-#define HD_B KC_B
-#define HD_C RALT_T(KC_C)
-#define HD_D KC_D
+#define HD_B LT(L_NUMPAD,KC_B)
+#define HD_C KC_C
+#define HD_D RSFT_T(KC_D)
 #define HD_E RGUI_T(KC_E)
 #define HD_F KC_F
 #define HD_G KC_G
@@ -54,7 +56,7 @@
 #define HD_Q KC_Q
 #define HD_R RCTL_T(KC_R)
 #define HD_S RALT_T(KC_S)
-#define HD_T RSFT_T(KC_T)
+#define HD_T LT(L_NAV,KC_T)
 #define HD_U KC_U
 #define HD_V KC_V
 #define HD_W KC_W
@@ -78,8 +80,8 @@
 //
 // (is there anyway to combine these 2 steps?)
 //
-#define HD_LT4 HD_W
-#define HD_LT3 HD_F
+#define HD_LT4 HD_J
+#define HD_LT3 HD_G
 #define HD_LT2 HD_M
 #define HD_LT1 HD_P
 #define HD_LT0 HD_V
@@ -92,7 +94,7 @@
 #define HD_LM4 HD_R
 #define HD_LM3 HD_S
 #define HD_LM2 HD_N
-#define HD_LM1 HD_T
+#define HD_LM1 HD_D
 #define HD_LM0 HD_B
 #define HD_RM0 HD_COMM
 #define HD_RM1 HD_A
@@ -101,10 +103,10 @@
 #define HD_RM4 HD_H
 
 #define HD_LB4 HD_X
-#define HD_LB3 HD_C
+#define HD_LB3 HD_F
 #define HD_LB2 HD_L
-#define HD_LB1 HD_D
-#define HD_LB0 HD_G
+#define HD_LB1 HD_C
+#define HD_LB0 HD_W
 #define HD_RB0 HD_MINS
 #define HD_RB1 HD_U
 #define HD_RB2 HD_O
@@ -112,8 +114,8 @@
 #define HD_RB4 HD_K
 
 //Primary Thumbs (others unique to the board)
-#define HD_LH2 KC_TAB
-#define HD_LH1 HD_BSPC
+#define HD_LH2 HD_BSPC
+#define HD_LH1 HD_T
 #define HD_RH1 HD_SPC
 #define HD_RH2 HD_ENT
 
@@ -131,12 +133,12 @@
 //
 #define HD_tab_keys  HD_LM4, HD_LM3     // tab
 #define HD_spc_keys  HD_LM1, HD_LM0     // SPACE
-#define HD_ent_keys  HD_LT0, HD_LT1     // ENTER
-#define HD_ent2_keys HD_LT0, HD_LT1, HD_LT2 // hard-ENTER/page break
+#define HD_ent_keys  HD_LB0, HD_LB1     // ENTER
+#define HD_ent2_keys HD_LB0, HD_LB2, HD_LB1 // hard-ENTER/page break
 
 // TEXT ENTRY - off map standard alphas (also on Layer L_PUNCT @ Z=LT4 & Q=LT3)
 //
-#define HD_Z_keys HD_LM3, HD_LM1 // TYPE "z"
+#define HD_Z_keys HD_LT1, HD_LT0 // TYPE "z"
 #define HD_Qu_keys HD_LT3, HD_LT1 // TYPE "q" (Qu & Linger deletes u)
 
 //
@@ -147,8 +149,8 @@
 #define HD_Ch_keys HD_LM3, HD_LM1 // TYPE "ch"
 #define HD_Wh_keys HD_LT4, HD_LT3 // TYPE "wh"
 #define HD_Sh_keys HD_LM3, HD_LM2 // TYPE "sh"
-#define HD_Ph_keys HD_LT2, HD_LT1 // TYPE "ph"
-#define HD_Gh_keys HD_LB1, HD_LB0 // TYPE "gh"
+#define HD_Ph_keys HD_LT1, HD_LT2 // TYPE "ph"
+#define HD_Gh_keys HD_LT3, HD_LT2 // TYPE "gh"
 #define HD_Sch_keys HD_LM4, HD_LM3, HD_LM2 // TYPE "Sch"
 
 #define HD_OE_lig_keys HD_RM2, HD_RB2 // Œ

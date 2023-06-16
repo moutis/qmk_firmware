@@ -4,7 +4,7 @@
 // which HD alpha variation are we using?
 //
 // defines all variation dependent constants/files/keycodes, etc.
-#include "handsdown/nu-config.h"
+#include "handsdown/au-config.h"
 
 
 #ifndef USERSPACE
