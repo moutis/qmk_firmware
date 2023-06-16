@@ -76,7 +76,7 @@
 #define HD_COMM LT(L_FN_NUM, KC_COMM)
 
 //
-// Now let's also defineo the keycodes on the map for spatial referencing
+// Now let's also define the keycodes on the map for spatial referencing
 //
 // (is there anyway to combine these 2 steps?)
 //
