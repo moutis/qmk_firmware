@@ -208,7 +208,7 @@
 #define HD_open_keys  HD_LM1, HD_LB1   // open
 #define HD_close_keys HD_LM3, HD_LB3   // close
 #define HD_quit_keys  HD_LB0, HD_LM0   // quit
-#define HD_find_keys  HD_RM4, HD_RB0   // find selection
+#define HD_find_keys  HD_LM4, HD_LM0   // find selection
 #define HD_sall_keys  HD_LB4, HD_LB1   // select all
 #define HD_swrd_keys  HD_LB4, HD_LB0   // select word
 #define HD_undo_keys  HD_LB4, HD_LB3   // undo

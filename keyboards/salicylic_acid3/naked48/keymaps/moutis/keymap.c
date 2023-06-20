@@ -1,6 +1,6 @@
 //#include QMK_KEYBOARD_H
 
-#include "naked48.h"
+//#include "naked48.h"
 
 /*#ifdef SSD1306OLED
 void led_set_kb(uint8_t usb_led) {
@@ -32,18 +32,14 @@ void led_set_kb(uint8_t usb_led) {
         4, 4, 4, 4, 4, 4, 4, 4
 } };
 #endif
-
+/*
 void matrix_init_kb(void) {
     matrix_init_user();
 };
-
+*/
 #include <users/moutis/config.h>
 #include <users/moutis/moutis.h>
 
-/* include the config.qmk.fm json compiled to c using
-* "QMK json2c -o users/moutis/cornelius/cornelius_hd_keymap.c users/moutis/cornelius/cornelius_hd_bronze.json"
-*/
-
-#include <users/moutis/naked48/naked48_hd_keymap.c>
+#include <users/moutis/mykeyboards/naked48/naked48_hd_keymap.c>
 
 

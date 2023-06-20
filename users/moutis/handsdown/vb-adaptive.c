@@ -58,7 +58,9 @@ bool process_adaptive_key(uint16_t *calling_keycode, const keyrecord_t *record) 
             break;
         case KC_M: // M becomes L (pull up "L" to same row)
             switch (prior_keycode) {
-                case KC_P: // tricksy fake out
+                case KC_B: // tricksy - trilling "mxm" results in "mbl" trigram
+                case KC_P: // tricksy - trilling "mwm" results in "mpl" trigram
+                           // rolling "xwm" is also captured here, resulting in "xpl"
                 case KC_G: // pull up "L" (GL is 5x more common than GM)
 PullUpLAndExit:
                     tap_code(KC_L);  // pull up "L" (PL is 15x more common than PM)
@@ -86,9 +88,9 @@ ReplacePriorWithL:
 
         case KC_W:
             switch (prior_keycode) {
-                case KC_X:  // W becomes P (pull up "L" to same row) after X or M
-                case KC_M:
-                    *calling_keycode = KC_P; // tricksy fake out
+                case KC_X: // pull up P (W becomes P after X to set up "xp"+l)
+                case KC_M: // pull up P (W becomes P abter M to set up "mp"+l)
+                    *calling_keycode = KC_P; // tricksy - pretend the last was P, for "mpl" or "xpl" trigram
                     tap_code(KC_P); // pull up P from bottom row.
                     return_state = false; // done.
                     break;
@@ -130,7 +132,8 @@ ReplacePriorWithL:
                 case KC_W:
                     goto PullUpLAndExit;
                 case KC_M: // "MB" is 2558x more frequent than "MX"
-                    tap_code(KC_B);
+                    *calling_keycode = KC_B; // tricksy - pretend the last was B, for "mbl" trigram
+                    tap_code(KC_B); // pull up B from bottom row.
                     return_state = false; // done.
                     break;
                 case KC_G:
