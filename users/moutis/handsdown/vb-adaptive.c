@@ -71,11 +71,6 @@ ReplacePriorWithL:
                     tap_code(KC_BSPC);
                     tap_code(KC_L);
                     break;
-                case KC_X:
-                    tap_code(KC_BSPC);
-                    send_string("lml"); // for "calmly" but not quite intuitive…
-                    return_state = false; // done.
-                    break;
             }
             break;
         case KC_D: // (for KD=KL; least code, no side effects)
@@ -106,6 +101,11 @@ ReplacePriorWithL:
                     goto PullUpLAndExit; // short jumps save bytes
                case KC_M:
                     goto ReplacePriorWithL;
+                case KC_W:
+                    tap_code(KC_BSPC);
+                    send_string("lml"); // for "calmly" but not quite intuitive…
+                    return_state = false; // done.
+                    break;
             }
             break;
 
