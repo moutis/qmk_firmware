@@ -209,6 +209,13 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
                 combo_on = combo_index; // may add "'ve " if held
                 break;
             case HC_Id:
+#ifdef JP_MODE_ENABLE
+                if (!IS_ENGLISH_MODE) { // if in Japanese mode
+                    send_string("dhi");  // でぃ
+                    break;
+                }
+#endif // JP_MODE_ENABLE
+
             case HC_Ill:
             case HC_Im:
             case HC_Iv:
@@ -287,6 +294,8 @@ addonsuffix: // sharing this saves about 100 bytes (10 bytes per instance)
                         send_string("d");
                         combo_on = combo_index; // may add "'ve " in matrix_scan_user_process_combo
                         break;
+
+
 #ifdef EN_PRONOUN_COMBOS_ALL
 #ifdef EN_W_PRONOUNS
                     case HC_well_5gram: // we'll
@@ -457,9 +466,12 @@ ADD_HERE:
             case jp_dha:  // でゃ
                 send_string("dha");  //
                 break;
-            case jp_dhi:  // でぃ
-                send_string("dhi");  //
+ #ifndef EN_PRONOUN_COMBOS
+           case jp_dhi:  // でぃ
+                send_string("dhi");  // /onflicts with I'd pronoun combo, so handle it there.
+
                 break;
+#endif
             case jp_dhu:  // でょ
                 send_string("dhu");  //
                 break;
