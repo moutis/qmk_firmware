@@ -260,7 +260,7 @@
 #define JP_tho_keys HD_LM2, HD_LM1, HD_RB2 //　てょ
 #define JP_dha_keys HD_LB1, HD_RM1 // でゃ
 #ifndef EN_PRONOUN_COMBOS
-#define JP_dhi_keys HD_LB1, HD_RM3 // でぃ conflicts with I'd
+#define JP_dhi_keys HD_LB1, HD_RM3 // でぃ conflicts with I'd (so handle it there if present)
 #endif
 #define JP_dhu_keys HD_LB1, HD_RB1 //　でゅ
 #define JP_dhe_keys HD_LB1, HD_RM2 // でぇ
