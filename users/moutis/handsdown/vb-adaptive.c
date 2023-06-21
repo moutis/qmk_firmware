@@ -58,8 +58,8 @@ bool process_adaptive_key(uint16_t *calling_keycode, const keyrecord_t *record) 
             break;
         case KC_M: // M becomes L (pull up "L" to same row)
             switch (prior_keycode) {
-                case KC_B: // tricksy - trilling "mxm" results in "mbl" trigram
-                case KC_P: // tricksy - trilling "mwm" results in "mpl" trigram
+                case KC_B: // tricksy - trilling "mxm" results in "mbl" trigram instead of scissor
+                case KC_P: // tricksy - trilling "mwm" results in "mpl" trigram instead of scissor
                            // rolling "xwm" is also captured here, resulting in "xpl"
                 case KC_G: // pull up "L" (GL is 5x more common than GM)
 PullUpLAndExit:
@@ -67,6 +67,7 @@ PullUpLAndExit:
                     return_state = false; // done.
                     break;
                 case KC_W: // WM = LM (LM 20x more common)
+                    *calling_keycode = KC_L; // tricksy - pretend the last was L, for "lml"
 ReplacePriorWithL:
                     tap_code(KC_BSPC);
                     tap_code(KC_L);
@@ -81,8 +82,20 @@ ReplacePriorWithL:
             }
             break;
 
+        case KC_L: // catch this so we can unshift L on these rolls.
+            switch (prior_keycode) {
+                case KC_B: //
+                case KC_P: //
+                case KC_S: //
+                    tap_code(KC_L);  // Shift is off here.
+                    return_state = false; // done.
+                    break;
+            }
+            break;
         case KC_W:
             switch (prior_keycode) {
+                case KC_L: // tricksy - trilling "wmw" results in "lml" trigram instead of SFB
+                    goto PullUpLAndExit; // short jumps save bytes
                 case KC_X: // pull up P (W becomes P after X to set up "xp"+l)
                 case KC_M: // pull up P (W becomes P abter M to set up "mp"+l)
                     *calling_keycode = KC_P; // tricksy - pretend the last was P, for "mpl" or "xpl" trigram
@@ -129,6 +142,7 @@ ReplacePriorWithL:
 
         case KC_X:
             switch (prior_keycode) {
+                case KC_P: // MW->MP, so MPL rolling out
                 case KC_W:
                     goto PullUpLAndExit;
                 case KC_M: // "MB" is 2558x more frequent than "MX"
