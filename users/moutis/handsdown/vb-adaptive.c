@@ -199,7 +199,7 @@ ReplacePriorWithL:
                 }
                 break;
 
-        case KC_H: // How often are we likely to hit BS so quickly after?
+        case KC_H: // H precedes a vowel much more often than it follows (thanks, Ancient Greek!)
             switch (prior_keycode) { // maybe OK? What about xxR? resulting in a SFB on thumb?
                 case KC_A: // AE is a fraction less common, but I find the EAE trill harder than EAH.
                     tap_code(KC_U); // "AH" yields "AU" (8x more common)
@@ -215,6 +215,10 @@ ReplacePriorWithL:
                     break;
                 case KC_U:
                     tap_code(KC_A); // "UH" yields "UA" (126x more common)
+                    return_state = false; // done.
+                    break;
+                case KC_I: // avoid row skip on outward pinky roll
+                    tap_code(KC_F); // "IH" yields "IF" (96x more common)
                     return_state = false; // done.
                     break;
 
