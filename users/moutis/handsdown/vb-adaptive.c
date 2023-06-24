@@ -50,6 +50,7 @@ bool process_adaptive_key(uint16_t *calling_keycode, const keyrecord_t *record) 
             break;
         case KC_B:
             switch (prior_keycode) {
+                case KC_P: // avoid row step (PS is 40x more common than PB)
                 case KC_C: // eliminate SB SFB (CB is 11x more common than SB)
                     tap_code(KC_BSPC);
                     tap_code(KC_S);
@@ -162,7 +163,7 @@ ReplacePriorWithL:
                     return_state = false; // done.
                     break;
                 case KC_V: // Pull S down from middle row.
-                case KC_B: // Pull S down from middle row to make SP roll
+                case KC_B: // Pull S down [SP is 83x more common than BP]
                     tap_code(KC_BSPC);
                     tap_code(KC_S); //(but maybe should be BS? SP/BS are about equal...)
                     return_state = true; // not done (process this key normally)

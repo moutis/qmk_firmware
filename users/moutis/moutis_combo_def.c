@@ -20,7 +20,7 @@
 
 // for 34 key boards
 const uint16_t PROGMEM HC_kbd_combo[] = {HD_RH1, HD_RH2, COMBO_END}; // keyboard settings/config layer
-const uint16_t PROGMEM H_menu_combo[] = {HD_LH2, HD_LH1, COMBO_END}; // MENU
+const uint16_t PROGMEM H_menu_combo[] = {HD_LT0, HD_LT1, COMBO_END}; // MENU
 
 /* examples of text entry combos */
 const uint16_t PROGMEM H_Left_combo[] = {HD_LT3, HD_LT2, HD_LT1, COMBO_END}; // TYPE LeftComboTapE
