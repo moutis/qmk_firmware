@@ -29,13 +29,13 @@
 //
 
 //
-// We want to be able to define a combo either
+// We want to be able to define a combo
 // by location for variation independent, spatial referencing, or
-// or by letter for mnemonic/phonetic referencing (variation dependent)
+// by letter for mnemonic/phonetic referencing (variation dependent)
 //
 // BE CAREFUL to not double define a combo!
 //
-// First, let's add any hold-taps to the keycodes
+// First, let's add any hold-taps to the alpha keycodes
 //
 #define HD_A RSFT_T(KC_A)
 #define HD_B KC_B
@@ -76,7 +76,8 @@
 #define HD_COMM LT(L_FN_NUM, KC_COMM)
 
 //
-// Now let's also define the keycodes on the map for spatial referencing
+// Now let's place these keycodes on the map
+// for variation independent spatial referencing
 //
 // (is there any way to combine these 2 steps?)
 //
@@ -178,13 +179,15 @@
 #define HD_youre_keys HD_Y, HD_R  // TYPE "you're"
 #define HD_youve_keys HD_Y, HD_V  // TYPE "you've"
 #define HD_your_keys  HD_Y, HD_P  // TYPE "your" "P" for "possessive" case
-#define HD_their_keys HD_T, HD_W  // TYPE "their" #6
-#define HD_they_keys  HD_T, HD_Y  // "they" #23 + 've
-#define HD_theyd_keys HD_T, HD_X  // "they'd" #23 + 've
-#define HD_theyll_keys HD_T, HD_L // "they'll" #23 + 've
-#define HD_theyre_keys HD_T, HD_QUOT // "they're"
 
-#define HD_there_keys HD_T, HD_F  // TYPE "there" #7 + 's
+#define HD_their_keys HD_T, HD_B  // TYPE "their" #6 (R on same finger in Neu)
+#define HD_theyre_keys HD_T, HD_X // "they're"  (R on same finger in Neu)
+#define HD_they_keys  HD_T, HD_W  // "they" #23 + 've (near they)
+#define HD_theyll_keys HD_T, HD_M // "they'll" #23 + 've (M is easier to combo, also in We'll)
+#define HD_theyd_keys HD_T, HD_P  // "they'd" #23 + 've (no rationale for this, but no SFCombo)
+
+// deictics. Are these really necessary?
+#define HD_there_keys HD_T, HD_R  // TYPE "there" #7 + 's
 #define HD_here_keys  HD_H, HD_R  // TYPE "here" #5 + 's
 
 
