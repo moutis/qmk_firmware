@@ -123,19 +123,33 @@ ReplacePriorWithL:
             }
             break;
 
-        case KC_K:
-        case KC_V:
+        case KC_K: // remedy ring-index split by shifting fingering
+            if (prior_keycode == KC_T) {// TK = CK (+282x)
+                    tap_code(KC_BSPC);
+                    tap_code(KC_C);
+                    break;
+            }
+            // fall through to check for these pairs
+        case KC_V: // remedy mid-index split by shifting fingering
             switch (prior_keycode) {
-                case KC_D: // DV/TV/GV = LV (remedy mid-index split by shifting fingering)
-                case KC_T: // TK/DK/GK = LK (remedy mid-index split by shifting fingering)
+                case KC_D: // DV/TV/GV = LV ()
+                case KC_T: // TK/DK/GK = LK ()
                 case KC_G: //
                     goto ReplacePriorWithL; // short jumps save bytes
            }
             break;
         case KC_T:  // alt fingering remedy for middle-index splits
             switch (prior_keycode) {
-                case KC_K: // quickly typing "k?" yields "kn"
+                case KC_K: // quickly typing "k?" yields "kn" (+48x)
                     tap_code(KC_N);
+                    return_state = false; // done.
+                    break;
+            }
+            break;
+        case KC_R:  // LL is the highest consonant repeat, and it's off home, so eliminate this SFB
+            switch (prior_keycode) {
+                case KC_L: // quickly typing "lr" yields "ll" (+56x)
+                    tap_code(KC_L);
                     return_state = false; // done.
                     break;
             }
