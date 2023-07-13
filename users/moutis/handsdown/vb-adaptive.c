@@ -63,6 +63,7 @@ bool process_adaptive_key(uint16_t *calling_keycode, const keyrecord_t *record) 
                 case KC_P: // tricksy - trilling "mwm" results in "mpl" trigram instead of scissor
                            // rolling "xwm" is also captured here, resulting in "xpl"
                 case KC_G: // pull up "L" (GL is 5x more common than GM)
+                case KC_X: // pull up "L" (XL is 1.5x more common than XM)
 PullUpLAndExit:
                     tap_code(KC_L);  // pull up "L" (PL is 15x more common than PM)
                     return_state = false; // done.
@@ -88,9 +89,7 @@ ReplacePriorWithL:
                 case KC_B: //
                 case KC_P: //
                 case KC_S: //
-                    tap_code(KC_L);  // Shift is off here.
-                    return_state = false; // done.
-                    break;
+                    goto PullUpLAndExit; // no change except shift is now off
             }
             break;
         case KC_W:
