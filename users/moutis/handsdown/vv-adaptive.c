@@ -48,7 +48,7 @@ bool process_adaptive_key(uint16_t *calling_keycode, const keyrecord_t *record) 
                     break;
             }
             break;
-        case KC_V:
+        case KC_V: // VP/PV = SP/PS
             switch (prior_keycode) {
                 case KC_P: // avoid row step (PS is 246x more common than PV)
                     tap_code(KC_S);
@@ -170,7 +170,7 @@ ReplacePriorWithL:
                     tap_code(KC_G);
                     return_state = false; // done.
                     break;
-                case KC_V: // Pull S down from middle row.
+                case KC_V: // Pull S down from middle row. (VP/PV = SP/PS)
                 case KC_B: // Pull S down [SP is 83x more common than BP]
                     tap_code(KC_BSPC);
                     tap_code(KC_S); //(but maybe should be BS? SP/BS are about equal...)
