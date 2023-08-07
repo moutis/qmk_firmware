@@ -220,6 +220,7 @@ ReplacePriorWithL:
             break;
         case KC_J:
             switch (prior_keycode) {
+                case KC_QUOT:
                 case KC_B: //
                     tap_code(KC_Y); // BJ = BY (eliminate scissor on ring finger BY is 6x BJ)
                     return_state = false; // done.
@@ -248,6 +249,10 @@ ReplacePriorWithL:
               case KC_DOT:
                   tap_code(KC_BSPC);
                   send_string(".org");
+                  return_state = false; // done.
+                  break;
+              case KC_J:
+                  tap_code(KC_I); // (eliminate SFB)
                   return_state = false; // done.
                   break;
          }

@@ -17,7 +17,3 @@
 
 #pragma once
 
-#ifdef PRODUCT
-#undef PRODUCT
-#define PRODUCT         HD-Naked48
-#endif
