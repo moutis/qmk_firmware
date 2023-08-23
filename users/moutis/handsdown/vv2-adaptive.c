@@ -97,7 +97,8 @@ ReplacePriorWithL:
         case KC_F:
             switch (prior_keycode) {
                 case KC_D: //
-                    tap_code(KC_G); // avoid row step (SF is 311x more common than VF)
+                    tap_code(KC_G); // eliminate SFB (DF is 10x more common than DF)
+                    return_state = false; // done.
                     break;
                 case KC_V: //
                     tap_code(KC_BSPC);
