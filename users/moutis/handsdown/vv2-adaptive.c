@@ -97,26 +97,26 @@ ReplacePriorWithL:
         case KC_F:
             switch (prior_keycode) {
                 case KC_D: //
-                    tap_code(KC_G); // eliminate SFB (DF is 10x more common than DF)
+                    tap_code(KC_G); // eliminate SFB (DG is 10x more common than DF)
                     return_state = false; // done.
                     break;
                 case KC_V: //
                     tap_code(KC_BSPC);
-                    tap_code(KC_S); // avoid row step (SF is 311x more common than VF)
+                    tap_code(KC_S); // avoid row step (311x more common than VF)
                     break;
             }
             break;
         case KC_C:
             switch (prior_keycode) {
                 case KC_T: // roll for tch
-                    send_string("ch"); // 85% of tc is tch, so this saves a lot of key press "H"
+                    send_string("ch"); // 85% of tc is tch, so this saves a lot of "H" key presses
                     return_state = false; // done.
                     break;
             }
             break;
-        case KC_V: // VP/PV = SP/PS
+        case KC_V:
             switch (prior_keycode) {
-                case KC_F: // avoid row step (FS is 191x more common than FV)
+                case KC_F: // avoid row step (91x more frequent)
                     tap_code(KC_S);
                     return_state = false; // done.
                     break;
@@ -124,12 +124,12 @@ ReplacePriorWithL:
             break;
         case KC_K: // remedy ring-index split by shifting fingering
             switch (prior_keycode) {
-                case KC_T: // TK/DK/GK = LK ()
+                case KC_T: // TK/DK/GK = CK (252x more frequent)
                     tap_code(KC_BSPC);
                     tap_code(KC_C);
                     break;
-                case KC_D: // DV/TV/GV = LV ()
-                case KC_G: //
+                case KC_D: // DK = LK (11x more frequent)
+                case KC_G: // GK = LK (74x more frequent)
                     goto ReplacePriorWithL; // short jumps save bytes
            }
             break;

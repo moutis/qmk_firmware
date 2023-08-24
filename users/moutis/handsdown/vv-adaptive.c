@@ -123,12 +123,12 @@ ReplacePriorWithL:
 
         case KC_K: // remedy ring-index split by shifting fingering
             switch (prior_keycode) {
-                case KC_T: // TK/DK/GK = LK ()
+                case KC_T: // TK/DK/GK = CK (CK is 252x more common than TK)
                     tap_code(KC_BSPC);
                     tap_code(KC_C);
                     break;
-                case KC_D: // DV/TV/GV = LV ()
-                case KC_G: //
+                case KC_D: // DK = LK (LK is 11x more common than DK)
+                case KC_G: // GK = LK (LK is 74x more common than GK)
                     goto ReplacePriorWithL; // short jumps save bytes
            }
             break;
