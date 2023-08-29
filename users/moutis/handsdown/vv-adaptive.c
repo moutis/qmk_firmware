@@ -84,6 +84,7 @@ ReplacePriorWithL:
             break;
         case KC_W:
             switch (prior_keycode) {
+                case KC_M: // eliminate SFB (modest 7x gain)
                 case KC_L: // tricksy - trilling "wmw" results in "lml" trigram instead of SFB
                     goto PullUpLAndExit; // short jumps save bytes
                 case KC_G:
@@ -155,15 +156,14 @@ ReplacePriorWithL:
 
         case KC_X:
             switch (prior_keycode) {
-                case KC_W:
+                case KC_W: // eliminate scissor (2818x gain)
                     goto PullUpLAndExit;
-                case KC_M: // "MB" is 2558x more frequent than "MX"
-                    *calling_keycode = KC_B; // tricksy - pretend the last was B, for "mbl" trigram
-                    tap_code(KC_B); // pull up B from bottom row.
+                case KC_M: // eliminate scissor (107x gain)
+                    tap_code(KC_F); // pull up F from bottom row.
                     return_state = false; // done.
                     break;
                 case KC_G:
-                    tap_code(KC_T); // eliminate SFB. 778x gain
+                    tap_code(KC_T); // eliminate SFB (778x gain)
                     return_state = false; // done.
                     break;
             }
