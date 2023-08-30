@@ -234,6 +234,16 @@ ReplacePriorWithL:
                     break;
             }
             break;
+        case KC_DOT:
+            switch (prior_keycode) {
+                case KC_QUOT: // This could be smarter (only after O rolled up)
+                case KC_J: //
+                case KC_B: //
+                    tap_code(KC_U); // (eliminate scissor)
+                    return_state = false; // done.
+                    break;
+            }
+            break;
       case KC_B:
           switch (prior_keycode) {
               case KC_DOT:
