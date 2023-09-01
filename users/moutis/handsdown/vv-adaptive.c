@@ -227,6 +227,7 @@ ReplacePriorWithL:
                     send_string("com");
                     return_state = false; // done.
                     break;
+                case KC_QUOT: //
                 case KC_J: //
                 case KC_B: //
                     tap_code(KC_O); // (eliminate scissor)
