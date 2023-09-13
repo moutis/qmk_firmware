@@ -19,7 +19,8 @@ bool process_adaptive_key(uint16_t *calling_keycode, const keyrecord_t *record) 
     uint16_t keycode = *calling_keycode;
     
     // Are we in an adaptive context? (adaptive on is assumed).
-    if (timer_elapsed(prior_keydown) > ADAPTIVE_TERM) { // outside adaptive threshhold
+    if (timer_elapsed(prior_keydown) > ADAPTIVE_TERM
+        || ((keycode == KC_SLSH) && (timer_elapsed(prior_keydown) > ADAPTIVE_TERM * 16))) {
         prior_keycode = prior_keydown = 0; // turn off Adaptives.
         return true; // no adaptive conditions, so return.
     }
@@ -174,6 +175,7 @@ ReplacePriorWithL:
 // right hand adaptives
 */
             
+        case KC_SLSH:
         case KC_H: // H precedes a vowel much more often than it follows (thanks, Ancient Greek!)
             switch (prior_keycode) { // maybe OK? What about xxR? resulting in a SFB on thumb?
                 case KC_A: // AE is a fraction less common, but I find the EAE trill harder than EAH.

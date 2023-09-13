@@ -179,9 +179,9 @@
 #ifdef EN_PRONOUN_COMBOS_ALL // Admittedly of questionable value
 #define HD_youd_keys  HD_Y, HD_D  // TYPE "you'd" + 've
 #define HD_youll_keys HD_Y, HD_L  // TYPE "you'll" + 've
-#define HD_youre_keys HD_Y, HD_QUOT  // TYPE "you're"
+#define HD_youre_keys HD_Y, HD_F  // TYPE "you're"
 #define HD_youve_keys HD_Y, HD_V  // TYPE "you've"
-#define HD_your_keys  HD_Y, HD_R  // TYPE "your" "P" for "possessive" case
+#define HD_your_keys  HD_Y, HD_R  // TYPE "your"
 
 #define HD_their_keys HD_T, HD_B  // TYPE "their" #6 (R on same finger in Neu)
 #define HD_theyre_keys HD_T, HD_X // "they're"  (R on same finger in Neu)
