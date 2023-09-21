@@ -88,11 +88,11 @@
 #define HD_LT3 HD_W
 #define HD_LT2 HD_M
 #define HD_LT1 HD_G
-#define HD_LT0 HD_DQUO
+#define HD_LT0 HD_J
 #define HD_RT0 HD_HASH
 #define HD_RT1 HD_DOT
 #define HD_RT2 HD_QUOT
-#define HD_RT3 HD_J
+#define HD_RT3 HD_DQUO
 #define HD_RT4 HD_B
 
 #define HD_LM4 HD_S
@@ -135,7 +135,7 @@
 // These few spatial combos may move to accommodate some mnemonic combos,
 // notably the H-digraph combos that inhabit close areas.
 //
-#define HD_tab_keys  HD_LT4, HD_LT3     // tab
+#define HD_tab_keys  HD_LT1, HD_LT0     // tab
 #define HD_spc_keys  HD_LM1, HD_LM0     // SPACE
 #define HD_ent_keys  HD_LB0, HD_LB1     // ENTER
 #define HD_ent2_keys HD_LB0, HD_LB1, HD_LB2 // hard-ENTER/page break
@@ -143,7 +143,7 @@
 // TEXT ENTRY - off map standard alphas (also on Layer L_PUNCT @ Z=LT4 & Q=LT3)
 //
 #define HD_Qu_keys HD_LT3, HD_LT1 // TYPE "q" (Qu & Linger deletes u)
-#define HD_L1_keys HD_LM3, HD_LM1 // ex. TYPE "z"
+#define HD_L1_keys HD_LT4, HD_LT3 // ex. TYPE "z"
 #define HD_L1 HD_Z
 //#define HD_L2_keys HD_LM3, HD_LM1 // ex. TYPE "x"
 //#define HD_L2 HD_X

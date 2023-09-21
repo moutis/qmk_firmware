@@ -20,7 +20,8 @@
 
 // for 34 key boards
 const uint16_t PROGMEM HC_kbd_combo[] = {HD_RH1, HD_RH2, COMBO_END}; // keyboard settings/config layer
-const uint16_t PROGMEM H_menu_combo[] = {HD_LT0, HD_LT1, COMBO_END}; // MENU
+const uint16_t PROGMEM H_menu_combo[] = {HD_LM3, HD_LM1, COMBO_END}; // MENU
+const uint16_t PROGMEM H_menu_nav_combo[] = {KC_LALT, KC_LSFT, COMBO_END}; // MENU on App layer
 
 /* examples of text entry combos */
 const uint16_t PROGMEM H_Left_combo[] = {HD_LT3, HD_LT2, HD_LT1, COMBO_END}; // TYPE LeftComboTapE
@@ -47,7 +48,7 @@ const uint16_t PROGMEM H_KANA_combo[] = {HD_RM3, HD_RM2, HD_RM1, COMBO_END}; // 
 const uint16_t PROGMEM F_ESC_combo[] = {HD_LM4, HD_LM1, COMBO_END}; // ESCape
 const uint16_t PROGMEM Hndsh_combo[] = {HD_RB0, HD_RB1, COMBO_END}; // – n dash
 const uint16_t PROGMEM Hmdsh_combo[] = {HD_RB0, HD_RB2, COMBO_END}; // — m dash
-const uint16_t PROGMEM Htild_combo[] = {HD_RB0, HD_RB4, COMBO_END}; // ~ tilde (not the deadkey for eñye)
+const uint16_t PROGMEM Htild_combo[] = {HD_RB1, HD_RB4, COMBO_END}; // ~ tilde (not the deadkey for eñye)
 const uint16_t PROGMEM Hunds_combo[] = {HD_RB1, HD_RB3, COMBO_END}; // _ underscore
 const uint16_t PROGMEM Hequal_combo[] = {HD_RB2, HD_RB3, COMBO_END}; // = equal (hold for %)
 //const uint16_t PROGMEM Hpercent_combo[] = {HD_RB3, HD_RB4, COMBO_END}; // % percent
@@ -273,7 +274,7 @@ combo_t key_combos[] = {
     // These simple combos trigger on press, repeat. HC_kbd_combo
     [HC_KBD] = COMBO(HC_kbd_combo, MO(L_MEDIA_KBD)), // keyboard/media settings/config layer
     [HC_APP] = COMBO(H_menu_combo, KC_APP), // app menu
-//    [HC_PCT] = COMBO(Hpercent_combo, KC_PERC), // % (hold = for %)
+    [HC_APPNAV] = COMBO(H_menu_nav_combo, KC_APP), // app menu
     [HC_SCLN] = COMBO(Hscln_combo, KC_SCLN), // ;
     [HC_COLN] = COMBO_ACTION(Hcoln_combo), // :  (hold for elipsis)
     [HC_UNDS] = COMBO_ACTION(Hunds_combo), // _ underscore

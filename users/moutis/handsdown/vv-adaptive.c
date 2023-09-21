@@ -210,9 +210,8 @@ ReplacePriorWithL:
                     break;
             }
             break;
-        case KC_J:
+        case KC_DQUO:
             switch (prior_keycode) {
-                case KC_QUOT:
                 case KC_B: //
                     tap_code(KC_Y); // BJ = BY (eliminate scissor on ring finger BY is 6x BJ)
                     return_state = false; // done.
@@ -230,7 +229,6 @@ ReplacePriorWithL:
                     return_state = false; // done.
                     break;
                 case KC_QUOT: //
-                case KC_J: //
                 case KC_B: //
                     tap_code(KC_O); // (eliminate scissor)
                     return_state = false; // done.
@@ -240,7 +238,6 @@ ReplacePriorWithL:
         case KC_DOT:
             switch (prior_keycode) {
                 case KC_QUOT: // This could be smarter (only after O rolled up)
-                case KC_J: //
                 case KC_B: //
                     tap_code(KC_U); // (eliminate scissor)
                     return_state = false; // done.
@@ -252,10 +249,6 @@ ReplacePriorWithL:
               case KC_DOT:
                   tap_code(KC_BSPC);
                   send_string(".org");
-                  return_state = false; // done.
-                  break;
-              case KC_J:
-                  tap_code(KC_I); // (eliminate SFB)
                   return_state = false; // done.
                   break;
          }

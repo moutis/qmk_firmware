@@ -73,7 +73,7 @@
 
 #define LINGER_TIME TAPPING_TERM * 1.2 // how long to hold before a time-depentant behavior begins
 // how long to leave a state active before resetting like APPMENU or SHIFTWORD
-#define STATE_RESET_TIME LINGER_TIME * 4
+#define STATE_RESET_TIME LINGER_TIME * 3
 
 
 #define EN_PRONOUN_COMBOS // English First Person pronoun combos (I, I'm, I've I'd I'll etc) (184 bytes on AVR)
