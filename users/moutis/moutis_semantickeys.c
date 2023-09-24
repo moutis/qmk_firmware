@@ -64,7 +64,7 @@ void tap_SemKey(uint16_t semkeycode) {
 
 const uint16_t SemKeys_t[SemKeys_COUNT - SK_KILL][OS_count] = {
     // Mac, Win, (Phase 3, add others if necessary, expand to multi-key?)
-    [SK_KILL - SK_KILL] = {G(A(KC_ESC)),C(A(KC_DEL))}, // "KILL" OR Force quit / ctrl-alt-del
+    [SK_KILL - SK_KILL] = {G(A(KC_ESC)),C(A(KC_DEL))}, // Force quit / ctrl-alt-del
     [SK_HENK - SK_KILL] = {KC_LNG1, C(S(KC_1))}, // 変換/かな
     [SK_MHEN - SK_KILL] = {KC_LNG2, C(S(KC_0))}, // 無変換/英数
     [SK_HENT - SK_KILL] = {G(KC_ENT),C(KC_ENT)}, // Hard ENTER

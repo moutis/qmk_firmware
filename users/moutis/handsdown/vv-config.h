@@ -135,15 +135,13 @@
 // These few spatial combos may move to accommodate some mnemonic combos,
 // notably the H-digraph combos that inhabit close areas.
 //
-#define HD_tab_keys  HD_LT1, HD_LT0     // tab
-#define HD_spc_keys  HD_LM1, HD_LM0     // SPACE
-#define HD_ent_keys  HD_LB0, HD_LB1     // ENTER
-#define HD_ent2_keys HD_LB0, HD_LB1, HD_LB2 // hard-ENTER/page break
+#define HD_tab_keys  HD_LB3, HD_LB1     // tab
+#define HD_stab_keys HD_LBp¢ // hard-ENTER/page break
 
 // TEXT ENTRY - off map standard alphas (also on Layer L_PUNCT @ Z=LT4 & Q=LT3)
 //
 #define HD_Qu_keys HD_LT3, HD_LT1 // TYPE "q" (Qu & Linger deletes u)
-#define HD_L1_keys HD_LT4, HD_LT3 // ex. TYPE "z"
+#define HD_L1_keys HD_LT1, HD_LT0 // ex. TYPE "z"
 #define HD_L1 HD_Z
 //#define HD_L2_keys HD_LM3, HD_LM1 // ex. TYPE "x"
 //#define HD_L2 HD_X
@@ -219,7 +217,6 @@
 #define HD_swrd_keys  HD_LB4, HD_LB0   // select word
 #define HD_undo_keys  HD_LB4, HD_LB3   // undo
 #define HD_redo_keys  HD_LB4, HD_LB3, HD_LB2   // redo
-//#define HD_cut_keys   HD_LB4, HD_LB2   // cut
 #define HD_copy_keys  HD_LB3, HD_LB2   // copy (hold for cut)
 #define HD_pste_keys  HD_LB2, HD_LB1   // paste (hold for paste-match)
 

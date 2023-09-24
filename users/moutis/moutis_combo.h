@@ -50,7 +50,7 @@ enum my_combos {
     FC_LANG1, // kana (others)
 
     HC_TAB,
-//    HC_PCT, // % percent (hold = for %)
+    HC_STAB,
     HC_DOLR, // $
     HC_HASH, // #
     HC_QUES, // ?

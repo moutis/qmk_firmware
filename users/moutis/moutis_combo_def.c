@@ -143,6 +143,7 @@ const uint16_t PROGMEM H_weve_combo[] = {HD_weve_keys, COMBO_END}; // TYPE "we'v
 
 // FUNCTIONS/COMMANDS Spatially arranged
 const uint16_t PROGMEM Htab_combo[] = {HD_tab_keys, COMBO_END};    // tab
+const uint16_t PROGMEM Hstab_combo[] = {HD_stab_keys, COMBO_END};  // shift-tab
 const uint16_t PROGMEM Hspc_combo[] = {HD_spc_keys, COMBO_END};    // SPACE
 const uint16_t PROGMEM Hent_combo[] = {HD_ent_keys, COMBO_END};    // ENTER
 const uint16_t PROGMEM Hent2_combo[] = {HD_ent2_keys, COMBO_END};  // hard-ENTER/page break
@@ -161,7 +162,6 @@ const uint16_t PROGMEM Hsall_combo[] = {HD_sall_keys, COMBO_END}; // select all
 const uint16_t PROGMEM Hswrd_combo[] = {HD_swrd_keys, COMBO_END}; // select word
 const uint16_t PROGMEM Hundo_combo[] = {HD_undo_keys, COMBO_END}; // undo
 const uint16_t PROGMEM Hredo_combo[] = {HD_redo_keys, COMBO_END}; // redo
-//const uint16_t PROGMEM Hcut_combo[] = {HD_cut_keys, COMBO_END}; // cut (not using this anymore?)
 const uint16_t PROGMEM Hcopy_combo[] = {HD_copy_keys, COMBO_END}; // copy (hold for cut)
 const uint16_t PROGMEM Hpste_combo[] = {HD_pste_keys, COMBO_END}; // paste (hold for paste-match)
 
@@ -286,6 +286,7 @@ combo_t key_combos[] = {
     [HC_HASH] = COMBO(Hhash_combo, SK_SECT), // # hijacked for §
     [HC_AT] = COMBO_ACTION(Hat_combo), // @ (hold for alanreiser.com)
     [HC_TAB] = COMBO(Htab_combo, KC_TAB),
+    [HC_STAB] = COMBO(Hstab_combo, S(KC_TAB)),
 
     [HC_Q] = COMBO_ACTION(H_Q_combo),
     [HC_L1] = COMBO(H_L1_combo, HD_L1),
