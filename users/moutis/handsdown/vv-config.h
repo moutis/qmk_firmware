@@ -16,7 +16,7 @@
 //  Base (alpha) Layer  Hands Down Vibranium-vv
 //        Building for a 34 key board
 //    ╭─────────────────╮ ╭─────────────────╮
-//    │  X  W  M  G  "[ │ │ #$  .: ']  J  B │
+//    │  X  W  M  G  J  │ │ #$  .: '[ "]  B │
 //    │  S  C  N  T  K  | | ,;   A  E  I  H │
 //    │  V  F  L  D  /* │ │ -+   U  O  Y  F │
 //    ╰───────╮  BSP R  │ │ SPC RET  ╭──────╯
@@ -32,9 +32,10 @@
 //
 
 //
-// We want to be able to define a combo
-// by location for variation independent, spatial referencing, or
+// We want to be able to define a combo by location
+// for variation independent, spatial referencing, or
 // by letter for mnemonic/phonetic referencing (variation dependent)
+// put this sort of obscures the definitions…so…
 //
 // BE CAREFUL to not double define a combo!
 //
@@ -135,8 +136,11 @@
 // These few spatial combos may move to accommodate some mnemonic combos,
 // notably the H-digraph combos that inhabit close areas.
 //
-#define HD_tab_keys  HD_LB3, HD_LB1     // tab
-#define HD_stab_keys HD_LBp¢ // hard-ENTER/page break
+#define HD_tab_keys  HD_LM3, HD_LM1     // tab
+#define HD_stab_keys HD_LM3, HD_LM2, HD_LM1  // hard-ENTER/page break
+#define HD_spc_keys  HD_LM1, HD_LM0     // SPACE
+#define HD_ent_keys  HD_LB0, HD_LB1     // ENTER
+#define HD_ent2_keys HD_LB0, HD_LB1, HD_LB2 // hard-ENTER/page break
 
 // TEXT ENTRY - off map standard alphas (also on Layer L_PUNCT @ Z=LT4 & Q=LT3)
 //

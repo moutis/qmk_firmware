@@ -132,7 +132,8 @@
 // These few spatial combos may move to accommodate some mnemonic combos,
 // notably the H-digraph combos that inhabit close areas.
 //
-#define HD_tab_keys  HD_LT4, HD_LT3     // tab
+#define HD_tab_keys  HD_LM3, HD_LM1     // tab
+#define HD_stab_keys HD_LM3, HD_LM2, HD_LM1  // hard-ENTER/page break
 #define HD_spc_keys  HD_LM1, HD_LM0     // SPACE
 #define HD_ent_keys  HD_LB0, HD_LB1     // ENTER
 #define HD_ent2_keys HD_LB0, HD_LB1, HD_LB2 // hard-ENTER/page break
