@@ -87,16 +87,15 @@ typedef union {
 } user_config_t;
 
 
-enum my_layers {  // must be difined before semantickeys.h
-// enum my_layers for layout layers for HD Neu family
-    L_QWERTY,    // 0 - QWERTY compatibility layer
-    L_HDALPHA,   // 1 - Hands Down Alpha layer
-    L_PUNCT,     // 2 - symbols, punctuation, off-map alphas
-    L_FN_NUM,    // 3 - number row & function row
-    L_NUMPAD,    // 4 - numpad (right); navpad (left)
-    L_NAV,       // 5 - nav pad (right); meta keys (left)
-//  L_SYMBOLS,   //  diacritics are better handled by combos and semantickeys?
-    L_MEDIA_KBD  // 6 - Media/Consumer controls; Keyboard settings
+// enum my_layers for layout layers
+enum my_layers {// must be difined before semantickeys.h
+    L_QWERTY,   // 0 - QWERTY compatibility layer
+    L_HD,       // 1 - Hands Down Alpha layer
+    L_SYM,      // 2 - symbols, punctuation, off-map alphas
+    L_FUN,      // 3 - function & number rows
+    L_NUM,      // 4 - numpad (right); navpad (left)
+    L_NAV,      // 5 - nav pad (right); meta keys (left)
+    L_CFG       // 6 - Media/Consumer controls; Keyboard settings
 };
 
 enum OS_Platform { // Used for platform support via SemKeys

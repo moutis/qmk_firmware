@@ -19,7 +19,7 @@
 
 
 // for 34 key boards
-const uint16_t PROGMEM HC_kbd_combo[] = {HD_RH1, HD_RH2, COMBO_END}; // keyboard settings/config layer
+const uint16_t PROGMEM HC_cfg_combo[] = {HD_RH1, HD_RH2, COMBO_END}; // keyboard settings/config layer
 const uint16_t PROGMEM H_menu_combo[] = {HD_LB3, HD_LB1, COMBO_END}; // MENU
 const uint16_t PROGMEM H_menu_nav_combo[] = {KC_LALT, KC_LSFT, COMBO_END}; // MENU on App layer
 
@@ -78,7 +78,7 @@ const uint16_t PROGMEM Hring_combo[] = {HD_RM1, HD_RM4, COMBO_END}; // ˚ ring (
 const uint16_t PROGMEM Hcedi_combo[] = {HD_LM4, HD_LM2, COMBO_END}; // ¸ cedille (dead key)
 //const uint16_t PROGMEM Hoslsh_combo[] = {HD_RB2, HD_LB0, COMBO_END}; // ø/Ø or Wh
 
-// TEXT ENTRY - off map standard alphas (also on Layer L_PUNCT @ J & G respectively)byby=
+// TEXT ENTRY - off map standard alphas (also on Layer L_SYM @ J & G respectively)byby=
 const uint16_t PROGMEM H_Q_combo[] = {HD_Qu_keys, COMBO_END}; // TYPE "q" (Qu & Linger deletes u)
 const uint16_t PROGMEM H_L1_combo[] = {HD_L1_keys, COMBO_END}; // ex. TYPE "z"
 //const uint16_t PROGMEM H_L2_combo[] = {HD_L2_keys, COMBO_END}; // ex. TYPE "x"
@@ -129,9 +129,9 @@ const uint16_t PROGMEM H_here_combo[] = {HD_here_keys, COMBO_END}; // TYPE "here
 
 #ifdef EN_W_PRONOUNS
 const uint16_t PROGMEM H_where_combo[] = {HD_where_keys, COMBO_END}; // "where" + 's
+const uint16_t PROGMEM H_were_combo[] = {HD_were_keys, COMBO_END}; // TYPE "we're"
 const uint16_t PROGMEM H_wed_combo[] = {HD_wed_keys, COMBO_END}; // TYPE "we'd" + 've
 const uint16_t PROGMEM H_well_combo[] = {HD_well_keys, COMBO_END}; // TYPE "we'll" + 've
-const uint16_t PROGMEM H_were_combo[] = {HD_were_keys, COMBO_END}; // TYPE "we're"
 const uint16_t PROGMEM H_weve_combo[] = {HD_weve_keys, COMBO_END}; // TYPE "we've"
 #endif // EN_W_PRONOUNS
 
@@ -271,8 +271,8 @@ const uint16_t PROGMEM PPLMN_combo[] = {RSFT_T(KC_P4), RCTL_T(KC_PPLS), COMBO_EN
 
 
 combo_t key_combos[] = {
-    // These simple combos trigger on press, repeat. HC_kbd_combo
-    [HC_KBD] = COMBO(HC_kbd_combo, MO(L_MEDIA_KBD)), // keyboard/media settings/config layer
+    // These simple combos trigger on press, repeat. HC_cfg_combo
+    [HC_CFG] = COMBO(HC_cfg_combo, MO(L_CFG)), // keyboard/media settings/config layer
     [HC_APP] = COMBO(H_menu_combo, KC_APP), // app menu
     [HC_APPNAV] = COMBO(H_menu_nav_combo, KC_APP), // app menu
     [HC_SCLN] = COMBO(Hscln_combo, KC_SCLN), // ;

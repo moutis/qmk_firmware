@@ -51,7 +51,7 @@
 #define HD_H RCTL_T(KC_H)
 #define HD_I RALT_T(KC_I)
 #define HD_J KC_J
-#define HD_K LT(L_NUMPAD,KC_K)
+#define HD_K LT(L_NUM,KC_K)
 #define HD_L KC_L
 #define HD_M KC_M
 #define HD_N RGUI_T(KC_N)
@@ -70,14 +70,14 @@
 
 #define HD_MINS KC_MINS
 #define HD_HASH KC_HASH
-#define HD_SPC  LT(L_PUNCT,KC_SPC)
-#define HD_BSPC LT(L_FN_NUM,KC_BSPC)
+#define HD_SPC  LT(L_SYM,KC_SPC)
+#define HD_BSPC LT(L_FUN,KC_BSPC)
 #define HD_ENT  LT(L_NAV,KC_ENT)
 #define HD_QUOT KC_QUOT
 #define HD_DQUO KC_DQUO
 #define HD_SLSH KC_SLSH
 #define HD_DOT  KC_DOT
-#define HD_COMM LT(L_FN_NUM, KC_COMM)
+#define HD_COMM LT(L_FUN, KC_COMM)
 
 //
 // Now let's place these keycodes on the map
@@ -85,6 +85,10 @@
 //
 // (is there any way to combine these 2 steps?)
 //
+
+// ALPHA THE MAIN HD ALPHA LAYER
+
+#define HD_LT5 KC_TRNS
 #define HD_LT4 HD_X
 #define HD_LT3 HD_W
 #define HD_LT2 HD_M
@@ -95,7 +99,9 @@
 #define HD_RT2 HD_QUOT
 #define HD_RT3 HD_DQUO
 #define HD_RT4 HD_B
+#define HD_RT5 KC_TRNS
 
+#define HD_LM5 KC_TRNS
 #define HD_LM4 HD_S
 #define HD_LM3 HD_C
 #define HD_LM2 HD_N
@@ -106,23 +112,106 @@
 #define HD_RM2 HD_E
 #define HD_RM3 HD_I
 #define HD_RM4 HD_H
+#define HD_RM5 KC_TRNS
 
+#define HD_LB5 KC_TRNS
 #define HD_LB4 HD_V
 #define HD_LB3 HD_F
 #define HD_LB2 HD_L
 #define HD_LB1 HD_D
 #define HD_LB0 HD_SLSH
+#define HD_LBA LT(L_NUM, KC_LBRC)
+#define HD_LBB KC_TRNS
+#define HD_RBB KC_TRNS
+#define HD_RBA LT(L_NAV,KC_RBRC)
 #define HD_RB0 HD_MINS
 #define HD_RB1 HD_U
 #define HD_RB2 HD_O
 #define HD_RB3 HD_Y
 #define HD_RB4 HD_P
+#define HD_RB5 KC_TRNS
 
-//Primary Thumbs (others unique to the board)
+//Primary Thumbs 0-3 (others are unique to the board)
+#define HD_LH5 KC_TRNS
+#define HD_LH4 KC_TRNS
+#define HD_LH3 KC_APP
 #define HD_LH2 HD_BSPC
 #define HD_LH1 HD_R
+#define HD_LH0 LT(L_CFG,KC_MUTE)
+#define HD_LHA LT(L_NAV,KC_LNG2)
+#define HD_RHA LT(L_SYM,KC_LNG1)
+#define HD_RH0 LT(L_CFG,KC_MPLY)
 #define HD_RH1 HD_SPC
 #define HD_RH2 HD_ENT
+#define HD_RH3 TG(L_NUM)
+#define HD_RH4 KC_TRNS
+#define HD_RH5 KC_TRNS
+
+
+/*
+ // L_NUM THE NUMPAD/NAVIGATION LAYER
+    KC_NUM,     KC_PGDN, KC_UP,   KC_PGUP, KC_TAB,              KC_PSLS,    KC_P7,         KC_P8,         KC_P9,         KC_PMNS,
+    SK_WORDPRV, KC_LEFT, KC_DOWN, KC_RGHT, SK_WORDNXT,          KC_PAST,    RSFT_T(KC_P4), RGUI_T(KC_P5), RALT_T(KC_P6), RCTL_T(KC_PPLS),
+    SK_UNDO,    SK_CUT,  SK_COPY, SK_PSTE, KC_SPC, KC_ESC,  KC_ESC, KC_PCMM, KC_P1, KC_P2, KC_P3, KC_PEQL,
+        ______, ______, ______, LGUI_T(KC_BSPC), LSFT_T(KC_ENT), KC_DEL, KC_C, KC_P0, KC_PDOT, ______, ______, ______),
+*/
+#define LN_LT5 KC_TRNS
+#define LN_LT4 KC_NUM
+#define LN_LT3 KC_PGDN
+#define LN_LT2 KC_UP
+#define LN_LT1 KC_PGUP
+#define LN_LT0 KC_TAB
+#define LN_RT0 KC_PSLS
+#define LN_RT1 KC_P7
+#define LN_RT2 KC_P8
+#define LN_RT3 KC_P9
+#define LN_RT4 KC_PMNS
+#define LN_RT5 KC_TRNS
+
+#define LN_LM5 KC_TRNS
+#define LN_LM4 SK_WORDPRV
+#define LN_LM3 KC_LEFT
+#define LN_LM2 KC_DOWN
+#define LN_LM1 KC_RGHT
+#define LN_LM0 SK_WORDNXT
+#define LN_RM0 KC_PAST
+#define LN_RM1 RSFT_T(KC_P4)
+#define LN_RM2 RGUI_T(KC_P5)
+#define LN_RM3 RALT_T(KC_P6)
+#define LN_RM4 RCTL_T(KC_PPLS)
+#define LN_RM5 KC_TRNS
+
+#define LN_LB5 KC_TRNS
+#define LN_LB4 SK_UNDO
+#define LN_LB3 SK_CUT
+#define LN_LB2 SK_COPY
+#define LN_LB1 SK_PSTE
+#define LN_LB0 KC_SPC
+#define LN_LBA KC_ESC
+#define LN_LBB KC_TRNS
+#define LN_RBB KC_TRNS
+#define LN_RBA KC_ESC
+#define LN_RB0 KC_PCMM
+#define LN_RB1 KC_P1
+#define LN_RB2 KC_P2
+#define LN_RB3 KC_P3
+#define LN_RB4 KC_PEQL
+#define LN_RB5 KC_TRNS
+
+#define LN_LH5 KC_TRNS
+#define LN_LH4 KC_TRNS
+#define LN_LH3 KC_TRNS
+#define LN_LH2 LGUI_T(KC_BSPC)
+#define LN_LH1 LSFT_T(KC_ENT)
+#define LN_LH0 KC_DEL
+#define LN_LHA KC_TRNS
+#define LN_RHA KC_TRNS
+#define LN_RH0 KC_C
+#define LN_RH1 KC_P0
+#define LN_RH2 KC_PDOT
+#define LN_RH3 KC_TRNS
+#define LN_RH4 KC_TRNS
+#define LN_RH5 KC_TRNS
 
 
 
@@ -142,7 +231,7 @@
 #define HD_ent_keys  HD_LB0, HD_LB1     // ENTER
 #define HD_ent2_keys HD_LB0, HD_LB1, HD_LB2 // hard-ENTER/page break
 
-// TEXT ENTRY - off map standard alphas (also on Layer L_PUNCT @ Z=LT4 & Q=LT3)
+// TEXT ENTRY - off map standard alphas (also on Layer L_SYM @ Z=LT4 & Q=LT3)
 //
 #define HD_Qu_keys HD_LT3, HD_LT1 // TYPE "q" (Qu & Linger deletes u)
 #define HD_L1_keys HD_LT1, HD_LT0 // ex. TYPE "z"
@@ -198,9 +287,9 @@
 
 #ifdef EN_W_PRONOUNS
 #define HD_where_keys HD_X, HD_R  // "where" + 's
+#define HD_were_keys  HD_X, HD_QUOT  // TYPE "we're"
 #define HD_wed_keys   HD_X, HD_G  // TYPE "we'd" + 've
 #define HD_well_keys  HD_X, HD_M  // TYPE "we'll" + 've
-#define HD_were_keys  HD_X, HD_QUOT  // TYPE "we're"
 #define HD_weve_keys  HD_X, HD_J  // TYPE "we've"
 #endif // EN_W_PRONOUNS
 
