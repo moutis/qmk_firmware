@@ -2,44 +2,11 @@
 //
 // The Hands Down Variation dependent defs & files
 //
-#define HD_adaptive_code "handsdown/vv-adaptive.c"
-//
-//
-//      KEY POSITION Names
-//╭─────────────────────╮ ╭─────────────────────╮
-//│ LT4 LT3 LT2 LT1 LT0 │ │ RT0 RT1 RT2 RT3 RT4 │
-//│ LM4 LM3 LM2 LM1 LM0 │ │ RM0 RM1 RM2 RM3 RM4 │
-//│ LB4 LB3 LB2 LB1 LB0 │ │ RB0 RB1 RB2 RB3 RB4 │
-//╰───────────╮ LH2 LH1 | | RH1 RH2 ╭───────────╯
-//            ╰─────────╯ ╰─────────╯
-//
-//  Base (alpha) Layer  Hands Down Vibranium-vv
-//        Building for a 34 key board
-//    ╭─────────────────╮ ╭─────────────────╮
-//    │  X  W  M  G  J  │ │ #$  .: '[ "]  B │
-//    │  S  C  N  T  K  | | ,;   A  E  I  H │
-//    │  V  F  L  D  /* │ │ -+   U  O  Y  F │
-//    ╰───────╮  BSP R  │ │ SPC RET  ╭──────╯
-//            ╰─────────╯ ╰──────────╯
-//
-// Q (LT3) & Z (LT4) are on the punc layer
-// and on combos (defined below)
-//
-// for now...
-// This will morph to being entirel properly abstracted
-// similar to Miryoku, (maybe someone will make an HD Miryoku someday?)
-//
+#define HD_adaptive_code "handsdown/vb-adaptive.c"
 //
 
 //
-// We want to be able to define a combo by location
-// for variation independent, spatial referencing, or
-// by letter for mnemonic/phonetic referencing (variation dependent)
-// put this sort of obscures the definitions…so…
-//
-// BE CAREFUL to not double define a combo!
-//
-// First, let's add any hold-taps to the alpha keycodes
+// First, let's define HD alpha keycodes with any hold-taps/custom keycodes
 //
 #define HD_A RSFT_T(KC_A)
 #define HD_B KC_B
@@ -79,61 +46,81 @@
 #define HD_DOT  KC_DOT
 #define HD_COMM LT(L_FUN, KC_COMM)
 
+// Now let's place these HD keycodes on the keymap
+// for variation independent spatial referencing by key position
 //
-// Now let's place these keycodes on the map
-// for variation independent spatial referencing
+//     Key Position Names for a 34 (-54) key split form factor
+//        Should cover Ferris through Atreus-Kyria-Ergodox
+//     ╭─────────────────────╮                  ╭─────────────────────╮
+// LT5 │ LT4 LT3 LT2 LT1 LT0 │ LTA          RTB │ RT0 RT1 RT2 RT3 RT4 │ RT5
+// LM5 │ LM4 LM3 LM2 LM1 LM0 | LMA          RMA | RT0 RM1 RM2 RM3 RM4 │ RM5
+// LB5 │ LB4 LB3 LB2 LB1 LB0 │ LBA LBB  RBB RBA │ RB0 RB1 RB2 RB3 RB4 │ RB5
+//     ╰───────────╮ LH2 LH1 │ LH0 LHA  RHA RH0 │ RH1 RH2 ╭───────────╯
+//     LH5 LH4 LH3 ╰─────────╯                  ╰─────────╯ RH3 RH4 RH5
 //
-// (is there any way to combine these 2 steps?)
+//
+//    Base (alpha) Layer  Hands Down Vibranium-vv (HRMs /+ thumb mods)
+//      ╭─────────────────────╮                 ╭─────────────────────╮
+// esc  │  X   W   M   G   J  │ L_CFG     L_NUM │  #$  .:  '[  "]   B │ LANG2/henk
+// tab  │  S   C   N   T   K  | (             ) |  ,;   A   E   I   H │ LANG1/mhen
+//  Z   │  V   F   L   D  /*  │ [ copy   pste ] │  -+   U   O   Y   P │ Q
+//      ╰───────────╮ bsp  R  │ &             | │ spc  ret ╭──────────╯
+//    left rght app ╰─────────╯                 ╰──────────╯ tgLN  up  dn
+//
+// For small boards, Q (LT3) & Z (LT4) are (also) on the sym layer
+// and accessible combos (defined below)
 //
 
-// ALPHA THE MAIN HD ALPHA LAYER
-
-#define HD_LT5 KC_TRNS
+#define HD_LT5 KC_ESC
 #define HD_LT4 HD_X
 #define HD_LT3 HD_W
 #define HD_LT2 HD_M
 #define HD_LT1 HD_G
 #define HD_LT0 HD_J
+#define HD_LTA OSL(L_CFG)
+#define HD_RTA TG(L_NUM)
 #define HD_RT0 HD_HASH
 #define HD_RT1 HD_DOT
 #define HD_RT2 HD_QUOT
 #define HD_RT3 HD_DQUO
 #define HD_RT4 HD_B
-#define HD_RT5 KC_TRNS
+#define HD_RT5 KC_LNG2
 
-#define HD_LM5 KC_TRNS
+#define HD_LM5 KC_TAB
 #define HD_LM4 HD_S
 #define HD_LM3 HD_C
 #define HD_LM2 HD_N
 #define HD_LM1 HD_T
 #define HD_LM0 HD_K
+#define HD_LMA KC_LPRN
+#define HD_RMA KC_RPRN
 #define HD_RM0 HD_COMM
 #define HD_RM1 HD_A
 #define HD_RM2 HD_E
 #define HD_RM3 HD_I
 #define HD_RM4 HD_H
-#define HD_RM5 KC_TRNS
+#define HD_RM5 KC_LNG1
 
-#define HD_LB5 KC_TRNS
+#define HD_LB5 HD_Z
 #define HD_LB4 HD_V
 #define HD_LB3 HD_F
 #define HD_LB2 HD_L
 #define HD_LB1 HD_D
 #define HD_LB0 HD_SLSH
 #define HD_LBA LT(L_NUM, KC_LBRC)
-#define HD_LBB KC_TRNS
-#define HD_RBB KC_TRNS
+#define HD_LBB LT(L_FUN,SK_COPY)
+#define HD_RBB LT(L_FUN,SK_PSTE)
 #define HD_RBA LT(L_NAV,KC_RBRC)
 #define HD_RB0 HD_MINS
 #define HD_RB1 HD_U
 #define HD_RB2 HD_O
 #define HD_RB3 HD_Y
 #define HD_RB4 HD_P
-#define HD_RB5 KC_TRNS
+#define HD_RB5 HD_Q
 
-//Primary Thumbs 0-3 (others are unique to the board)
-#define HD_LH5 KC_TRNS
-#define HD_LH4 KC_TRNS
+//Primary Thumbs 1-3 (others are unique to the board)
+#define HD_LH5 KC_LEFT
+#define HD_LH4 LT(L_FUN,KC_MUTE)
 #define HD_LH3 KC_APP
 #define HD_LH2 HD_BSPC
 #define HD_LH1 HD_R
@@ -144,78 +131,17 @@
 #define HD_RH1 HD_SPC
 #define HD_RH2 HD_ENT
 #define HD_RH3 TG(L_NUM)
-#define HD_RH4 KC_TRNS
-#define HD_RH5 KC_TRNS
-
-
-/*
- // L_NUM THE NUMPAD/NAVIGATION LAYER
-    KC_NUM,     KC_PGDN, KC_UP,   KC_PGUP, KC_TAB,              KC_PSLS,    KC_P7,         KC_P8,         KC_P9,         KC_PMNS,
-    SK_WORDPRV, KC_LEFT, KC_DOWN, KC_RGHT, SK_WORDNXT,          KC_PAST,    RSFT_T(KC_P4), RGUI_T(KC_P5), RALT_T(KC_P6), RCTL_T(KC_PPLS),
-    SK_UNDO,    SK_CUT,  SK_COPY, SK_PSTE, KC_SPC, KC_ESC,  KC_ESC, KC_PCMM, KC_P1, KC_P2, KC_P3, KC_PEQL,
-        ______, ______, ______, LGUI_T(KC_BSPC), LSFT_T(KC_ENT), KC_DEL, KC_C, KC_P0, KC_PDOT, ______, ______, ______),
-*/
-#define LN_LT5 KC_TRNS
-#define LN_LT4 KC_NUM
-#define LN_LT3 KC_PGDN
-#define LN_LT2 KC_UP
-#define LN_LT1 KC_PGUP
-#define LN_LT0 KC_TAB
-#define LN_RT0 KC_PSLS
-#define LN_RT1 KC_P7
-#define LN_RT2 KC_P8
-#define LN_RT3 KC_P9
-#define LN_RT4 KC_PMNS
-#define LN_RT5 KC_TRNS
-
-#define LN_LM5 KC_TRNS
-#define LN_LM4 SK_WORDPRV
-#define LN_LM3 KC_LEFT
-#define LN_LM2 KC_DOWN
-#define LN_LM1 KC_RGHT
-#define LN_LM0 SK_WORDNXT
-#define LN_RM0 KC_PAST
-#define LN_RM1 RSFT_T(KC_P4)
-#define LN_RM2 RGUI_T(KC_P5)
-#define LN_RM3 RALT_T(KC_P6)
-#define LN_RM4 RCTL_T(KC_PPLS)
-#define LN_RM5 KC_TRNS
-
-#define LN_LB5 KC_TRNS
-#define LN_LB4 SK_UNDO
-#define LN_LB3 SK_CUT
-#define LN_LB2 SK_COPY
-#define LN_LB1 SK_PSTE
-#define LN_LB0 KC_SPC
-#define LN_LBA KC_ESC
-#define LN_LBB KC_TRNS
-#define LN_RBB KC_TRNS
-#define LN_RBA KC_ESC
-#define LN_RB0 KC_PCMM
-#define LN_RB1 KC_P1
-#define LN_RB2 KC_P2
-#define LN_RB3 KC_P3
-#define LN_RB4 KC_PEQL
-#define LN_RB5 KC_TRNS
-
-#define LN_LH5 KC_TRNS
-#define LN_LH4 KC_TRNS
-#define LN_LH3 KC_TRNS
-#define LN_LH2 LGUI_T(KC_BSPC)
-#define LN_LH1 LSFT_T(KC_ENT)
-#define LN_LH0 KC_DEL
-#define LN_LHA KC_TRNS
-#define LN_RHA KC_TRNS
-#define LN_RH0 KC_C
-#define LN_RH1 KC_P0
-#define LN_RH2 KC_PDOT
-#define LN_RH3 KC_TRNS
-#define LN_RH4 KC_TRNS
-#define LN_RH5 KC_TRNS
-
-
+#define HD_RH4 LT(L_FUN,KC_MPLY)
+#define HD_RH5 KC_DN
 
 #ifdef COMBO_ENABLE
+//
+// We want to be able to define a combo by location
+// for variation independent, spatial referencing, or
+// by letter for mnemonic/phonetic referencing (variation dependent)
+// put this sort of obscures the definitions…so…
+//
+// BE CAREFUL to not double define a combo!
 //
 // Combo definitions that rely on phonetics/mnemonics for their locations.
 //
@@ -230,6 +156,7 @@
 #define HD_spc_keys  HD_LM1, HD_LM0     // SPACE
 #define HD_ent_keys  HD_LB0, HD_LB1     // ENTER
 #define HD_ent2_keys HD_LB0, HD_LB1, HD_LB2 // hard-ENTER/page break
+//#define APPMENU_keys  HD_LT1, HD_LT0  // APPMENU
 
 // TEXT ENTRY - off map standard alphas (also on Layer L_SYM @ Z=LT4 & Q=LT3)
 //
@@ -253,9 +180,11 @@
 #define HD_Gh_keys HD_LT2, HD_LT1 // TYPE "gh"
 #define HD_Sch_keys HD_LM4, HD_LM3, HD_LM2 // TYPE "Sch"
 
+// Should we put all the diacritic keys here?
+// or get keep them all in the common area (if they all share
+// HD Neu vowel block)?
 #define HD_OE_lig_keys HD_RM2, HD_RB2 // Œ
 #define HD_AE_lig_keys HD_RM1, HD_RB1 // Æ
-
 
 #ifdef EN_PRONOUN_COMBOS
 // the entirely unnecessary pronoun combo shenanigans
@@ -284,7 +213,6 @@
 #define HD_there_keys HD_T, HD_R  // TYPE "there" #7 + 's
 #define HD_here_keys  HD_H, HD_R  // TYPE "here" #5 + 's
 
-
 #ifdef EN_W_PRONOUNS
 #define HD_where_keys HD_X, HD_R  // "where" + 's
 #define HD_were_keys  HD_X, HD_QUOT  // TYPE "we're"
@@ -293,13 +221,14 @@
 #define HD_weve_keys  HD_X, HD_J  // TYPE "we've"
 #endif // EN_W_PRONOUNS
 
-#endif // EN_PRONOUN_keysS_ALL
-#endif // EN_PRONOUN_keysS // the entirely unnecessary pronoun combo shenanigans
-
-
+#endif // EN_PRONOUNS_ALL
+#endif // EN_PRONOUNS // the entirely unnecessary pronoun combo shenanigans
 
 // SEMANTIC FUNCTIONS  ** uses SemKeys **
 // Spatially arranged on the QWERTY ZXCV locations
+// independent of the HD Alphas, though since some of
+// the above combos may compete for the same locations,
+// we'll define them all here.
 //
 #define HD_new_keys   HD_LM2, HD_LB2   // new
 #define HD_open_keys  HD_LM1, HD_LB1   // open
@@ -312,8 +241,6 @@
 #define HD_redo_keys  HD_LB4, HD_LB3, HD_LB2   // redo
 #define HD_copy_keys  HD_LB3, HD_LB2   // copy (hold for cut)
 #define HD_pste_keys  HD_LB2, HD_LB1   // paste (hold for paste-match)
-
-
 
 #ifdef JP_MODE_ENABLE
 #ifdef JP_YOUON_COMBOS
@@ -386,6 +313,5 @@
 #endif // JP_YOUON_COMBOS_ALL // All Japanese contracted sounds
 #endif // JP_YOUON_COMBOS  // Major Japanese contracted sounds as combos
 #endif // JP_MODE_ENABLE // All Japanese mode features
-
 
 #endif // COMBO_ENABLE
