@@ -26,7 +26,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     HD_LB4, HD_LB3, HD_LB2, HD_LB1, HD_LB0, ____, ____, ____, ____, ____, ____, ____, HD_RB0, HD_RB1, HD_RB2, HD_RB3, HD_RB4,
     ____, ____, ____, HD_LH2, HD_LH1, ____, ____, ____, ____, ____, ____, ____, HD_RH1, HD_RH2, ____, ____, ____),
     
-[L_PUNCT] = LAYOUT_grid(
+[L_SYM] = LAYOUT_grid(
     KC_Z,   KC_Q,    RALT(KC_5), LALT(KC_7), LSA(KC_7), ____, ____, ____, ____, ____, ____, ____, LALT(KC_4), KC_DLR, A(S(KC_2)), RALT(KC_3), LALT_T(KC_Y),
     KC_LT,  KC_LBRC, KC_LPRN, KC_LCBR, RSA(KC_5), ____, ____, ____, ____, ____, ____, ____, RALT(KC_1), RSFT_T(KC_PAST), RGUI_T(KC_PEQL), RALT_T(KC_PPLS), RALT_T(KC_R),
     KC_GT,  KC_RBRC, KC_RPRN, KC_RCBR, LALT(KC_8), ____, ____, ____, ____, ____, ____, ____, KC_UNDS, KC_PIPE, KC_AMPR, KC_CIRC, KC_PERC,
