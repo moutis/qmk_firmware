@@ -151,6 +151,24 @@
 // These few spatial combos may move to accommodate some mnemonic combos,
 // notably the H-digraph combos that inhabit close areas.
 //
+// SEMANTIC FUNCTIONS  ** uses SemKeys **
+// Spatially arranged on the QWERTY ZXCV locations
+// independent of the HD Alphas, though since some of
+// the above combos may compete for the same locations,
+// we'll define them all here.
+//
+#define HD_new_keys   HD_LM2, HD_LB2   // new
+#define HD_open_keys  HD_LM1, HD_LB1   // open
+#define HD_close_keys HD_LM3, HD_LB3   // close
+#define HD_quit_keys  HD_LB0, HD_LM0   // quit
+#define HD_find_keys  HD_RM4, HD_RB0   // find selection
+#define HD_sall_keys  HD_LB4, HD_LB1   // select all
+#define HD_swrd_keys  HD_LB4, HD_LB0   // select word
+#define HD_undo_keys  HD_LB4, HD_LB3   // undo
+#define HD_redo_keys  HD_LB4, HD_LB3, HD_LB2   // redo
+#define HD_copy_keys  HD_LB3, HD_LB2   // copy (hold for cut)
+#define HD_pste_keys  HD_LB2, HD_LB1   // paste (hold for paste-match)
+
 #define HD_tab_keys  HD_LM4, HD_LM3     // tab
 #define HD_stab_keys HD_LM4, HD_LM3, HD_LM1  // shift-tab
 #define HD_spc_keys  HD_LM1, HD_LM0     // SPACE
@@ -223,24 +241,6 @@
 
 #endif // EN_PRONOUNS_ALL
 #endif // EN_PRONOUNS // the entirely unnecessary pronoun combo shenanigans
-
-// SEMANTIC FUNCTIONS  ** uses SemKeys **
-// Spatially arranged on the QWERTY ZXCV locations
-// independent of the HD Alphas, though since some of
-// the above combos may compete for the same locations,
-// we'll define them all here.
-//
-#define HD_new_keys   HD_LM2, HD_LB2   // new
-#define HD_open_keys  HD_LM1, HD_LB1   // open
-#define HD_close_keys HD_LM3, HD_LB3   // close
-#define HD_quit_keys  HD_LB0, HD_LM0   // quit
-#define HD_find_keys  HD_RM4, HD_RB0   // find selection
-#define HD_sall_keys  HD_LB4, HD_LB1   // select all
-#define HD_swrd_keys  HD_LB4, HD_LB0   // select word
-#define HD_undo_keys  HD_LB4, HD_LB3   // undo
-#define HD_redo_keys  HD_LB4, HD_LB3, HD_LB2   // redo
-#define HD_copy_keys  HD_LB3, HD_LB2   // copy (hold for cut)
-#define HD_pste_keys  HD_LB2, HD_LB1   // paste (hold for paste-match)
 
 #ifdef JP_MODE_ENABLE
 #ifdef JP_YOUON_COMBOS

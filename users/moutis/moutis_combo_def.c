@@ -20,10 +20,11 @@
 const uint16_t PROGMEM HC_cfg_combo[] = {HD_RH1, HD_RH2, COMBO_END}; // keyboard settings/config layer
 #ifdef APPMENU_keys
 const uint16_t PROGMEM H_menu_combo[] = {APPMENU_keys, COMBO_END}; // AppMENU
+const uint16_t PROGMEM H_menu_nav_combo[] = {APPMENU_nav_keys, COMBO_END}; // AppMENU
 #else
 const uint16_t PROGMEM H_menu_combo[] = {HD_LB3, HD_LB1, COMBO_END}; // AppMENU // default Appmenu location
-#endif
 const uint16_t PROGMEM H_menu_nav_combo[] = {LN_LB3, LN_LB1, COMBO_END}; // AppMENU on Nav layer
+#endif
 
 // Spatially arranged on the QWERTY ZXCV locations
 //
@@ -35,7 +36,7 @@ const uint16_t PROGMEM Hent2_combo[] = {HD_ent2_keys, COMBO_END};  // hard-ENTER
 
 // SEMANTIC FUNCTIONS  ** usinp SemKeys **
 const uint16_t PROGMEM Hnew_combo[] = {HD_new_keys, COMBO_END}; // new
-const uint16_t PROGMEM Hopen_combo[] = {HD_open_keys, COMBO_END}; // openi
+const uint16_t PROGMEM Hopen_combo[] = {HD_open_keys, COMBO_END}; // open
 const uint16_t PROGMEM Hclose_combo[] = {HD_close_keys, COMBO_END}; // close
 const uint16_t PROGMEM Hquit_combo[] = {HD_quit_keys, COMBO_END}; // quit
 const uint16_t PROGMEM Hfind_combo[] = {HD_find_keys, COMBO_END}; // find selection

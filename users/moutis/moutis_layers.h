@@ -86,6 +86,8 @@ __ │   UNDO     CUT     COPY    PSTE    PSTM  │ TAB  __  __  ESC │  DOCEND
 #define LS_LH2 SK_DELWDL
 #define LS_LH1 SK_DELWDR
 #define LS_LH0 KC_VOLU
+#define LS_LHA KC_NO
+#define LS_RHA KC_NO
 #define LS_RH0 LALT(KC_9)
 #define LS_RH1 LSA(KC_8)
 #define LS_RH2 LSA(KC_9)
@@ -158,6 +160,8 @@ __ │   UNDO     CUT     COPY    PSTE    PSTM  │ TAB  __  __  ESC │  DOCEND
 #define LF_LH2 KC_SCLN
 #define LF_LH1 TG(L_NUM)
 #define LF_LH0 KC_TRNS
+#define LF_LHA KC_NO
+#define LF_RHA KC_NO
 #define LF_RH0 KC_TRNS
 #define LF_RH1 KC_0
 #define LF_RH2 KC_DOT
@@ -230,8 +234,8 @@ __ │ UNDO     CUT     COPY    PSTE      SPC   │ __ __   __ __ │  PCMM     
 #define LN_LH2 LGUI_T(KC_BSPC)
 #define LN_LH1 LSFT_T(KC_ENT)
 #define LN_LH0 KC_DEL
-#define LN_LHA KC_TRNS
-#define LN_RHA KC_TRNS
+#define LN_LHA KC_NO
+#define LN_RHA KC_NO
 #define LN_RH0 KC_C
 #define LN_RH1 KC_P0
 #define LN_RH2 KC_PDOT
@@ -302,7 +306,9 @@ __ │   UNDO     CUT     COPY    PSTE    PSTM  │ TAB  __  __  ESC │  DOCEND
 #define LV_LH3 KC_TRNS
 #define LV_LH2 S(KC_APP)
 #define LV_LH1 KC_APP
-#define LV_LH0 KC_TRNS
+#define LV_LH0 KC_NO
+#define LV_LHA KC_NO
+#define LV_RHA KC_NO
 #define LV_RH0 SK_ZOOMOUT
 #define LV_RH1 SK_HISTPRV
 #define LV_RH2 SK_HISTNXT
@@ -364,6 +370,8 @@ __ │   UNDO     CUT     COPY    PSTE    PSTM  │ TAB  __  __  ESC │  DOCEND
 #define LC_LH2 KC_NO
 #define LC_LH1 TG(L_NUM)
 #define LC_LH0 KC_NO
+#define LC_LHA KC_NO
+#define LC_RHA KC_NO
 #define LC_RH0 KC_NO
 #define LC_RH1 KC_NO
 #define LC_RH2 KC_NO
