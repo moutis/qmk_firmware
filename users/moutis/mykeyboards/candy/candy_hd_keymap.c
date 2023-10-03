@@ -34,32 +34,32 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     
 [L_SYM] = LAYOUT_grid(
     LS_LT4, LS_LT3, LS_LT2, LS_LT1, LS_LT0, ______, ______, ______, ______, ______, ______, ______, LS_RT0, LS_RT1, LS_RT2, LS_RT3, LS_RT4,
-    LS_LT4, LS_LT3, LS_LT2, LS_LT1, LS_LT0, ______, ______, ______, ______, ______, ______, ______, LS_RT0, LS_RT1, LS_RT2, LS_RT3, LS_RT4,
-    LS_LT4, LS_LT3, LS_LT2, LS_LT1, LS_LT0, ______, ______, ______, ______, ______, ______, ______, LS_RT0, LS_RT1, LS_RT2, LS_RT3, LS_RT4,
+    LS_LM4, LS_LM3, LS_LM2, LS_LM1, LS_LM0, ______, ______, ______, ______, ______, ______, ______, LS_RM0, LS_RM1, LS_RM2, LS_RM3, LS_RM4,
+    LS_LB4, LS_LB3, LS_LB2, LS_LB1, LS_LB0, ______, ______, ______, ______, ______, ______, ______, LS_RB0, LS_RB1, LS_RB2, LS_RB3, LS_RB4,
     ______, ______, LS_LH3, LS_LH2, LS_LH1, ______, ______, ______, ______, ______, ______, ______, LS_RH1, LS_RH2, LS_RH3, ______, ______),
 
 [L_FUN] = LAYOUT_grid(
     LF_LT4, LF_LT3, LF_LT2, LF_LT1, LF_LT0, ______, ______, ______, ______, ______, ______, ______, LF_RT0, LF_RT1, LF_RT2, LF_RT3, LF_RT4,
-    LF_LT4, LF_LT3, LF_LT2, LF_LT1, LF_LT0, ______, ______, ______, ______, ______, ______, ______, LF_RT0, LF_RT1, LF_RT2, LF_RT3, LF_RT4,
-    LF_LT4, LF_LT3, LF_LT2, LF_LT1, LF_LT0, ______, ______, ______, ______, ______, ______, ______, LF_RT0, LF_RT1, LF_RT2, LF_RT3, LF_RT4,
+    LF_LM4, LF_LM3, LF_LM2, LF_LM1, LF_LM0, ______, ______, ______, ______, ______, ______, ______, LF_RM0, LF_RM1, LF_RM2, LF_RM3, LF_RM4,
+    LF_LB4, LF_LB3, LF_LB2, LF_LB1, LF_LB0, ______, ______, ______, ______, ______, ______, ______, LF_RB0, LF_RB1, LF_RB2, LF_RB3, LF_RB4,
     ______, ______, LF_LH3, LF_LH2, LF_LH1, ______, ______, ______, ______, ______, ______, ______, LF_RH1, LF_RH2, LF_RH3, ______, ______),
 
 [L_NUM] = LAYOUT_grid(
     LN_LT4, LN_LT3, LN_LT2, LN_LT1, LN_LT0, ______, ______, ______, ______, ______, ______, ______, LN_RT0, LN_RT1, LN_RT2, LN_RT3, LN_RT4,
-    LN_LT4, LN_LT3, LN_LT2, LN_LT1, LN_LT0, ______, ______, ______, ______, ______, ______, ______, LN_RT0, LN_RT1, LN_RT2, LN_RT3, LN_RT4,
-    LN_LT4, LN_LT3, LN_LT2, LN_LT1, LN_LT0, ______, ______, ______, ______, ______, ______, ______, LN_RT0, LN_RT1, LN_RT2, LN_RT3, LN_RT4,
+    LN_LM4, LN_LM3, LN_LM2, LN_LM1, LN_LM0, ______, ______, ______, ______, ______, ______, ______, LN_RM0, LN_RM1, LN_RM2, LN_RM3, LN_RM4,
+    LN_LB4, LN_LB3, LN_LB2, LN_LB1, LN_LB0, ______, ______, ______, ______, ______, ______, ______, LN_RB0, LN_RB1, LN_RB2, LN_RB3, LN_RB4,
     ______, ______, LN_LH3, LN_LH2, LN_LH1, ______, ______, ______, ______, ______, ______, ______, LN_RH1, LN_RH2, LN_RH3, ______, ______),
 
 [L_NAV] = LAYOUT_grid(
     LV_LT4, LV_LT3, LV_LT2, LV_LT1, LV_LT0, ______, ______, ______, KC_F7,  KC_F8,  KC_F9, ______, LV_RT0, LV_RT1, LV_RT2, LV_RT3, LV_RT4,
-    LV_LT4, LV_LT3, LV_LT2, LV_LT1, LV_LT0, ______, ______, ______, KC_F4,  KC_F5,  KC_F6, ______, LV_RT0, LV_RT1, LV_RT2, LV_RT3, LV_RT4,
-    LV_LT4, LV_LT3, LV_LT2, LV_LT1, LV_LT0, ______, ______, ______, KC_F1,  KC_F2,  KC_F3, ______, LV_RT0, LV_RT1, LV_RT2, LV_RT3, LV_RT4,
+    LV_LM4, LV_LM3, LV_LM2, LV_LM1, LV_LM0, ______, ______, ______, KC_F4,  KC_F5,  KC_F6, ______, LV_RM0, LV_RM1, LV_RM2, LV_RM3, LV_RM4,
+    LV_LB4, LV_LB3, LV_LB2, LV_LB1, LV_LB0, ______, ______, ______, KC_F1,  KC_F2,  KC_F3, ______, LV_RB0, LV_RB1, LV_RB2, LV_RB3, LV_RB4,
     ______, ______, LV_LH3, LV_LH2, LV_LH1, ______, ______, ______, KC_F10, KC_F11, KC_F12, ______, LV_RH1, LV_RH2, LV_RH3, ______, ______),
 
 [L_CFG] = LAYOUT_grid(
     LC_LT4, LC_LT3, LC_LT2, LC_LT1, LC_LT0, ______, KC_NUM, RGB_TOG, __no__, __no__, __no__, RGB_TOG, LC_RT0, LC_RT1, LC_RT2, LC_RT3, LC_RT4,
-    LC_LT4, LC_LT3, LC_LT2, LC_LT1, LC_LT0, KC_VOLD, KC_VOLU, RGB_MOD, RGB_VAI, RGB_SAI, RGB_HUI, __no__, LC_RT0, LC_RT1, LC_RT2, LC_RT3, LC_RT4,
-    LC_LT4, LC_LT3, LC_LT2, LC_LT1, LC_LT0, ______, ______, RGB_RMOD, RGB_VAD, RGB_SAD, RGB_HUD, __no__, LC_RT0, LC_RT1, LC_RT2, LC_RT3, LC_RT4,
+    LC_LM4, LC_LM3, LC_LM2, LC_LM1, LC_LM0, KC_VOLD, KC_VOLU, RGB_MOD, RGB_VAI, RGB_SAI, RGB_HUI, __no__, LC_RM0, LC_RM1, LC_RM2, LC_RM3, LC_RM4,
+    LC_LB4, LC_LB3, LC_LB2, LC_LB1, LC_LB0, ______, ______, RGB_RMOD, RGB_VAD, RGB_SAD, RGB_HUD, __no__, LC_RB0, LC_RB1, LC_RB2, LC_RB3, LC_RB4,
     ______, ______, LC_LH3, LC_LH2, LC_LH1, KC_MPRV, KC_MNXT, KC_MPLY, __no__, __no__, __no__, __no__, LC_RH1, LC_RH2, LC_RH3, ______, ______)
 };
 

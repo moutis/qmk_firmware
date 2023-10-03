@@ -78,7 +78,7 @@
 #define HD_LT1 HD_G
 #define HD_LT0 HD_J
 #define HD_LTA LT(L_CFG, KC_MUTE)
-#define HD_RTA LT(L_NUM, KC_MPLY)
+#define HD_RTA LT(L_CFG, KC_MPLY)
 #define HD_RT0 HD_HASH
 #define HD_RT1 HD_DOT
 #define HD_RT2 HD_SLSH
@@ -164,8 +164,8 @@
 #define HD_find_keys  HD_LM4, HD_LM0   // find selection
 #define HD_sall_keys  HD_LB4, HD_LB1   // select all
 #define HD_swrd_keys  HD_LB4, HD_LB0   // select word
-#define HD_undo_keys  HD_LB3, HD_LB1   // undo
-#define HD_redo_keys  HD_LB3, HD_LB2, HD_LB1   // redo
+#define HD_undo_keys  HD_LB4, HD_LB3   // undo
+#define HD_redo_keys  HD_LB4, HD_LB3, HD_LB2   // redo
 #define HD_copy_keys  HD_LB3, HD_LB2   // copy (hold for cut)
 #define HD_pste_keys  HD_LB2, HD_LB1   // paste (hold for paste-match)
 
@@ -195,7 +195,7 @@
 #define HD_Ch_keys HD_LM3, HD_LM2 // TYPE "ch"
 #define HD_Wh_keys HD_LT3, HD_LT2 // TYPE "wh"
 #define HD_Sh_keys HD_LM4, HD_LM3 // TYPE "sh"
-#define HD_Ph_keys HD_LB4, HD_LB3 // TYPE "ph"
+#define HD_Ph_keys HD_LB3, HD_LB1 // TYPE "ph"
 #define HD_Gh_keys HD_LT2, HD_LT1 // TYPE "gh"
 #define HD_Sch_keys HD_LM4, HD_LM3, HD_LM2 // TYPE "Sch"
 

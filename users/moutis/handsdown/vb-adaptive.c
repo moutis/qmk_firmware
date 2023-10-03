@@ -114,6 +114,9 @@ ReplacePriorWithL:
                     goto PullUpLAndExit; // short jumps save bytes
                case KC_M:
                     goto ReplacePriorWithL;
+                case KC_J:
+                    tap_code(KC_P); // yields jpg
+                    break;
                 case KC_W:
                     tap_code(KC_BSPC);
                     send_string("lml"); // for "calmly" but not quite intuitive…
