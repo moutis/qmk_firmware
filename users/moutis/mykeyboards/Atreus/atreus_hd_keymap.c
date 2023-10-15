@@ -7,7 +7,7 @@
 #define ______ KC_TRNS
 #define __no__ KC_NO
 
-/*      Atreus
+/*      Atreus 44 key (the most popular Atreus variant, like Keyboardio's)
  *     ,---------------------------------------.              ,---------------------------------------.
  *     |  LT4  |  LT3  |  LT2  |  LT1  |  LT0  |              |  RT0  |  RT1  |  RT2  |  RT3  |  RT4  |
  *     |-------+-------+-------+-------+-------+              +-------+-------+-------+-------+-------|
