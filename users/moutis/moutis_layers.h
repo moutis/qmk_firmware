@@ -21,33 +21,33 @@
 
 
 
-/*  L_SYM Symbols and punctuation
-   ╭──────────────────────────────────────────╮                  ╭───────────────────────────────────────────────╮
-__ │   QUIT     CLOZ    SCAP    SCLP    FAGN  │                  │  DOCBEG     HOME    UP      PGUP    PARAPRV   │ __
-__ │   LCTL     LALT    LGUI    LSFT    FIND  |                  |  WORDPRV    LEFT    DOWN    RGHT    WORDNXT   │ __
-__ │   UNDO     CUT     COPY    PSTE    PSTM  │ TAB  __  __  ESC │  DOCEND     END     DOWN    PGDN    PARANXT   │ __
-   ╰──────────────────╮  __   S(MENU)   MENU  │ __           __  │  HISTPRV  HISTNXT    __    ╭──────────────────╯
+/*  L_SYM Symbols and punctuation (Some via SemKeys/unicode for platform independance)
+   ╭──────────────────────────────────────────╮                  ╭──────────────────────────────────────────╮
+__ │    Z       Q       §       ¶       ‡     │                  │     ¢        $       €       £       ¥   │ __
+__ │    <       [       (       {       †     |                  |     ¡        *       =       +       /   │ __
+__ │    >       ]       )       }       •     │ TAB  __  __  ESC │     _        |       &       ^       %   │ __
+   ╰──────────────────╮  __   D_WordL D_WordR │ __           __  │  HISTPRV  HISTNXT    __    ╭─────────────╯
       HISTPRV HISTNXT ╰───────────────────────╯                  ╰────────────────────────────╯ ZOOMRST ZOOMOUT
 */
 
 /* L_SYM Symbols & punctuation (Much of this should be handled by SemKeys/unicode for platform independance
-    ______, KC_Z, KC_Q, RALT(KC_5), LALT(KC_7), LSA(KC_7), LALT(KC_4), KC_DLR, A(S(KC_2)), RALT(KC_3), LALT(KC_Y), ______,
-    ______, KC_LT, KC_LBRC, KC_LPRN, KC_LCBR, RSA(KC_5), RALT(KC_1), RSFT_T(KC_PAST), RGUI_T(KC_PEQL), RALT_T(KC_PPLS), RCTL_T(KC_PSLS), ______,
-    ______, KC_GT, KC_RBRC, KC_RPRN, KC_RCBR, LALT(KC_8), ______, ______, ______, ______, KC_UNDS, KC_PIPE, KC_AMPR, KC_CIRC, KC_PERC, ______,
+    ______, KC_Z, KC_Q, SK_SECT, SK_PARA, SK_DCRS, SK_CENT, KC_DLR, SK_EURO, SK_BPND, SK_JPY, ______,
+    ______, KC_LT, KC_LBRC, KC_LPRN, KC_LCBR, SK_SCRS, SK_IEXC, RSFT_T(KC_PAST), RGUI_T(KC_PEQL), RALT_T(KC_PPLS), RCTL_T(KC_PSLS), ______,
+    ______, KC_GT, KC_RBRC, KC_RPRN, KC_RCBR, SK_BBLT, ______, ______, ______, ______, KC_UNDS, KC_PIPE, KC_AMPR, KC_CIRC, KC_PERC, ______,
     ______, KC_VOLD, SK_DELWDL, SK_DELWDR, KC_VOLU, LALT(KC_9), LSA(KC_8), LSA(KC_9), ______, ______),
 
 */
 #define LS_LT5 KC_TRNS
 #define LS_LT4 KC_Z
 #define LS_LT3 KC_Q
-#define LS_LT2 RALT(KC_5)
-#define LS_LT1 LALT(KC_7)
-#define LS_LT0 LSA(KC_7)
-#define LS_RT0 LALT(KC_4)
+#define LS_LT2 SK_SECT
+#define LS_LT1 SK_PARA
+#define LS_LT0 SK_DCRS
+#define LS_RT0 SK_CENT
 #define LS_RT1 KC_DLR
-#define LS_RT2 A(S(KC_2))
-#define LS_RT3 RALT(KC_3)
-#define LS_RT4 LALT(KC_Y)
+#define LS_RT2 SK_EURO
+#define LS_RT3 SK_BPND
+#define LS_RT4 SK_JPY
 #define LS_RT5 KC_TRNS
 
 #define LS_LM5 KC_TRNS
@@ -55,8 +55,8 @@ __ │   UNDO     CUT     COPY    PSTE    PSTM  │ TAB  __  __  ESC │  DOCEND
 #define LS_LM3 KC_LBRC
 #define LS_LM2 KC_LPRN
 #define LS_LM1 KC_LCBR
-#define LS_LM0 RSA(KC_5)
-#define LS_RM0 RALT(KC_1)
+#define LS_LM0 SK_SCRS
+#define LS_RM0 SK_IEXC
 #define LS_RM1 RSFT_T(KC_PAST)
 #define LS_RM2 RGUI_T(KC_PEQL)
 #define LS_RM3 RALT_T(KC_PPLS)
