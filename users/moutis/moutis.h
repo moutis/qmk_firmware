@@ -6,9 +6,13 @@
 // defines all variation dependent constants/files/keycodes, etc.
 // they will be used in the respective keymap for each keyboard
 
-#include "handsdown/vb-config.h" // definitions for the Alpha layer and mnemonic combos
+#ifdef THUMB_SHIFT
+#include "handsdown/vv-config.ts.h" // definitions for the Alpha layer and mnemonic combos
+#include "moutis_layers.ts.h" // definitions for all the other layers
+#else
+#include "handsdown/vv-config.h" // definitions for the Alpha layer and mnemonic combos
 #include "moutis_layers.h" // definitions for all the other layers
-
+#endif
 
 #ifndef USERSPACE
     #define USERSPACE
@@ -108,8 +112,8 @@ enum OS_Platform { // Used for platform support via SemKeys
 
 #include "moutis_semantickeys.h"
 
-#define register_linger_key(kc) {((kc > (uint16_t)SK_KILL) && (kc < (uint16_t)SemKeys_COUNT)) ? register_SemKey(kc) : register_code16(kc);linger_key = kc;linger_timer = state_reset_timer = timer_read();}
+#define register_linger_key(kc) {(((kc > (uint16_t)SK_KILL) && (kc < (uint16_t)SemKeys_COUNT)) ? register_SemKey(kc) : register_code16(kc));linger_key = kc;linger_timer = state_reset_timer = timer_read();}
 
-#define unregister_linger_key() {((linger_key > (uint16_t)SK_KILL) && (linger_key < (uint16_t)SemKeys_COUNT)) ? unregister_SemKey(linger_key) : unregister_code16(linger_key);linger_key = 0;}
+#define unregister_linger_key() {(((linger_key > (uint16_t)SK_KILL) && (linger_key < (uint16_t)SemKeys_COUNT)) ? unregister_SemKey(linger_key) : unregister_code16(linger_key));linger_key = 0;}
 
 void matrix_scan_user_process_combo(void);

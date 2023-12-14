@@ -88,6 +88,7 @@ enum my_keycodes {
         // Quotations
     SK_SQUL, // ’ Left single quote (linger for paired)
     SK_SQUR, // ’ Right single quote
+//    SK_SDQU, // " straight double-quote character (custom so we can manipulate it.)
     SK_SDQL, // ’ Left double quote (linger for paired)
     SK_SDQR, // ’ Right double quote
     SK_FDQL, // ’ « Left double French quote (linger for paired)

@@ -44,28 +44,17 @@ bool process_adaptive_key(uint16_t *calling_keycode, const keyrecord_t *record) 
                     send_string("ch"); // 85% of tc is tch, so this saves a lot of key press "H"
                     return_state = false; // done.
                     break;
-                case KC_B: // eliminate BS SFB (BS is 23x more common than BC)
-                    tap_code(KC_S);  //
-                    return_state = false; // done.
-                    break;
             }
             break;
-        case KC_B:
+        case KC_F:
             switch (prior_keycode) {
-                case KC_P: // avoid row step (PS is 40x more common than PB)
+                case KC_P: // avoid row step (PS is 36x more common than PF)
                     tap_code(KC_S);
                     return_state = false; // done.
-                case KC_C: // eliminate SB SFB (CB is 11x more common than SB)
-                    tap_code(KC_BSPC);
-                    tap_code(KC_S);
-                    break;
            }
             break;
         case KC_M: // M becomes L (pull up "L" to same row)
             switch (prior_keycode) {
-//                case KC_B: // tricksy - trilling "mxm" results in "mbl" trigram instead of scissor
-                    // but this makes norman BM = BL...so not great. proper adaptive method is needed
-                    // that recognizes N-gram sequences. Maybe at the migrate to RP2040 or the like?
                 case KC_P: // tricksy - trilling "mwm" results in "mpl" trigram instead of scissor
                            // rolling "xwm" is also captured here, resulting in "xpl"
                 case KC_G: // pull up "L" (GL is 5x more common than GM)
@@ -93,7 +82,7 @@ ReplacePriorWithL:
 
         case KC_L: // catch this so we can unshift L on these rolls.
             switch (prior_keycode) {
-                case KC_B: //
+                case KC_F: //
                 case KC_P: //
                 case KC_S: //
                     goto PullUpLAndExit; // no change except shift is now off
@@ -101,7 +90,6 @@ ReplacePriorWithL:
             break;
         case KC_W:
             switch (prior_keycode) {
-                case KC_B: // tricksy - trilling "mxw" results in "mbl" trigram scissoring
                 case KC_L: // tricksy - trilling "wmw" results in "lml" trigram instead of2 SFB
                     goto PullUpLAndExit; // short jumps save bytes
                 case KC_X: // pull up P (W becomes P after X to set up "xp"+l)
@@ -187,7 +175,7 @@ ReplacePriorWithL:
                     tap_code(KC_G);
                     return_state = false; // done.
                     break;
-                case KC_B: // Pull S down (SP is 83x more common than BP)
+                case KC_F: // Pull S down (SP is 860x more common than FP)
                     tap_code(KC_BSPC);
                     tap_code(KC_S); //(but maybe should be BS? SP/BS are about equal...)
                     return_state = true; // not done (process this key normally)
@@ -260,10 +248,10 @@ ReplacePriorWithL:
             }
             break;
 
-        case KC_F:
+        case KC_B:
             switch (prior_keycode) {
                 case KC_Y: //
-                    tap_code(KC_I); // YF = YI (eliminate SFB on ring finger YI is 37x YF)
+                    tap_code(KC_I); // YB = YI (eliminate SFB on ring finger YI is 5x YB)
                     return_state = false; // done.
                     break;
             }

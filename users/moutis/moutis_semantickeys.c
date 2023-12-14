@@ -120,6 +120,7 @@ const uint16_t SemKeys_t[SemKeys_COUNT - SK_KILL][OS_count] = {
         // Quotations
     [SK_SQUL - SK_KILL] = {A(KC_RBRC),A(KC_RBRC)}, // ’ ** Left single quote UNICODE?
     [SK_SQUR - SK_KILL] = {S(A(KC_RBRC)),S(A(KC_RBRC))}, // ’ ** Right single quote UNICODE?
+//    [SK_SDQU - SK_KILL] = {KC_DQUO,KC_DQUO}, // " straight double-quote character
     [SK_SDQL - SK_KILL] = {A(KC_LBRC),A(KC_LBRC)}, // “ ** Left double quote UNICODE?
     [SK_SDQR - SK_KILL] = {A(S(KC_LBRC)),A(S(KC_LBRC))}, // ” ** Right double quote UNICODE?
     [SK_FDQL - SK_KILL] = {A(KC_BSLS),A(KC_BSLS)}, //  « Left double French quote UNICODE?

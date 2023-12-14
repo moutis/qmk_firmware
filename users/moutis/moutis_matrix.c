@@ -77,8 +77,9 @@ void matrix_scan_user(void) {
                         tap_SemKey(SK_SQUR);
                         tap_code16(KC_LEFT);
                         break;
-                    case KC_DQUO: // “|” double paired quotes
-                        tap_code16(KC_BSPC);
+//                    case SK_SDQU: // make “|” double paired quotes
+                    case KC_DQUO: //
+                        tap_code16(KC_BSPC); // get rid of prior straight dbl quote
                         clear_keyboard();  // QMK doesn't let go of shift here?
                         tap_SemKey(SK_SDQL); // “
                         tap_SemKey(SK_SDQR); // ”

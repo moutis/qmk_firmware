@@ -67,6 +67,8 @@
 // how long to leave a state active before resetting like APPMENU or SHIFTWORD
 #define STATE_RESET_TIME LINGER_TIME * 3
 
+//#define THUMB_SHIFT // use the thumb shift variant instead of index shift
+
 #define ADAPTIVE_ENABLE
 #define ADAPTIVE_TRAILER KC_3
 

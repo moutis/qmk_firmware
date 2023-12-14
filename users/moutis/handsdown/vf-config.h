@@ -2,7 +2,7 @@
 //
 // The Hands Down Variation dependent defs & files
 //
-#define HD_adaptive_code "handsdown/vb-adaptive.c"
+#define HD_adaptive_code "handsdown/vf-adaptive.c"
 //
 
 //
@@ -102,7 +102,7 @@
 #define HD_RM5 KC_LNG1
 
 #define HD_LB5 HD_Z
-#define HD_LB4 HD_B
+#define HD_LB4 HD_F
 #define HD_LB3 HD_P
 #define HD_LB2 HD_L
 #define HD_LB1 HD_D
@@ -115,7 +115,7 @@
 #define HD_RB1 HD_U
 #define HD_RB2 HD_O
 #define HD_RB3 HD_Y
-#define HD_RB4 HD_F
+#define HD_RB4 HD_B
 #define HD_RB5 HD_Q
 
 //Primary Thumbs 1-3 (others are unique to the board)

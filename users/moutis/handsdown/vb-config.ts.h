@@ -8,10 +8,10 @@
 //
 // First, let's define HD alpha keycodes with any hold-taps/custom keycodes
 //
-#define HD_A RSFT_T(KC_A)
+#define HD_A LT(L_SYM,KC_A)
 #define HD_B KC_B
 #define HD_C RALT_T(KC_C)
-#define HD_D KC_D
+#define HD_D LT(L_FUN,KC_D)
 #define HD_E RGUI_T(KC_E)
 #define HD_F KC_F
 #define HD_G KC_G
@@ -25,10 +25,10 @@
 #define HD_O KC_O
 #define HD_P KC_P
 #define HD_Q KC_Q
-#define HD_R LT(L_NAV,KC_R)
+#define HD_R LSFT_T(KC_R)
 #define HD_S RCTL_T(KC_S)
-#define HD_T RSFT_T(KC_T)
-#define HD_U KC_U
+#define HD_T LT(L_SYM,KC_T)
+#define HD_U LT(L_FUN,KC_U)
 #define HD_V KC_V
 #define HD_W KC_W
 #define HD_X KC_X
@@ -37,14 +37,14 @@
 
 #define HD_MINS KC_MINS
 #define HD_HASH KC_HASH
-#define HD_SPC  LT(L_SYM,KC_SPC)
-#define HD_BSPC LT(L_FUN,KC_BSPC)
+#define HD_SPC  RSFT_T(KC_SPC)
+#define HD_BSPC LT(L_NAV,KC_BSPC)
 #define HD_ENT  LT(L_NAV,KC_ENT)
 #define HD_QUOT KC_QUOT
 #define HD_DQUO KC_DQUO // KC_DQUO or SK_SDQU
 #define HD_SLSH KC_SLSH
 #define HD_DOT  KC_DOT
-#define HD_COMM LT(L_FUN, KC_COMM)
+#define HD_COMM LT(L_NUM,KC_COMM)
 
 // Now let's place these HD keycodes on the keymap
 // for variation independent spatial referencing by key position

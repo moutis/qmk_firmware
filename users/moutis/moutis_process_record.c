@@ -67,6 +67,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 
     if (record->event.pressed) {
+//        switch (((keycode >= SAFE_RANGE) && (keycode <= SemKeys_COUNT)) ? (keycode) : (keycode & QK_BASIC_MAX)) { // only handling normal, SHFT or ALT cases.
         switch (keycode) { // only handling normal, SHFT or ALT cases.
 
 /*
@@ -294,7 +295,8 @@ register_key_trap_and_return:
                     register_linger_key(SQUO_S); // example of simple linger macro
                     return_state = false; // don't do more with this record.
                 } else //{ // no mods, so linger
-                    goto byteshave; // CAUTION: messing w/stack frame here!!
+                    register_linger_key(keycode); // example of simple linger macro
+                    return_state = false; // don't do more with this record.
                 break;
             case KC_QUOT: // SHIFT = ], ALT=», ALT+SHIFT=›
                 
@@ -315,7 +317,6 @@ register_key_trap_and_return:
                     register_linger_key(DQUO_S); // example of simple linger macro
                     return_state = false; // don't do more with this record.
                 } else { // no mods, so
-byteshave: // CAUTION: messing w/stack frame here!!
                     register_linger_key(keycode); // example of simple linger macro
                     return_state = false; // don't do more with this record.
                 }
