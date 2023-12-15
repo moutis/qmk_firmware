@@ -63,7 +63,7 @@ bool process_adaptive_key(uint16_t *calling_keycode, const keyrecord_t *record) 
             break;
         case KC_M: // M becomes L (pull up "L" to same row)
             switch (prior_keycode) {
-//                case KC_B: // tricksy - trilling "mxm" results in "mbl" trigram instead of scissor
+                case KC_B: // tricksy - trilling "mxm" results in "mbl" trigram instead of scissor
                     // but this makes norman BM = BL...so not great. proper adaptive method is needed
                     // that recognizes N-gram sequences. Maybe at the migrate to RP2040 or the like?
                 case KC_P: // tricksy - trilling "mwm" results in "mpl" trigram instead of scissor
@@ -88,6 +88,9 @@ ReplacePriorWithL:
                 case KC_K:
                 case KC_V:
                     goto PullUpLAndExit; // short jumps save bytes
+                case KC_B:
+                    tap_code(KC_M);
+                    return_state = false; // done.
             }
             break;
 

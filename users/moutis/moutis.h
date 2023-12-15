@@ -7,10 +7,10 @@
 // they will be used in the respective keymap for each keyboard
 
 #ifdef THUMB_SHIFT
-#include "handsdown/vv-config.ts.h" // definitions for the Alpha layer and mnemonic combos
+#include "handsdown/vb-config.ts.h" // definitions for the Alpha layer and mnemonic combos
 #include "moutis_layers.ts.h" // definitions for all the other layers
 #else
-#include "handsdown/vv-config.h" // definitions for the Alpha layer and mnemonic combos
+#include "handsdown/vb-config.h" // definitions for the Alpha layer and mnemonic combos
 #include "moutis_layers.h" // definitions for all the other layers
 #endif
 
