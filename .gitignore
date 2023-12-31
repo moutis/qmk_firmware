@@ -198,3 +198,11 @@ users/moutis/HDvariations/vb copy/vb-adaptive.c
 users/moutis/HDvariations/vb copy/vb-combo_def.c
 users/moutis/HDvariations/vb/hd-vb.h
 users/moutis/HDvariations/vb/vb-combo_def.c
+lib/chibios
+lib/chibios-contrib
+lib/googletest
+lib/lufa
+lib/lvgl
+lib/pico-sdk
+lib/printf
+lib/vusb
