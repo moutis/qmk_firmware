@@ -14,6 +14,7 @@ uint8_t  saved_mods = 0; // to pass state between process_record_user and matrix
 uint16_t record_keycode = 0; // the keykcode we poke at in process_record
 uint16_t key_trap = 0; // the actual keycode registered (need to unregister)
 #ifdef ADAPTIVE_ENABLE
+uint16_t preprior_keycode = KC_NO;
 uint16_t prior_keycode = KC_NO;
 uint16_t prior_keydown = 0; // timer of keydown for adaptive threshhold.
 #endif

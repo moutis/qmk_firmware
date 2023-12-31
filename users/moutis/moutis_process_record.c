@@ -21,8 +21,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         && IS_ENGLISH_MODE
 #endif // #ifdef JP_MODE_ENABLE
         ) { // Adaptives only in primary (Latin) mode
-        if (!process_adaptive_key(&keycode, record)) {
+        if (!process_adaptive_key(keycode, record)) {
             prior_keydown = timer_read(); // (re)start prior_key timing
+            preprior_keycode = prior_keycode; // look back 2 keystrokes?
             prior_keycode = keycode; // this keycode is stripped of mods+taps
             return false; // took care of that key
         }
@@ -410,6 +411,7 @@ storeSettings:
 
 #ifdef ADAPTIVE_ENABLE
         prior_keydown = timer_read(); // (re)start prior_key timing
+        preprior_keycode = prior_keycode; // look back 2 keystrokes?
         prior_keycode = keycode; // this keycode is now stripped of mods+taps
 #endif
         

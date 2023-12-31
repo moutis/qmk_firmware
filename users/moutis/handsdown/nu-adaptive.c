@@ -8,8 +8,6 @@
     FILTERED OUT! The combos handler will have already taken out combo candidates,
     which have a shorter keydown threshhold (COMBO_TERM).
  
- All the goto shenanigans should be resolved after complete migration to STM/RP controllersr
- (not totally possible, as many of my boards have embedded AVR mcus)
 
  */
 //              Hands Down Neu
@@ -21,13 +19,12 @@
 //             ╰─────────╯ ╰──────────╯
 // Q (LT3) & Z (LT4) are on the punc layer
 
-bool process_adaptive_key(uint16_t *calling_keycode, const keyrecord_t *record) {
+bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
     bool return_state = true; // assume we don't do anything.
-    uint16_t keycode = *calling_keycode;
-    
+
     // Are we in an adaptive context? (adaptive on is assumed).
     if (timer_elapsed(prior_keydown) > ADAPTIVE_TERM) { // outside adaptive threshhold
-        prior_keycode = prior_keydown = 0; // turn off Adaptives.
+        prior_keycode = preprior_keycode = prior_keydown = 0; // turn off Adaptives.
         return true; // no adaptive conditions, so return.
     }
 
@@ -43,48 +40,67 @@ bool process_adaptive_key(uint16_t *calling_keycode, const keyrecord_t *record) 
 /*
 // Left hand adaptives (most are single-handed neighbor fingers, bc speed, dexterity limits)
 */
+        case KC_M: // M becomes L (pull up "L" to same row)
+            switch (prior_keycode) {
+                case KC_P: // pull up "L" (PL is 15x more common than PM)
+                case KC_F: // pull up "L" (FL is 93x more common than FM)
+                    tap_code(KC_L);  // pull up "L"
+                    return_state = false; // done.
+                    break;
+                case KC_W: // WM = LM (LM 20x more common)
+                    if (!preprior_keycode) {
+                        tap_code(KC_BSPC);
+                        tap_code(KC_L);
+                        break;
+                    }
+                    switch (preprior_keycode) {
+                        case KC_M:
+                        case KC_X:
+                            tap_code(KC_L);
+                            return_state = false; // done.
+                            break;
+                    };
+            }
+            break;
+
         case KC_B:  // avoid the index-middle split
             switch (prior_keycode) {
                 case KC_P: // pull up M over
                     tap_code(KC_M);
                     return_state = false; // done.
                 case KC_D: // pull L over
-                    goto PullUpLAndExit; // short jumps save bytes
+                    tap_code(KC_L);
+                    return_state = false; // done.
+                    break;
                 break;
            }
             break;
-        case KC_M: // M becomes L (pull up "L" to same row)
-            switch (prior_keycode) {
-                case KC_P: //
-                case KC_F: //
-PullUpLAndExit:
-                    tap_code(KC_L);  //
-                    return_state = false; // done.
-                    break;
-                case KC_W: // WM = LM (LM 20x more common)
-ReplacePriorWithL:
-                    tap_code(KC_BSPC);
-                    tap_code(KC_L);
-                    break;
-            }
+
             break;
         case KC_D: //
             switch (prior_keycode) { //
                 case KC_G:
-                    goto PullUpLAndExit; // short jumps save bytes
+                    tap_code(KC_L);
+                    return_state = false; // done.
+                    break;
             }
             break;
         case KC_P:
             switch (prior_keycode) {
                 case KC_F: // avoid the scissor
-                    goto ReplacePriorWithL; // short jumps save bytes
+                    tap_code(KC_BSPC);
+                    tap_code(KC_L);
+                    return_state = false; // done.
+                    break;
                 case KC_W:
                     tap_code(KC_BSPC);
                     send_string("lml"); // for "calmly" but not quite intuitive…
                     return_state = false; // done.
                     break;
                 case KC_V: // avoid the index-middle split
-                    goto PullUpLAndExit; // short jumps save bytes
+                    tap_code(KC_L);
+                    return_state = false; // done.
+                    break;
             }
             break;
         case KC_G: // avoid the index-middle split
@@ -93,14 +109,18 @@ ReplacePriorWithL:
                     tap_code(KC_N);
                     return_state = false; // done.
                case KC_D: // pull L over
-                    goto ReplacePriorWithL;
+                    tap_code(KC_BSPC);
+                    tap_code(KC_L);
+                    return_state = false; // done.
+                    break;
             }
             break;
 
         case KC_T:  // alt fingering remedy for middle-index splits
             switch (prior_keycode) {
                 case KC_B: //
-                    goto PullUpLAndExit; // short jumps save bytes
+                    tap_code(KC_L);
+                    return_state = false; // done.
                     break;
                 case KC_G:
                     send_string("ght"); // GHT is much more common
@@ -365,7 +385,7 @@ ReplacePriorWithL:
     }
     if (return_state) { // no adaptive processed, cancel state and pass it on.
         set_mods(saved_mods);
-        prior_keycode = keycode = 0;
+        prior_keycode = preprior_keycode = keycode = 0;
     }
     return return_state; //
 }
