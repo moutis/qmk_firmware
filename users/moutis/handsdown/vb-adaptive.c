@@ -172,8 +172,7 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
             break;
 
         case KC_K: // remedy ring-index split by shifting fingering
-            switch (prior_keycode) {
-                case KC_T: // TK = CK (>282x)
+            if (prior_keycode == KC_T) { // TK = CK (>282x)
                     tap_code(KC_BSPC);
                     tap_code(KC_C);
                     break;
@@ -181,7 +180,7 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
             // falling through here intentionally here. V&K are treated same.
         case KC_V: // remedy inner column split by shifting fingering
             switch (prior_keycode) {
-                case KC_D: // DV/TV/GV = LV ()
+                case KC_D: // TV/DV/GV = LV ()
                 case KC_T: // TK/DK/GK = LK ()
                 case KC_G: //
                     tap_code(KC_BSPC);
