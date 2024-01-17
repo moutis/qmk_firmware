@@ -44,7 +44,8 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                 case KC_W: // WM = LM (LM 20x more common)
                     if (!preprior_keycode) {
                         tap_code(KC_BSPC);
-                        tap_code(KC_L);
+                        send_string("lm");
+                        return_state = false; // done.
                         break;
                     }
                     switch (preprior_keycode) {
@@ -59,8 +60,13 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
 
         case KC_W: // W becomes P (pull up "P" to same row)
             switch (prior_keycode) {
-                case KC_X: // pull up P (W becomes P after X to set up "xp"+l)
                 case KC_M: // pull up P (W becomes P after M to set up "mp"+l)
+                    if (preprior_keycode == KC_W) { // except for WMW -> lml?
+                        tap_code(KC_L); // replace the W with L
+                        return_state = false; // done.
+                        break; // process the D normally
+                    }
+                case KC_X: // pull up P (W becomes P after X to set up "xp"+l)
                     tap_code(KC_P); // pull up P from bottom row.
                     return_state = false; // done.
                     break;
@@ -78,6 +84,11 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     return_state = false; // done.
                     break;
                case KC_M:
+                    if (preprior_keycode == KC_W) { // to roll WMG -> lml?
+                        tap_code(KC_L); // replace the G with L
+                        return_state = false; // done.
+                        break; // process the D normally
+                    }
                     tap_code(KC_BSPC);
                     tap_code(KC_L);
                     break; // and let current keycode send normally
@@ -186,6 +197,10 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     tap_code(KC_BSPC);
                     tap_code(KC_L);
                     break; // and let current keycode send normally
+                case KC_B: //
+                    tap_code(KC_M);
+                    return_state = false; // done.
+                    break; // and let current keycode send normally
            }
             break;
 
@@ -211,6 +226,14 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
             }
             break;
 
+        case KC_J:
+            switch (prior_keycode) {
+                case KC_G: // "GTH" is an awkward trigram/skipgram
+                    send_string("th"); // for "length"
+                    return_state = false; // done.
+                    break;
+            }
+            break;
 
 /*
 // right hand adaptives
