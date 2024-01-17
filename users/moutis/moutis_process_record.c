@@ -88,6 +88,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 key_trap = KC_DEL;  // mode monitor on to clear this on keyup
                 goto register_key_trap_and_return;
 /*
+                key_trap = SK_DEL;  // mode monitor on to clear this on keyup
                 register_semKey(key_trap);
                 return_state = false; // stop processing this record.
                 set_mods(saved_mods);  // not sure if we need this
