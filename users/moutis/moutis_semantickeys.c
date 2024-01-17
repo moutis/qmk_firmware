@@ -83,6 +83,7 @@ const uint16_t SemKeys_t[SemKeys_COUNT - SK_KILL][OS_count] = {
     [SK_FAGN - SK_KILL] = {G(KC_G),KC_F3}, // find again
     [SK_SCAP - SK_KILL] = {S(G(KC_4)),KC_PSCR}, // Screen Capture
     [SK_SCLP - SK_KILL] = {C(S(G(KC_4))),A(KC_PSCR)}, // Selection Capture))
+//    [SK_DEL  - SK_KILL] = {KC_DEL,KC_DEL}, // DELETE CHAR RIGHT
     [SK_DELWDL - SK_KILL] = {A(KC_BSPC),C(KC_BSPC)}, // DELETE WORD LEFT
     [SK_DELWDR - SK_KILL] = {A(KC_DEL),C(KC_DEL)}, // DELETE WORD RIGHT
     [SK_WORDPRV - SK_KILL] = {A(KC_LEFT),C(KC_LEFT)}, // WORD LEFT

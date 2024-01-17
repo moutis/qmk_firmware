@@ -172,10 +172,15 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
 
         case KC_B:
             switch (prior_keycode) {
-                case KC_P: // avoid row step (PS is 40x more common than PB)
+                case KC_D: // avoid SFB (DV is 5x more common than DB)
+                    tap_code(KC_V);
+                    return_state = false; // done.
+                    break;
+               case KC_P: // avoid row step (PS is 40x more common than PB)
                     tap_code(KC_S);
                     return_state = false; // done.
-                case KC_C: // eliminate SB SFB (CB is 11x more common than SB)
+                    break;
+               case KC_C: // eliminate SB SFB (CB is 11x more common than SB)
                     tap_code(KC_BSPC);
                     tap_code(KC_S);
                     break;

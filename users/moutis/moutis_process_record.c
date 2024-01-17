@@ -81,14 +81,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 */
 
             case KC_BSPC:  // make S(KC_BSPC) = KC_DEL; ALT = word_del L & R
-                if (saved_mods & MOD_MASK_SHIFT) {  // shift down with KC_BSPC? (ALT OK)
-                    key_trap = KC_DEL;  // mode monitor on to clear this on keyup
-register_key_trap_and_return:
-                    register_code16(key_trap);
-                    return_state = false; // stop processing this record.
-                    set_mods(saved_mods);  // not sure if we need this
-                    break;
-                }
+                if (!(saved_mods & MOD_MASK_SHIFT)) // only SHFT? (ALT ok)
+                    break; // N: nothing to do
+                // shift down with KC_BSPC? (ALT OK)
+                unregister_mods(MOD_MASK_SA); // get rid of shift & alt
+                key_trap = KC_DEL;  // mode monitor on to clear this on keyup
+                goto register_key_trap_and_return;
+/*
+                register_semKey(key_trap);
+                return_state = false; // stop processing this record.
+                set_mods(saved_mods);  // not sure if we need this
+                break;
+*/
             case KC_MINS:  // SHIFT = +
                 if (!(saved_mods & MOD_MASK_SHIFT)) // only SHFT? (ALT ok)
                     break; // N: nothing to do
@@ -98,8 +102,12 @@ register_key_trap_and_return:
             case KC_EQL: // SHIFT = _
                 if (!(saved_mods & MOD_MASK_SHIFT)) // only SHFT? (ALT ok)
                     break; // N: nothing to do
-                key_trap = S(KC_MINS);  // enter override state
-                goto register_key_trap_and_return;
+                key_trap = KC_UNDS;  // enter override state
+register_key_trap_and_return:
+                register_code16(key_trap);
+                return_state = false; // stop processing this record.
+                set_mods(saved_mods);  // not sure if we need this
+                break;
 
             case KC_SLSH:  // SHIFT = *, ALT=\, ALT+SHIFT=⁄
                 unregister_mods(MOD_MASK_SA); // get rid of shift & alt
@@ -473,6 +481,14 @@ storeSettings:
                 break;
 
             case KC_BSPC:  // make S(KC_BSPC) = KC_DEL; plus word_del L & R
+/*
+                if (!key_trap) // did we override this earlier?
+                    break; // N: do normal thing
+                unregister_SemKey(key_trap); //
+                key_trap = 0;  // exit override state.
+                return_state = false; // stop processing this record.
+                break;
+*/
             case KC_MINS:  // SHIFT = +, ALT=–(n-dash), ALT+SHIFT=±
             case KC_EQL:   // ALT _
             case KC_SLSH:  // SHIFT = *, ALT=\, ALT+SHIFT=⁄
