@@ -29,7 +29,10 @@ enum my_keycodes {
     HD_AdaptKeyToggle = SAFE_RANGE, // Adaptive Keys Toggle on/off
     HD_L_QWERTY, // base layer switch
     HD_L_ALPHA,
-        // Semantic Keys (keystrokes handled by process_semkey() for platform independence)
+    SK_Mac,
+    SK_Win,
+    SK_Lux,
+    // Semantic Keys (keystrokes handled by process_semkey() for platform independence)
     SK_KILL, // SK_KILL must be the first of contiguous block of SKs
     SK_HENK,  // kana (others)
     SK_MHEN, // eisuu (others)

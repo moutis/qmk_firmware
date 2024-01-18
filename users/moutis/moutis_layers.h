@@ -300,10 +300,10 @@ __ │   UNDO     CUT     COPY    PSTE    FAGN  │ __  __    __  __ │  DOCEND
 */
 
 #define LC_LT5 KC_NO
-#define LC_LT4 QK_RBT
-#define LC_LT3 CG_SWAP
-#define LC_LT2 CG_NORM
-#define LC_LT1 EE_CLR
+#define LC_LT4 SK_Lux
+#define LC_LT3 SK_Win
+#define LC_LT2 SK_Mac
+#define LC_LT1 QK_RBT
 #define LC_LT0 SK_KILL
 #define LC_RT0 LCA(KC_DEL)
 #define LC_RT1 KC_NUM
@@ -335,7 +335,7 @@ __ │   UNDO     CUT     COPY    PSTE    FAGN  │ __  __    __  __ │  DOCEND
 #define LC_LBB KC_NO
 #define LC_RBB KC_NO
 #define LC_RBA RGB_SAD
-#define LC_RB0 KC_NO
+#define LC_RB0 EE_CLR
 #define LC_RB1 KC_MRWD
 #define LC_RB2 KC_MPLY
 #define LC_RB3 KC_MFFD

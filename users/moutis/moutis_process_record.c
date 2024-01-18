@@ -385,13 +385,24 @@ linger_and_return:
                 return_state = false; // stop processing this record.
                 break;
 */
-            case CG_SWAP: // SINCE MAC IS MY LAYOUT DEFAULT switch to windows
-                user_config.OSIndex = 1; // for Windows Semkeys
-                return_state = true; // let QMK do it's swap thing.
+                
+            case SK_Lux: // SINCE MAC IS MY LAYOUT DEFAULT switch to linux
+                user_config.OSIndex = OS_Lux; // for Linux Semkeys
+//                process_magic(QK_MAGIC_SWAP_CTL_GUI); // tell QMK to swap ctrl/gui
+                keymap_config.swap_lctl_lgui = keymap_config.swap_rctl_rgui = true;
+                return_state = false; // stop processing this record.
                 goto storeSettings;
-            case CG_NORM: // Back to default
-                user_config.OSIndex = 0; // for Mac Semkeys
-                return_state = true; // let QMK do it's swap thing.
+           case SK_Win: // SINCE MAC IS MY LAYOUT DEFAULT switch to windows
+                user_config.OSIndex = OS_Win; // for Windows Semkeys
+//                process_magic(QK_MAGIC_SWAP_CTL_GUI); // tell QMK to swap ctrl/gui
+                keymap_config.swap_lctl_lgui = keymap_config.swap_rctl_rgui = true;
+                return_state = false; // stop processing this record.
+                goto storeSettings;
+            case SK_Mac: // Back to default
+                user_config.OSIndex = OS_Mac; // for Mac Semkeys
+//                process_magic(QK_MAGIC_UNSWAP_CTL_GUI); // tell QMK to restore ctrl/gui
+                keymap_config.swap_lctl_lgui = keymap_config.swap_rctl_rgui = false;
+                return_state = false; // stop processing this record.
                 goto storeSettings;
             case HD_AdaptKeyToggle: // toggle AdaptiveKeys (& LingerKeys, linger combos)
 #ifdef ADAPTIVE_ENABLE

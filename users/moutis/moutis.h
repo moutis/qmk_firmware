@@ -105,7 +105,7 @@ enum OS_Platform { // Used for platform support via SemKeys
     OS_Mac,     // Mac with ANSI_US_EXTENDED layout
 //    OS_iOS,     // iOS?
     OS_Win,     // Win with default English/ANSI layout?
-//    OS_Lux,     // Linux (Gnome?/KDE?)
+    OS_Lux,     // Linux (Gnome?/KDE?)
 //    OS_And,     // Android (flavors?)
     OS_count
 };
