@@ -82,6 +82,7 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
                 combo_on = combo_index; // if held, addd 'h' for "Sch" in matrix_scan_user_process_combo
                 break;
 */
+#ifdef EN_HDIGRAPH_COMBOS
             case HC_Sch: // to avoid outward roll on ring->pinky fingers moving in unison is easier
                 tap_code(KC_S); // send "S"
                 unregister_mods(MOD_MASK_SHIFT);  //
@@ -97,6 +98,7 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
                 tap_code(KC_P); // send "P" honoring caps
                 combo_on = combo_index; // if held, check in matrix_scan_user_process_combo
                 break;
+#endif // EN_HDIGRAPH_COMBOS
 
 
             case HC_ACUT:
@@ -556,7 +558,7 @@ ADD_HERE:
 #endif
             switch(combo_index) {
 // the H digraphs
-
+#ifdef EN_HDIGRAPH_COMBOS
                 case HC_Sch: // to avoid outward roll on ring->pinky fingers moving in unison is easier
                 case HC_Ch:
                 case HC_Th:
@@ -567,8 +569,7 @@ ADD_HERE:
                     unregister_mods(MOD_MASK_SHIFT);  //
                     tap_code(KC_H); // send "h" honoring CAPSLK state
                     break;
-
-// END the H digraphs
+#endif // EN_HDIGRAPH_COMBOS
 
                 case HC_FIND:  // Simple Find if not held
                     tap_SemKey(SK_FIND);
@@ -740,7 +741,7 @@ void matrix_scan_user_process_combo() {  // called from matrix_scan_user if comb
                     tap_SemKey(SK_PSTM);
                     break;
 
-                    
+#ifdef EN_HDIGRAPH_COMBOS
                 case HC_Sh: // if these H digragh combos are held, then send T/SION instead
                 case HC_Th: // TION = by far most common 4-gram, (then THAT/THER/WITH/MENT)
                     unregister_mods(MOD_MASK_SHIFT);
@@ -765,6 +766,8 @@ void matrix_scan_user_process_combo() {  // called from matrix_scan_user if comb
 //                case HC_Sc: //
 //                    tap_code(KC_H); // add "h" (for "Sch", since were already on these keys.)
 //                    break;
+#endif // EN_HDIGRAPH_COMBOS
+
                 case HC_AT:
                     send_string(At_ComboHeld);
                     break;

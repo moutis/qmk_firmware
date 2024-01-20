@@ -42,22 +42,50 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     return_state = false; // done.
                     break;
                 case KC_W: // WM = LM (LM 20x more common)
+/*
                     if (!preprior_keycode) {
                         tap_code(KC_BSPC);
                         send_string("lm");
                         return_state = false; // done.
                         break;
                     }
+*/
                     switch (preprior_keycode) {
                         case KC_M:
                         case KC_X:
                             tap_code(KC_L);
                             return_state = false; // done.
                             break;
-                    };
+                        default:
+                            tap_code(KC_BSPC);
+                            send_string("lm");
+                            return_state = false; // done.
+                    }
             }
             break;
-
+// If not using H-digraph combos, consider this adaptive solution?
+#ifndef EN_HDIGRAPH_COMBOS
+        case KC_N: // N becomes H (for H-Digraph rolls)
+            switch (prior_keycode) {
+                case KC_P: // pn = ph (ph 78x more common)
+                case KC_G: // gn = gh (gh 2.5x more common)
+                case KC_S: // sn = sh (sh 33x more common)
+                case KC_W: // wn = wh (wh 3.8x more common)
+                case KC_C: // cn = ch (sh 694x more common)
+                case KC_T: // tn = th (LM 354x more common)
+                    tap_code(KC_H);
+                    return_state = false; // done.
+            }
+            break;
+#else
+        case KC_N: // N becomes H (for H-Digraph rolls)
+            switch (prior_keycode) {
+                case KC_T: // "TION" is 58x more common than "TN"
+                    send_string("ion");
+                    return_state = false; // done.
+            }
+            break;
+#endif
         case KC_W: // W becomes P (pull up "P" to same row)
             switch (prior_keycode) {
                 case KC_M: // pull up P (W becomes P after M to set up "mp"+l)
