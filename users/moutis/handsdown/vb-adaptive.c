@@ -42,14 +42,6 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     return_state = false; // done.
                     break;
                 case KC_W: // WM = LM (LM 20x more common)
-/*
-                    if (!preprior_keycode) {
-                        tap_code(KC_BSPC);
-                        send_string("lm");
-                        return_state = false; // done.
-                        break;
-                    }
-*/
                     switch (preprior_keycode) {
                         case KC_M:
                         case KC_X:
