@@ -333,30 +333,38 @@ register_key_trap_and_return:
                 break;
 
 #ifdef JP_MODE_ENABLE
-            case KC_L: // L if English, ん if Japanese mode
-                if (!IS_ENGLISH_MODE) {
-                    tap_code(KC_N);
-                    tap_code(KC_N);
-                    return_state = false; // stop processing this record.
-                }
-                break;
             case KC_C: // C if English, z if Japanese mode
                 if (!IS_ENGLISH_MODE) {
                     register_code(KC_Z);
                     return_state = false; // stop processing this record.
                 }
                 break;
-           case KC_X: // X if English, - if Japanese mode
-                if (!IS_ENGLISH_MODE) {
-                    register_code(KC_MINS);
-                    return_state = false; // stop processing this record.
-                }
-                break;
 #endif
+            case KC_L: // L if English, ん if Japanese mode
+            case KC_X: // X if English, - if Japanese mode
+#ifdef JP_MODE_ENABLE
+                if (!IS_ENGLISH_MODE) {
+                    switch (keycode) {
+                        case KC_L: // L if English, ん if Japanese mode
+                            tap_code(KC_N);
+                            tap_code(KC_N);
+                            return_state = false; // stop processing this record.
+                            break;
+                        case KC_X: // X if English, - if Japanese mode
+                            register_code(KC_MINS);
+                            return_state = false; // stop processing this record.
+                            break;
+                    }
+                }
+#endif
+            case KC_G:  // optional linger
             case KC_J:  // optional linger
+            case KC_M:  // optional linger
             case KC_V:  // optional linger
-            case KC_Q:  // Qu, linger deletes U
             case KC_Z:  // optional linger
+                if (!(saved_mods & MOD_MASK_SHIFT))
+                    break; // only linger on shift
+            case KC_Q:  // Qu, linger deletes U
                 if ((saved_mods & MOD_MASK_ALT)
 #ifdef JP_MODE_ENABLE
                     || !IS_ENGLISH_MODE
@@ -448,16 +456,24 @@ storeSettings:
                     return_state = false; // stop processing this record.
                 }
                 break;
-           case KC_X: // X if English, - if Japanese mode
-                if (!IS_ENGLISH_MODE) {
-                    unregister_code(KC_MINS);
-                    return_state = false; // stop processing this record.
-                }
-                break;
 #endif
-            case KC_J:  //
-            case KC_V:  //
-            case KC_Z:  //
+           case KC_X: // X if English, - if Japanese mode
+#ifdef JP_MODE_ENABLE
+                if (!IS_ENGLISH_MODE)
+                    unregister_code(KC_MINS);
+                 else
+#endif
+                    unregister_code16(keycode);
+                linger_key = 0; // make sure nothing lingers
+                return_state = false; // stop processing this record.
+                break;
+
+            case KC_G:  // optional linger
+            case KC_J:  // optional linger
+            case KC_L:  // optional linger
+            case KC_V:  // optional linger
+            case KC_Z:  // optional linger
+            case KC_M:  // optional linger
             case KC_Q:  // for linger Qu (ironically, need to handle this direclty w/o the macros.)
                 unregister_code16(keycode);
                 linger_key = 0; // make sure nothing lingers

@@ -38,20 +38,28 @@ void matrix_scan_user(void) {
                         tap_code(KC_U);
                         break;
 
-                    case KC_V: // already "V" has been sent; if lingered, add "ivi "
-                        if ((saved_mods & MOD_MASK_SHIFT)) {
-                            SEND_STRING("ivi");
-                        }
+                    case KC_G: // already "G" has been sent;
+                        send_string(lingerG);
                         break;
-                    case KC_Z: // already "Z" has been sent; if lingered, add "oe "
-                        if ((saved_mods & MOD_MASK_SHIFT)) {
-                            SEND_STRING("oe");
-                        }
+                    case KC_J: // already "J" has been sent;
+                        send_string(lingerJ);
                         break;
-                    case KC_J: // already "Z" has been sent; if lingered, add "oe "
-                        if ((saved_mods & MOD_MASK_SHIFT)) {
-                            SEND_STRING("acob");
-                        }
+                    case KC_L: // already "L" has been sent;
+                        send_string(lingerL);
+                        break;
+                    case KC_M: // already "M" has been sent;
+                        tap_code16(KC_BSPC); // delete sent char
+                        send_string(lingerM);
+                        break;
+                    case KC_V: // already "V" has been sent;
+                        send_string(lingerV);
+                        break;
+                    case KC_X: // already "X" has been sent;
+                        tap_code16(KC_BSPC); // delete sent char
+                        send_string(lingerX);
+                        break;
+                    case KC_Z: // already "Z" has been sent;
+                        send_string(lingerZ);
                         break;
 
                     case KC_LPRN: //

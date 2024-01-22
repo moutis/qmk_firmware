@@ -6,6 +6,9 @@
 // defines all variation dependent constants/files/keycodes, etc.
 // they will be used in the respective keymap for each keyboard
 
+#include "personalizedmacros.h"
+
+
 #ifdef THUMB_SHIFT
 #include "handsdown/vb-config.ts.h" // definitions for the Alpha layer and mnemonic combos
 #include "moutis_layers.ts.h" // definitions for all the other layers
