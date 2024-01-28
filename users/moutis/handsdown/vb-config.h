@@ -107,10 +107,10 @@
 #define HD_LB2 HD_L
 #define HD_LB1 HD_D
 #define HD_LB0 HD_V
-#define HD_LBA LT(L_NUM, KC_LBRC)
+#define HD_LBA C(S(KC_3))
 #define HD_LBB LT(L_CFG, KC_LNG2)
 #define HD_RBB LT(L_FUN, KC_LNG1)
-#define HD_RBA LT(L_NAV, KC_RBRC)
+#define HD_RBA C(S(KC_4))
 #define HD_RB0 HD_MINS
 #define HD_RB1 HD_U
 #define HD_RB2 HD_O
