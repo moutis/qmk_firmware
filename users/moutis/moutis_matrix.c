@@ -13,18 +13,29 @@ void matrix_scan_user(void) {
 
         if (caps_word_on) { // caps_word mode on, (no mods) check if it needs to be cleared
             if (timer_elapsed(state_reset_timer) > STATE_RESET_TIME * 3) {// caps time over?
-                disable_caps_word(); // turn off all open states
-                state_reset_timer = 0;
+                disable_caps_word(); // turn off all active states
+                goto getout;
             }
         }
 
 //
 // quick check in with the APP_MENU process
-// This was inline, to avoid the call/return before the test in matrix,
-// but doesn't seem to be an issue, even on AVR.
 //
-        matrix_APP_MENU();
-
+        if (appmenu_on) { // App menu up, (no mods) check if it needs to be cleared
+            if (timer_elapsed(state_reset_timer) > STATE_RESET_TIME) {// menu up time elapsed?
+                if (user_config.OSIndex) { // Y. stop the menu by lifting the mods
+                    unregister_code(KC_RALT); // Win
+                } else {
+                    unregister_code(KC_RGUI); // Mac
+                }
+getout:
+                layer_off(L_NAV);
+                state_reset_timer = mods_held = 0;  // stop the timer
+                appmenu_on = false;
+                return;
+            }
+        }
+        
 //
 // prior register_linger_key(kc) needs to be handled here
 //
