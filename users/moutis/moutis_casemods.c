@@ -36,6 +36,13 @@
 static uint32_t caps_word_timer = 0;
 static bool last_press_was_space = false;
 
+/*
+bool caps_word_on (void) {
+    if (caps_word_timer)
+        return true;
+    return false;
+}
+*/
 // Enable caps word
 void enable_caps_word(void) {
 

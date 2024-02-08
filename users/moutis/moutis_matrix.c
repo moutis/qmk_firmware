@@ -42,7 +42,7 @@ void matrix_scan_user(void) {
             saved_mods = get_mods();
             clear_mods();
             unregister_mods(MOD_MASK_SHIFT);  // second char isn't shifted. CAPSLOCK UNAFFECTED.
-            switch(linger_key) { // only one linger_key at a time, obviously
+            switch(linger_key) {
                 case KC_Q: // already "Q" has been sent; if lingered, add "u"
                     tap_code(KC_U);
                     break;
