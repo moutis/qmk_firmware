@@ -21,9 +21,9 @@ uint16_t prior_keydown = 0; // timer of keydown for adaptive threshhold.
 
 uint16_t linger_key = 0;  // keycode for linger actions (ex. "Qu")
 uint32_t linger_timer = 0; // time to hold a key before something else happens.
-uint32_t state_reset_timer = 0;  // time to leave a state active before shutting it down automatically.
-bool appmenu_on = false;  // state of windows-like app switcher
-bool mods_held = false;  // nood to remember how we entered the appmenu state
+uint32_t appmenu_timer = 0;  // time to leave appmenu active before shutting it down automatically.
+bool appmenu_on = false;  // appmenu triggered (after holding key)
+bool mods_held = false;  // need to remember how we entered the appmenu state
 
 #ifdef JP_MODE_ENABLE
 bool IS_ENGLISH_MODE = true;

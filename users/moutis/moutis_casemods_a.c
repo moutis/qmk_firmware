@@ -33,28 +33,29 @@
 
 
 // bools to keep track of the caps word state
-static bool caps_word_on = false;
+static uint32_t caps_word_timer = 0;
 static bool last_press_was_space = false;
-//static uint16_t caps_word_timer = 0;
 
 // Check whether caps word is on
 bool caps_word_enabled(void) {
-    return caps_word_on;
+if (caps_word_timer)
+    return true;
+    return false;
 }
 
 // Enable caps word
 void enable_caps_word(void) {
 
-    caps_word_on = true;
+    caps_word_timer = true;
     if (!host_keyboard_led_state().caps_lock) {
         tap_code(KC_CAPS);
     }
-    state_reset_timer = timer_read(); // (re)start timing hold for keyup below
+    caps_word_timer = timer_read(); // (re)start timing hold for keyup below
 }
 
 // Disable caps word
 void disable_caps_word(void) {
-    caps_word_on = false;
+    caps_word_timer = 0;
     if (last_press_was_space) {
         tap_code(KC_BSPC);
         last_press_was_space = false;
@@ -66,7 +67,7 @@ void disable_caps_word(void) {
 
 // Toggle caps word
 void toggle_caps_word(void) {
-    if (caps_word_on) {
+    if (caps_word_timer) {
         disable_caps_word();
     }
     else {
@@ -87,7 +88,7 @@ bool terminate_caps_word(uint16_t keycode, const keyrecord_t *record) {
             case KC_RIGHT ... KC_LEFT:
                 last_press_was_space = false;
             case KC_SPC:
-                state_reset_timer = timer_read(); // (re)start timing hold for auto-off delay
+                caps_word_timer = timer_read(); // (re)start timing hold for auto-off delay
                 if ((get_mods() != 0)) { // hitting any mod...go handle it
                     return true;
                 }
@@ -101,7 +102,7 @@ bool terminate_caps_word(uint16_t keycode, const keyrecord_t *record) {
 
 bool process_caps_word(uint16_t keycode, const keyrecord_t *record) {
 
-    if (caps_word_on) {
+    if (caps_word_timer) {
         // Filter out the actual keycode from MT and LT keys.
         // This isn't working right. need to allow a layer to happen.
         switch (keycode) {

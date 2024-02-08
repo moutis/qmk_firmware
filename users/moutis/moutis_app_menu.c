@@ -6,15 +6,15 @@
 // matrix_APP_MENU checks/disables the timer.
 //
 // uses globals:
-// uint32_t state_reset_timer = 0; // timer used for app_menu, adaptives, lingers
+// uint32_t appmenu_timer = 0; // timer used for app_menu (0 = off)
 // uint8_t  saved_mods = 0; //
-// bool appmenu_on = false;  // state of windows-like app switcher
 // bool mods_held = false;  // nood to remember how we entered the appmenu state
 //
 
 void process_APP_MENU(keyrecord_t *record) {
 // KC_APP key gets special treatment
-    disable_caps_word(); // turn off all other open states
+    disable_caps_word(); // turn off CAPS_WORD
+    prior_keycode = preprior_keycode = prior_keydown = 0; // turn off Adaptives.
     if (record->event.pressed) {
         if (saved_mods & MOD_MASK_CTRL) { // cycle window w/in app
             unregister_code(KC_RALT);  // ignore these if ctrl
@@ -30,31 +30,30 @@ void process_APP_MENU(keyrecord_t *record) {
                 register_code(KC_RGUI); // Mac
             }
         }
-/*
-      if (saved_mods & MOD_MASK_SHIFT)
-        tap_code16(S(KC_TAB)); // switch app
-    else
-*/
+
+        if (saved_mods & MOD_MASK_SHIFT)
+            tap_code16(S(KC_TAB)); // switch app
+        else
+            tap_code(KC_TAB); // switch app
         layer_on(L_NAV);
-        tap_code(KC_TAB); // switch app
-        state_reset_timer = timer_read(); // (re)start timing hold for keyup below
+        appmenu_timer = timer_read(); // (re)start timing hold for keyup below
         return; // handled this record.
     }
   // up event
-  // if (mods_held || appmenu_on) // mods down, or already on…
     if (appmenu_on) // mods down, or already on…
         return; // so nothing to do here (matrix_APP_MENU will handle it)
-    if (timer_elapsed(state_reset_timer) > LINGER_TIME) { // held long enough?
-        state_reset_timer = timer_read(); // Y:start timer
-        appmenu_on = true; // menu is held up (taken down in matrix_scan_user)
+    if (timer_elapsed(appmenu_timer) > LINGER_TIME) { // held long enough?
+        appmenu_timer = timer_read(); // Y:start timer (take down in matrix_scan_user)
+        appmenu_on = true;
     } else { // N: just a quick tap for app switch.
         if (user_config.OSIndex) { // let mod keys up now
             unregister_code(KC_RALT); // Win/Lux
         } else {
             unregister_code(KC_RGUI); // Mac
         }
-        //layer_off(L_NAV);
-        state_reset_timer = 0;  // stop the timer
+        layer_off(L_NAV);
+        appmenu_on = false;
+        appmenu_timer = 0;  // stop the timer
     }
     return; // handled this record.
 }

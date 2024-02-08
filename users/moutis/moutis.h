@@ -115,7 +115,7 @@ enum OS_Platform { // Used for platform support via SemKeys
 
 #include "moutis_semantickeys.h"
 
-#define register_linger_key(kc) {(((kc > (uint16_t)SK_KILL) && (kc < (uint16_t)SemKeys_COUNT)) ? register_SemKey(kc) : register_code16(kc));linger_key = kc;linger_timer = state_reset_timer = timer_read();}
+#define register_linger_key(kc) {(((kc > (uint16_t)SK_KILL) && (kc < (uint16_t)SemKeys_COUNT)) ? register_SemKey(kc) : register_code16(kc));linger_key = kc;linger_timer = timer_read();}
 
 #define unregister_linger_key() {(((linger_key > (uint16_t)SK_KILL) && (linger_key < (uint16_t)SemKeys_COUNT)) ? unregister_SemKey(linger_key) : unregister_code16(linger_key));linger_key = 0;}
 

@@ -33,23 +33,22 @@
 
 
 // bools to keep track of the caps word state
-static bool caps_word_on = false;
+static uint32_t caps_word_timer = 0;
 static bool last_press_was_space = false;
 
 // Enable caps word
 void enable_caps_word(void) {
 
-    caps_word_on = true;
     last_press_was_space = false;
     if (!host_keyboard_led_state().caps_lock) {
         tap_code(KC_CAPS);
     }
-    state_reset_timer = timer_read(); // (re)start timing hold for keyup below
+    caps_word_timer = timer_read(); // (re)start timing hold for keyup below
 }
 
 // Disable caps word
 void disable_caps_word(void) {
-    caps_word_on = false;
+    caps_word_timer = 0;
     if (last_press_was_space) {
         tap_code(KC_BSPC);
     }
@@ -60,7 +59,7 @@ void disable_caps_word(void) {
 
 // Toggle caps word
 void toggle_caps_word(void) {
-    if (caps_word_on) {
+    if (caps_word_timer) {
         disable_caps_word();
     }
     else {
@@ -93,7 +92,7 @@ bool process_caps_word(uint16_t keycode, const keyrecord_t *record) {
             disable_caps_word();
             return true; // let QMK handle it.
         }
-        state_reset_timer = timer_read(); // (re)start timing hold for auto-off delay
+        caps_word_timer = timer_read(); // (re)start timing hold for auto-off delay
         switch (keycode) {
             case KC_1 ... KC_0: // let these pass through
             case KC_MINS:

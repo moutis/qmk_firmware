@@ -23,7 +23,7 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
     // K, this could be adaptive, so process.
     saved_mods = get_mods();
 
-    if (!caps_word_on) { // turn off shift, (first-words & Proper nouns)
+    if (!caps_word_timer) { // turn off shift, (first-words & Proper nouns)
         unregister_mods(MOD_MASK_SHIFT);  //CAPS_WORD/LOCK won't be affected.
     } // may want more granular control than this…
 

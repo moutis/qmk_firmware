@@ -43,7 +43,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
 
     // Do we turn off CAPS_WORD?
-    if (caps_word_on) {
+    if (caps_word_timer) {
         if (!process_caps_word(keycode, record)) {
             return false; // took care of that key
         }
@@ -141,8 +141,7 @@ register_key_trap_and_return:
                 
             case KC_LPRN:  // SHIFT = { (linger=(|))
                 if (!saved_mods) {
-                    register_linger_key(keycode); // example of simple linger macro
-                    return_state = false; // don't do more with this record.
+                    goto linger_and_return; // CAUTION: messing w/stack frame here!!
                 } else if (saved_mods & MOD_MASK_SHIFT) { // shift down with KC_RPRN?
                     if (saved_mods & MOD_MASK_ALT) { // SHIFT & ALT?
                         register_linger_key(KC_LCBR); // this should be semkey for ‹/«?
