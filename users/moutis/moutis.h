@@ -101,7 +101,8 @@ enum my_layers {// must be difined before semantickeys.h
     L_FUN,      // 3 - function & number rows
     L_NUM,      // 4 - numpad (right); navpad (left)
     L_NAV,      // 5 - nav pad (right); meta keys (left)
-    L_CFG       // 6 - Media/Consumer controls; Keyboard settings
+    L_CFG,      // 6 - Media/Consumer controls; Keyboard settings
+    L_count
 };
 
 enum OS_Platform { // Used for platform support via SemKeys

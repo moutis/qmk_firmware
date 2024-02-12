@@ -1,7 +1,7 @@
 
 bool encoder_update_user(uint8_t index, bool clockwise) {
 static  uint8_t  held_mods; // static so we're not reallocating each time.
-static  uint16_t HD_enc[L_CFG+1][2][2][2] = { // [layer][L/R encoder][N/Y shift][ccw, cw] * uint16_t = 112 bytes
+static  uint16_t HD_enc[L_count][2][2][2] = { // [layer][L/R encoder][N/Y shift][ccw, cw] * uint16_t = 112 bytes
     // all other encoder actions in this table, most of these defined in the meta keymap file moutis_layers.h
     // ALL QMK and extended keycodes, including SemKeys work here,
     //
