@@ -12,7 +12,6 @@ void matrix_scan_user(void) {
     if (caps_word_timer) { // caps_word mode on?, check if it needs to be cleared
         if (timer_elapsed(caps_word_timer) > STATE_RESET_TIME * 3) {// caps time over?
             disable_caps_word(); // turn off all active states
-            caps_word_timer = 0; // stop the timer
             return;
         }
     }

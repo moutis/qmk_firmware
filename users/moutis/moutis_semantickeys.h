@@ -29,6 +29,12 @@ enum my_keycodes {
     HD_AdaptKeyToggle = SAFE_RANGE, // Adaptive Keys Toggle on/off
     HD_L_QWERTY, // base layer switch
     HD_L_ALPHA,
+#ifdef RGBLIGHT_ENABLE
+    HD_RGB_sat_up, // Sat +
+    HD_RGB_sat_dn, // Sat -
+    HD_RGB_hue_up, // Hue +
+    HD_RGB_hue_dn, // Hue +
+#endif
     SK_Mac,
     SK_Win,
     SK_Lux,
@@ -137,9 +143,15 @@ enum my_keycodes {
 
 #define L_BASELAYER HD_L_QWERTY
 
+#define first_SemKey SK_KILL
+#define last_Semkey SemKeys_COUNT
+
+#define is_SemKey(sk) ((sk > (uint16_t)first_SemKey) && (sk < (uint16_t)last_Semkey))
+
 #define tap_SemKey(sk) tap_code16(SemKeys_t[sk - SK_KILL][user_config.OSIndex])
 #define register_SemKey(sk) register_code16(SemKeys_t[sk - SK_KILL][user_config.OSIndex])
 #define unregister_SemKey(sk) unregister_code16(SemKeys_t[sk - SK_KILL][user_config.OSIndex])
 
 #define linger_SemKey(sk) {register_code16(SemKeys_t[sk - SK_KILL][user_config.OSIndex]);linger_key = sk;linger_timer = state_reset_timer = timer_read();}
 #define unlinger_SemKey(sk) {unregister_code16(SemKeys_t[linger_key - SK_KILL][user_config.OSIndex]);linger_key = 0;}
+

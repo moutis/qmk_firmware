@@ -708,11 +708,9 @@ void matrix_scan_user_process_combo() {  // called from matrix_scan_user if comb
     // Checking combo_triggered above can enable sending untriggered keys
     // and thus allow for longer COMBO_TERM. (recommend < TAPPING_TERM / 2)
     // still, really fast rolls, esp if they can go both ways, are going to be
-    // a problem for this (ex er, re; io oi), so maybe best to avoid them as
-    // combos. On Hands Down, this means no combos on home row, but that's fine,
-    // because home already has modifiers, so it all works out.
-    //
-    // I've since successfully added COMBO_HOLD Home Row combos without difficulty.
+    // a problem for this (ex er, re; io oi on qwerty), so maybe best to avoid them as
+    // combos.
+    // I've successfully added COMBO_HOLD Home Row combos without difficulty.
     // To use multiple home row mods, just put them down one at a time...works great.
     //
     if (!combo_triggered) {

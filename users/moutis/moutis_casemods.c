@@ -58,6 +58,7 @@ void disable_caps_word(void) {
     caps_word_timer = 0;
     if (last_press_was_space) {
         tap_code(KC_BSPC);
+        tap_code16(KC_SPC);
     }
     if (host_keyboard_led_state().caps_lock) {
         tap_code(KC_CAPS);
@@ -93,7 +94,7 @@ bool process_caps_word(uint16_t keycode, const keyrecord_t *record) {
     }
 */
     if (record->event.pressed) {
-        keycode = keycode & QK_BASIC_MAX; // process the base key
+        keycode = keycode & QK_BASIC_MAX; // process just the base key
         // check if the case modes have been terminated
         if ((get_mods() != 0)) { // hitting any mod...go handle it
             disable_caps_word();
@@ -113,28 +114,30 @@ bool process_caps_word(uint16_t keycode, const keyrecord_t *record) {
                     disable_caps_word();
                     return true; // let QMK handle space normally
                 } else {
-                        register_code16(KC_UNDS);
+                    tap_code16(KC_UNDS);
                     last_press_was_space = true;
                     return false; // We handled it
                 }
-                break; // compiler takes this out if necessary?
             case KC_A ... KC_Z: // only works for ASCII. fix this.
                 register_code(KC_LSFT); // for platforms that do CAPSLK differently
-                register_code(keycode); // like iOS, etc.
+                tap_code(keycode); // like iOS, etc.
                 unregister_code(KC_LSFT);
                 last_press_was_space = false;
                return false; // We handled it
             }
-        disable_caps_word();
+        disable_caps_word(); // didn't encounter a legit caps char, so off.
         return true;
-    } else {
+    } 
+/*
+    else {
         switch (keycode) {
             case KC_SPC:
                 if (last_press_was_space) {
-                    unregister_code16(KC_UNDS);
+                    //unregister_code16(KC_UNDS);
                     return false; // We handled it
                 }
         }
     } // end if event.pressed
+*/
     return true; // keep processing
 }

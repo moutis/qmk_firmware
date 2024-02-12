@@ -23,13 +23,13 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
     // K, this could be adaptive, so process.
     saved_mods = get_mods();
 
-    if (!caps_word_timer) { // turn off shift, (first-words & Proper nouns)
+    if (caps_word_timer) { // turn off shift, (first-words & Proper nouns)
         unregister_mods(MOD_MASK_SHIFT);  //CAPS_WORD/LOCK won't be affected.
     } // may want more granular control than this…
 
 //        switch (((keycode >= SAFE_RANGE) && (keycode <= SemKeys_COUNT)) ? (keycode) : (keycode & QK_BASIC_MAX)) { // only handling normal, SHFT or ALT cases.
 
-    switch (keycode & QK_BASIC_MAX) { // process ignoring multi-function keys
+    switch (keycode & QK_BASIC_MAX) { // process ignoring multi-function keys & shift state?
 
 /*
 // Left hand adaptives (most are single-handed neighbor fingers, bc speed, dexterity limits)

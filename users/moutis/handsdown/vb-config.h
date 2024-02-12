@@ -119,8 +119,8 @@
 #define HD_RB5 HD_Q
 
 //Primary Thumbs 1-3 (others are unique to the board)
-#define HD_LH5 KC_LEFT
-#define HD_LH4 KC_RGHT
+#define HD_LH5 KC_DOWN
+#define HD_LH4 KC_UP
 #define HD_LH3 KC_APP
 #define HD_LH2 HD_BSPC
 #define HD_LH1 HD_R
@@ -131,8 +131,8 @@
 #define HD_RH1 HD_SPC
 #define HD_RH2 HD_ENT
 #define HD_RH3 TG(L_NUM)
-#define HD_RH4 KC_UP
-#define HD_RH5 KC_DOWN
+#define HD_RH4 KC_LEFT
+#define HD_RH5 KC_RGHT
 
 #ifdef COMBO_ENABLE
 //

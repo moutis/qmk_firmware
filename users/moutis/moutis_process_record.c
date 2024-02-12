@@ -18,9 +18,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed // keyup = not rolling = no adaptive -> return.
         && user_config.AdaptiveKeys // AdaptiveKeys is on
 #ifdef JP_MODE_ENABLE
-        && IS_ENGLISH_MODE
+        && IS_ENGLISH_MODE // Adaptives only in primary (Latin) mode
 #endif // #ifdef JP_MODE_ENABLE
-        ) { // Adaptives only in primary (Latin) mode
+        ) {
         if (!process_adaptive_key(keycode, record)) {
             prior_keydown = timer_read(); // (re)start prior_key timing
             preprior_keycode = prior_keycode; // look back 2 keystrokes?
@@ -368,22 +368,6 @@ linger_and_return:
                 register_linger_key(keycode); // example of simple linger macro
                 return_state = false; // stop processing this record.
                 break;
-/*
-            case KC_LNG1: // Japanese
-#ifdef JP_MODE_ENABLE
-                IS_ENGLISH_MODE = false;
-#endif
-                tap_SemKey(SK_HENK); // Mac/Win/iOS all different?
-                return_state = false; // stop processing this record.
-                break;
-            case KC_LNG2: // English
-#ifdef JP_MODE_ENABLE
-                IS_ENGLISH_MODE = true;
-#endif
-                tap_SemKey(SK_MHEN); // Mac/Win/iOS all different?
-                return_state = false; // stop processing this record.
-                break;
-*/
                 
             case SK_Lux: // SINCE MAC IS MY LAYOUT DEFAULT switch to linux
                 user_config.OSIndex = OS_Lux; // for Linux Semkeys
@@ -426,6 +410,23 @@ storeSettings:
                 break;
 
 #endif // KEY_OVERRIDE_ENABLE
+
+
+#ifdef RGBLIGHT_ENABLE
+            case HD_RGB_sat_up: // Sat +
+                rgblight_increase_sat(); // Sat +
+                break;
+            case HD_RGB_sat_dn: // Sat -
+                rgblight_decrease_sat(); // Sat -
+                break;
+            case HD_RGB_hue_up: // Hue +
+                rgblight_increase_hue(); // Hue +
+                break;
+            case HD_RGB_hue_dn: // Hue +
+                rgblight_decrease_hue(); // Hue -
+                break;
+#endif
+
         } // switch (keycode) {
 
 #ifdef ADAPTIVE_ENABLE

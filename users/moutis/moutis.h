@@ -115,8 +115,12 @@ enum OS_Platform { // Used for platform support via SemKeys
 
 #include "moutis_semantickeys.h"
 
-#define register_linger_key(kc) {(((kc > (uint16_t)SK_KILL) && (kc < (uint16_t)SemKeys_COUNT)) ? register_SemKey(kc) : register_code16(kc));linger_key = kc;linger_timer = timer_read();}
+#define tap_HDkey(kc) {is_SemKey(kc) ? tap_SemKey(kc) : tap_code16(kc);}
+#define register_HDkey(kc) {is_SemKey(kc) ? register_SemKey(kc) : register_code16(kc);}
+#define unregister_HDkey(kc) {is_SemKey(kc) ? unregister_SemKey(kc) : unregister_code16(kc);}
 
-#define unregister_linger_key() {(((linger_key > (uint16_t)SK_KILL) && (linger_key < (uint16_t)SemKeys_COUNT)) ? unregister_SemKey(linger_key) : unregister_code16(linger_key));linger_key = 0;}
+#define register_linger_key(kc) {register_HDkey(kc);linger_key = kc;linger_timer = timer_read();}
+#define unregister_linger_key() {unregister_HDkey(linger_key) ;linger_key = 0;}
+
 
 void matrix_scan_user_process_combo(void);
