@@ -29,7 +29,7 @@ enum my_keycodes {
     HD_AdaptKeyToggle = SAFE_RANGE, // Adaptive Keys Toggle on/off
     HD_L_QWERTY, // base layer switch
     HD_L_ALPHA,
-#ifdef RGBLIGHT_ENABLE
+#ifdef RGBLIGHT_ENABLE  // backlight/underglow
     HD_RGB_sat_up, // Sat +
     HD_RGB_sat_dn, // Sat -
     HD_RGB_hue_up, // Hue +

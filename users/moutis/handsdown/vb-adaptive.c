@@ -297,7 +297,11 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     tap_code(KC_U); // "AH" yields "AU" (8x more common)
                     return_state = false; // done.
                     break;
-                case KC_E:
+                case KC_U:
+                    tap_code(KC_A); // "UH" yields "UA" (126x more common)
+                    return_state = false; // done.
+                    break;
+                case KC_E: // these EO/OE adaptives are of questionable value
                     tap_code(KC_O); // "EH" yields "EO" (1.75:1)
                     return_state = false; // done.
                     break;
@@ -305,23 +309,23 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     tap_code(KC_E); // "OH" yields "OE" (almost 1:1, but eliminates an SFB?)
                     return_state = false; // done.
                     break;
-                case KC_U:
-                    tap_code(KC_A); // "UH" yields "UA" (126x more common)
-                    return_state = false; // done.
-                    break;
                 case KC_I: // avoid row skip on outward pinky roll
                     tap_code(KC_F); // "IH" yields "IF" (96x more common)
                     return_state = false; // done.
                     break;
+#ifdef FR_ADAPTIVES // eliminate 'h SFB for French
                 case KC_J: // j'habite
                 case KC_L: // l'hôtel
-                case KC_M: // m'homme
                 case KC_N: // n'habite
                 case KC_D: // d'habitude
-                    tap_code(KC_QUOT);// eliminate 'h SFB for French
-                    break;// (can't do it for T bc Th, unless Th digraph combo is mandatory…)
+#ifdef EN_HDIGRAPH_COMBOS
+                case KC_T: // t'habitude can't do this (bc Th) unless Th digraph combo is used…
+#endif
+                    tap_code(KC_QUOT);// éliminer le 'h SFB sur le petit doigt
+                    break;
+#endif
                 case KC_Y: //
-                    tap_code(KC_QUOT); // YH = Y' (pull down to avoid ring-pinky scissor)
+                    tap_code(KC_QUOT); // YH => Y' (pull down to avoid ring-pinky T-B scissor)
                     return_state = false; // done.
                     break;
 
@@ -330,8 +334,8 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
 
         case KC_F:
             switch (prior_keycode) {
-                case KC_Y: //
-                    tap_code(KC_I); // YF = YI (eliminate SFB on ring finger YI is 37x YF)
+                case KC_Y: // YF = YI (eliminate SFB on ring finger)
+                    tap_code(KC_I); // (YI is 37x more common)
                     return_state = false; // done.
                     break;
             }
