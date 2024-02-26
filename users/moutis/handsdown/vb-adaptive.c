@@ -116,6 +116,10 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     send_string("th"); // for "length"
                     return_state = false; // done.
                     break;
+                case KC_M: // Eliminate MN SFB
+                    tap_code(KC_N); // MJ = mn (MN is 83x more common than MJ)
+                    return_state = false; // done.
+                    break; 
             }
             break;
 
@@ -208,6 +212,7 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                         return_state = false; // done.
                         break; // process the D normally
                     }
+                case KC_W: // WW doesn't exist, so to permit PP after M...
                 case KC_X: // pull up P (W becomes P after X to set up "xp"+l)
                     tap_code(KC_P); // pull up P from bottom row.
                     return_state = false; // done.

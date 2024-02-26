@@ -60,18 +60,19 @@ extern rgblight_config_t rgblight_config;
 
 
 
-#ifdef COMBO_HOLD
-    #undef ADAPTIVE_TERM
-    #define ADAPTIVE_TERM COMBO_HOLD  // use COMBO_HOLD time as a standard threshold (same recation time)
-#else
-    #define ADAPTIVE_TERM (TAPPING_TERM/5) // rolling threshold
-#endif
-
 #define LINGER_TIME TAPPING_TERM * 1.2 // how long to hold before a time-depentant behavior begins
 // how long to leave a state active before resetting like APPMENU or CAPSWORD
 #define STATE_RESET_TIME LINGER_TIME * 3
 
 //#define THUMB_SHIFT // use the thumb shift variant instead of index shift
+
+
+#ifdef COMBO_HOLD
+    #undef ADAPTIVE_TERM
+    #define ADAPTIVE_TERM COMBO_HOLD * 1.35  // use COMBO_HOLD time as a standard threshold (same recation time)
+#else
+    #define ADAPTIVE_TERM (TAPPING_TERM/4) // rolling threshold
+#endif
 
 #define ADAPTIVE_ENABLE
 #define ADAPTIVE_TRAILER KC_3
