@@ -74,6 +74,7 @@ extern rgblight_config_t rgblight_config;
     #define ADAPTIVE_TERM (TAPPING_TERM/4) // rolling threshold
 #endif
 
+//#ifdef ADAPT_VOWEL_H // eliminate vowel SFBs (AU/UA;EO/OE) using vH instead of v'
 #define ADAPTIVE_ENABLE
 #define ADAPTIVE_TRAILER KC_3
 //#define FR_ADAPTIVES // eliminate 'h SFB for French

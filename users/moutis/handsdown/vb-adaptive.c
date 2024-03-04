@@ -1,6 +1,6 @@
 /*
  Adaptive Keys
- Called from within process_record_user
+ Called from early within process_record_user
  
  Tailored for HD Vibranium-b (vb)
  
@@ -285,6 +285,32 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                       send_string(".org");
                       return_state = false; // done.
                       break;
+#ifndef ADAPT_VOWEL_H
+                  case KC_A: //
+                      tap_code(KC_U); // "A'" yields "AU"
+                      return_state = false; // done.
+                      break;
+                  case KC_U:
+                      tap_code(KC_A); // "U'" yields "UA"
+                      return_state = false; // done.
+                      break;
+                  case KC_E:
+                      tap_code(KC_O); // "E'" yields "EO"
+                      return_state = false; // done.
+                      break;
+                  case KC_O:
+                      tap_code(KC_E); // "O'" yields "OE"
+                      return_state = false; // done.
+                      break;
+#else // regain v-H rolls (kludgy? unnecessary?)
+                  case KC_A:
+                  case KC_U:
+                  case KC_E:
+                  case KC_O:
+                  case KC_I:
+                      tap_code(KC_H); // "IH" yields "IF" (96x more common)
+                      return_state = false; // done.
+#endif
               }
               break;
             case KC_SLSH:
@@ -299,6 +325,7 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
 
         case KC_H: // H precedes a vowel much more often than it follows (thanks, Ancient Greek!)
             switch (prior_keycode) { // maybe OK? What about xxR? resulting in a SFB on thumb?
+#ifdef ADAPT_VOWEL_H
                 case KC_A: // AE is a fraction less common, but I find the EAE trill harder than EAH.
                     tap_code(KC_U); // "AH" yields "AU" (8x more common)
                     return_state = false; // done.
@@ -315,10 +342,13 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     tap_code(KC_E); // "OH" yields "OE" (almost 1:1, but eliminates an SFB?)
                     return_state = false; // done.
                     break;
+#endif
                 case KC_I: // avoid row skip on outward pinky roll
                     tap_code(KC_F); // "IH" yields "IF" (96x more common)
                     return_state = false; // done.
                     break;
+                case KC_Y: // (y'all)
+                    return_state = false; // done.
 #ifdef FR_ADAPTIVES // eliminate 'h SFB for French
                 case KC_J: // j'habite
                 case KC_L: // l'hôtel
@@ -327,12 +357,8 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
 #ifdef EN_HDIGRAPH_COMBOS
                 case KC_T: // t'habitude can't do this (bc Th) unless Th digraph combo is used…
 #endif
-                    tap_code(KC_QUOT);// éliminer le 'h SFB sur le petit doigt
-                    break;
 #endif
-                case KC_Y: //
                     tap_code(KC_QUOT); // YH => Y' (pull down to avoid ring-pinky T-B scissor)
-                    return_state = false; // done.
                     break;
 
             }
