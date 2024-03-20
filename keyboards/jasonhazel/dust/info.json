@@ -1,0 +1,9 @@
+{
+  "keyboard_name": "dust",
+  "manufacturer": "jasonhazel",
+  "usb": {
+    "vid": "0x4A48",
+    "pid": "0x6474",
+    "device_version": "0.0.1"
+  }
+}

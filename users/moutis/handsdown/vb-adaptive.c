@@ -103,8 +103,7 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     tap_code(KC_P); // insert a P
                     break; // and let current keycode send normally
                 case KC_W:
-                    tap_code(KC_BSPC);
-                    send_string("lml"); // for "calmly" though not quite intuitive…
+                    tap_code(KC_D); // pull up D (WD is 35x more common than WG)
                     return_state = false; // done.
                     break;
             }
@@ -302,7 +301,7 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                       tap_code(KC_E); // "O'" yields "OE"
                       return_state = false; // done.
                       break;
-#else // regain v-H rolls (kludgy? unnecessary?)
+/*#else // regain v-H rolls (kludgy? unnecessary?)
                   case KC_A:
                   case KC_U:
                   case KC_E:
@@ -310,6 +309,7 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                   case KC_I:
                       tap_code(KC_H); // "IH" yields "IF" (96x more common)
                       return_state = false; // done.
+*/
 #endif
               }
               break;

@@ -237,7 +237,6 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
 // so keep together 'cause we're messing with stack frames at the end!
 
             case HC_they_4gram: // "they"
-//            case HC_theyg_4gram: // "they"
                 tap_code(KC_T); // send "Y" honoring caps
                 unregister_mods(MOD_MASK_SHIFT);  //
                 send_string("hey"); // send "they" right away
@@ -277,7 +276,7 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
 
 #endif // #ifdef EN_PRONOUN_COMBOS_ALL
 
-addonsuffix: // sharing this saves about 100 bytes (10 bytes per instance)
+addonsuffix: // sharing this saves about 100 bytes on AVR (10 bytes per instance)
                 tap_code(KC_QUOT);
                 switch (combo_index) { //
                     case HC_Im:
