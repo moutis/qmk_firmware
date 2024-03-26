@@ -20,6 +20,14 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
         return true; // no adaptive conditions, so return.
     }
 
+    if (prior_keycode == KC_COMM) { // is it a comma?
+        if ((keycode & QK_BASIC_MAX) >= KC_A && (keycode & QK_BASIC_MAX) <= KC_Z) { // followed by any alpha?
+            tap_code(KC_BSPC); // get rid of comma
+            tap_code16(S(keycode & QK_BASIC_MAX)); // send cap letter
+            prior_keycode = preprior_keycode = prior_keydown = 0; // turn off Adaptives.
+            return false; // no adaptive conditions, so return.
+        }
+    }
     // K, this could be adaptive, so process.
     saved_mods = get_mods();
 
@@ -343,10 +351,16 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     return_state = false; // done.
                     break;
 #endif
-                case KC_I: // avoid row skip on outward pinky roll
-                    tap_code(KC_F); // "IH" yields "IF" (96x more common)
+                case KC_I: // IF = IY (eliminate SFB on ring finger)
+                    tap_code(KC_Y); // (inverted IH->IF = IF->IY)
                     return_state = false; // done.
                     break;
+/*
+                case KC_I: // avoid row skip on outward pinky roll
+                    tap_code(KC_Y); // "IH" yields "IF" (96x more common)
+                    return_state = false; // done.
+                    break;
+*/
                 case KC_Y: // (y'all)
                     return_state = false; // done.
 #ifdef FR_ADAPTIVES // eliminate 'h SFB for French
@@ -365,7 +379,7 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
             break;
 
         case KC_F:
-            switch (prior_keycode) {
+            switch (prior_keycode) { // IF is much more common than IY, so optimizing
                 case KC_Y: // YF = YI (eliminate SFB on ring finger)
                     tap_code(KC_I); // (YI is 37x more common)
                     return_state = false; // done.
