@@ -80,10 +80,10 @@ __ │    >       ]       )        }        •     │ __  __   __  __  │    
 #define LS_LH3 KC_MUTE
 #define LS_LH2 SK_DELWDL
 #define LS_LH1 SK_DELWDR
-#define LS_LH0 KC_VOLD
+#define LS_LH0 KC_VOLD   // also left encoder key switch
 #define LS_LHA KC_VOLD
 #define LS_RHA KC_VOLU
-#define LS_RH0 KC_VOLU
+#define LS_RH0 KC_VOLU   // also right encoder key switch
 #define LS_RH1 LALT(KC_9) // ª
 #define LS_RH2 LSA(KC_8)  // °
 #define LS_RH3 LSA(KC_9) // ·
@@ -148,10 +148,10 @@ __ │    >       ]       )        }        •     │ __  __   __  __  │    
 #define LF_LH3 KC_TRNS
 #define LF_LH2 KC_SCLN
 #define LF_LH1 TG(L_NUM)
-#define LF_LH0 KC_TRNS
+#define LF_LH0 KC_TRNS  // also left encoder key switch
 #define LF_LHA KC_NO
 #define LF_RHA KC_NO
-#define LF_RH0 KC_TRNS
+#define LF_RH0 KC_TRNS  // also right encoder key switch
 #define LF_RH1 KC_0
 #define LF_RH2 KC_DOT
 #define LF_RH3 KC_TRNS
@@ -211,15 +211,15 @@ __ │ UNDO     CUT     COPY    PSTE      SPC   │ __ __   __ __ │  PCMM     
 #define LN_RB4 KC_PEQL
 #define LN_RB5 KC_TRNS
 
-#define LN_LH5 KC_TRNS // also left encoder CCW
-#define LN_LH4 KC_TRNS // also left encoder CW
+#define LN_LH5 KC_VOLD // also left encoder CCW
+#define LN_LH4 KC_VOLU // also left encoder CW
 #define LN_LH3 KC_TRNS
 #define LN_LH2 LGUI_T(KC_BSPC)
 #define LN_LH1 LSFT_T(KC_ENT)
-#define LN_LH0 KC_DEL
+#define LN_LH0 SK_CLOZ // also left encoder key switch
 #define LN_LHA KC_NO
 #define LN_RHA KC_NO
-#define LN_RH0 KC_C
+#define LN_RH0 KC_C // also right encoder key switch
 #define LN_RH1 KC_P0
 #define LN_RH2 KC_PDOT
 #define LN_RH3 KC_TRNS
@@ -284,10 +284,10 @@ __ │   UNDO     CUT     COPY    PSTE    FAGN  │ __  __    __  __ │  DOCEND
 #define LV_LH3 KC_APP   // *** APPMENU needs this for navigation ***
 #define LV_LH2 S(KC_APP)  // APPMENU
 #define LV_LH1 KC_APP // APPMENU
-#define LV_LH0 KC_NO
+#define LV_LH0 SK_ZOOMRST  // also left encoder key switch
 #define LV_LHA KC_NO
-#define LV_RHA SK_ZOOMRST
-#define LV_RH0 SK_ZOOMOUT
+#define LV_RHA KC_NO
+#define LV_RH0 SK_ZOOMRST  // also right encoder key switch
 #define LV_RH1 SK_HISTPRV
 #define LV_RH2 SK_HISTNXT
 #define LV_RH3 KC_NUM
@@ -352,10 +352,10 @@ __ │   UNDO     CUT     COPY    PSTE    FAGN  │ __  __    __  __ │  DOCEND
 #define LC_LH3 KC_MUTE
 #define LC_LH2 KC_VOLD
 #define LC_LH1 KC_VOLU
-#define LC_LH0 EE_CLR
+#define LC_LH0 EE_CLR  // also left encoder key switch
 #define LC_LHA SK_ZOOMIN
 #define LC_RHA SK_ZOOMOUT
-#define LC_RH0 KC_NO
+#define LC_RH0 KC_NO  // also right encoder key switch
 #define LC_RH1 KC_NO
 #define LC_RH2 KC_NO
 #define LC_RH3 KC_NO
