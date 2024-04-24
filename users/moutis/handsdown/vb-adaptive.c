@@ -20,14 +20,6 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
         return true; // no adaptive conditions, so return.
     }
 
-    if (prior_keycode == KC_COMM) { // is it a comma?
-        if ((keycode & QK_BASIC_MAX) >= KC_A && (keycode & QK_BASIC_MAX) <= KC_Z) { // followed by any alpha?
-            tap_code(KC_BSPC); // get rid of comma
-            tap_code16(S(keycode & QK_BASIC_MAX)); // send cap letter
-            prior_keycode = preprior_keycode = prior_keydown = 0; // turn off Adaptives.
-            return false; // no adaptive conditions, so return.
-        }
-    }
     // K, this could be adaptive, so process.
     saved_mods = get_mods();
 

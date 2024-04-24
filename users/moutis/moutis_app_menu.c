@@ -32,7 +32,7 @@ void process_APP_MENU(keyrecord_t *record) {
         }
 
         if (saved_mods & MOD_MASK_SHIFT)
-            tap_code16(S(KC_TAB)); // switch app
+            tap_code16(RSFT(KC_TAB)); // switch app
         else
             tap_code(KC_TAB); // switch app
         layer_on(L_NAV);

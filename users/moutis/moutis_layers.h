@@ -218,7 +218,7 @@ __ │ UNDO     CUT     COPY    PSTE      SPC   │ __ __   __ __ │  PCMM     
 #define LN_LH1 LSFT_T(KC_ENT)
 #define LN_LH0 SK_CLOZ // also left encoder key switch
 #define LN_LHA KC_NO
-#define LN_RHA KC_NO
+#define LN_RHA TG(L_NAV)
 #define LN_RH0 KC_C // also right encoder key switch
 #define LN_RH1 KC_P0
 #define LN_RH2 KC_PDOT
@@ -231,13 +231,13 @@ __ │ UNDO     CUT     COPY    PSTE      SPC   │ __ __   __ __ │  PCMM     
    ╭──────────────────────────────────────────╮                  ╭───────────────────────────────────────────────╮
 __ │   QUIT     CLOZ    SCAP    SCLP    PSTM  │                  │  DOCBEG     HOME    UP      PGUP    PARAPRV   │ KC_NUM
 __ │   LCTL     LALT    LGUI    LSFT    FIND  |                  |  WORDPRV    LEFT    DOWN    RGHT    WORDNXT   │ __
-__ │   UNDO     CUT     COPY    PSTE    FAGN  │ __  __    __  __ │  DOCEND     END     DOWN    PGDN    PARANXT   │ __
-   ╰──────────────────╮  __   S(MENU)   MENU  │ __           __  │  HISTPRV  HISTNXT    __    ╭──────────────────╯
+__ │   UNDO     CUT     COPY    PSTE    FAGN  │ ESC TAB   __  __ │  DOCEND     END     DOWN    PGDN    PARANXT   │ __
+   ╰──────────────────╮  __     __     __     │ __           __  │  HISTPRV  HISTNXT    __    ╭──────────────────╯
       ZOOMRST ZOOMOUT ╰───────────────────────╯                  ╰────────────────────────────╯ HISTPRV HISTNXT
 */
 
 #define LV_LT5 KC_TRNS
-#define LV_LT4 SK_QUIT
+#define LV_LT4 KC_TAB
 #define LV_LT3 SK_CLOZ
 #define LV_LT2 SK_SCAP
 #define LV_LT1 SK_SCLP
@@ -268,10 +268,10 @@ __ │   UNDO     CUT     COPY    PSTE    FAGN  │ __  __    __  __ │  DOCEND
 #define LV_LB2 SK_COPY
 #define LV_LB1 SK_PSTE
 #define LV_LB0 SK_FAGN
-#define LV_LBA KC_TRNS
-#define LV_LBB KC_TRNS
-#define LV_RBB KC_TRNS
-#define LV_RBA KC_TRNS
+#define LV_LBA KC_ESC
+#define LV_LBB SK_SALL
+#define LV_RBB KC_TAB
+#define LV_RBA KC_ESC
 #define LV_RB0 SK_DOCEND
 #define LV_RB1 KC_END
 #define LV_RB2 KC_DOWN
@@ -281,16 +281,16 @@ __ │   UNDO     CUT     COPY    PSTE    FAGN  │ __  __    __  __ │  DOCEND
 
 #define LV_LH5 SK_ZOOMOUT // also left encoder CCW
 #define LV_LH4 SK_ZOOMIN // also left encoder CW
-#define LV_LH3 KC_APP   // *** APPMENU needs this for navigation ***
-#define LV_LH2 S(KC_APP)  // APPMENU
-#define LV_LH1 KC_APP // APPMENU
-#define LV_LH0 SK_ZOOMRST  // also left encoder key switch
-#define LV_LHA KC_NO
-#define LV_RHA KC_NO
+#define LV_LH3 KC_TRNS  // typically the app menu
+#define LV_LH2 KC_BSPC
+#define LV_LH1 KC_ENTER
+#define LV_LH0 SK_QUIT  // also left encoder key switch
+#define LV_LHA G(KC_TAB)
+#define LV_RHA TG(L_NAV)
 #define LV_RH0 SK_ZOOMRST  // also right encoder key switch
 #define LV_RH1 SK_HISTPRV
 #define LV_RH2 SK_HISTNXT
-#define LV_RH3 KC_NUM
+#define LV_RH3 TG(L_NAV)
 #define LV_RH4 SK_PARAPRV // also right encoder CCW
 #define LV_RH5 SK_PARANXT // also right encoder CW
 
@@ -358,7 +358,7 @@ __ │   UNDO     CUT     COPY    PSTE    FAGN  │ __  __    __  __ │  DOCEND
 #define LC_RH0 KC_NO  // also right encoder key switch
 #define LC_RH1 KC_NO
 #define LC_RH2 KC_NO
-#define LC_RH3 KC_NO
+#define LC_RH3 TG(L_NAV)
 #define LC_RH4 KC_NO // also right encoder CCW
 #define LC_RH5 KC_NO // also right encoder CW
 

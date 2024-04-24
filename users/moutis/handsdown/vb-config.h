@@ -139,7 +139,7 @@
 // We want to be able to define a combo by location
 // for variation independent, spatial referencing, or
 // by letter for mnemonic/phonetic referencing (variation dependent)
-// put this sort of obscures the definitions…so…
+// but this sort of obscures the definitions…so…
 //
 // BE CAREFUL to not double define a combo!
 //
@@ -218,7 +218,7 @@
 #ifdef EN_PRONOUN_COMBOS_ALL // Admittedly of questionable value
 #define HD_youd_keys  HD_Y, HD_D  // TYPE "you'd" + 've
 #define HD_youll_keys HD_Y, HD_L  // TYPE "you'll" + 've
-#define HD_youre_keys HD_Y, HD_F  // TYPE "you're"
+#define HD_youre_keys HD_Y, HD_B  // TYPE "you're"
 #define HD_youve_keys HD_Y, HD_V  // TYPE "you've"
 #define HD_your_keys  HD_Y, HD_R  // TYPE "your"
 
