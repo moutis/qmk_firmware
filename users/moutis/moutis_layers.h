@@ -31,48 +31,64 @@ __ │    >       ]       )        }        •     │ __  __   __  __  │    
    ╰──────────────────╮ VolD   D_WordL  D_WordR │ --           __  │     ª        °       ·     ╭─────────────╯
    KC_PGDN   KC_PGUP  ╰─────────────────────────╯                  ╰────────────────────────────╯ SK_WORDPRV  SK_WORDNXT
 */
+/*  L_SYM Symbols and punctuation (Some via SemKeys/unicode for platform independance)
+   ╭────────────────────────────────────────────╮                  ╭──────────────────────────────────────────╮
+__ │    Z       Q       ¶        §        ‡     │                  │     ¢        $       €       £       ¥   │ __
+__ │    -       +       *        =        ^     |                  |     †        (       {       [       •   │ __
+__ │    <       >       &        /        |     │ __  __   __  __  │     ·        )       }       ]       °   │ __
+   ╰──────────────────╮ VolD   D_WordL  D_WordR │ --           __  │     _        ¡       ª     ╭─────────────╯
+   KC_PGDN   KC_PGUP  ╰─────────────────────────╯                  ╰────────────────────────────╯ SK_WORDPRV  SK_WORDNXT
+*/
+/*  L_SYM Symbols and punctuation (Some via SemKeys/unicode for platform independance)
+   ╭────────────────────────────────────────────╮                  ╭──────────────────────────────────────────╮
+__ │    Z       Q       ¶        §        ‡     │                  │     ¢        $       €       £       ¥   │ __
+__ │    •       [       (        {        †     |                  |     /        =       *       +       -   │ __
+__ │    ·       ]       )        }        °     │ __  __   __  __  │     ^        |       &       <       >   │ __
+   ╰──────────────────╮ VolD   D_WordL  D_WordR │ --           __  │     _        ¡       ª     ╭─────────────╯
+   KC_PGDN   KC_PGUP  ╰─────────────────────────╯                  ╰────────────────────────────╯ SK_WORDPRV  SK_WORDNXT
+*/
 
 #define LS_LT5 KC_TRNS
 #define LS_LT4 KC_Z
 #define LS_LT3 KC_Q
-#define LS_LT2 SK_PARA
-#define LS_LT1 SK_SECT
-#define LS_LT0 SK_DCRS
-#define LS_RT0 SK_CENT
-#define LS_RT1 KC_DLR
-#define LS_RT2 SK_EURO
-#define LS_RT3 SK_BPND
-#define LS_RT4 SK_JPY
+#define LS_LT2 SK_PARA // ¶
+#define LS_LT1 SK_SECT // §
+#define LS_LT0 SK_DCRS // ‡
+#define LS_RT0 SK_CENT // ¢
+#define LS_RT1 KC_DLR  // $
+#define LS_RT2 SK_EURO // €
+#define LS_RT3 SK_BPND // £
+#define LS_RT4 SK_JPY  // ¥
 #define LS_RT5 KC_TRNS
 
 #define LS_LM5 KC_TRNS
-#define LS_LM4 KC_LT
+#define LS_LM4 LALT(KC_8) // SK_BLLT? // KC_LT
 #define LS_LM3 KC_LBRC
 #define LS_LM2 KC_LPRN
 #define LS_LM1 KC_LCBR
 #define LS_LM0 SK_SCRS
-#define LS_RM0 SK_IEXC
-#define LS_RM1 RSFT_T(KC_PAST)
-#define LS_RM2 RGUI_T(KC_PEQL)
+#define LS_RM0 KC_PSLS // / // SK_IEXC
+#define LS_RM1 RSFT_T(KC_PEQL) // RSFT_T(KC_PAST)
+#define LS_RM2 RGUI_T(KC_PAST) // RGUI_T(KC_PEQL)
 #define LS_RM3 RALT_T(KC_PPLS)
-#define LS_RM4 RCTL_T(KC_PSLS)
+#define LS_RM4 RCTL_T(KC_PMNS) // RCTL_T(KC_PSLS)
 #define LS_RM5 KC_TRNS
 
 #define LS_LB5 KC_TRNS
-#define LS_LB4 KC_GT
+#define LS_LB4 LSA(KC_9) // · // KC_GT
 #define LS_LB3 KC_RBRC
 #define LS_LB2 KC_RPRN
 #define LS_LB1 KC_RCBR
-#define LS_LB0 LALT(KC_8)
+#define LS_LB0 LSA(KC_8)  // ° // LALT(KC_8) // SK_BLLT?
 #define LS_LBA KC_TRNS
 #define LS_LBB KC_TRNS
 #define LS_RBB KC_TRNS
 #define LS_RBA KC_TRNS
-#define LS_RB0 KC_UNDS
-#define LS_RB1 KC_PIPE
+#define LS_RB0 KC_CIRC // ^ // KC_UNDS
+#define LS_RB1 KC_PIPE // |
 #define LS_RB2 KC_AMPR
-#define LS_RB3 KC_CIRC
-#define LS_RB4 KC_PERC
+#define LS_RB3 KC_LT // KC_CIRC
+#define LS_RB4 KC_GT // KC_PERC
 #define LS_RB5 KC_TRNS
 
 #define LS_LH5 KC_PGDN // also left encoder CCW
@@ -84,9 +100,9 @@ __ │    >       ]       )        }        •     │ __  __   __  __  │    
 #define LS_LHA KC_VOLD
 #define LS_RHA KC_VOLU
 #define LS_RH0 KC_VOLU   // also right encoder key switch
-#define LS_RH1 LALT(KC_9) // ª
-#define LS_RH2 LSA(KC_8)  // °
-#define LS_RH3 LSA(KC_9) // ·
+#define LS_RH1 KC_UNDS // _ // LALT(KC_9) // ª
+#define LS_RH2 SK_IEXC // ¡ // LSA(KC_8)  // °
+#define LS_RH3 LALT(KC_9) // ª // LSA(KC_9) // ·
 #define LS_RH4 SK_WORDPRV // also right encoder CCW
 #define LS_RH5 SK_WORDNXT // also right encoder CW
 

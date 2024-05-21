@@ -71,10 +71,12 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     tap_code(KC_L);  // pull up "L" (PL is 15x more common than PM)
                     return_state = false; // done.
                     break;
+/*
                 case KC_B: // to avoid the scissor on BM
                     tap_code(KC_M);
                     return_state = false; // done.
                     break;
+*/
                 case KC_L:
                     if (preprior_keycode == KC_P) { // PLD = PWD?
                         tap_code(KC_BSPC);
@@ -224,25 +226,34 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
             break;
 
         case KC_K: // remedy ring-index split by shifting fingering
-            if (prior_keycode == KC_T) { // TK = CK (>282x)
-                    tap_code(KC_BSPC);
+            switch (prior_keycode) {
+                case KC_T: // TK = CK (>282x)
+                    tap_code(KC_BSPC); // replace T
                     tap_code(KC_C);
-                    break;
+                    break; // Send K normally
+                case KC_D: // Since the hand is already displaced to reach the inner column,
+                case KC_G: // pull the L over with alternate fingering to avoid the stretch.
+                    tap_code(KC_BSPC); // replace D/G
+                    tap_code(KC_L);
+                    break; // Send K normally
             }
-            // falling through here intentionally here. V&K are treated same.
+            break;
         case KC_V: // remedy inner column split by shifting fingering
             switch (prior_keycode) {
-                case KC_D: // TV/DV/GV = LV ()
+//                case KC_D: // TV/DV/GV = LV ()
+//                case KC_G: //
+
                 case KC_T: // TK/DK/GK = LK ()
-                case KC_G: //
                     tap_code(KC_BSPC);
                     tap_code(KC_L);
                     break; // and let current keycode send normally
+/*
                 case KC_B: //
                     tap_code(KC_M);
                     return_state = false; // done.
                     break; // and let current keycode send normally
-           }
+*/
+            }
             break;
 
 /*
