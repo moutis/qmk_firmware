@@ -13,6 +13,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     saved_mods = get_mods(); // preserve mods
 
+    // Do we need to filter multi-function keys?
+    switch (keycode) {
+        case QK_MOD_TAP ... QK_MOD_TAP_MAX:
+        case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
+#ifdef TAP_DANCE_ENABLE
+        case QK_TAP_DANCE ... QK_TAP_DANCE_MAX:
+#endif
+            if (!record->tap.count) // if not tapped yet…
+                return true; // let QMK do that first
+            keycode &= QK_BASIC_MAX; // mods & taps have been handled.
+    }
+
+
 #ifdef ADAPTIVE_ENABLE
     // Should we handle an adaptive key?  (Semkey may send Adaptive?)
     if (record->event.pressed // keyup = not rolling = no adaptive -> return.
@@ -44,18 +57,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
 #endif // #ifdef ADAPTIVE_ENABLE
     
-    // Do we need to filter multi-function keys?
-    switch (keycode) {
-        case QK_MOD_TAP ... QK_MOD_TAP_MAX:
-        case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
-#ifdef TAP_DANCE_ENABLE
-        case QK_TAP_DANCE ... QK_TAP_DANCE_MAX:
-#endif
-            if (!record->tap.count) // if not tapped yet…
-                return true; // let QMK do that first
-            keycode &= QK_BASIC_MAX; // mods & taps have been handled.
-    }
-
     // Do we turn off CAPS_WORD?
     if (caps_word_timer) {
         if (!process_caps_word(keycode, record)) {
