@@ -25,16 +25,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             keycode &= QK_BASIC_MAX; // mods & taps have been handled.
     }
 
-
-#ifdef ADAPTIVE_ENABLE
-    // Should we handle an adaptive key?  (Semkey may send Adaptive?)
-    if (record->event.pressed // keyup = not rolling = no adaptive -> return.
-        && user_config.AdaptiveKeys // AdaptiveKeys is on
-#ifdef JP_MODE_ENABLE
-        && IS_ENGLISH_MODE // Adaptives only in primary (Latin) mode
-#endif // #ifdef JP_MODE_ENABLE
-        ) {
-
 #ifdef ADAPT_SHIFT  // pseudo-adaptive comma-shift uses 2x ADAPTIVE_TERM, so pre-evaluated
         if (
             (prior_keycode == ADAPT_SHIFT) &&  // is it shift leader?
@@ -47,6 +37,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false; // so return "finished".
         }
 #endif
+
+#ifdef ADAPTIVE_ENABLE
+    // Should we handle an adaptive key?  (Semkey may send Adaptive?)
+    if (record->event.pressed // keyup = not rolling = no adaptive -> return.
+        && user_config.AdaptiveKeys // AdaptiveKeys is on
+#ifdef JP_MODE_ENABLE
+        && IS_ENGLISH_MODE // Adaptives only in primary (Latin) mode
+#endif // #ifdef JP_MODE_ENABLE
+        ) {
 
         if (!process_adaptive_key(keycode, record)) {
             prior_keydown = timer_read(); // (re)start prior_key timing
