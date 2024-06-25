@@ -222,8 +222,8 @@
 #define HD_youve_keys HD_Y, HD_V  // TYPE "you've"
 #define HD_your_keys  HD_Y, HD_R  // TYPE "your"
 
-#define HD_their_keys HD_T, HD_B  // TYPE "their" #6 (R on same finger in Neu)
-#define HD_theyre_keys HD_T, HD_X // "they're"  (R on same finger in Neu)
+#define HD_their_keys HD_T, HD_X  // TYPE "their" #6 (R on same finger in Neu)
+#define HD_theyre_keys HD_T, HD_B // "they're"  (R on same finger in Neu)
 #define HD_they_keys  HD_T, HD_W  // "they" #23 + 've (near they)
 #define HD_theyll_keys HD_T, HD_M // "they'll" #23 + 've (M is easier to combo, also in We'll)
 #define HD_theyd_keys HD_T, HD_P  // "they'd" #23 + 've (no rationale for this, but no SFCombo)
@@ -231,7 +231,6 @@
 // deictics. Are these really necessary?
 #define HD_there_keys HD_T, HD_R  // TYPE "there" #7 + 's
 #define HD_here_keys  HD_H, HD_R  // TYPE "here" #5 + 's
-
 
 #ifdef EN_W_PRONOUNS
 #define HD_where_keys HD_X, HD_R  // "where" + 's
