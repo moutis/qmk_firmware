@@ -119,7 +119,11 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                 case KC_M: // Eliminate MN SFB
                     tap_code(KC_N); // MJ = mn (MN is 83x more common than MJ)
                     return_state = false; // done.
-                    break; 
+                    break;
+                case KC_W: // Eliminate WL scissor
+                    tap_code(KC_L); // WJ = wl (WL is 468x more common than WJ)
+                    return_state = false; // done.
+                    break;
             }
             break;
 
@@ -411,7 +415,17 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     break;
             }
             break;
-            
+        case KC_COMM:
+            switch (prior_keycode) {
+                case KC_COMM: // double comma = CAPS_WORD.
+                    tap_code(KC_BSPC);
+                    toggle_caps_word();
+                    prior_keycode = preprior_keycode = keycode = 0; //KLUDGE to turn off comma_cap
+                    return_state = false; // done.
+                    break;
+            }
+            break;
+
 
 #ifdef THUMB_REPEATER
         case HD_REPEATER_A: // Make a repeat key of the secondary thumb key on both sides
@@ -419,7 +433,7 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
             switch (prior_keycode) {
                 case KC_A ... KC_SLASH: // should any alpha be repeated?
 /* double-letter frequencies from Peter Norvig's data <https://norvig.com/mayzner.html>
-                case KC_L: // 0.577%
+                case KC_L: // 0.577% // Hands Down Platinum – not exactly recommended
                 case KC_S: // 0.405%
                 case KC_E: // 0.378%
                 case KC_O: // 0.210%

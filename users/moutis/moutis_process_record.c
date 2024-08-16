@@ -26,16 +26,36 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
 
 #ifdef ADAPT_SHIFT  // pseudo-adaptive comma-shift uses 2x ADAPTIVE_TERM, so pre-evaluated
-        if (
-            (prior_keycode == ADAPT_SHIFT) &&  // is it shift leader?
-            (timer_elapsed(prior_keydown) <= ADAPTIVE_TERM * 32) &&  // use huge threshold?
-            ((keycode & QK_BASIC_MAX) >= KC_A) &&  // followed by any alpha?
-            ((keycode & QK_BASIC_MAX) <= KC_Z)) {
+/*        if ((prior_keycode == ADAPT_SHIFT) &&  // is it shift leader?
+            (timer_elapsed(prior_keydown) <= ADAPTIVE_TERM * 32)) {  // use huge threshold?
+            if (((keycode & QK_BASIC_MAX) >= KC_A) && ((keycode & QK_BASIC_MAX) <= KC_Z)) {// followed by any alpha?
                 tap_code(KC_BSPC); // get rid of ADAPT_SHIFT
                 tap_code16(S(keycode & QK_BASIC_MAX)); // send cap letter
                 prior_keycode = preprior_keycode = prior_keydown = 0; // done.
                 return false; // so return "finished".
+            }
+            // below is really a simple tap dance behavior,
+            // but as I don't use it otherwise this is vastly less overhead
+            if (keycode == ADAPT_SHIFT) { // double tap = caps_word?
+                tap_code(KC_BSPC); // get rid of ADAPT_SHIFT
+                toggle_caps_word();
+                prior_keycode = preprior_keycode = prior_keydown = 0; // done.
+                return true; // so return "finished".
+            }
         }
+*/
+    if (
+        (prior_keycode == ADAPT_SHIFT) &&  // is it shift leader?
+        !caps_word_timer && // not already doing a caps_word?
+        (timer_elapsed(prior_keydown) <= ADAPTIVE_TERM * 32) &&  // use huge threshold?
+        ((keycode & QK_BASIC_MAX) >= KC_A) &&  // followed by any alpha?
+        ((keycode & QK_BASIC_MAX) <= KC_Z)) {
+            tap_code(KC_BSPC); // get rid of ADAPT_SHIFT
+            tap_code16(S(keycode & QK_BASIC_MAX)); // send cap letter
+            prior_keycode = preprior_keycode = prior_keydown = 0; // done.
+            return false; // so return "finished".
+        }
+
 #endif
 
 #ifdef ADAPTIVE_ENABLE
