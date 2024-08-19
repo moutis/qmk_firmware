@@ -146,7 +146,12 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                             tap_code(KC_BSPC);
                             send_string("lm");
                             return_state = false; // done.
+                            break;
                     }
+                case KC_C: // step for upper column pref (CL is 7.6x more common than CM)
+                    tap_code(KC_L);
+                    return_state = false; // done.
+                    break;
             }
             break;
 
@@ -262,6 +267,14 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
             switch (prior_keycode) {
                 case KC_L: // "LV" is 113x more frequent than "LX"
                     tap_code(KC_V); // eliminate LV scissor.
+                    return_state = false; // done.
+                    break;
+                case KC_D: // "DT" is 61x more frequent than "DX"
+                    tap_code(KC_T); // eliminate DT SFB.
+                    return_state = false; // done.
+                    break;
+                case KC_P: // "PS" is 2023x more frequent than "PX"
+                    tap_code(KC_T); // eliminate DT ring/pinky step.
                     return_state = false; // done.
                     break;
             }
