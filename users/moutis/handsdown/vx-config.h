@@ -9,7 +9,7 @@
 // First, let's define HD alpha keycodes with any hold-taps/custom keycodes
 //
 #define HD_A RSFT_T(KC_A)
-#define HD_B LT(L_NUM,KC_B)
+#define HD_B KC_B
 #define HD_C RALT_T(KC_C)
 #define HD_D KC_D
 #define HD_E RGUI_T(KC_E)
@@ -18,7 +18,7 @@
 #define HD_H RCTL_T(KC_H)
 #define HD_I RALT_T(KC_I)
 #define HD_J KC_J
-#define HD_K KC_K
+#define HD_K LT(L_NUM,KC_K)
 #define HD_L KC_L
 #define HD_M KC_M
 #define HD_N RGUI_T(KC_N)
@@ -92,7 +92,7 @@
 #define HD_LM3 HD_C
 #define HD_LM2 HD_N
 #define HD_LM1 HD_T
-#define HD_LM0 HD_B
+#define HD_LM0 HD_K
 #define HD_LMA KC_LPRN
 #define HD_RMA KC_RPRN
 #define HD_RM0 HD_COMM
@@ -107,7 +107,7 @@
 #define HD_LB3 HD_P
 #define HD_LB2 HD_L
 #define HD_LB1 HD_D
-#define HD_LB0 HD_K
+#define HD_LB0 HD_B
 #define HD_LBA C(S(KC_3)) // speech to text (mac)
 #define HD_LBB LT(L_CFG, KC_LNG2)
 #define HD_RBB LT(L_FUN, KC_LNG1)

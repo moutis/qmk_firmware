@@ -35,63 +35,58 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
 */
         case KC_B:
             switch (prior_keycode) {
-                case KC_T: // avoid SFB/step (LB is 1.6x more common than TB)
+                case KC_D: // avoid SFB/step (LB is 1.6x more common than DB)
                     tap_code(KC_BSPC);
                     tap_code(KC_L);
                     return_state = true; // done.
                     break;
-                case KC_G: // avoid SFB/step (MB is 181x more common than GB)
+                case KC_T: // avoid scissor (MB is 34x more common than TB)
+//                case KC_P: // avoid scissor (MB is 67x more common than PB)
+                case KC_X: // avoid scissor (MB is 1174x more common than XB)
                     tap_code(KC_BSPC);
                     tap_code(KC_M);
                     return_state = true; // done.
                     break;
            }
             break;
-
         case KC_C:
             switch (prior_keycode) {
-                case KC_T: // roll for tch
+                case KC_T: // roll for tch (free letter, eliminates H-digraph combo SFB)
                     send_string("ch"); // 85% of tc is tch, so this saves a lot of key press "H"
                     return_state = false; // done.
                     break;
             }
             break;
-
         case KC_D:
             switch (prior_keycode) { //
-                case KC_K:
-                    tap_code(KC_N);  // eliminate stretch/step (KN is 75x more common than KD)
-                    return_state = false; // done.
-                    break;
-                case KC_V:
-                    tap_code(KC_L);  // pull up "L" (PL is 15x more common than PM)
+                case KC_B:
+                    tap_code(KC_L);  // eliminate stretch (bl is 93x more common than BD)
                     return_state = false; // done.
                     break;
                 case KC_L:
-                    if (preprior_keycode == KC_P) { // PLD = PWD? (no side effects?)
+                    if (preprior_keycode == KC_P) { // roll PLD = PWD? (no side effects?)
                         tap_code(KC_BSPC);
                         tap_code(KC_W); // replace the L with W
                         break; // process the D normally
                     }
             }
             break;
-
         case KC_G:
             switch (prior_keycode) {
-                case KC_K:
+                case KC_K: // eliminate index-middle stretch with alt fingering
                     tap_code(KC_L);  // pull up "L" (KL is 5x more common than KG)
                     return_state = false; // done.
                     break;
-               case KC_M:
-                    if (preprior_keycode == KC_W) { // to roll WMG -> lml?
-                        tap_code(KC_L); // replace the G with L
+               case KC_M: // eliminate scissor
+                    if (preprior_keycode == KC_W) { // to roll WMG -> lml? (no side effects?)
+                        tap_code(KC_L); // G kecomes L for "LML"
                         return_state = false; // done.
-                        break; // process the D normally
+                        break; // and let current keycode send normally
                     }
-                    tap_code(KC_BSPC);
-                    tap_code(KC_L);
+                    tap_code(KC_BSPC); // replace M
+                    tap_code(KC_L); // "pull up" L to eliminate scissor
                     break; // and let current keycode send normally
-                case KC_J: // JG = jpg
+                case KC_J: // roll JG => jpg free letter!
                     tap_code(KC_P); // insert a P
                     break; // and let current keycode send normally
                 case KC_W:
@@ -99,6 +94,153 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     return_state = false; // done.
                     break;
             }
+            break;
+        case KC_M: // M becomes L (pull up "L" to same row)
+            switch (prior_keycode) {
+                case KC_G: // eliminate scissor (GL is 5x more common than GM)
+                case KC_V: // eliminate scissor (VL is 2.6x more common than VM)
+                case KC_C: // step for upper column pref (CL is 7.6x more common than CM)
+                    tap_code(KC_L);
+                    return_state = false; // done.
+                    break;
+                case KC_W: // WM = LM (LM 20x more common)
+                    switch (preprior_keycode) {
+                        case KC_M:
+                            tap_code(KC_L);
+                            return_state = false; // done.
+                            break;
+                        default:
+                            tap_code(KC_BSPC);
+                            send_string("lm");
+                            return_state = false; // done.
+                            break;
+                   }
+            }
+            break;
+        case KC_W: // W becomes P (pull up "P" to same row)
+            switch (prior_keycode) {
+                case KC_M: // pull up P (W becomes P after M to set up "mp"+l)
+                    if (preprior_keycode == KC_W) { // except for WMW -> lml?
+                        tap_code(KC_L); // replace the W with L
+                        return_state = false; // done.
+                        break;
+                    } // drop through!
+                case KC_W: // WW doesn't exist, so to permit PP after M...
+                    tap_code(KC_P); // pull up P from bottom row.
+                    return_state = false; // done.
+                    break;
+                case KC_G:
+                    tap_code(KC_D); // eliminate SFB on index
+                    return_state = false; // done.
+                    break;
+                case KC_N: // avoid SFB (NL is 10x more common than NW)
+                    tap_code(KC_L);
+                    return_state = false; // done.
+                    break;
+            }
+            break;
+
+            // If not using H-digraph combos, consider this adaptive solution?
+#ifndef EN_HDIGRAPH_COMBOS
+        case KC_N: // N becomes H (for H-Digraph rolls)
+            switch (prior_keycode) {
+                case KC_P: // pn = ph (ph 78x more common)
+                case KC_G: // gn = gh (gh 2.5x more common)
+                case KC_S: // sn = sh (sh 33x more common)
+                case KC_W: // wn = wh (wh 3.8x more common)
+                case KC_C: // cn = ch (sh 694x more common)
+                case KC_T: // tn = th (LM 354x more common)
+                    tap_code(KC_H);
+                    return_state = false; // done.
+            }
+            break;
+#else
+        case KC_N: // N becomes H (for H-Digraph rolls)
+            switch (prior_keycode) {
+                case KC_T: // "TION" is 58x more common than "TN"
+                    send_string("ion");
+                    return_state = false; // done.
+                    break;
+                case KC_V: // eliminate SFB
+                    tap_code(KC_BSPC); // delete the V
+                    tap_code(KC_L); // vn = ln (LN 37x more common)
+                    break;
+            }
+            break;
+#endif
+
+        case KC_P:
+            switch (prior_keycode) {
+                case KC_D: // DP = DT eliminate SFB (DT is 2.5x more common)
+                    tap_code(KC_G);
+                    return_state = false; // done.
+                    break;
+            }
+            break;
+        case KC_T:  // alt fingering remedy for middle-index splits
+            switch (prior_keycode) {
+                case KC_K: // eliminate index-middle stretch with alt fingering
+                    tap_code(KC_N); // (KN is 48x more common than KT)
+                    return_state = false; // not done
+                    break;
+            }
+            break;
+            // remedy ring-index split by shifting fingering
+            // Since the hand is already displaced to reach the inner column,
+            // pull the L over with alternate fingering to avoid the stretch.
+        case KC_K:
+            switch (prior_keycode) {
+                case KC_G: // eliminate index-middle stretch with alt fingering
+                    tap_code(KC_BSPC); // replace G
+                    tap_code(KC_L); // GK = LK (LK is 75x more common than GK)
+                    break; // Send K normally
+                case KC_T:
+                    tap_code(KC_BSPC); // replace D
+                    tap_code(KC_C); // DK = CK (CK is 348x more common than DK)
+                    break; // Send K normally
+            }
+            break;
+
+        case KC_R:  // LL is the highest consonant repeat, and it's off home, so eliminate this SFB
+            switch (prior_keycode) {
+                case KC_L: // quickly typing "lr" yields "ll" (+56x)
+                    tap_code(KC_L);
+                    return_state = false; // done.
+                    break;
+            }
+            break;
+
+        case KC_V:
+            switch (prior_keycode) {
+                case KC_G: // "GT" is 363x more frequent than "GV"
+                    tap_code(KC_T); // eliminate GT SFB.
+                    return_state = false; // done.
+                    break;
+                case KC_M: // eliminate LV scissor.
+                    tap_code(KC_BSPC); // replace M
+                    tap_code(KC_L); // "LV" is 119x more frequent than "MV"
+                    break;
+            }
+            break;
+        case KC_X:
+            switch (prior_keycode) {
+                case KC_L: // eliminate LV scissor.
+                    tap_code(KC_V); // "LV" is 113x more frequent than "LX"
+                    return_state = false; // done.
+                    break;
+                case KC_D: // eliminate DT SFB.
+                    tap_code(KC_T); // "DT" is 61x more frequent than "DX"
+                    return_state = false; // done.
+                    break;
+                case KC_P: // eliminate DT ring/pinky step.
+                    tap_code(KC_T); // "PS" is 2023x more frequent than "PX"
+                    return_state = false; // done.
+                    break;
+                case KC_B: // eliminate sfb
+                    tap_code(KC_J); // "BJ" is 840x more common than "BX"
+                    return_state = false; // not done
+                    break;
+           }
             break;
 
         case KC_J:
@@ -129,156 +271,6 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
             }
             break;
 
-        case KC_M: // M becomes L (pull up "L" to same row)
-            switch (prior_keycode) {
-                case KC_G: // pull up "L" to eliminate scissor (GL is 5x more common than GM)
-                case KC_V: //  eliminate scissor (VL is 2.6x more common than VM)
-                    tap_code(KC_L);
-                    return_state = false; // done.
-                    break;
-                case KC_W: // WM = LM (LM 20x more common)
-                    switch (preprior_keycode) {
-                        case KC_M:
-                            tap_code(KC_L);
-                            return_state = false; // done.
-                            break;
-                        default:
-                            tap_code(KC_BSPC);
-                            send_string("lm");
-                            return_state = false; // done.
-                            break;
-                    }
-                case KC_C: // step for upper column pref (CL is 7.6x more common than CM)
-                    tap_code(KC_L);
-                    return_state = false; // done.
-                    break;
-            }
-            break;
-
-            // If not using H-digraph combos, consider this adaptive solution?
-#ifndef EN_HDIGRAPH_COMBOS
-        case KC_N: // N becomes H (for H-Digraph rolls)
-            switch (prior_keycode) {
-                case KC_P: // pn = ph (ph 78x more common)
-                case KC_G: // gn = gh (gh 2.5x more common)
-                case KC_S: // sn = sh (sh 33x more common)
-                case KC_W: // wn = wh (wh 3.8x more common)
-                case KC_C: // cn = ch (sh 694x more common)
-                case KC_T: // tn = th (LM 354x more common)
-                    tap_code(KC_H);
-                    return_state = false; // done.
-            }
-            break;
-#else
-        case KC_N: // N becomes H (for H-Digraph rolls)
-            switch (prior_keycode) {
-                case KC_T: // "TION" is 58x more common than "TN"
-                    send_string("ion");
-                    return_state = false; // done.
-                    break;
-//                case KC_C: // cn = ln (CN 5x more common)
-                case KC_X: // xn = ln (LN 101x more common)
-                    tap_code(KC_BSPC);
-                    tap_code(KC_L);
-                    break;
-            }
-            break;
-#endif
-
-        case KC_P:
-            switch (prior_keycode) {
-                case KC_D: // DP = DT eliminate SFB (DT is 2.5x more common)
-                    tap_code(KC_G);
-                    return_state = false; // done.
-                    break;
-            }
-            break;
-
-        case KC_T:  // alt fingering remedy for middle-index splits
-            switch (prior_keycode) {
-                case KC_B: // (BL is 12x more common than BT)
-                    tap_code(KC_L); //
-                    return_state = false; // not done
-                    break;
-            }
-            break;
-
-        case KC_W: // W becomes P (pull up "P" to same row)
-            switch (prior_keycode) {
-                case KC_M: // pull up P (W becomes P after M to set up "mp"+l)
-                    if (preprior_keycode == KC_W) { // except for WMW -> lml?
-                        tap_code(KC_L); // replace the W with L
-                        return_state = false; // done.
-                        break; // process the D normally
-                    }
-                case KC_W: // WW doesn't exist, so to permit PP after M...
-                    tap_code(KC_P); // pull up P from bottom row.
-                    return_state = false; // done.
-                    break;
-                case KC_G:
-                    tap_code(KC_D); // eliminate SFB on index
-                    return_state = false; // done.
-                    break;
-                case KC_N: // avoid SFB (NL is 10x more common than NW)
-                    tap_code(KC_L);
-                    return_state = false; // done.
-                    break;
-            }
-            break;
-
-            // remedy ring-index split by shifting fingering
-            // Since the hand is already displaced to reach the inner column,
-            // pull the L over with alternate fingering to avoid the stretch.
-        case KC_K:
-            switch (prior_keycode) {
-                case KC_D: // DK = CK (CK is 348x more common than DK)
-                    tap_code(KC_BSPC); // replace T
-                    tap_code(KC_C);
-                    break; // Send K normally
-                case KC_X: // XK = SK (SK is 47x more common than XK)
-                    tap_code(KC_BSPC);
-                    tap_code(KC_S);
-                    break; // Send K normally
-            }
-            break;
-
-        case KC_R:  // LL is the highest consonant repeat, and it's off home, so eliminate this SFB
-            switch (prior_keycode) {
-                case KC_L: // quickly typing "lr" yields "ll" (+56x)
-                    tap_code(KC_L);
-                    return_state = false; // done.
-                    break;
-            }
-            break;
-
-        case KC_V:
-            switch (prior_keycode) {
-                case KC_G: // "GT" is 363x more frequent than "GV"
-                    tap_code(KC_T); // eliminate GT SFB.
-                    return_state = false; // done.
-                    break;
-                case KC_M: // "LV" is 119x more frequent than "MV"
-                    tap_code(KC_BSPC); // replace M
-                    tap_code(KC_L); // eliminate LV scissor.
-                    break;
-            }
-            break;
-        case KC_X:
-            switch (prior_keycode) {
-                case KC_L: // "LV" is 113x more frequent than "LX"
-                    tap_code(KC_V); // eliminate LV scissor.
-                    return_state = false; // done.
-                    break;
-                case KC_D: // "DT" is 61x more frequent than "DX"
-                    tap_code(KC_T); // eliminate DT SFB.
-                    return_state = false; // done.
-                    break;
-                case KC_P: // "PS" is 2023x more frequent than "PX"
-                    tap_code(KC_T); // eliminate DT ring/pinky step.
-                    return_state = false; // done.
-                    break;
-            }
-            break;
 
 
 /*
@@ -406,7 +398,6 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                 case KC_COMM: // double comma = CAPS_WORD.
                     tap_code(KC_BSPC);
                     toggle_caps_word();
-                    prior_keycode = preprior_keycode = keycode = 0; //KLUDGE to turn off comma_cap
                     return_state = false; // done.
                     break;
             }
@@ -450,9 +441,8 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
 #endif // ADAPTIVE_TRAILER
 
     }
-    if (return_state) { // no adaptive processed, cancel state and pass it on.
+    if (return_state)  // no adaptive processed, cancel state and pass it on.
         set_mods(saved_mods);
-        prior_keycode = preprior_keycode = keycode = 0;
-    }
+
     return return_state; //
 }

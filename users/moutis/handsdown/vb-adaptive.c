@@ -49,7 +49,6 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     break;
            }
             break;
-
         case KC_C:
             switch (prior_keycode) {
                 case KC_T: // roll for tch
@@ -62,7 +61,6 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     break;
             }
             break;
-
         case KC_D: // (for KD=KL; least code, no side effects)
             switch (prior_keycode) { //
                 case KC_K:
@@ -70,12 +68,6 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     tap_code(KC_L);  // pull up "L" (PL is 15x more common than PM)
                     return_state = false; // done.
                     break;
-/*
-                case KC_B: // to avoid the scissor on BM
-                    tap_code(KC_M);
-                    return_state = false; // done.
-                    break;
-*/
                 case KC_L:
                     if (preprior_keycode == KC_P) { // PLD = PWD?
                         tap_code(KC_BSPC);
@@ -84,7 +76,6 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     }
             }
             break;
-
         case KC_G:
             switch (prior_keycode) {
                 case KC_K:
@@ -95,10 +86,10 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     if (preprior_keycode == KC_W) { // to roll WMG -> lml?
                         tap_code(KC_L); // replace the G with L
                         return_state = false; // done.
-                        break; // process the D normally
+                        break;
                     }
-                    tap_code(KC_BSPC);
-                    tap_code(KC_L);
+                    tap_code(KC_BSPC); // replace M
+                    tap_code(KC_L); // "pull up" L to eliminate scissor
                     break; // and let current keycode send normally
                 case KC_J: // JG = jpg
                     tap_code(KC_P); // insert a P
@@ -109,47 +100,17 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     break;
             }
             break;
-
-        case KC_J:
-            switch (prior_keycode) {
-                case KC_G: // "GTH" is an awkward trigram/skipgram
-                    send_string("th"); // for "length"
-                    return_state = false; // done.
-                    break;
-                case KC_M: // Eliminate MN SFB
-                    tap_code(KC_N); // MJ = mn (MN is 83x more common than MJ)
-                    return_state = false; // done.
-                    break;
-                case KC_W: // Eliminate WL scissor
-                    tap_code(KC_L); // WJ = wl (WL is 468x more common than WJ)
-                    return_state = false; // done.
-                    break;
-            }
-            break;
-
-        case KC_L: // catch this so we can unshift L on these rolls.
-            switch (prior_keycode) {
-                case KC_P:
-                case KC_B: //
-                case KC_S: //
-                case KC_V: //
-                    tap_code(KC_L);  // pull up "L" (PL is 15x more common than PM)
-                    return_state = false; // done.
-                    break;
-            }
-            break;
-
         case KC_M: // M becomes L (pull up "L" to same row)
             switch (prior_keycode) {
                 case KC_G: // pull up "L" (GL is 5x more common than GM)
                 case KC_X: // pull up "L" (XL is 1.5x more common than XM)
+                case KC_C: // step for upper column pref (CL is 7.6x more common than CM)
                     tap_code(KC_L);  // pull up "L" (PL is 15x more common than PM)
                     return_state = false; // done.
                     break;
                 case KC_W: // WM = LM (LM 20x more common)
                     switch (preprior_keycode) {
                         case KC_M:
-                        case KC_X:
                             tap_code(KC_L);
                             return_state = false; // done.
                             break;
@@ -157,7 +118,31 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                             tap_code(KC_BSPC);
                             send_string("lm");
                             return_state = false; // done.
-                    }
+                            break;
+                   }
+            }
+            break;
+        case KC_W: // W becomes P (pull up "P" to same row)
+            switch (prior_keycode) {
+                case KC_M: // pull up P (W becomes P after M to set up "mp"+l)
+                    if (preprior_keycode == KC_W) { // except for WMW -> lml?
+                        tap_code(KC_L); // replace the W with L
+                        return_state = false; // done.
+                        break;
+                    } // drop through!
+                case KC_W: // WW doesn't exist, so to permit PP after M...
+                case KC_X: // pull up P (W becomes P after X to set up "xp"+l)
+                    tap_code(KC_P); // pull up P from bottom row.
+                    return_state = false; // done.
+                    break;
+                case KC_G:
+                    tap_code(KC_D); // eliminate SFB on index
+                    return_state = false; // done.
+                    break;
+                case KC_N: // avoid SFB (NL is 10x more common than NW)
+                    tap_code(KC_L);
+                    return_state = false; // done.
+                    break;
             }
             break;
 
@@ -205,35 +190,10 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     break;
             }
             break;
-
         case KC_T:  // alt fingering remedy for middle-index splits
             switch (prior_keycode) {
                 case KC_K: // quickly typing "k?" yields "kn" (+48x)
                     tap_code(KC_N);
-                    return_state = false; // done.
-                    break;
-            }
-            break;
-
-        case KC_W: // W becomes P (pull up "P" to same row)
-            switch (prior_keycode) {
-                case KC_M: // pull up P (W becomes P after M to set up "mp"+l)
-                    if (preprior_keycode == KC_W) { // except for WMW -> lml?
-                        tap_code(KC_L); // replace the W with L
-                        return_state = false; // done.
-                        break; // process the D normally
-                    }
-                case KC_W: // WW doesn't exist, so to permit PP after M...
-                case KC_X: // pull up P (W becomes P after X to set up "xp"+l)
-                    tap_code(KC_P); // pull up P from bottom row.
-                    return_state = false; // done.
-                    break;
-                case KC_G:
-                    tap_code(KC_D); // eliminate SFB on index
-                    return_state = false; // done.
-                    break;
-                case KC_N: // avoid SFB (NL is 10x more common than NW)
-                    tap_code(KC_L);
                     return_state = false; // done.
                     break;
             }
@@ -294,6 +254,35 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
             }
             break;
 
+
+        case KC_J:
+            switch (prior_keycode) {
+                case KC_G: // "GTH" is an awkward trigram/skipgram
+                    send_string("th"); // for "length"
+                    return_state = false; // done.
+                    break;
+                case KC_M: // Eliminate MN SFB
+                    tap_code(KC_N); // MJ = mn (MN is 83x more common than MJ)
+                    return_state = false; // done.
+                    break;
+                case KC_W: // Eliminate WL scissor
+                    tap_code(KC_L); // WJ = wl (WL is 468x more common than WJ)
+                    return_state = false; // done.
+                    break;
+            }
+            break;
+
+        case KC_L: // catch this so we can unshift L on these rolls.
+            switch (prior_keycode) {
+                case KC_P:
+                case KC_B: //
+                case KC_S: //
+                case KC_V: //
+                    tap_code(KC_L);  // pull up "L" (PL is 15x more common than PM)
+                    return_state = false; // done.
+                    break;
+            }
+            break;
 
 /*
 // right hand adaptives
@@ -420,7 +409,6 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                 case KC_COMM: // double comma = CAPS_WORD.
                     tap_code(KC_BSPC);
                     toggle_caps_word();
-                    prior_keycode = preprior_keycode = keycode = 0; //KLUDGE to turn off comma_cap
                     return_state = false; // done.
                     break;
             }
@@ -464,9 +452,8 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
 #endif // ADAPTIVE_TRAILER
 
     }
-    if (return_state) { // no adaptive processed, cancel state and pass it on.
+    if (return_state) // no adaptive processed, cancel state and pass it on.
         set_mods(saved_mods);
-        prior_keycode = preprior_keycode = keycode = 0;
-    }
+
     return return_state; //
 }
