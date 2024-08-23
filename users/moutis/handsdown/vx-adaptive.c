@@ -40,8 +40,8 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     tap_code(KC_L);
                     return_state = true; // done.
                     break;
-                case KC_T: // avoid scissor (MB is 34x more common than TB)
 //                case KC_P: // avoid scissor (MB is 67x more common than PB)
+                case KC_T: // avoid scissor (MB is 34x more common than TB)
                 case KC_X: // avoid scissor (MB is 1174x more common than XB)
                     tap_code(KC_BSPC);
                     tap_code(KC_M);
@@ -232,8 +232,8 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     tap_code(KC_T); // "DT" is 61x more frequent than "DX"
                     return_state = false; // done.
                     break;
-                case KC_P: // eliminate DT ring/pinky step.
-                    tap_code(KC_T); // "PS" is 2023x more frequent than "PX"
+                case KC_P: // eliminate awkward ring/pinky step.
+                    tap_code(KC_S); // "PS" is 2023x more frequent than "PX"
                     return_state = false; // done.
                     break;
                 case KC_B: // eliminate sfb
