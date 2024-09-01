@@ -337,6 +337,13 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
       
                 }
                 break;
+        case KC_DQUO:
+            switch (prior_keycode) {
+                case KC_DOT:
+                    send_string("edu");
+                    return_state = false; // done.
+            }
+            break;
 
         case KC_H: // H precedes a vowel much more often than it follows (thanks, Ancient Greek!)
             switch (prior_keycode) { // maybe OK? What about xxR? resulting in a SFB on thumb?
@@ -383,7 +390,10 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
 #endif // FR_ADAPTIVES
                     tap_code(KC_QUOT); // YH => Y' (pull down to reduce ring-pinky T-B scissor)
                     break;
-
+                case KC_L: // quickly typing "lh" yields "ll" (355x)
+                    tap_code(KC_L);
+                    return_state = false; // done.
+                    break;
             }
             break;
 #ifdef DE_ADAPTIVES // AU is really common it German (and influences EN/FR)

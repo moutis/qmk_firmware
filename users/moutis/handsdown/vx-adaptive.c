@@ -2,7 +2,7 @@
  Adaptive Keys
  Called from early within process_record_user
  
- Tailored for HD Vibranium-b (vb)
+ Tailored for HD Vibranium-x (vx)
  
  NOTE: assumed dual-function keys (MOD_TAP, LAYER_TAP) have already been handled AND
     FILTERED OUT! The combos handler will have already taken out combo candidates,
@@ -201,15 +201,6 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
             }
             break;
 
-        case KC_R:  // LL is the highest consonant repeat, and it's off home, so eliminate this SFB
-            switch (prior_keycode) {
-                case KC_L: // quickly typing "lr" yields "ll" (+56x)
-                    tap_code(KC_L);
-                    return_state = false; // done.
-                    break;
-            }
-            break;
-
         case KC_V:
             switch (prior_keycode) {
                 case KC_G: // "GT" is 363x more frequent than "GV"
@@ -280,7 +271,7 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
           case KC_QUOT:
               switch (prior_keycode) {
                   case KC_DOT:
-                      send_string("edu");
+                      send_string("org");
                       return_state = false; // done.
                       break;
                   case KC_SLSH:
@@ -317,15 +308,20 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
 #endif
               }
               break;
-            case KC_SLSH:
-                switch (prior_keycode) {
-                    case KC_DOT:
-                        send_string("com");
-                        return_state = false; // done.
-                        break;
-      
-                }
-                break;
+        case KC_SLSH:
+            switch (prior_keycode) {
+                case KC_DOT:
+                    send_string("com");
+                    return_state = false; // done.
+            }
+            break;
+        case KC_DQUO:
+            switch (prior_keycode) {
+                case KC_DOT:
+                    send_string("edu");
+                    return_state = false; // done.
+            }
+            break;
 
         case KC_H: // H precedes a vowel much more often than it follows (thanks, Ancient Greek!)
             switch (prior_keycode) { // maybe OK? What about xxR? resulting in a SFB on thumb?
@@ -372,7 +368,10 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
 #endif // FR_ADAPTIVES
                     tap_code(KC_QUOT); // YH => Y' (pull down to reduce ring-pinky T-B scissor)
                     break;
-
+                case KC_L: // quickly typing "lh" yields "ll" (355x)
+                    tap_code(KC_L);
+                    return_state = false; // done.
+                    break;
             }
             break;
 #ifdef DE_ADAPTIVES // AU is really common it German (and influences EN/FR)
