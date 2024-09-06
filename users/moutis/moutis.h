@@ -76,7 +76,7 @@ extern rgblight_config_t rgblight_config;
     #define ADAPTIVE_TERM (TAPPING_TERM/4) // rolling threshold
 #endif
 
-#define ADAPT_VOWEL_H // eliminate vowel SFBs (AU/UA;EO/OE) using vH instead of v'
+//#define ADAPT_VOWEL_H // eliminate vowel SFBs (AU/UA;EO/OE) using vH instead of v'
 //#define FR_ADAPTIVES // eliminate 'h SFB for French
 //#define DE_ADAPTIVES // alternate AU SFB treatment for German
 #define ADAPTIVE_TRAILER KC_HASH // Like QMK Leader Key, but trails, and adaptive
