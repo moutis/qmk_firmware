@@ -13,7 +13,7 @@
 #define HD_C RALT_T(KC_C)
 #define HD_D KC_D
 #define HD_E RGUI_T(KC_E)
-#define HD_F KC_F
+#define HD_F LT(L_FUN, KC_F)
 #define HD_G KC_G
 #define HD_H RCTL_T(KC_H)
 #define HD_I RALT_T(KC_I)
@@ -41,11 +41,11 @@
 #define HD_BSPC LT(L_FUN,KC_BSPC)
 #define HD_ENT  LT(L_NAV,KC_ENT)
 #define HD_QUOT KC_QUOT
-#define HD_DQUO KC_DQUO // KC_DQUO or SK_SDQU
+#define HD_DQUO KC_DQUO // linger for “” via SK_SDQU
 #define HD_SLSH KC_SLSH
 #define HD_DOT  KC_DOT
 #define HD_ASTR KC_ASTR
-#define HD_COMM LT(L_FUN, KC_COMM)
+#define HD_COMM KC_COMM
 
 // Now let's place these HD keycodes on the keymap
 // for variation independent spatial referencing by key position
@@ -60,7 +60,7 @@
 //     LH5 LH4 LH3 ╰─────────╯                  ╰─────────╯ RH3 RH4 RH5
 //
 //
-//    Base (alpha) Layer  Hands Down Vibranium-vb (HRMs /+ thumb mods)
+//    Base (alpha) Layer  Hands Down Vibranium-vx (HRMs /+ thumb mods)
 //      ╭─────────────────────╮                 ╭─────────────────────╮
 // esc  │  V   W   M   G   J  │ L_CFG     L_NUM │  #$  .:  /*  "[  '] │ LANG2/henk
 // tab  │  S   C   N   T   B  | (             ) |  ,;   A   E   I   H │ LANG1/mhen

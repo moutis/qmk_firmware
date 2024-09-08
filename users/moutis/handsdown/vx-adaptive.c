@@ -240,11 +240,11 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     send_string("th"); // for "length"
                     return_state = false; // done.
                     break;
-                case KC_M: // Eliminate MN SFB
-                    tap_code(KC_N); // MJ = mn (MN is 83x more common than MJ)
+                case KC_M: // Eliminate MN Scissor (still same fingers)
+                    tap_code(KC_B); // MJ = mn (MB is 869x more common than MJ)
                     return_state = false; // done.
                     break;
-                case KC_W: // Eliminate WL scissor
+                case KC_W: // Eliminate WL scissor (still same fingers)
                     tap_code(KC_L); // WJ = wl (WL is 468x more common than WJ)
                     return_state = false; // done.
                     break;
@@ -323,7 +323,7 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
             }
             break;
 
-        case KC_H: // H precedes a vowel much more often than it follows (thanks, Ancient Greek!)
+        case KC_H: // H precedes a vowel much more often than it follows (thanks, Ancient Greek!) so adaptive H is a sort of Magic Key
             switch (prior_keycode) { // maybe OK? What about xxR? resulting in a SFB on thumb?
 #ifdef ADAPT_VOWEL_H
 #ifndef DE_ADAPTIVES // AU is really common it German (and influences EN/FR)
@@ -368,7 +368,11 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
 #endif // FR_ADAPTIVES
                     tap_code(KC_QUOT); // YH => Y' (pull down to reduce ring-pinky T-B scissor)
                     break;
-                case KC_L: // quickly typing "lh" yields "ll" (355x)
+                case KC_M: // MH->MN eliminate SFB (15x)
+                    tap_code(KC_N);
+                    return_state = false; // done.
+                    break;
+                case KC_L: // LH->LL eliminate double tap SFB "ll" (355x)
                     tap_code(KC_L);
                     return_state = false; // done.
                     break;
