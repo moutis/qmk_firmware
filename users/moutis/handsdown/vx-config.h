@@ -219,12 +219,12 @@
 #ifdef EN_PRONOUN_COMBOS_ALL // Admittedly of questionable value
 #define HD_youd_keys  HD_Y, HD_D  // TYPE "you'd" + 've
 #define HD_youll_keys HD_Y, HD_L  // TYPE "you'll" + 've
-#define HD_youre_keys HD_Y, HD_B  // TYPE "you're"
+#define HD_youre_keys HD_Y, HD_X  // TYPE "you're"
 #define HD_youve_keys HD_Y, HD_V  // TYPE "you've"
-#define HD_your_keys  HD_Y, HD_R  // TYPE "your"
+#define HD_your_keys  HD_Y, HD_P  // TYPE "your"
 
-#define HD_their_keys HD_T, HD_X  // TYPE "their" #6 (R on same finger in Neu)
-#define HD_theyre_keys HD_T, HD_B // "they're"  (R on same finger in Neu)
+#define HD_their_keys HD_T, HD_P  // TYPE "their" #6 (R on same finger in Neu)
+#define HD_theyre_keys HD_T, HD_X // "they're"  (R on same finger in Neu)
 #define HD_they_keys  HD_T, HD_W  // "they" #23 + 've (near they)
 #define HD_theyll_keys HD_T, HD_M // "they'll" #23 + 've (M is easier to combo, also in We'll)
 #define HD_theyd_keys HD_T, HD_P  // "they'd" #23 + 've (no rationale for this, but no SFCombo)
@@ -234,11 +234,11 @@
 #define HD_here_keys  HD_H, HD_R  // TYPE "here" #5 + 's
 
 #ifdef EN_W_PRONOUNS
-#define HD_where_keys HD_X, HD_R  // "where" + 's
-#define HD_were_keys  HD_X, HD_QUOT  // TYPE "we're"
-#define HD_wed_keys   HD_X, HD_G  // TYPE "we'd" + 've
-#define HD_well_keys  HD_X, HD_M  // TYPE "we'll" + 've
-#define HD_weve_keys  HD_X, HD_J  // TYPE "we've"
+#define HD_where_keys HD_V, HD_R  // "where" + 's
+#define HD_were_keys  HD_V, HD_QUOT  // TYPE "we're"
+#define HD_wed_keys   HD_V, HD_G  // TYPE "we'd" + 've
+#define HD_well_keys  HD_V, HD_M  // TYPE "we'll" + 've
+#define HD_weve_keys  HD_V, HD_J  // TYPE "we've"
 #endif // EN_W_PRONOUNS
 
 #endif // EN_PRONOUNS_ALL
