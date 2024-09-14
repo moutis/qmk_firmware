@@ -322,16 +322,26 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     return_state = false; // done.
             }
             break;
-
+#ifdef ADAPT_VOWEL_H
+#if defined(ADAPT_AE_AU) || defined(DE_ADAPTIVES) // AU is really common it German (and influences EN/FR)
+        case KC_E:
+            switch (prior_keycode) {
+                case KC_A: // "AE" yields "AU" (8x more common)
+                    tap_code(KC_U);
+                    return_state = false; // done.
+            }
+            break;
+#endif // ADAPT_AE_AU
+#endif // ADAPT_VOWEL_H
         case KC_H: // H precedes a vowel much more often than it follows (thanks, Ancient Greek!) so adaptive H is a sort of Magic Key
             switch (prior_keycode) { // maybe OK? What about xxR? resulting in a SFB on thumb?
 #ifdef ADAPT_VOWEL_H
-#ifndef DE_ADAPTIVES // AU is really common it German (and influences EN/FR)
+#if !defined(ADAPT_AE_AU) && !defined(DE_ADAPTIVES) // AU is really common it German (and influences EN/FR)
                 case KC_A: // AE is a fraction less common (8x), but the EAE trill may be harder than EAH.
                     tap_code(KC_U); // "AH" yields "AU" (7x more common)
                     return_state = false; // done.
                     break;
-#endif // DE_ADAPTIVES
+#endif // ADAPT_AE_AU or !DE_ADAPTIVES
                 case KC_U:
                     tap_code(KC_A); // "UH" yields "UA" (126x more common)
                     return_state = false; // done.
