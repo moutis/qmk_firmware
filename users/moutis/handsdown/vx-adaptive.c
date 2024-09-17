@@ -274,11 +274,6 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                       send_string("org");
                       return_state = false; // done.
                       break;
-                  case KC_SLSH:
-                      tap_code(KC_BSPC);
-                      send_string(".org");
-                      return_state = false; // done.
-                      break;
 #ifndef ADAPT_VOWEL_H
                   case KC_A: //
                       tap_code(KC_U); // "A'" yields "AU"
@@ -320,10 +315,34 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                 case KC_DOT:
                     send_string("edu");
                     return_state = false; // done.
+                    break;
+                case KC_SLSH: // /" => ?
+                    tap_code(KC_BSPC);
+                    tap_code16(KC_QUES);
+                    return_state = false; // done.
             }
             break;
+        case KC_COMM:
+            switch (prior_keycode) {
+                case KC_COMM: // double comma = CAPS_WORD.
+                    tap_code(KC_BSPC);
+                    toggle_caps_word();
+                    return_state = false; // done.
+                    break;
+            }
+            break;
+        case KC_DOT:
+            switch (prior_keycode) {
+                case KC_SLSH: // /. => !
+                    tap_code(KC_BSPC);
+                    tap_code16(KC_EXLM);
+                    return_state = false; // done.
+                    break;
+            }
+            break;
+
 #ifdef ADAPT_VOWEL_H
-#if defined(ADAPT_AE_AU) || defined(DE_ADAPTIVES) // AU is really common it German (and influences EN/FR)
+#if defined(ADAPT_AE_AU) || defined(DE_ADAPTIVES) // AU is really common in German (and influences EN/FR)
         case KC_E:
             switch (prior_keycode) {
                 case KC_A: // "AE" yields "AU" (8x more common)
@@ -402,15 +421,6 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
             switch (prior_keycode) { // IF is much more common than IY, so optimizing
                 case KC_Y: // YF = YI (eliminate SFB on ring finger)
                     tap_code(KC_I); // (YI is 37x more common)
-                    return_state = false; // done.
-                    break;
-            }
-            break;
-        case KC_COMM:
-            switch (prior_keycode) {
-                case KC_COMM: // double comma = CAPS_WORD.
-                    tap_code(KC_BSPC);
-                    toggle_caps_word();
                     return_state = false; // done.
                     break;
             }
