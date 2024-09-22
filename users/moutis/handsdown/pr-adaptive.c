@@ -177,8 +177,12 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
 
         case KC_W:
             switch (prior_keycode) {
-                case KC_G:
-                    tap_code(KC_D); // eliminate SFB
+                case KC_G: // eliminate SFB
+                    tap_code(KC_D); // GW = GD (3.8x more common)
+                    return_state = false; // done.
+                    break;
+                case KC_M: // eliminate scissor
+                    tap_code(KC_N); // MW = MN (14x more common)
                     return_state = false; // done.
                     break;
             }

@@ -61,6 +61,11 @@
 //
 //
 //    Base (alpha) Layer  Hands Down Promethium (HRMs /+ thumb mods)
+//      this is "inverted" top-bottom from canonical Promethium, as
+//      I prefer "bottom heavy" layouts.  If you prefer top heavy,
+//      be sure to invert all rows, as the rolling/scissoring characteristics
+//      that make Promethium what it is depend on the same-row neighbors
+//  ※ arguably, the inner column is less sensitive to this.
 //      ╭─────────────────────╮                 ╭─────────────────────╮
 // esc  │  V   W   G   M   J  │ L_CFG     L_NUM │  #$  .:  /*  "[  '] │ LANG2/henk
 // tab  │  N   S   T   H   K  | (             ) |  ,;   A   E   I   C │ LANG1/mhen
