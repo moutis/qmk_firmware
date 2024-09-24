@@ -51,10 +51,10 @@ extern rgblight_config_t rgblight_config;
 
 
 #ifdef THUMB_SHIFT
-#include "handsdown/vx-config.ts.h" // definitions for the Alpha layer and mnemonic combos
+#include "handsdown/vf-config.ts.h" // definitions for the Alpha layer and mnemonic combos
 #include "moutis_layers.ts.h" // definitions for all the other layers
 #else
-#include "handsdown/pm-config.h" // definitions for the Alpha layer and mnemonic combos
+#include "handsdown/vf-config.h" // definitions for the Alpha layer and mnemonic combos
 #include "moutis_layers.h" // definitions for all the other layers
 #endif
 
