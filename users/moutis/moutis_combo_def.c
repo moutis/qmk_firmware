@@ -534,10 +534,10 @@ combo_t key_combos[] = {
     [HC_here_4gram] = COMBO_ACTION(H_here_combo), // TYPE "here" #9
 #endif
     
-#ifdef HD_Left_keys
+#ifdef LeftComboTapE
     [HC_TYPE_LEFTCOMBO] = COMBO_ACTION(H_Left_combo), // a personally useful 5-8gram!
 #endif
-#ifdef HD_Right_keys
+#ifdef RightComboTapE
    [HC_TYPE_RIGHTCOMBO] = COMBO_ACTION(H_Right_combo), // a demonstrator, how long autotypes can be!
 #endif
 

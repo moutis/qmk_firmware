@@ -114,7 +114,8 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                             send_string("lm");
                             return_state = false; // done.
                             break;
-                   }
+                    }
+                    break;
             }
             break;
         case KC_W: // W becomes P (pull up "P" to same row)

@@ -59,11 +59,11 @@
 //     LH5 LH4 LH3 ╰─────────╯                  ╰─────────╯ RH3 RH4 RH5
 //
 //
-//    Base (alpha) Layer  Hands Down Vibranium-vb (HRMs /+ thumb mods)
+//    Base (alpha) Layer  Hands Down Vibranium-vf (HRMs /+ thumb mods)
 //      ╭─────────────────────╮                 ╭─────────────────────╮
 // esc  │  X   W   M   G   J  │ L_CFG     L_NUM │  #$  .:  /*  "[  '] │ LANG2/henk
 // tab  │  S   C   N   T   K  | (             ) |  ,;   A   E   I   H │ LANG1/mhen
-//  Z   │  B   P   L   D   V  │ [ copy   pste ] │  -+   U   O   Y   F │ Q
+//  Z   │  F   P   L   D   V  │ [ copy   pste ] │  -+   U   O   Y   B │ Q
 //      ╰───────────╮ bsp  R  │ &             | │ spc  ret ╭──────────╯
 //    left rght app ╰─────────╯                 ╰──────────╯ tgLN  up  dn
 //
