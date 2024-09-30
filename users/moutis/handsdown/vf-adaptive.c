@@ -30,7 +30,6 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
 //        switch (((keycode >= SAFE_RANGE) && (keycode <= SemKeys_COUNT)) ? (keycode) : (keycode & QK_BASIC_MAX)) { // only handling normal, SHFT or ALT cases.
 
     switch (keycode) { // process ignoring multi-function keys & shift state?
-
 /*
 // Left hand adaptives (most are single-handed neighbor fingers, bc speed, dexterity limits)
 */
@@ -141,12 +140,14 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
             switch (prior_keycode) {
                 case KC_G: // pull up "L" (GL is 5x more common than GM)
                 case KC_X: // pull up "L" (XL is 1.5x more common than XM)
+                case KC_C: // step for upper column pref (CL is 7.6x more common than CM)
                     tap_code(KC_L);  // pull up "L" (PL is 15x more common than PM)
                     return_state = false; // done.
                     break;
                 case KC_W: // WM = LM (LM 20x more common)
                     switch (preprior_keycode) {
-                        case KC_M:
+                        case KC_M: // for lml
+                        case KC_X: // for xpl
                             tap_code(KC_L);
                             return_state = false; // done.
                             break;
@@ -202,16 +203,18 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                         return_state = false; // done.
                         break;
                     } // drop through!
+                case KC_W: // WW doesn't exist, so to permit PP after M...
+                case KC_X: // pull up P (W becomes P after X to set up "xp"+l)
+                    tap_code(KC_P); // pull up P from bottom row.
+                    return_state = false; // done.
+                    break;
                 case KC_N: // avoid SFB (NL is 10x more common than NW)
                     tap_code(KC_L);
                     return_state = false; // done.
                     break;
-                case KC_W: // WW doesn't exist, so to permit PP after M...
-                    tap_code(KC_P); // pull up P from bottom row.
-                    return_state = false; // done.
-                    break;
             }
             break;
+
         case KC_X:
             switch (prior_keycode) {
                 case KC_G: // eliminate GT SFB.
@@ -219,7 +222,7 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     return_state = false; // done.
                     break;
                 case KC_M:  // eliminate MF scissor.
-                    tap_code(KC_F); // "MB" is 2558x more frequent than "MX"
+                    tap_code(KC_F); // "MF" is x more frequent than "MX"
                     return_state = false; // done.
                     break;
                 case KC_W:  // eliminate WS scissor.
@@ -425,7 +428,6 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
     }
     if (return_state) { // no adaptive processed, cancel state and pass it on.
         set_mods(saved_mods);
-        prior_keycode = preprior_keycode = keycode = 0;
     }
     return return_state; //
 }
