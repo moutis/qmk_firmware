@@ -49,22 +49,19 @@ extern rgblight_config_t rgblight_config;
 
 #include "personalizedmacros.h"
 
+//#define THUMB_SHIFT // use the thumb shift variant instead of index shift
 
 #ifdef THUMB_SHIFT
-#include "handsdown/vf-config.ts.h" // definitions for the Alpha layer and mnemonic combos
+#include "handsdown/vb-config.ts.h" // definitions for the Alpha layer and mnemonic combos
 #include "moutis_layers.ts.h" // definitions for all the other layers
 #else
-#include "handsdown/vf-config.h" // definitions for the Alpha layer and mnemonic combos
+#include "handsdown/vb-config.h" // definitions for the Alpha layer and mnemonic combos
 #include "moutis_layers.h" // definitions for all the other layers
 #endif
-
-
 
 #define LINGER_TIME TAPPING_TERM * 1.2 // how long to hold before a time-depentant behavior begins
 // how long to leave a state active before resetting like APPMENU or CAPSWORD
 #define STATE_RESET_TIME LINGER_TIME * 3
-
-//#define THUMB_SHIFT // use the thumb shift variant instead of index shift
 
 
 #define ADAPTIVE_ENABLE
@@ -86,7 +83,7 @@ extern rgblight_config_t rgblight_config;
 
 //#define THUMB_REPEATER
 #ifdef THUMB_REPEATER
-#define HD_REPEATER_A HD_BSPC
+#define HD_REPEATER_A HD_BSPC // the secondary thumb positions
 #define HD_REPEATER_B KC_ENT
 #endif
 
@@ -140,7 +137,7 @@ enum OS_Platform { // Used for platform support via SemKeys
     OS_Mac,     // Mac with ANSI_US_EXTENDED layout
 //    OS_iOS,     // iOS?
     OS_Win,     // Win with default English/ANSI layout?
-    OS_Lux,     // Linux (Gnome?/KDE?)
+    OS_Lux,     // Linux (Gnome?/KDE?/Boox?)
 //    OS_And,     // Android (flavors?)
     OS_count
 };

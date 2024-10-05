@@ -169,7 +169,6 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                 case KC_F: // Pull S down (SP is 860x more common than FP)
                     tap_code(KC_BSPC);
                     tap_code(KC_S); //(but maybe should be BS? SP/BS are about equal...)
-                    return_state = true; // not done (process this key normally)
                     break;
             }
             break;
@@ -225,7 +224,11 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     tap_code(KC_F); // "MF" is x more frequent than "MX"
                     return_state = false; // done.
                     break;
-                case KC_W:  // eliminate WS scissor.
+                case KC_N: // avoid SFB (NL is 23x more common than NX)
+                    tap_code(KC_L);
+                    return_state = false; // done.
+                    break;
+               case KC_W:  // eliminate WS scissor.
                     tap_code(KC_S); //
                     return_state = false; // done.
                     break;
