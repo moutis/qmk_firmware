@@ -243,20 +243,46 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
 #endif
             }
             break;
-      case KC_SLSH:
-          switch (prior_keycode) {
-              case KC_DOT:
-                  send_string("com");
-                  return_state = false; // done.
-          }
-          break;
-      case KC_DQUO:
-          switch (prior_keycode) {
-              case KC_DOT:
-                  send_string("edu");
-                  return_state = false; // done.
-          }
-          break;
+        case KC_SLSH:
+            if (preprior_keycode == KC_DOT)
+                break;
+            if (prior_keycode == KC_DOT) { // ./ but not ../
+                send_string("com");
+                return_state = false; // done.
+            }
+            break;
+        case KC_DQUO:
+            switch (prior_keycode) {
+                case KC_DOT:
+                    send_string("edu");
+                    return_state = false; // done.
+                    break;
+                case KC_SLSH: // /" => ?
+                    tap_code(KC_BSPC);
+                    tap_code16(KC_QUES);
+                    return_state = false; // done.
+            }
+            break;
+        case KC_COMM:
+            switch (prior_keycode) {
+                case KC_COMM: // double comma = CAPS_WORD.
+                    tap_code(KC_BSPC);
+                    toggle_caps_word();
+                    return_state = false; // done.
+                    break;
+            }
+            break;
+        case KC_DOT:
+            if (preprior_keycode == KC_DOT)
+                break;
+            switch (prior_keycode) {
+                case KC_SLSH: // /. => !
+                    tap_code(KC_BSPC);
+                    tap_code16(KC_EXLM);
+                    return_state = false; // done.
+                    break;
+            }
+            break;
 
         case KC_H: // H precedes a vowel much more often than it follows (thanks, Ancient Greek!)
             switch (prior_keycode) { // maybe OK? What about xxR? resulting in a SFB on thumb?

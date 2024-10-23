@@ -304,7 +304,7 @@
 //#define JP_fyo_keys HD_RM4, HD_RB2 //　ふぉ
 
 #define JP_bya_keys HD_LB4, HD_RM1 // びゃ
-#define JP_byu_keys HD_LB4, HD_RB1 //　びゅ  conflicts with diacritic?
+#define JP_byu_keys HD_LB4, HD_RB1 //　びゅ
 #define JP_byo_keys HD_LB4, HD_RB2 //　びょ
 #define JP_mya_keys HD_LT2, HD_RM1 // みゃ
 #define JP_myu_keys HD_LT2, HD_RB1 //　みゅ

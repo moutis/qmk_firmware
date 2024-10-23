@@ -274,10 +274,11 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
               }
               break;
         case KC_SLSH:
-            switch (prior_keycode) {
-                case KC_DOT:
-                    send_string("com");
-                    return_state = false; // done.
+            if (preprior_keycode == KC_DOT)
+                break;
+            if (prior_keycode == KC_DOT) { // ./ but not ../
+                send_string("com");
+                return_state = false; // done.
             }
             break;
         case KC_DQUO:
@@ -302,6 +303,8 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
             }
             break;
         case KC_DOT:
+            if (preprior_keycode == KC_DOT)
+                break;
             switch (prior_keycode) {
                 case KC_SLSH: // /. => !
                     tap_code(KC_BSPC);

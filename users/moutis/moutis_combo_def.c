@@ -74,12 +74,10 @@ const uint16_t PROGMEM H_KANA_combo[] = {HD_RM3, HD_RM2, HD_RM1, COMBO_END}; // 
 // Bronze/Silver/Platinum (C on right hand, H on left/thumb) may need changes...
 //
 const uint16_t PROGMEM F_ESC_combo[] = {HD_LM4, HD_LM1, COMBO_END}; // ESCape
-const uint16_t PROGMEM Hndsh_combo[] = {HD_RB0, HD_RB1, COMBO_END}; // – n dash
-const uint16_t PROGMEM Hmdsh_combo[] = {HD_RB0, HD_RB2, COMBO_END}; // — m dash
+const uint16_t PROGMEM Hndsh_combo[] = {HD_RB0, HD_RB1, COMBO_END}; // – n dash (hold for m-dash)
 const uint16_t PROGMEM Htild_combo[] = {HD_RB0, HD_RB3, COMBO_END}; // ~ tilde (not the deadkey for eñye)
 const uint16_t PROGMEM Hunds_combo[] = {HD_RB1, HD_RB3, COMBO_END}; // _ underscore
 const uint16_t PROGMEM Hequal_combo[] = {HD_RB2, HD_RB3, COMBO_END}; // = equal (hold for %)
-//const uint16_t PROGMEM Hpercent_combo[] = {HD_RB3, HD_RB4, COMBO_END}; // % percent
 
 
 // spatially arranged characters and diacritics
@@ -318,7 +316,7 @@ combo_t key_combos[] = {
     [HC_APPNAV] = COMBO(H_menu_nav_combo, KC_APP), // app menu
     [HC_SCLN] = COMBO(Hscln_combo, KC_SCLN), // ;
     [HC_COLN] = COMBO_ACTION(Hcoln_combo), // :  (hold for elipsis)
-    [HC_UNDS] = COMBO_ACTION(Hunds_combo), // _ underscore
+    [HC_UNDS] = COMBO(Hunds_combo, S(KC_UNDS)), // _ underscore
     [HC_TILD] = COMBO(Htild_combo, KC_TILD),  // ~ or SK_TILD?
     [HC_TIC] = COMBO(Htic_combo, KC_GRAVE),  // ` (not dead)
     [HC_EXLM] = COMBO(Hexlm_combo, KC_EXLM), // !
@@ -388,7 +386,7 @@ combo_t key_combos[] = {
     [jp_hyu] = COMBO_ACTION(hyu_combo),  // ひゅ
     [jp_hyo] = COMBO_ACTION(hyo_combo),  // ひょ
     [jp_bya] = COMBO_ACTION(bya_combo),  // びゃ
-    [jp_byu] = COMBO_ACTION(byu_combo),  // びゅ potential conflict with diactric combos
+    [jp_byu] = COMBO_ACTION(byu_combo),  // びゅ
     [jp_byo] = COMBO_ACTION(byo_combo),  // びょ
     [jp_mya] = COMBO_ACTION(mya_combo),  // みゃ
     [jp_myu] = COMBO_ACTION(myu_combo),  // みゅ
@@ -449,8 +447,7 @@ combo_t key_combos[] = {
     [FC_LANG2] = COMBO(H_EISUU_combo, SK_MHEN), // eisuu (others)
     [FC_LANG1] = COMBO(H_KANA_combo, SK_HENK), // kana (others)
 
-    [HC_NDSH] = COMBO_ACTION(Hndsh_combo), // – N-DASH
-    [HC_MDSH] = COMBO_ACTION(Hmdsh_combo), // — M-DASH
+    [HC_NDSH] = COMBO_ACTION(Hndsh_combo), // – N-DASH (hold for M-dash)
     
 // Dead keys (Mac only, for now)
     [HC_ACUT] = COMBO_ACTION(Hacut_combo), // ´ acute
