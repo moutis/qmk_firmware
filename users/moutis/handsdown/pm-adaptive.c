@@ -251,9 +251,9 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
             }
             break;
 
-#ifdef ADAPTIVE_TRAILER
-#include "adaptive_trailer.c"
-#endif // ADAPTIVE_TRAILER
+#if defined (HD_MAGIC) || defined (HD_MAGIC_A) || defined (HD_MAGIC_B)
+#include "adaptive_magic.c"
+#endif //
 
     }
     if (return_state)  // no adaptive processed, cancel state and pass it on.

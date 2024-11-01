@@ -64,27 +64,22 @@ extern rgblight_config_t rgblight_config;
 #define STATE_RESET_TIME LINGER_TIME * 3
 
 
+// Adaptive (or MAGIC) keys are like a QMK Leader Key, but after (Adaptive Trailer)
 #define ADAPTIVE_ENABLE
-
-#define ADAPT_VOWEL_H // eliminate vowel SFBs (AU/UA;EO/OE) using vH instead of v'
-#define ADAPT_AE_AU // Use AE->AU (instead of AH->AU)
-//#define FR_ADAPTIVES // eliminate 'h SFB for French
-//#define DE_ADAPTIVES // alternate AU SFB treatment for German (forces ADAPT_AE_AU)
-#define ADAPTIVE_TRAILER KC_HASH // Like QMK Leader Key, but trails, and adaptive
 #define ADAPT_SHIFT KC_COMM // keycode to precede alpha for one-shot shift (leader)
+#define ADAPT_H // eliminate SFBs AU/UA;EO/OE;LN;MN;NN using H (instead of ')
+#define ADAPT_AE_AU // Use AE->AU (instead of AH->AU, AH is somewhat common)
+//#define FR_ADAPTIVES // eliminate 'h SFB for French
+//#define DE_ADAPTIVES // alternate AU SFB treatment for German (same as ADAPT_AE_AU)
+#define HD_MAGIC HD_HASH // generic MAGIC_KEY (I use for text macros)
+#define HD_MAGIC_A KC_ENT // MAGIC_KEY dependent on alpha (vowel hand?)
+#define HD_MAGIC_B KC_BSPC // MAGIC_KEY dependent on alpha (consonant hand?)
 
 #ifdef COMBO_HOLD
     #undef ADAPTIVE_TERM
     #define ADAPTIVE_TERM COMBO_HOLD * 1.35  // use COMBO_HOLD time as a standard threshold (same recation time)
 #else
     #define ADAPTIVE_TERM (TAPPING_TERM/4) // rolling threshold
-#endif
-
-
-//#define THUMB_REPEATER
-#ifdef THUMB_REPEATER
-#define HD_REPEATER_A HD_BSPC // the secondary thumb positions
-#define HD_REPEATER_B KC_ENT
 #endif
 
 
