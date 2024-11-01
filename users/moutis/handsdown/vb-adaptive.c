@@ -9,6 +9,15 @@
     which have a shorter keydown threshhold (COMBO_TERM).
  
  */
+//    Base (alpha) Layer  Hands Down Vibranium-vb (HRMs)
+//      ╭─────────────────────╮                 ╭─────────────────────╮
+// esc  │  X   W   M   G   J  │ L_CFG     L_NUM │  #$  .:  /*  "[  '] │ LANG2/henk
+// tab  │  S   C   N   T   K  | (             ) |  ,;   A   E   I   H │ LANG1/mhen
+//  Z   │  B   P   L   D   V  │ [ copy   pste ] │  -+   U   O   Y   F │ Q
+//      ╰───────────╮ bsp  R  │ &             | │ spc  ret ╭──────────╯
+//    left rght app ╰─────────╯                 ╰──────────╯ tgLN  up  dn
+//
+// For small boards, Q (LT3) & Z (LT4) are (also) on the sym layer
 
 
 bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
@@ -30,23 +39,17 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
 //        switch (((keycode >= SAFE_RANGE) && (keycode <= SemKeys_COUNT)) ? (keycode) : (keycode & QK_BASIC_MAX)) { // only handling normal, SHFT or ALT cases.
 
     switch (keycode) { // process ignoring multi-function keys & shift state?
+
 /*
 // Left hand adaptives (most are single-handed neighbor fingers, bc speed, dexterity limits)
 */
         case KC_B:
             switch (prior_keycode) {
-/* DB is about the same as DT, so this isn't a win. They are both on the infrequent side
-   so this isn't much of a problem.
-                case KC_D: // avoid SFB (DT is 5x more common than DB)
-                    tap_code(KC_T);
-                    return_state = false; // done.
-                    break;
-*/
                 case KC_P: // avoid row step (PS is 40x more common than PB)
                     tap_code(KC_S);
                     return_state = false; // done.
                     break;
-               case KC_C: // eliminate SB SFB (CB is 11x more common than SB)
+               case KC_C: // eliminate SB SFB (SB is 11x more common than CB)
                     tap_code(KC_BSPC);
                     tap_code(KC_S);
                     break;
@@ -66,7 +69,6 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
             break;
         case KC_D: // (for KD=KL; least code, no side effects)
             switch (prior_keycode) { //
-                case KC_K:
                 case KC_V:
                     tap_code(KC_L);  // pull up "L" (PL is 15x more common than PM)
                     return_state = false; // done.
@@ -92,11 +94,11 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     if (preprior_keycode == KC_W) { // to roll WMG -> lml? (no side effects?)
                         tap_code(KC_L); // G kecomes L for "LML"
                         return_state = false; // done.
-                        break; // and let current keycode send normally
+                        break; // and process current keycode normally
                     }
                     tap_code(KC_BSPC); // replace M
                     tap_code(KC_L); // "pull up" L to eliminate scissor
-                    break; // and let current keycode send normally
+                    break; // and process current keycode normally
                 case KC_W:
                     tap_code(KC_D); // pull up D (WD is 35x more common than WG)
                     return_state = false; // done.
@@ -104,13 +106,13 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
             }
             break;
         case KC_J:
-            switch (prior_keycode) {
-                case KC_G: // "GTH" is an awkward trigram/skipgram
-                    send_string("th"); // for "length"
+            switch (prior_keycode) { //
+                case KC_G: // 99.7% of GT are followed by H
+                    send_string("th"); // as in "length"
                     return_state = false; // done.
                     break;
                 case KC_M: // Eliminate MN SFB
-                    tap_code(KC_N); // MJ = MN
+                    tap_code(KC_L); // MJ = ML (43.43    126965511)
                     return_state = false; // done.
                     break;
                 case KC_V: // Eliminate VL Scissor
@@ -286,76 +288,8 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     break;
             }
             break;
-        case KC_SLSH:
-            if (preprior_keycode == KC_DOT)
-                break;
-            if (prior_keycode == KC_DOT) { // ./ but not ../
-                send_string("com");
-                return_state = false; // done.
-            }
-            break;
-        case KC_COMM:
-            switch (prior_keycode) { // a tap-dance of sorts
-                case KC_COMM: // double comma = CAPS_WORD.
-                    tap_code(KC_BSPC);
-                    toggle_caps_word();
-                    return_state = false; // done.
-                    break;
-            }
-            break;
-        case KC_DOT:
-            if (preprior_keycode == KC_DOT)
-                break;
-            switch (prior_keycode) {
-                case KC_SLSH: // /. => !
-                    tap_code(KC_BSPC);
-                    tap_code16(KC_EXLM);
-                    return_state = false; // done.
-                    break;
-            }
-            break;
-        case KC_DQUO:
-            switch (prior_keycode) {
-                case KC_DOT:
-                    send_string("edu");
-                    return_state = false; // done.
-                    break;
-                case KC_SLSH: // /" => ?
-                    tap_code(KC_BSPC);
-                    tap_code16(KC_QUES);
-                    return_state = false; // done.
-            }
-            break;
-        case KC_QUOT:
-             switch (prior_keycode) {
-                 case KC_DOT:
-                     send_string("org");
-                     return_state = false; // done.
-                     break;
-#ifndef ADAPT_H
-                 case KC_A: //
-                     tap_code(KC_U); // "A'" yields "AU"
-                     return_state = false; // done.
-                     break;
-                 case KC_U:
-                     tap_code(KC_A); // "U'" yields "UA"
-                     return_state = false; // done.
-                     break;
-                 case KC_E:
-                     tap_code(KC_O); // "E'" yields "EO"
-                     return_state = false; // done.
-                     break;
-                 case KC_O:
-                     tap_code(KC_E); // "O'" yields "OE"
-                     return_state = false; // done.
-                     break;
-#endif
-             }
-             break;
 
-#if  defined (ADAPT_H) || defined(ADAPT_AE_AU) || defined(DE_ADAPTIVES)
 #include "adapt_h.c" // the common vowel block adaptives (esp. for AU SFB)
-#endif // ADAPT_H
 
 #if defined (HD_MAGIC) || defined (HD_MAGIC_A) || defined (HD_MAGIC_B)
 #include "adapt_magic.c" // the common adaptive "magic" key

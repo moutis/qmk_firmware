@@ -66,7 +66,7 @@
 //  Z   │  X   F   L   C   W  │ [ copy   pste ] │  -+   U   O   Y   K │ Q
 //      ╰───────────╮ bsp  T  │ &             | │ spc  ret ╭──────────╯
 //    left rght app ╰─────────╯                 ╰──────────╯ tgLN  up  dn
-//
+
 // For small boards, Q (LT3) & Z (LT4) are (also) on the sym layer
 // and accessible combos (defined below)
 //

@@ -9,6 +9,15 @@
     which have a shorter keydown threshhold (COMBO_TERM).
  
  */
+//    Base (alpha) Layer  Hands Down Vibranium-vv (HRMs /+ thumb mods)
+//      ╭─────────────────────╮                 ╭─────────────────────╮
+// esc  │  V   W   M   G   J  │ L_CFG     L_NUM │  #$  .:  '[  "]   B │ LANG2/henk
+// tab  │  S   C   N   T   K  | (             ) |  ,;   A   E   I   H │ LANG1/mhen
+//  Z   │  X   P   L   D  /*  │ [ copy   pste ] │  -+   U   O   Y   F │ Q
+//      ╰───────────╮ bsp  R  │ &             | │ spc  ret ╭──────────╯
+//    left rght app ╰─────────╯                 ╰──────────╯ tgLN  up  dn
+//
+// For small boards, Q (LT3) & Z (LT4) are (also) on the sym layer
 
 
 bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
@@ -91,12 +100,12 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
             break;
         case KC_J:
             switch (prior_keycode) {
-                case KC_G: // "GTH" is an awkward trigram/skipgram
-                    send_string("th"); // for "length"
+                case KC_G: // 99.7% of GT are followed by H
+                    send_string("th"); // as in "length"
                     return_state = false; // done.
                     break;
                 case KC_M: // Eliminate MN SFB
-                    tap_code(KC_N); // MJ = MN
+                    tap_code(KC_L); // MJ = ML (43.43    126965511)
                     return_state = false; // done.
                     break;
                 case KC_W: // Eliminate WL scissor
@@ -256,76 +265,8 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                   break;
               }
           break;
-        case KC_SLSH:
-            if (preprior_keycode == KC_DOT)
-                break;
-            if (prior_keycode == KC_DOT) { // ./ but not ../
-                send_string("com");
-                return_state = false; // done.
-            }
-            break;
-        case KC_COMM:
-            switch (prior_keycode) { // a tap-dance of sorts
-                case KC_COMM: // double comma = CAPS_WORD.
-                    tap_code(KC_BSPC);
-                    toggle_caps_word();
-                    return_state = false; // done.
-                    break;
-            }
-            break;
-        case KC_DOT:
-            if (preprior_keycode == KC_DOT)
-                break;
-            switch (prior_keycode) {
-                case KC_SLSH: // /. => !
-                    tap_code(KC_BSPC);
-                    tap_code16(KC_EXLM);
-                    return_state = false; // done.
-                    break;
-            }
-            break;
-        case KC_DQUO:
-            switch (prior_keycode) {
-                case KC_DOT:
-                    send_string("edu");
-                    return_state = false; // done.
-                    break;
-                case KC_SLSH: // /" => ?
-                    tap_code(KC_BSPC);
-                    tap_code16(KC_QUES);
-                    return_state = false; // done.
-            }
-            break;
-        case KC_QUOT:
-             switch (prior_keycode) {
-                 case KC_DOT:
-                     send_string("org");
-                     return_state = false; // done.
-                     break;
-#ifndef ADAPT_H
-                 case KC_A: //
-                     tap_code(KC_U); // "A'" yields "AU"
-                     return_state = false; // done.
-                     break;
-                 case KC_U:
-                     tap_code(KC_A); // "U'" yields "UA"
-                     return_state = false; // done.
-                     break;
-                 case KC_E:
-                     tap_code(KC_O); // "E'" yields "EO"
-                     return_state = false; // done.
-                     break;
-                 case KC_O:
-                     tap_code(KC_E); // "O'" yields "OE"
-                     return_state = false; // done.
-                     break;
-#endif
-             }
-             break;
 
-#if  defined (ADAPT_H) || defined(ADAPT_AE_AU) || defined(DE_ADAPTIVES)
 #include "adapt_h.c" // the common vowel block adaptives (esp. for AU SFB)
-#endif // ADAPT_H
 
 #if defined (HD_MAGIC) || defined (HD_MAGIC_A) || defined (HD_MAGIC_B)
 #include "adapt_magic.c" // the common adaptive "magic" key

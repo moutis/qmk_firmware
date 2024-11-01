@@ -1,12 +1,81 @@
-//
-//  adapt_h.c
-//  the common vowel block adaptives (esp. for AU SFB)
-//
+/*
+ *  adapt_h.c
+ *  the common vowel block adaptives (esp. for "AU" SFB)
+ *
+ *  included at the end of process_adaptive_key
+ */
+
+        case KC_SLSH:
+            if (preprior_keycode == KC_DOT)
+                break;
+            if (prior_keycode == KC_DOT) { // ./ but not ../
+                send_string("com");
+                return_state = false; // done.
+            }
+            break;
+        case KC_COMM:
+            switch (prior_keycode) { // a tap-dance of sorts
+                case KC_COMM: // double comma = CAPS_WORD.
+                    tap_code(KC_BSPC);
+                    toggle_caps_word();
+                    return_state = false; // done.
+                    break;
+            }
+            break;
+        case KC_DOT:
+            if (preprior_keycode == KC_DOT)
+                break;
+            switch (prior_keycode) {
+                case KC_SLSH: // /. => !
+                    tap_code(KC_BSPC);
+                    tap_code16(KC_EXLM);
+                    return_state = false; // done.
+                    break;
+            }
+            break;
+        case KC_DQUO:
+            switch (prior_keycode) {
+                case KC_DOT:
+                    send_string("edu");
+                    return_state = false; // done.
+                    break;
+                case KC_SLSH: // /" => ?
+                    tap_code(KC_BSPC);
+                    tap_code16(KC_QUES);
+                    return_state = false; // done.
+            }
+            break;
+        case KC_QUOT:
+             switch (prior_keycode) {
+                 case KC_DOT:
+                     send_string("org");
+                     return_state = false; // done.
+                     break;
+#ifndef ADAPT_H
+                 case KC_A: //
+                     tap_code(KC_U); // "A'" yields "AU"
+                     return_state = false; // done.
+                     break;
+                 case KC_U:
+                     tap_code(KC_A); // "U'" yields "UA"
+                     return_state = false; // done.
+                     break;
+                 case KC_E:
+                     tap_code(KC_O); // "E'" yields "EO"
+                     return_state = false; // done.
+                     break;
+                 case KC_O:
+                     tap_code(KC_E); // "O'" yields "OE"
+                     return_state = false; // done.
+                     break;
+#endif
+             }
+             break;
+
+#ifdef ADAPT_H
 /*
  * H is a "Magic" adaptive key, depending on the preceding alphas
  */
-
-#ifdef ADAPT_H
        case KC_H: // H precedes a vowel much more often than it follows (thanks, Ancient Greek!) so adaptive H is a sort of Magic Key
            switch (prior_keycode) { // maybe OK? What about xxR? resulting in a SFB on thumb?
 #if !defined(ADAPT_AE_AU) && !defined(DE_ADAPTIVES) // AU is really common it German (and influences EN/FR)
@@ -66,6 +135,7 @@
            break;
 #endif // ADAPT_AE_AU
 
+#if NOCOMPILE
 #if !defined(ADAPT_AE_AU) && defined(DE_ADAPTIVES) // alternate AU for German
        case KC_I:
            switch (prior_keycode) {
@@ -76,3 +146,4 @@
            }
            break;
 #endif // DE_ADAPTIVES
+#endif
