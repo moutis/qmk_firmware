@@ -72,7 +72,7 @@ extern rgblight_config_t rgblight_config;
 //#define FR_ADAPTIVES // eliminate 'h SFB for French
 //#define DE_ADAPTIVES // alternate AU SFB treatment for German (same as ADAPT_AE_AU)
 #define HD_MAGIC HD_HASH // generic MAGIC_KEY (I use for text macros)
-#define HD_MAGIC_A KC_ENT // MAGIC_KEY dependent on alpha (vowel hand?)
+//#define HD_MAGIC_A KC_ENT // MAGIC_KEY dependent on alpha (vowel hand?)
 #define HD_MAGIC_B KC_BSPC // MAGIC_KEY dependent on alpha (consonant hand?)
 
 #ifdef COMBO_HOLD

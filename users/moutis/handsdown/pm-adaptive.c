@@ -10,7 +10,6 @@
  
  */
 
-
 bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
     bool return_state = true; // assume we don't do anything.
     
@@ -30,6 +29,7 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
 //        switch (((keycode >= SAFE_RANGE) && (keycode <= SemKeys_COUNT)) ? (keycode) : (keycode & QK_BASIC_MAX)) { // only handling normal, SHFT or ALT cases.
 
     switch (keycode) { // process ignoring multi-function keys & shift state?
+
 /*
 // Left hand adaptives (most are single-handed neighbor fingers, bc speed, dexterity limits)
 */
@@ -186,13 +186,6 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
 // right hand adaptives
 */
             
-        case KC_E:
-            switch (prior_keycode) {
-                case KC_A: // "AE" yields "AU" (8x more common)
-                    tap_code(KC_U);
-                    return_state = false; // done.
-            }
-            break;
         case KC_B:
             switch (prior_keycode) {
                 case KC_Y: // avoid ring->pinky scissor
@@ -251,8 +244,12 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
             }
             break;
 
+#if  defined (ADAPT_H) || defined(ADAPT_AE_AU) || defined(DE_ADAPTIVES)
+#include "adapt_h.c" // the common vowel block adaptives (esp. for AU SFB)
+#endif // ADAPT_H
+
 #if defined (HD_MAGIC) || defined (HD_MAGIC_A) || defined (HD_MAGIC_B)
-#include "adaptive_magic.c"
+#include "adapt_magic.c" // the common adaptive "magic" key
 #endif //
 
     }

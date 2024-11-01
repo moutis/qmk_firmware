@@ -1,16 +1,13 @@
 /*
  Adaptive Keys
- Called from within process_record_user
- 
+ Called from early within process_record_user
+
  Tailored for HD Mithril (mi)
  
  NOTE: assumed dual-function keys (MOD_TAP, LAYER_TAP) have already been handled AND
     FILTERED OUT! The combos handler will have already taken out combo candidates,
     which have a shorter keydown threshhold (COMBO_TERM).
  
- All the goto shenanigans should be resolved after complete migration to STM/RP controllersr
- (not totally possible, as many of my boards have embedded AVR mcus)
-
  */
 
 
@@ -123,81 +120,13 @@ bool process_adaptive_key(uint16_t *calling_keycode, const keyrecord_t *record) 
             }
             break;
 
-#ifdef ADAPT_H
-#if defined(ADAPT_AE_AU) || defined(DE_ADAPTIVES) // AU is really common in German (and influences EN/FR)
-       case KC_E:
-           switch (prior_keycode) {
-               case KC_A: // "AE" yields "AU" (8x more common)
-                   tap_code(KC_U);
-                   return_state = false; // done.
-           }
-           break;
-#endif // ADAPT_AE_AU
-#endif // ADAPT_H
-       case KC_H: // H precedes a vowel much more often than it follows (thanks, Ancient Greek!) so adaptive H is a sort of Magic Key
-           switch (prior_keycode) { // maybe OK? What about xxR? resulting in a SFB on thumb?
-#ifdef ADAPT_H
-#if !defined(ADAPT_AE_AU) && !defined(DE_ADAPTIVES) // AU is really common it German (and influences EN/FR)
-               case KC_A: // AE is a fraction less common (8x), but the EAE trill may be harder than EAH.
-                   tap_code(KC_U); // "AH" yields "AU" (7x more common)
-                   return_state = false; // done.
-                   break;
-#endif // ADAPT_AE_AU or !DE_ADAPTIVES
-               case KC_U:
-                   tap_code(KC_A); // "UH" yields "UA" (126x more common)
-                   return_state = false; // done.
-                   break;
-               case KC_E: // these EO/OE adaptives are of questionable value
-                   tap_code(KC_O); // "EH" yields "EO" (1.75:1)
-                   return_state = false; // done.
-                   break;
-               case KC_O:
-                   tap_code(KC_E); // "OH" yields "OE" (almost 1:1, but eliminates an SFB?)
-                   return_state = false; // done.
-                   break;
-#endif // ADAPT_H
-               case KC_I: // IF = IY (eliminate SFB on ring finger)
-                   tap_code(KC_Y); // (inverted IH->IF = IF->IY)
-                   return_state = false; // done.
-                   break;
-#ifndef FR_ADAPTIVES
-               case KC_Y: // eliminate YI SFB
-                   tap_code(KC_I); //
-                   return_state = false; // done.
-                   break;
-               case KC_L: // LH->LN
-               case KC_M: // MH->MN
-               case KC_N: // NH->NN
-                   tap_code(KC_N); //
-                   return_state = false; // done.
-                   break;
-#else // FR_ADAPTIVES // eliminate 'h SFB for French
-               case KC_J: // ex. j'habite
-               case KC_L: // ex. l'hôtel
-               case KC_N: // ex. n'habite
-               case KC_D: // ex. d'habitude
-#ifdef EN_HDIGRAPH_COMBOS
-               case KC_T: // t'habitude can't do this (bc Th) unless Th digraph combo is used…
-#endif // EN_HDIGRAPH_COMBOS
-                   tap_code(KC_QUOT); // YH => Y' (pull down to reduce ring-pinky T-B scissor)
-                   break;
-#endif // FR_ADAPTIVES
 
-           }
-           break;
-#ifdef DE_ADAPTIVES // AU is really common in German (and influences EN/FR)
-       case KC_I:
-           switch (prior_keycode) {
-               case KC_A: // "AI" yields "AU" (8x more common)
-                   tap_code(KC_U);
-                   return_state = false; // done.
-                   break;
-           }
-           break;
-#endif // DE_ADAPTIVES
+#if  defined (ADAPT_H) || defined(ADAPT_AE_AU) || defined(DE_ADAPTIVES)
+#include "adapt_h.c" // the common vowel block adaptives (esp. for AU SFB)
+#endif // ADAPT_H
 
 #if defined (HD_MAGIC) || defined (HD_MAGIC_A) || defined (HD_MAGIC_B)
-#include "adaptive_magic.c"
+#include "adapt_magic.c" // the common adaptive "magic" key
 #endif //
 
     }

@@ -203,39 +203,59 @@ case HD_MAGIC:
                     tap_code(KC_N);
                     return_state = false; // done.
                     break;
+#ifndef HD_MAGIC_A
+                case KC_E: //
+                    tap_code(KC_O); //
+                    return_state = false; // done.
+                    break;
+                case KC_O: //
+                    tap_code(KC_E); //
+                    return_state = false; // done.
+                    break;
+                case KC_A: //
+                    tap_code(KC_U);
+                    return_state = false; // done.
+                    break;
+                case KC_U: //
+                    if (preprior_keycode == KC_O) // oux (french)
+                        tap_code(KC_X); //
+                    else
+                        tap_code(KC_A); //
+                    return_state = false; // done.
+                    break;
+#endif
 /* double-letter frequencies from Peter Norvig's data <https://norvig.com/mayzner.html>
  * nearly all double consonants are followed by a vowel, and double vowels by a consonant
  * which limits candidates to basically consonant thumb to avoid possible scissoring/SFBs.
  * Each case needs to be vetted.
  */
-//
-//                case KC_L: // (0.577%) // Hands Down Platinum – not exactly recommended
+#ifdef NOCOMPILE
+                case KC_L: // (0.577%) // Hands Down Platinum – not exactly recommended
                 case KC_S: // (0.405%)
-//                case KC_E: // (0.378%) // with cons on thumb, these are problematic
-//                case KC_O: // (0.210%)
+                case KC_E: // (0.378%) // with cons on thumb, these are problematic
+                case KC_O: // (0.210%)
                 case KC_T: // (0.171%) // Hands Down Gold
                 case KC_F: // (0.146%)
                 case KC_P: // (0.137%)
                 case KC_R: // (0.121%) // Hands Down Titanium/Rhodium/Vibranium/Promethium
 // These aren't frequent enough to bother?
-//                case KC_M: // (0.096%)
+                case KC_M: // (0.096%)
                 case KC_C: // (0.083%)
                 case KC_N: // (0.073%) // Hands Down Silver
                 case KC_D: // (0.043%)
                 case KC_G: // (0.025%)
 // These are def not frequent enough to bother?
-//                case KC_I: // (0.023%)
-//                case KC_B: // (0.011%)
-//                case KC_A: // (0.003%)
-//                case KC_Z: // (0.003%)
-//                case KC_X: // (0.003%)
-//                case KC_U: // (0.001%)
-//                case KC_H: // (0.001%)  // Hands Down Bronze
-//
+                case KC_I: // (0.023%)
+                case KC_B: // (0.011%)
+                case KC_A: // (0.003%)
+                case KC_Z: // (0.003%)
+                case KC_X: // (0.003%)
+                case KC_U: // (0.001%)
+                case KC_H: // (0.001%)  // Hands Down Bronze
+#endif
                 default: // make it a dumb repeater
                     tap_code(prior_keycode); // eliminate SFB on double
                     return_state = false; // done.
             }
-
         break;
 #endif // HD_MAGIC_B
