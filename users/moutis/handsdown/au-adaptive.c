@@ -46,14 +46,14 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
         case KC_B:  // avoid the index-middle split
             switch (prior_keycode) {
                 case KC_P: // pull up M over
+                    tap_code(KC_BSPC);
                     tap_code(KC_M);
-                    return_state = false; // done.
+                    break;
                 case KC_D: // pull L over
                     tap_code(KC_L);  // pull up "L"
                     return_state = false; // done.
                     break;
-                break;
-           }
+            }
             break;
         case KC_D: //
             switch (prior_keycode) { //

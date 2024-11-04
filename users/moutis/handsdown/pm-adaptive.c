@@ -209,9 +209,16 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     break; // process the B normally
             }
             break;
+// PM doesn't use the common vowel block, so…
+//#include "adapt_h.c" // the common vowel block adaptives (esp. for AU SFB)
 
-
-#include "adapt_h.c" // the common vowel block adaptives (esp. for AU SFB)
+        case KC_E:
+            switch (prior_keycode) {
+                case KC_A: // "AE" yields "AU" (8x more common) keeping it on home row
+                    tap_code(KC_U);
+                    return_state = false; // done.
+            }
+            break;
 
 #if defined (HD_MAGIC) || defined (HD_MAGIC_A) || defined (HD_MAGIC_B)
 #include "adapt_magic.c" // the common adaptive "magic" key

@@ -7,10 +7,79 @@
 //
 // embedded in the switch in ive.c
 //
+//
+// first the common non-alpha adaptives for macros (Basically a "Magic" key, like a reverse LeaderKey)
+//
 
-// Using adaptives for macros (Basically a "Magic" key, like a flexible LeaderKey, but in reverse. )
+case KC_SLSH: // the "MAGIC_SLSH" keys
+    if (preprior_keycode == KC_DOT)
+        break;
+    if (prior_keycode == KC_DOT) { // ./ but not ../
+        send_string("com");
+        return_state = false; // done.
+    }
+    break;
+case KC_COMM:
+    switch (prior_keycode) { // a tap-dance of sorts
+        case KC_COMM: // double comma = CAPS_WORD.
+            tap_code(KC_BSPC);
+            toggle_caps_word();
+            return_state = false; // done.
+            break;
+    }
+    break;
+case KC_DOT:
+    if (preprior_keycode == KC_DOT)
+        break;
+    switch (prior_keycode) {
+        case KC_SLSH: // /. => !
+            tap_code(KC_BSPC);
+            tap_code16(KC_EXLM);
+            return_state = false; // done.
+            break;
+    }
+    break;
+case KC_DQUO:
+    switch (prior_keycode) {
+        case KC_DOT:
+            send_string("edu");
+            return_state = false; // done.
+            break;
+        case KC_SLSH: // /" => ?
+            tap_code(KC_BSPC);
+            tap_code16(KC_QUES);
+            return_state = false; // done.
+    }
+    break;
+case KC_QUOT:
+     switch (prior_keycode) {
+         case KC_DOT:
+             send_string("org");
+             return_state = false; // done.
+             break;
+#ifndef ADAPT_H // alternate way to handle the AU/EO SFBs
+         case KC_A: //
+             tap_code(KC_U); // "A'" yields "AU"
+             return_state = false; // done.
+             break;
+         case KC_U:
+             tap_code(KC_A); // "U'" yields "UA"
+             return_state = false; // done.
+             break;
+         case KC_E:
+             tap_code(KC_O); // "E'" yields "EO"
+             return_state = false; // done.
+             break;
+         case KC_O:
+             tap_code(KC_E); // "O'" yields "OE"
+             return_state = false; // done.
+             break;
+#endif
+     }
+     break;
+
 #ifdef HD_MAGIC
-case HD_MAGIC:
+case HD_MAGIC:  // default is KC_HASH "#"
 
     if (preprior_keycode) // allow only 1 deep
     break;

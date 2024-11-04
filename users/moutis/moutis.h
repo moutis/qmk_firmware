@@ -49,15 +49,24 @@ extern rgblight_config_t rgblight_config;
 
 #include "personalizedmacros.h"
 
-//#define THUMB_SHIFT // use the thumb shift variant instead of index shift
-
-#ifdef THUMB_SHIFT
-#include "handsdown/vb-config.ts.h" // definitions for the Alpha layer and mnemonic combos
-#include "moutis_layers.ts.h" // definitions for all the other layers
-#else
-#include "handsdown/vb-config.h" // definitions for the Alpha layer and mnemonic combos
+//
+// which HD alpha variation are we using?
+//
+#define HD vb
+// nu = neu (no thumb alpha)
+// au = gold (T on thumb)
+// mi = mithril (R on thumb)
+// pm = promethium (R on thumb)
+// rh = rhodium (R on thumb)
+// vb = vibranium (R on thumb, b in lower left, f on right)
+// vf = vibranium (R on thumb f in lower left, b on right)
+// vv = vibranium (R on thumb v in lower left, f on right)
+// vx = vibranium (R on thumb x in lower left, f on right)
+//
+// defines all variation dependent constants/files/keycodes, etc.
+// they will be used in the respective keymap for each keyboard
+#include "handsdown/vx-config.h" // definitions for the Alpha layer and mnemonic combos
 #include "moutis_layers.h" // definitions for all the other layers
-#endif
 
 #define LINGER_TIME TAPPING_TERM * 1.2 // how long to hold before a time-depentant behavior begins
 // how long to leave a state active before resetting like APPMENU or CAPSWORD

@@ -5,72 +5,6 @@
  *  included at the end of process_adaptive_key
  */
 
-        case KC_SLSH:
-            if (preprior_keycode == KC_DOT)
-                break;
-            if (prior_keycode == KC_DOT) { // ./ but not ../
-                send_string("com");
-                return_state = false; // done.
-            }
-            break;
-        case KC_COMM:
-            switch (prior_keycode) { // a tap-dance of sorts
-                case KC_COMM: // double comma = CAPS_WORD.
-                    tap_code(KC_BSPC);
-                    toggle_caps_word();
-                    return_state = false; // done.
-                    break;
-            }
-            break;
-        case KC_DOT:
-            if (preprior_keycode == KC_DOT)
-                break;
-            switch (prior_keycode) {
-                case KC_SLSH: // /. => !
-                    tap_code(KC_BSPC);
-                    tap_code16(KC_EXLM);
-                    return_state = false; // done.
-                    break;
-            }
-            break;
-        case KC_DQUO:
-            switch (prior_keycode) {
-                case KC_DOT:
-                    send_string("edu");
-                    return_state = false; // done.
-                    break;
-                case KC_SLSH: // /" => ?
-                    tap_code(KC_BSPC);
-                    tap_code16(KC_QUES);
-                    return_state = false; // done.
-            }
-            break;
-        case KC_QUOT:
-             switch (prior_keycode) {
-                 case KC_DOT:
-                     send_string("org");
-                     return_state = false; // done.
-                     break;
-#ifndef ADAPT_H
-                 case KC_A: //
-                     tap_code(KC_U); // "A'" yields "AU"
-                     return_state = false; // done.
-                     break;
-                 case KC_U:
-                     tap_code(KC_A); // "U'" yields "UA"
-                     return_state = false; // done.
-                     break;
-                 case KC_E:
-                     tap_code(KC_O); // "E'" yields "EO"
-                     return_state = false; // done.
-                     break;
-                 case KC_O:
-                     tap_code(KC_E); // "O'" yields "OE"
-                     return_state = false; // done.
-                     break;
-#endif
-             }
-             break;
 
 #ifdef ADAPT_H
 /*
@@ -85,10 +19,7 @@
                    break;
 #endif // ADAPT_AE_AU or !DE_ADAPTIVES
                case KC_U: //
-                   if (preprior_keycode == KC_O) //
-                       tap_code(KC_X); // for oux (French)
-                   else
-                       tap_code(KC_A); // "UH" yields "UA" (126x more common)
+                    tap_code(KC_A); // "UH" yields "UA" (126x more common)
                    return_state = false; // done.
                    break;
                case KC_E: // these EO/OE adaptives are of questionable value
@@ -134,16 +65,3 @@
            }
            break;
 #endif // ADAPT_AE_AU
-
-#if NOCOMPILE
-#if !defined(ADAPT_AE_AU) && defined(DE_ADAPTIVES) // alternate AU for German
-       case KC_I:
-           switch (prior_keycode) {
-               case KC_A: // "AI" yields "AU" (8x more common)
-                   tap_code(KC_U);
-                   return_state = false; // done.
-                   break;
-           }
-           break;
-#endif // DE_ADAPTIVES
-#endif

@@ -50,7 +50,6 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     tap_code(KC_L);
                     return_state = true; // done.
                     break;
-//                case KC_P: // avoid scissor (MB is 67x more common than PB)
                 case KC_T: // avoid scissor (MB is 34x more common than TB)
                 case KC_X: // avoid scissor (MB is 1174x more common than XB)
                     tap_code(KC_BSPC);
@@ -107,16 +106,15 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
             break;
         case KC_J:
             switch (prior_keycode) {
-                case KC_G: // 99.7% of GT are followed by H
-                    send_string("th"); // as in "length"
+                case KC_G: // "GTH" is an awkward trigram/skipgram
+                    send_string("th"); // for "length"
                     return_state = false; // done.
                     break;
-                case KC_M: // Eliminate MN SFB
-                    tap_code(KC_L); // MJ = ML (43.43    126965511)
+                case KC_M: // Eliminate MN Scissor (still same fingers)
+                    tap_code(KC_B); // MJ = mn (MB is 869x more common than MJ)
                     return_state = false; // done.
                     break;
-                case KC_V: // Eliminate VL Scissor
-                case KC_W: // Eliminate WL scissor
+                case KC_W: // Eliminate WL scissor (still same fingers)
                     tap_code(KC_L); // WJ = wl (WL is 468x more common than WJ)
                     return_state = false; // done.
                     break;
@@ -144,7 +142,6 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                 case KC_C:
                 case KC_P:
                 case KC_S:
-                case KC_V:
                     tap_code(KC_L);  // pull up "L" (PL is 15x more common than PM)
                     return_state = false; // done.
                     break;
@@ -272,33 +269,6 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
            }
             break;
 
-        case KC_J:
-            switch (prior_keycode) {
-                case KC_G: // "GTH" is an awkward trigram/skipgram
-                    send_string("th"); // for "length"
-                    return_state = false; // done.
-                    break;
-                case KC_M: // Eliminate MN Scissor (still same fingers)
-                    tap_code(KC_B); // MJ = mn (MB is 869x more common than MJ)
-                    return_state = false; // done.
-                    break;
-                case KC_W: // Eliminate WL scissor (still same fingers)
-                    tap_code(KC_L); // WJ = wl (WL is 468x more common than WJ)
-                    return_state = false; // done.
-                    break;
-            }
-            break;
-
-        case KC_L: // catch this so we can unshift L on these involving pinky/ring rolls.
-            switch (prior_keycode) {
-                case KC_P:
-                case KC_B: //
-                case KC_S: //
-                    tap_code(KC_L);  // pull up "L" (PL is 15x more common than PM)
-                    return_state = false; // done.
-                    break;
-            }
-            break;
 
 
 

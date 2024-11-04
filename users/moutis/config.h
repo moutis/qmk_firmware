@@ -36,6 +36,9 @@
 #define PERMISSIVE_HOLD
 //#define IGNORE_MOD_TAP_INTERRUPT
 
+#ifdef TAP_CODE_DELAY
+#undef TAP_CODE_DELAY
+#endif
 #define TAP_CODE_DELAY 20 // time between register/unregister (some keycodes go missing/out of sequence)
 #define TAP_HOLD_CAPS_DELAY 180 // for Mac
 
