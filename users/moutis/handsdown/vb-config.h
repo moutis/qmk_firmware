@@ -169,12 +169,12 @@
 #define HD_copy_keys  HD_LB3, HD_LB2   // copy (hold for cut)
 #define HD_pste_keys  HD_LB2, HD_LB1   // paste (hold for paste-match)
 
-#define HD_tab_keys  HD_LT4, HD_LT3     // tab
-#define HD_stab_keys HD_LT4, HD_LT3, HD_LT2  // Shift-tab
-#define HD_spc_keys  HD_LM1, HD_LM0     // SPACE
-#define HD_ent_keys  HD_LB0, HD_LB1     // ENTER
-#define HD_ent2_keys HD_LB0, HD_LB1, HD_LB2 // hard-ENTER/page break
-#define APPMENU_keys  HD_LT1, HD_LT0  // APPMENU on alpha layer
+#define HD_tab_keys   HD_LT4, HD_LT3    // tab
+#define HD_stab_keys  HD_LT4, HD_LT3, HD_LT2  // Shift-tab
+#define HD_spc_keys   HD_LM1, HD_LM0    // SPACE
+#define HD_ent_keys   HD_LB0, HD_LB1    // ENTER
+#define HD_ent2_keys  HD_LB0, HD_LB1, HD_LB2 // hard-ENTER/page break
+#define APPMENU_keys  HD_LT1, HD_LT0    // APPMENU on alpha layer
 #define APPMENU_nav_keys  LV_LT1, LV_LT0  // APPMENU on Nav layer
 
 // TEXT ENTRY - off map standard alphas (also on Layer L_SYM @ Z=LT4 & Q=LT3)

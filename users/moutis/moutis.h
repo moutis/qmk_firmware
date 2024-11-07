@@ -65,7 +65,7 @@ extern rgblight_config_t rgblight_config;
 //
 // defines all variation dependent constants/files/keycodes, etc.
 // they will be used in the respective keymap for each keyboard
-#include "handsdown/vx-config.h" // definitions for the Alpha layer and mnemonic combos
+#include "handsdown/vb-config.h" // definitions for the Alpha layer and mnemonic combos
 #include "moutis_layers.h" // definitions for all the other layers
 
 #define LINGER_TIME TAPPING_TERM * 1.2 // how long to hold before a time-depentant behavior begins

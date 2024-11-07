@@ -56,8 +56,9 @@ const uint16_t PROGMEM H_Left_combo[] = {HD_LT3, HD_LT2, HD_LT1, COMBO_END}; // 
 const uint16_t PROGMEM H_Right_combo[] = {HD_RT1, HD_RT2, HD_RT3, COMBO_END}; // some demonstrator macro placeholder
 
 const uint16_t PROGMEM F_KILL_combo[] = {HD_RT3, HD_RT0, COMBO_END}; // KILL = Force quit OR CTRL-ALT-DEL
-const uint16_t PROGMEM F_SCLP_combo[] = {HD_LT2, HD_LT1, HD_LT0, COMBO_END}; // SCREEN shot SELECTION to clipboard
 const uint16_t PROGMEM F_SCAP_combo[] = {HD_LT3, HD_LT2, HD_LT1, HD_LT0, COMBO_END}; //  SCREEN shot SELECTION to file
+const uint16_t PROGMEM F_SCLP_combo[] = {HD_LT2, HD_LT1, HD_LT0, COMBO_END}; // SCREEN shot SELECTION to clipboard
+const uint16_t PROGMEM F_SRCH_combo[] = {HD_LM2, HD_LM1, HD_LM0, COMBO_END}; // platform search (siri/cortana, etc.)
 
 
 const uint16_t PROGMEM H_CAPW_combo[] = {HD_RB3, HD_RB4, COMBO_END}; // CAPS WORD (on until word delimiter)
@@ -437,12 +438,13 @@ combo_t key_combos[] = {
     [PC_AC] = COMBO(PCME_combo, KC_ESC), // ESC for "ALL CLEAR"
     [PC_PLMN] = COMBO_ACTION(PPLMN_combo), // ±
 
-    [FC_ESC] = COMBO(F_ESC_combo, KC_ESC),  // ESCape
+    [FC_ESC] = COMBO(F_ESC_combo, KC_ESC),    // ESCape
     [FC_KILL] = COMBO(F_KILL_combo, SK_KILL), // Force quit
     [FC_SCAP] = COMBO(F_SCAP_combo, SK_SCAP), // SCREEN CAPTURE SELECTION
     [FC_SCLP] = COMBO(F_SCLP_combo, SK_SCLP), // SCREEN CAPTURE SELECTION to clipboard
+    [FC_SRCH] = COMBO(F_SRCH_combo, SK_SRCH), // platform search (siri/cortana, etc.)
     [FC_CAPS] = COMBO(F_CAPS_combo, KC_CAPS), // CAPS LOCK
-    [HC_CAPW] = COMBO_ACTION(H_CAPW_combo), // CAPS_WORD
+    [HC_CAPW] = COMBO_ACTION(H_CAPW_combo),   // CAPS_WORD
 
     [FC_LANG2] = COMBO(H_EISUU_combo, SK_MHEN), // eisuu (others)
     [FC_LANG1] = COMBO(H_KANA_combo, SK_HENK), // kana (others)
@@ -562,7 +564,7 @@ combo_t key_combos[] = {
    [HC_QUIT] = COMBO(Hquit_combo, SK_QUIT),
 #endif
 #ifdef HD_find_keys
-    [HC_FIND] = COMBO_ACTION(Hfind_combo),
+    [HC_FIND] = COMBO_ACTION(Hfind_combo), // application find (in app/doc)
 #endif
 #ifdef HD_sall_keys
     [HC_SALL] = COMBO(Hsall_combo, SK_SALL),

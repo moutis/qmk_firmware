@@ -262,15 +262,16 @@ enum my_combos {
     FC_KILL, // Force quit
     FC_SCAP, // Screen Capture Selection
     FC_SCLP, // Screen Capture Selection to clipboard
+    FC_SRCH, // Platform search (siri/cortana/–uses semkey)
 
     HC_ENT,
-    HC_ENT2, // hard enter (cmd/ctrl-enter)
+    HC_ENT2, // hard enter (cmd/ctrl-enter–uses semkey)
     HC_SPC,
     HC_NEW,
     HC_OPEN,
     HC_CLOZ,
     HC_QUIT,
-    HC_FIND, // Find the selection
+    HC_FIND, // Find the selection (in app/doc)
     HC_SWRD, // select current word
     HC_SALL, // select all
 

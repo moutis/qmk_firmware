@@ -298,7 +298,7 @@ case HD_MAGIC:  // default is KC_HASH "#"
  * which limits candidates to basically consonant thumb to avoid possible scissoring/SFBs.
  * Each case needs to be vetted.
  */
-#ifdef NOCOMPILE
+/*
                 case KC_L: // (0.577%) // Hands Down Platinum – not exactly recommended
                 case KC_S: // (0.405%)
                 case KC_E: // (0.378%) // with cons on thumb, these are problematic
@@ -321,7 +321,7 @@ case HD_MAGIC:  // default is KC_HASH "#"
                 case KC_X: // (0.003%)
                 case KC_U: // (0.001%)
                 case KC_H: // (0.001%)  // Hands Down Bronze
-#endif
+*/
                 default: // make it a dumb repeater
                     tap_code(prior_keycode); // eliminate SFB on double
                     return_state = false; // done.
