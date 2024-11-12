@@ -52,7 +52,6 @@ extern rgblight_config_t rgblight_config;
 //
 // which HD alpha variation are we using?
 //
-#define HD vb
 // nu = neu (no thumb alpha)
 // au = gold (T on thumb)
 // mi = mithril (R on thumb)
@@ -63,10 +62,17 @@ extern rgblight_config_t rgblight_config;
 // vv = vibranium (R on thumb v in lower left, f on right)
 // vx = vibranium (R on thumb x in lower left, f on right)
 //
-// defines all variation dependent constants/files/keycodes, etc.
-// they will be used in the respective keymap for each keyboard
+#define HD vb
+//
+// HD_CONFIG defines all variation dependent constants/files/keycodes, etc.
+// that will be used in the respective keymap for each keyboard
+//
+//#define HD_CONFIG
+//
 #include "handsdown/vb-config.h" // definitions for the Alpha layer and mnemonic combos
-#include "moutis_layers.h" // definitions for all the other layers
+//
+// definitions for all the other layers not dependent on the alpha layout.
+#include "moutis_layers.h"
 
 #define LINGER_TIME TAPPING_TERM * 1.2 // how long to hold before a time-depentant behavior begins
 // how long to leave a state active before resetting like APPMENU or CAPSWORD
