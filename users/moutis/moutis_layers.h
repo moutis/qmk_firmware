@@ -297,12 +297,12 @@ __ │   UNDO     CUT     COPY    PSTE    FAGN  │ ESC TAB   __  __ │  DOCEND
 
 
 /*   L_CFG Keyboard Configuration (left) and Media Settings (right)
-         ╭──────────────────────────────────────────╮                            ╭───────────────────────────────────────────────╮
-      __ │  SK_Lux  SK_Win  SK_Mac  QK_RBT  SK_KILL │                            │ (C(A(del)))KC_NUM  KC_EJCT KC_NO   SK_ZOOMRST │ RGB_MOD
- RGB_VAI │  HD_AKTg L_0     L_1     KC_VOLU KC_BRIU |                            | KC_NO     KC_MPRV  KC_MUTE KC_MNXT SK_ZOOMOUT │ RGB_SAI
- RGB_HUI │  QK_BOOT AG_SWAP AG_NORM KC_VOLD KC_BRID │ RGB_VAD  __    __  RGB_SAD │ KC_NO     KC_MRWD  KC_MPLY KC_MFFD SK_ZOOMIN  │ RGB_HUD
-         ╰──────────────────╮   __     __   EE_CLR  │ __                     __  │   __       __       __     ╭──────────────────╯
-                    __   __ ╰───────────────────────╯                            ╰────────────────────────────╯   __     __
+         ╭───────────────────────────────────────────────╮                            ╭────────────────────────────────────────────────╮
+      __ │  SK_Lux  SK_Win  SK_Mac  QK_RBT      SK_KILL  │                            │ SK_ZOOMRST KC_NUM  KC_EJCT KC_NO   (C(A(del))) │ RGB_MOD
+ RGB_VAI │  HD_AKTg L_0     L_1     KC_VOLU     KC_BRIU  |                            | SK_ZOOMOUT KC_MPRV KC_MUTE KC_MNXT KC_NO       │ RGB_SAI
+ RGB_HUI │  QK_BOOT AG_SWAP AG_NORM KC_VOLD     KC_BRID  │ RGB_VAD  __    __  RGB_SAD │ SK_ZOOMIN  KC_MRWD KC_MPLY KC_MFFD EE_CLR      │ RGB_HUD
+         ╰──────────────────╮ __    SK_ZOOMOUT SK_ZOOMIN │ __                     __  │ SK_ZOOMIN  SK_ZOOMOUT  --  ╭───────────────────╯
+                    __   __ ╰────────────────────────────╯                            ╰────────────────────────────╯   __     __
 */
 
 #define LC_LT5 KC_NO
@@ -311,11 +311,11 @@ __ │   UNDO     CUT     COPY    PSTE    FAGN  │ ESC TAB   __  __ │  DOCEND
 #define LC_LT2 SK_Mac
 #define LC_LT1 QK_RBT
 #define LC_LT0 SK_KILL
-#define LC_RT0 LCA(KC_DEL)
+#define LC_RT0 SK_ZOOMRST
 #define LC_RT1 KC_NUM
 #define LC_RT2 KC_EJCT
 #define LC_RT3 KC_NO
-#define LC_RT4 SK_ZOOMRST
+#define LC_RT4 LCA(KC_DEL)
 #define LC_RT5 RGB_MOD
  
 #define LC_LM5 RGB_VAI
@@ -324,11 +324,11 @@ __ │   UNDO     CUT     COPY    PSTE    FAGN  │ ESC TAB   __  __ │  DOCEND
 #define LC_LM2 HD_L_ALPHA
 #define LC_LM1 KC_VOLU
 #define LC_LM0 KC_BRIU
-#define LC_RM0 KC_NO
+#define LC_RM0 SK_ZOOMOUT
 #define LC_RM1 KC_MPRV
 #define LC_RM2 KC_MUTE
 #define LC_RM3 KC_MNXT
-#define LC_RM4 SK_ZOOMOUT
+#define LC_RM4 KC_NO
 #define LC_RM5 RGB_SAI
  
 #define LC_LB5 RGB_HUI
@@ -341,25 +341,25 @@ __ │   UNDO     CUT     COPY    PSTE    FAGN  │ ESC TAB   __  __ │  DOCEND
 #define LC_LBB SK_ZOOMIN
 #define LC_RBB SK_ZOOMOUT
 #define LC_RBA RGB_SAD
-#define LC_RB0 KC_NO
+#define LC_RB0 SK_ZOOMIN
 #define LC_RB1 KC_MRWD
 #define LC_RB2 KC_MPLY
 #define LC_RB3 KC_MFFD
-#define LC_RB4 SK_ZOOMIN
+#define LC_RB4 KC_NO
 #define LC_RB5 RGB_HUD
 
 #define LC_LH5 KC_BRID // also left encoder CCW
 #define LC_LH4 KC_BRIU // also left encoder CW
 #define LC_LH3 KC_MUTE
-#define LC_LH2 KC_VOLD
-#define LC_LH1 KC_VOLU
-#define LC_LH0 EE_CLR  // also left encoder key switch
+#define LC_LH2 SK_ZOOMOUT
+#define LC_LH1 SK_ZOOMIN
+#define LC_LH0 SK_ZOOMRST  // also left encoder key switch
 #define LC_LHA SK_ZOOMIN
 #define LC_RHA SK_ZOOMOUT
-#define LC_RH0 KC_NO  // also right encoder key switch
-#define LC_RH1 KC_NO
-#define LC_RH2 KC_NO
+#define LC_RH0 SK_ZOOMRST  // also right encoder key switch
+#define LC_RH1 SK_ZOOMIN
+#define LC_RH2 SK_ZOOMOUT
 #define LC_RH3 TG(L_NAV)
-#define LC_RH4 KC_NO // also right encoder CCW
-#define LC_RH5 KC_NO // also right encoder CW
+#define LC_RH4 SK_ZOOMOUT // also right encoder CCW
+#define LC_RH5 SK_ZOOMIN // also right encoder CW
 
