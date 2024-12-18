@@ -13,9 +13,9 @@
  *     |-------+-------+-------+-------+-------+              +-------+-------+-------+-------+-------|
  *     |  LM4  |  LM3  |  LM2  |  LM1  |  LM0  |              |  RM0  |  RM1  |  RM2  |  RM3  |  RM4  |
  *     |-------+-------+-------+-------+-------+-------+------+-------+-------+-------+-------+-------|
- *     |  LB4  |  LB3  |  LB2  |  LB1  |  LB0  |  LBA  | RBA  |  RB0  |  RB1  |  RB2  |  RB3  |  RB4  |
+ *     |  LB4  |  LB3  |  LB2  |  LB1  |  LB0  |  LH0  | RH0  |  RB0  |  RB1  |  RB2  |  RB3  |  RB4  |
  *     |-------+-------+-------+-------+-------+-------+------+-------+-------+-------+-------+-------'
- *     |  LH5  |  LH4  |  LH3  |  LH2  |  LH1  |  LH0  | RH0  |  RH1  |  RH2  |  RH3  |  RH4  |  RH5  |
+ *     |  LH5  |  LH4  |  LH3  |  LH2  |  LH1  |  LBA  | RBA  |  RH1  |  RH2  |  RH3  |  RH4  |  RH5  |
  *     `----------------------------------------------------------------------------------------------'
  */
 
@@ -29,8 +29,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [L_HD] = LAYOUT(
         HD_LT4, HD_LT3, HD_LT2, HD_LT1, HD_LT0,                 HD_RT0, HD_RT1, HD_RT2, HD_RT3, HD_RT4,
         HD_LM4, HD_LM3, HD_LM2, HD_LM1, HD_LM0,                 HD_RM0, HD_RM1, HD_RM2, HD_RM3, HD_RM4,
-        HD_LB4, HD_LB3, HD_LB2, HD_LB1, HD_LB0, HD_LBA, HD_RBA, HD_RB0, HD_RB1, HD_RB2, HD_RB3, HD_RB4,
-        HD_LH5, HD_LH4, HD_LH3, HD_LH2, HD_LH1, HD_LH0, HD_RH0, HD_RH1, HD_RH2, HD_RH3, HD_RH4, HD_RH5),
+        HD_LB4, HD_LB3, HD_LB2, HD_LB1, HD_LB0, HD_LH0, HD_RH0, HD_RB0, HD_RB1, HD_RB2, HD_RB3, HD_RB4,
+        HD_LH5, HD_LH4, HD_LH3, HD_LH2, HD_LH1, HD_LBA, HD_RBA, HD_RH1, HD_RH2, HD_RH3, HD_RH4, HD_RH5),
 
     [L_SYM] = LAYOUT(
         LS_LT4, LS_LT3, LS_LT2, LS_LT1, LS_LT0,                 LS_RT0, LS_RT1, LS_RT2, LS_RT3, LS_RT4,
