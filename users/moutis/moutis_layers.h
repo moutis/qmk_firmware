@@ -80,10 +80,10 @@ __ │    ·       ]       )        }        °     │ __  __   __  __  │    
 #define LS_LH3 KC_MUTE
 #define LS_LH2 SK_DELWDL
 #define LS_LH1 SK_DELWDR
-#define LS_LH0 KC_VOLD   // also left encoder key switch
+#define LS_LH0 KC_VOLD   // also left encoder hat switch
 #define LS_LHA KC_VOLD
 #define LS_RHA KC_VOLU
-#define LS_RH0 KC_VOLU   // also right encoder key switch
+#define LS_RH0 KC_VOLU   // also right encoder hat switch
 #define LS_RH1 KC_UNDS // _ // LALT(KC_9) // ª
 #define LS_RH2 SK_IEXC // ¡ // LSA(KC_8)  // °
 #define LS_RH3 LALT(KC_9) // ª // LSA(KC_9) // ·
@@ -148,10 +148,10 @@ __ │    ·       ]       )        }        °     │ __  __   __  __  │    
 #define LF_LH3 KC_TRNS
 #define LF_LH2 KC_SCLN
 #define LF_LH1 TG(L_NUM)
-#define LF_LH0 KC_TRNS  // also left encoder key switch
+#define LF_LH0 KC_TRNS  // also left encoder hat switch
 #define LF_LHA KC_NO
 #define LF_RHA KC_NO
-#define LF_RH0 KC_TRNS  // also right encoder key switch
+#define LF_RH0 KC_TRNS  // also right encoder hat switch
 #define LF_RH1 KC_0
 #define LF_RH2 KC_DOT
 #define LF_RH3 KC_TRNS
@@ -217,10 +217,10 @@ __ │    ·       ]       )        }        °     │ __  __   __  __  │    
 #define LN_LH3 TG(L_NAV)
 #define LN_LH2 LGUI_T(KC_BSPC)
 #define LN_LH1 LSFT_T(KC_ENT)
-#define LN_LH0 SK_CLOZ // also left encoder key switch
+#define LN_LH0 SK_CLOZ // also left encoder hat switch
 #define LN_LHA KC_NO
 #define LN_RHA KC_NO
-#define LN_RH0 KC_C // also right encoder key switch
+#define LN_RH0 KC_C // also right encoder hat switch
 #define LN_RH1 KC_P0
 #define LN_RH2 KC_PDOT
 #define LN_RH3 TG(L_NUM)
@@ -285,10 +285,10 @@ __ │   UNDO     CUT     COPY    PSTE    FAGN  │ ESC TAB   __  __ │  DOCEND
 #define LV_LH3 KC_TRNS  // typically the app menu
 #define LV_LH2 KC_BSPC
 #define LV_LH1 KC_ENTER
-#define LV_LH0 SK_ZOOMRST  // also left encoder key switch
+#define LV_LH0 SK_ZOOMRST  // also left encoder hat switch
 #define LV_LHA G(KC_TAB)
 #define LV_RHA TG(L_NAV)
-#define LV_RH0 SK_ZOOMRST  // also right encoder key switch
+#define LV_RH0 SK_ZOOMRST  // also right encoder hat switch
 #define LV_RH1 SK_HISTPRV
 #define LV_RH2 SK_HISTNXT
 #define LV_RH3 TG(L_NUM)
@@ -298,8 +298,8 @@ __ │   UNDO     CUT     COPY    PSTE    FAGN  │ ESC TAB   __  __ │  DOCEND
 
 /*   L_CFG Keyboard Configuration (left) and Media Settings (right)
          ╭───────────────────────────────────────────────╮                            ╭────────────────────────────────────────────────╮
-      __ │  SK_Lux  SK_Win  SK_Mac  QK_RBT      SK_KILL  │                            │ SK_ZOOMRST KC_NUM  KC_EJCT KC_NO   (C(A(del))) │ RGB_MOD
- RGB_VAI │  HD_AKTg L_0     L_1     KC_VOLU     KC_BRIU  |                            | SK_ZOOMOUT KC_MPRV KC_MUTE KC_MNXT KC_NO       │ RGB_SAI
+      __ │  SK_Lux  SK_Win  SK_Mac  QK_RBT      SK_KILL  │                            │ SK_ZOOMRST KC_NUM  KC_EJCT KC_LALT (C(A(del))) │ RGB_MOD
+ RGB_VAI │  HD_AKTg L_0     L_1     KC_VOLU     KC_BRIU  |                            | SK_ZOOMOUT KC_MPRV KC_MUTE KC_MNXT KC_T        │ RGB_SAI
  RGB_HUI │  QK_BOOT AG_SWAP AG_NORM KC_VOLD     KC_BRID  │ RGB_VAD  __    __  RGB_SAD │ SK_ZOOMIN  KC_MRWD KC_MPLY KC_MFFD EE_CLR      │ RGB_HUD
          ╰──────────────────╮ __    SK_ZOOMOUT SK_ZOOMIN │ __                     __  │ SK_ZOOMIN  SK_ZOOMOUT  --  ╭───────────────────╯
                     __   __ ╰────────────────────────────╯                            ╰────────────────────────────╯   __     __
@@ -314,7 +314,7 @@ __ │   UNDO     CUT     COPY    PSTE    FAGN  │ ESC TAB   __  __ │  DOCEND
 #define LC_RT0 SK_ZOOMRST
 #define LC_RT1 KC_NUM
 #define LC_RT2 KC_EJCT
-#define LC_RT3 KC_NO
+#define LC_RT3 KC_LALT
 #define LC_RT4 LCA(KC_DEL)
 #define LC_RT5 RGB_MOD
  
@@ -328,7 +328,7 @@ __ │   UNDO     CUT     COPY    PSTE    FAGN  │ ESC TAB   __  __ │  DOCEND
 #define LC_RM1 KC_MPRV
 #define LC_RM2 KC_MUTE
 #define LC_RM3 KC_MNXT
-#define LC_RM4 KC_NO
+#define LC_RM4 KC_T
 #define LC_RM5 RGB_SAI
  
 #define LC_LB5 RGB_HUI
@@ -348,15 +348,15 @@ __ │   UNDO     CUT     COPY    PSTE    FAGN  │ ESC TAB   __  __ │  DOCEND
 #define LC_RB4 KC_NO
 #define LC_RB5 RGB_HUD
 
-#define LC_LH5 KC_BRID // also left encoder CCW
-#define LC_LH4 KC_BRIU // also left encoder CW
+#define LC_LH5 KC_F13 // also left encoder CCW (remap on host)
+#define LC_LH4 KC_F14 // also left encoder CW  (remap on host)
 #define LC_LH3 KC_MUTE
 #define LC_LH2 SK_ZOOMOUT
 #define LC_LH1 SK_ZOOMIN
-#define LC_LH0 SK_ZOOMRST  // also left encoder key switch
-#define LC_LHA SK_ZOOMIN
-#define LC_RHA SK_ZOOMOUT
-#define LC_RH0 SK_ZOOMRST  // also right encoder key switch
+#define LC_LH0 SK_ZOOMRST  // also left encoder hat switch
+#define LC_LHA KC_RALT
+#define LC_RHA G(KC_R)
+#define LC_RH0 SK_ZOOMRST  // also right encoder hat switch
 #define LC_RH1 SK_ZOOMIN
 #define LC_RH2 SK_ZOOMOUT
 #define LC_RH3 TG(L_NAV)
