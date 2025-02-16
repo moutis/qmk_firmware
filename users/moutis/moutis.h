@@ -69,7 +69,7 @@ extern rgblight_config_t rgblight_config;
 //
 //#define HD_CONFIG
 //
-#include "handsdown/vf-config.h" // definitions for the Alpha layer and mnemonic combos
+#include "handsdown/rx-config.h" // definitions for the Alpha layer and mnemonic combos
 //
 // definitions for all the other layers not dependent on the alpha layout.
 #include "moutis_layers.h"
