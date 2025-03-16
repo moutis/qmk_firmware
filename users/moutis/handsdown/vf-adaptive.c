@@ -220,7 +220,7 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
             break;
         case KC_V: // remedy inner column split by shifting fingering
             switch (prior_keycode) {
-                case KC_D: // DV/TV/GV = LV ()
+
                 case KC_T: // TK/DK/GK = LK ()
                 case KC_G: //
                     tap_code(KC_BSPC);

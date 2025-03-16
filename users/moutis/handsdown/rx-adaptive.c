@@ -11,10 +11,10 @@
  */
 //    Base (alpha) Layer  Hands Down Vibranium-rx (HRMs /+ thumb mods)
 //      ╭─────────────────────╮                 ╭─────────────────────╮
-// esc  │  V   W   M   G   J  │ L_CFG     L_NUM │  #$  .:  /*  "[  '] │ LANG2/henk
+// esc  │  X   W   M   G   J  │ L_CFG     L_NUM │  #$  .:  /*  "[  '] │ LANG2/henk
 // tab  │  S   C   N   T   K  | (             ) |  ,;   A   E   I   H │ LANG1/mhen
-//  Q   │  F   P   L   D  bsp │ [ copy   pste ] │  -+   U   O   Y   B │ Z
-//      ╰───────────╮  X   R  │ &             | │ spc  ret ╭──────────╯
+//  Q   │  F   P   L   D   V  │ [ copy   pste ] │  -+   U   O   Y   B │ Z
+//      ╰───────────╮ bsp  R  │ &             | │ spc  ret ╭──────────╯
 //    left rght app ╰─────────╯                 ╰──────────╯ tgLN  up  dn
 //
 // For small boards, Q (LT3) & Z (LT4) are (also) on the sym layer

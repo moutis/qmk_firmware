@@ -31,11 +31,11 @@
 #define HD_U KC_U
 #define HD_V KC_V
 #define HD_W KC_W
-#define HD_X LT(L_FUN,KC_X)
+#define HD_X KC_X
 #define HD_Y KC_Y
 #define HD_Z KC_Z
 
-#define HD_MINS KC_MINS
+#define HD_MINS LT(L_FUN,KC_MINS)
 #define HD_HASH KC_HASH
 #define HD_SPC  LT(L_SYM,KC_SPC)
 #define HD_BSPC KC_BSPC
@@ -61,10 +61,10 @@
 //
 //    Base (alpha) Layer  Hands Down Vibranium-rx (HRMs /+ thumb mods)
 //      ╭─────────────────────╮                 ╭─────────────────────╮
-// esc  │  V   W   M   G   J  │ L_CFG     L_NUM │  #$  .:  /*  "[  '] │ LANG2/henk
+// esc  │  X   W   M   G   J  │ L_CFG     L_NUM │  #$  .:  /*  "[  '] │ LANG2/henk
 // tab  │  S   C   N   T   K  | (             ) |  ,;   A   E   I   H │ LANG1/mhen
-//  Q   │  F   P   L   D  bsp │ [ copy   pste ] │  -+   U   O   Y   B │ Z
-//      ╰───────────╮  X   R  │ &             | │ spc  ret ╭──────────╯
+//  Q   │  F   P   L   D   V  │ [ copy   pste ] │ bsp   U   O   Y   B │ Z
+//      ╰───────────╮ -/+   R │ &             | │ spc  ret ╭──────────╯
 //    left rght app ╰─────────╯                 ╰──────────╯ tgLN  up  dn
 //
 // For small boards, Q (LT3) & Z (LT4) are (also) on the sym layer
@@ -72,7 +72,7 @@
 //
 
 #define HD_LT5 KC_ESC
-#define HD_LT4 HD_V
+#define HD_LT4 HD_X
 #define HD_LT3 HD_W
 #define HD_LT2 HD_M
 #define HD_LT1 HD_G
@@ -106,12 +106,12 @@
 #define HD_LB3 HD_P
 #define HD_LB2 HD_L
 #define HD_LB1 HD_D
-#define HD_LB0 HD_BSPC
+#define HD_LB0 HD_V
 #define HD_LBA SK_DKT8 // Dictate (speech to text)
 #define HD_LBB SK_FIND // find
 #define HD_RBB SK_FAGN // find again
 #define HD_RBA SK_AIVC // AI voice control (Siri/Cortana)
-#define HD_RB0 HD_MINS
+#define HD_RB0 HD_BSPC
 #define HD_RB1 HD_U
 #define HD_RB2 HD_O
 #define HD_RB3 HD_Y
@@ -122,7 +122,7 @@
 #define HD_LH5 KC_LEFT
 #define HD_LH4 KC_RGHT
 #define HD_LH3 KC_APP
-#define HD_LH2 HD_X
+#define HD_LH2 HD_MINS
 #define HD_LH1 HD_R
 #define HD_LH0 LT(L_CFG,KC_MUTE)
 #define HD_LHA SK_DKT8 // Dictate (speech to text)
