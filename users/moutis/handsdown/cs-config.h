@@ -4,6 +4,7 @@
 //
 #define HD_adaptive_code "handsdown/cs-adaptive.c"
 //
+// https://cyanophage.github.io/playground.html?layout=vwgmj%3B.%27%3D%2Fzsnthk%2Caeicqfpdlx-uoyb%5Cr&mode=ergo&lan=english
 
 //
 // First, let's define HD alpha keycodes with any hold-taps/custom keycodes

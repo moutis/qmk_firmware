@@ -2,33 +2,32 @@
 //
 // The Hands Down Variation dependent defs & files
 //
-#define HD_adaptive_code "handsdown/pm-adaptive.c"
+#define HD_adaptive_code "handsdown/cr-adaptive.c"
 //
-// https://cyanophage.github.io/playground.html?layout=xbgmj%3B.%27%3D%2Fzrnthk%2Caeisqwpdlv-uoyf%5Cc&mode=ergo&lan=english
-
+// https://cyanophage.github.io/playground.html?layout=xbmgj%3B.%27%3D%2Fzrsntk%2Caeihqwpldv-uoyf%5Cc&mode=ergo&lan=english
 //
 // First, let's define HD alpha keycodes with any hold-taps/custom keycodes
 //
 #define HD_A RSFT_T(KC_A)
 #define HD_B KC_B
-#define HD_C RCTL_T(KC_C)
+#define HD_C LT(L_NAV,KC_C)
 #define HD_D KC_D
 #define HD_E RGUI_T(KC_E)
-#define HD_F LT(L_FUN, KC_F)
+#define HD_F KC_F
 #define HD_G KC_G
-#define HD_H RSFT_T(KC_H)
+#define HD_H RCTL_T(KC_H)
 #define HD_I RALT_T(KC_I)
 #define HD_J KC_J
 #define HD_K LT(L_NUM,KC_K)
 #define HD_L KC_L
 #define HD_M KC_M
-#define HD_N RALT_T(KC_N)
+#define HD_N LGUI_T(KC_N)
 #define HD_O KC_O
 #define HD_P KC_P
 #define HD_Q KC_Q
-#define HD_R LT(L_NAV,KC_R)
-#define HD_S RCTL_T(KC_S)
-#define HD_T RGUI_T(KC_T)
+#define HD_R LCTL_T(KC_R)
+#define HD_S LALT_T(KC_S)
+#define HD_T LSFT_T(KC_T)
 #define HD_U KC_U
 #define HD_V KC_V
 #define HD_W KC_W
@@ -61,17 +60,12 @@
 //     LH5 LH4 LH3 ╰─────────╯                  ╰─────────╯ RH3 RH4 RH5
 //
 //
-//    Base (alpha) Layer  Hands Down Promethium (HRMs /+ thumb mods)
-//      this is canonical Promethium, "inverted" (top-bottom), as
-//      I prefer "bottom heavy" layouts.  If you prefer top heavy,
-//      be sure to invert all rows, as the rolling/scissoring characteristics
-//      that make Promethium what it is depend on the same-row neighbors
-//  ※ arguably, the inner column is less sensitive to this.
+//    Base (alpha) Layer  Hands Down Chromium (HRMs /+ thumb mods)
 //            ╭─────────────────────╮                 ╭─────────────────────╮
-// LANG1/mhen │  V   W   G   M   J  │ L_CFG     L_NUM │  #$  .:  /*  "[  '] │ LANG2/henk
-//    esc     │  S   N   T   H   K  | (             ) |  ,;   A   E   I   C │ Z
-//    tab     │  F   P   D   L   X  │ [ copy   pste ] │  -+   U   O   Y   B │ Q(u)
-//            ╰───────────╮ bsp  R  │ &             | │ spc  ret ╭──────────╯
+// LANG1/mhen │  X   B   M   G   J  │ L_CFG     L_NUM │  #$  .:  /*  "[  '] │ LANG2/henk
+//    esc     │  R   S   N   T   K  | (             ) |  ,;   A   E   I   H │ Z
+//    tab     │  W   P   L   D   V  │ [ copy   pste ] │  -+   U   O   Y   F │ Q(u)
+//            ╰───────────╮ bsp  C  │ &             | │ spc  ret ╭──────────╯
 //          left rght app ╰─────────╯                 ╰──────────╯ tgLN  up  dn
 //
 // For small boards, Q (LT3) & Z (LT4) are (also) on the sym layer
@@ -79,10 +73,10 @@
 //
 
 #define HD_LT5 KC_LNG1
-#define HD_LT4 HD_V
-#define HD_LT3 HD_W
-#define HD_LT2 HD_G
-#define HD_LT1 HD_M
+#define HD_LT4 HD_X
+#define HD_LT3 HD_B
+#define HD_LT2 HD_M
+#define HD_LT1 HD_G
 #define HD_LT0 HD_J
 #define HD_LTA LT(L_CFG, KC_MUTE)
 #define HD_RTA LT(L_CFG, KC_MPLY)
@@ -94,10 +88,10 @@
 #define HD_RT5 KC_LNG2
 
 #define HD_LM5 KC_ESC
-#define HD_LM4 HD_S
-#define HD_LM3 HD_N
-#define HD_LM2 HD_T
-#define HD_LM1 HD_H
+#define HD_LM4 HD_R
+#define HD_LM3 HD_S
+#define HD_LM2 HD_N
+#define HD_LM1 HD_T
 #define HD_LM0 HD_K
 #define HD_LMA KC_LPRN
 #define HD_RMA KC_RPRN
@@ -105,15 +99,15 @@
 #define HD_RM1 HD_A
 #define HD_RM2 HD_E
 #define HD_RM3 HD_I
-#define HD_RM4 HD_C
+#define HD_RM4 HD_H
 #define HD_RM5 KC_Z
 
 #define HD_LB5 KC_TAB
-#define HD_LB4 HD_F
+#define HD_LB4 HD_W
 #define HD_LB3 HD_P
-#define HD_LB2 HD_D
-#define HD_LB1 HD_L
-#define HD_LB0 HD_X
+#define HD_LB2 HD_L
+#define HD_LB1 HD_D
+#define HD_LB0 HD_V
 #define HD_LBA SK_DKT8 // Dictate (speech to text)
 #define HD_LBB SK_FIND // find
 #define HD_RBB SK_FAGN // find again
@@ -122,7 +116,7 @@
 #define HD_RB1 HD_U
 #define HD_RB2 HD_O
 #define HD_RB3 HD_Y
-#define HD_RB4 HD_B
+#define HD_RB4 HD_F
 #define HD_RB5 HD_Q // (linger adds lowercase u)
 
 //Primary Thumbs 1-3 (others are unique to the board)
@@ -130,7 +124,7 @@
 #define HD_LH4 KC_UP
 #define HD_LH3 KC_APP
 #define HD_LH2 HD_BSPC
-#define HD_LH1 HD_R
+#define HD_LH1 HD_C
 #define HD_LH0 LT(L_CFG,KC_MUTE)
 #define HD_LHA SK_DKT8 // Dictate (speech to text)
 #define HD_RHA SK_AIVC // AI voice control (Siri/Cortana)
