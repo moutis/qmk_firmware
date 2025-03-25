@@ -58,6 +58,7 @@ extern rgblight_config_t rgblight_config;
 // au = gold (T on thumb)
 // ag = silver (N on thumb)
 // bz = bronze (H on thumb)     * typically doesn't use H-digraph combos
+// cs = cesium (C on thumb)     * typically doesn't use H-digraph combos
 // pm = promethium (R on thumb) * typically doesn't use H-digraph combos
 // rh = rhodium (R on thumb)    * typically doesn't use H-digraph combos
 // rx = weird test-bed (R on thumb)
@@ -74,7 +75,7 @@ extern rgblight_config_t rgblight_config;
 #define __CAT(x,y) x##y
 #define _CAT(x,y) __CAT(x,y)
 //#define HD_CONFIG HD_PATH/CCAT(HD,HD_FILE)
-#define HD_CONFIG "handsdown/vf-config.h"
+#define HD_CONFIG "handsdown/cs-config.h"
 //
 // HD_CONFIG defines all variation dependent constants/files/keycodes, etc.
 // that will be used in the respective keymap for each keyboard
