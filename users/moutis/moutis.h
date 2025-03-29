@@ -52,31 +52,23 @@ extern rgblight_config_t rgblight_config;
 //
 // which HD alpha variation are we using?
 //
-#define HD vf
 //
-// nu = neu (no thumb alpha)
-// au = gold (T on thumb)
-// ag = silver (N on thumb)
+// nu = neu (no thumb alpha)    * does not use thumb
+// au = gold (T on thumb)       * most inward rolling
 // bz = bronze (H on thumb)     * lightest thumb use (esp. w/H-digraph combos)
 // cr = chromium (C on thumb)   * RSNT typically doesn't use H-digraph combos
 // cs = cesium (C on thumb)     * typically doesn't use H-digraph combos
 // pm = promethium (R on thumb) * typically doesn't use H-digraph combos
 // rh = rhodium (R on thumb)    * typically doesn't use H-digraph combos
-// xr = weird test-bed (R on thumb)
 // vf = vibranium (R on thumb, f in lower left, b on right) - "canonical"
 // vv = vibranium (R on thumb, v in lower left, f on right) - lowest SFB
 // vx = vibranium (R on thumb, x in lower left, f on right) - better pinky balancing
 // vb = vibranium (R on thumb, b in lower left, f on right) - more rolling w/adaptives
 // mi = mithril (R on thumb)
-#define HD_PATH handsdown
-#define HD_FILE -config.h
+// xr = weird test-bed (R on thumb)
 
-#define __STR(x) #x
-#define _xSTR(x) __STR(x)
-#define __CAT(x,y) x##y
-#define _CAT(x,y) __CAT(x,y)
-//#define HD_CONFIG HD_PATH/CCAT(HD,HD_FILE)
-#define HD_CONFIG "handsdown/cr-config.h"
+#define HD_CONFIG "handsdown/vf-config.h"
+
 //
 // HD_CONFIG defines all variation dependent constants/files/keycodes, etc.
 // that will be used in the respective keymap for each keyboard

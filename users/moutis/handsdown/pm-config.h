@@ -5,6 +5,10 @@
 #define HD_adaptive_code "handsdown/pm-adaptive.c"
 //
 // https://cyanophage.github.io/playground.html?layout=xbgmj%3B.%27%3D%2Fzrnthk%2Caeisqwpdlv-uoyf%5Cc&mode=ergo&lan=english
+// HD uses the following effort map: 5,4,2,2,2,7,7,2,2,2,4,5,5,1,0,0,0,5,5,0,0,0,1,5,7,3,2,1,1,6,6,1,1,2,3,7
+// if you prefer top-heavy layouts, just invert the layout and the effort grid.
+// Inverting may increase the reach between a thumb alpha and an related bigram.
+// If you have long fingers, this may be perferable to having a cramped hand posture.
 
 //
 // First, let's define HD alpha keycodes with any hold-taps/custom keycodes
