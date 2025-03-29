@@ -55,13 +55,13 @@ extern rgblight_config_t rgblight_config;
 //
 // nu = neu (no thumb alpha)    * does not use thumb
 // au = gold (T on thumb)       * most inward rolling
-// bz = bronze (H on thumb)     * lightest thumb use (esp. w/H-digraph combos)
+// bz = bronze (H on thumb)     * lightest thumb use w/H-digraph combos
 // cr = chromium (C on thumb)   * RSNT typically doesn't use H-digraph combos
-// cs = cesium (C on thumb)     * typically doesn't use H-digraph combos
+// cs = cesium (C on thumb)     * lowest scissors, – lowest thumb w/o H-digraph combos
 // pm = promethium (R on thumb) * typically doesn't use H-digraph combos
 // rh = rhodium (R on thumb)    * typically doesn't use H-digraph combos
 // vf = vibranium (R on thumb, f in lower left, b on right) - "canonical"
-// vv = vibranium (R on thumb, v in lower left, f on right) - lowest SFB
+// vv = vibranium (R on thumb, v in lower left, f on right) - lowest SFBs
 // vx = vibranium (R on thumb, x in lower left, f on right) - better pinky balancing
 // vb = vibranium (R on thumb, b in lower left, f on right) - more rolling w/adaptives
 // mi = mithril (R on thumb)
