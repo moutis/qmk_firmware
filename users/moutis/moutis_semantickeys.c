@@ -5,29 +5,31 @@
  semantic function here, enabling platform specific keystroke(s)
  to be sent as appropriate.
 
- Phase 1: simple 1:1 keystroke mapping
-   complete.
+ Phase 1:
+    simple 1:1 keystroke mapping
+   -- complete.
  
- Phase 2: Requires w/Sevanteri's early combos.
+ Phase 2:
  Integrate all combo and keymap processing so they both queue
  SemKeys to be handled in process_record_user, reducing the code
  and simplifying maintenance.
-  -- IN PROCESS --
+  -- complete
  
- Phase 3: expand to multi-keystrokes, which would enable sending
+ Phase 3:
+ Expand to multi-keystrokes, which would enable sending
  different compose sequences based on platform (diacritics),
  and possibly facilitate editor support (vim/emacs)?
+  -- complete
  
- Phase 4: use in Hands Down Polyglot.
+  Much thanks to b-dod for help the completing phase 3 for WinCompose entry
+ https://github.com/b-dod/zsa-firmware/b-dod/moutis_semantickeys.c
+
+ Phase 4:
+ In use in most Hands Down variations in this repo. Next step would be
+ to use it in Hands Down Polyglot for PanEuropean multi-platform layout
+  -- research proposal in the works.
  
  */
-
-
-
-/*
-unsigned char BCD_TO_ASCII(uint8 src) {
-    return (unsigned char)((src - 0x30) * 0x10 + src[1] - 0x30);
-*/
 
 
 //
@@ -79,7 +81,8 @@ const uint16_t SemKeys_t[SemKeys_COUNT - SK_KILL][OS_count] = {
     [SK_QUIT - SK_KILL] = {G(KC_Q),C(KC_Q)},                    // quit
     [SK_NEW - SK_KILL] = {G(KC_N),C(KC_N)},                     // new
     [SK_OPEN - SK_KILL] = {G(KC_O),C(KC_O)},                    // open
-    [SK_FAGN - SK_KILL] = {G(KC_G),KC_F3},                      // find again
+    [SK_FIND - SK_KILL] = {G(KC_F),C(KC_F)},                    // find
+    [SK_FAGN - SK_KILL] = {G(KC_G),C(KC_G)},                    // find again
     [SK_SCAP - SK_KILL] = {S(G(KC_4)),KC_PSCR},                 // Screen Capture
     [SK_SCLP - SK_KILL] = {C(S(G(KC_4))),A(KC_PSCR)},           // Selection Capture
     [SK_SRCH - SK_KILL] = {G(KC_SPC),G(KC_S)},                  // platform search (siri/cortana, etc.)
@@ -108,7 +111,6 @@ const uint16_t SemKeys_t[SemKeys_COUNT - SK_KILL][OS_count] = {
         // Punctuation
     [SK_SECT - SK_KILL] = {A(KC_5),0x8167},                     // § ** need Win Compose via BCD.
     [SK_ENYE - SK_KILL] = {A(KC_N),A(KC_N)  },                  // ñ/Ñ ** need Win Compose via BCD?
-    [SK_IEXC - SK_KILL] = {RALT(KC_1),0x8161},                  // ¡ Inverted exclamation mark ** need Win Compose via BCD?
     [SK_ELPS - SK_KILL] = {A(KC_SCLN),0x8133},                  // … ** need Win Compose via BCD?
     [SK_PARA - SK_KILL] = {A(KC_7),0x8182},                     // ¶ ** need Win Compose via BCD?
     [SK_NDSH - SK_KILL] = {S(A(KC_MINS)),0x8150},               // — ** need Win Compose via BCD?
@@ -133,16 +135,16 @@ const uint16_t SemKeys_t[SemKeys_COUNT - SK_KILL][OS_count] = {
     [SK_SQUR - SK_KILL] = {S(A(KC_RBRC)),0x8146},               // ’ ** Right single quote UNICODE?
     [SK_SDQL - SK_KILL] = {A(KC_LBRC),0x8147},                  // “ ** Left double quote UNICODE?
     [SK_SDQR - SK_KILL] = {A(S(KC_LBRC)),0x8148},               // ” ** Right double quote UNICODE?
-    [SK_FDQL - SK_KILL] = {A(KC_BSLS),0x8171},                  //  « Left double French quote UNICODE?
-    [SK_FDQR - SK_KILL] = {S(A(KC_BSLS)),0x8187},               //  » Right double French quote UNICODE?
-    [SK_FSQL - SK_KILL] = {S(A(KC_3)),0x8139},                  //  ‹ Left single French quote UNICODE?
-    [SK_FSQR - SK_KILL] = {S(A(KC_4)),0x8155},                  //  › Right single French quote UNICODE?
+    [SK_FDQL - SK_KILL] = {A(KC_BSLS),0x8171},                  // « Left double French quote UNICODE?
+    [SK_FDQR - SK_KILL] = {S(A(KC_BSLS)),0x8187},               // » Right double French quote UNICODE?
+    [SK_FSQL - SK_KILL] = {S(A(KC_3)),0x8139},                  // ‹ Left single French quote UNICODE?
+    [SK_FSQR - SK_KILL] = {S(A(KC_4)),0x8155},                  // › Right single French quote UNICODE?
+    [SK_IQUE - SK_KILL] = {S(A(KC_SLASH)),ALGR(KC_SLASH)},      // ¿ Spanish inverted Question Mark
+    [SK_IEXC - SK_KILL] = {A(KC_1),0x8161},                     // ¡ Spanish inverted Exclamation Mark
     [SK_DKT8 - SK_KILL] = {C(S(KC_3)),G(KC_H)},                 // Dictate speech to text
     [SK_AIVC - SK_KILL] = {C(S(KC_4)),G(KC_C)},                 // AI voice control (mac Siri/Win Cortana)
 
 };
-
-
 void send_alt_code(uint16_t semkeycode) {
 
     if (semkeycode & 0x8000) {

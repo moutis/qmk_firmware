@@ -85,7 +85,6 @@ enum my_keycodes {
         // Punctuation
     SK_SECT, // § Section symbol
     SK_ENYE, // ñ/Ñ ENYE
-    SK_IEXC, // ¡ Inverted exclamation mark
     SK_ELPS, // … Elipsis
     SK_PARA, // ¶ Paragraph symbol
     SK_NDSH, // — N-Dash
@@ -114,6 +113,8 @@ enum my_keycodes {
     SK_FDQR, // » Right double French quote
     SK_FSQL, // ‹ Left single French quote (linger for paired)
     SK_FSQR, // › Right single French quote
+    SK_IQUE, // ¿ Spanish inverted Question Mark
+    SK_IEXC, // ¡ Spanish inverted Exclamation Mark
     SK_DKT8, // speech to text
     SK_AIVC, // AI voice control (mac Siri/Win cortana)
     SemKeys_COUNT, // end of SemKeys
