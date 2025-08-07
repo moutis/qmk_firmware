@@ -122,8 +122,13 @@ extern rgblight_config_t rgblight_config;
 // Perhaps simply redefining these in the xx-config.h
 // to override these defs would be the right approach?
 //
-#define DQUO_S  KC_GT // KC_RBRC // ] (via Double quote shifted)
-#define SQUO_S  KC_LT // KC_LBRC // [ (via Single quote shifted)
+#define DQUO_S  KC_GT // >
+#define DQUO_A  A(S(KC_BSLS)) // »
+#define DQUO_SA A(S(KC_4)) // ›
+#define SQUO_S  KC_LT // <
+#define SQUO_A  A(KC_BSLS) // «
+#define SQUO_SA A(S(KC_3)) // ‹
+
 #define JRQU KC_RBRC //  「 (via " in Japanese mode)
 #define JLQU KC_LBRC //  」 (via ' in Japanese mode)
 

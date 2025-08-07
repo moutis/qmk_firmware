@@ -314,7 +314,7 @@ goto_register_key_trap_and_return: // ##Warning
                 } else if (((saved_mods & MOD_MASK_SHIFT) && IS_ENGLISH_MODE)  // SHFT (only)
                            || (!saved_mods && !IS_ENGLISH_MODE)) { // or no mods & not in english
 #endif
-                    register_linger_key(SQUO_S); // example of simple linger macro
+                    register_linger_key(L_quote); // example of simple linger macro
                     return_state = false; // don't do more with this record.
                 } else //{ // no mods, so linger
                     register_linger_key(keycode); // example of simple linger macro
@@ -336,7 +336,7 @@ goto_register_key_trap_and_return: // ##Warning
                 } else if (((saved_mods & MOD_MASK_SHIFT) && IS_ENGLISH_MODE)  // SHFT (only)
                            || (!saved_mods && !IS_ENGLISH_MODE)) { // or no mods & not in english
 #endif
-                    register_linger_key(DQUO_S); // example of simple linger macro
+                    register_linger_key(R_quote); // example of simple linger macro
                     return_state = false; // don't do more with this record.
                 } else { // no mods, so
                     register_linger_key(keycode); // example of simple linger macro

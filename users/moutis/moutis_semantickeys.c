@@ -266,6 +266,8 @@ bool process_semkey(uint16_t keycode, const keyrecord_t *record) {
             case SK_HENK: // Japanese
 #ifdef JP_MODE_ENABLE
                 IS_ENGLISH_MODE = false;
+                L_quote = JLQU; // 「 in Japanese mode
+                R_quote = JRQU; // 」in Japanese mode
 #endif
                 tap_SemKey(SK_HENK); // Mac/Win/iOS all different?
 //                    return_state = false; // stop processing this record.
@@ -273,6 +275,8 @@ bool process_semkey(uint16_t keycode, const keyrecord_t *record) {
             case SK_MHEN: // English
 #ifdef JP_MODE_ENABLE
                 IS_ENGLISH_MODE = true;
+                L_quote = KC_DQUO; // " in English mode
+                R_quote = KC_LBRC; // ' in English mode
 #endif
                 tap_SemKey(SK_MHEN); // Mac/Win/iOS/Lux all different?
 //                    return_state = false; // stop processing this record.
