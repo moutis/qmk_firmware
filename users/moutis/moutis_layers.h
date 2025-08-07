@@ -28,8 +28,8 @@
    ╭────────────────────────────────────────────╮                  ╭──────────────────────────────────────────╮
 __ │    Z       Q       ¶        †        ‡     │                  │     ¢        $       €       £       ¥   │ __
 __ │    §       [       (        {        •     |                  |     /        =       *       +       -   │ __
-__ │    ·       ]       )        }        °     │ __  __   __  __  │     ^        |       &       <       >   │ __
-   ╰──────────────────╮ VolD   D_WordL  D_WordR │ --           __  │     _        ¡       ª     ╭─────────────╯
+__ │    °      ]       )        }         ·     │ __  __   __  __  │     ^        |       &       <       >   │ __
+   ╰──────────────────╮ VolD   D_WordL  D_WordR │ --           __  │     _        ¡       ¿     ╭─────────────╯
    KC_PGDN   KC_PGUP  ╰─────────────────────────╯                  ╰────────────────────────────╯ SK_WORDPRV  SK_WORDNXT
 */
 
@@ -51,8 +51,8 @@ __ │    ·       ]       )        }        °     │ __  __   __  __  │    
 #define LS_LM3 KC_LBRC
 #define LS_LM2 KC_LPRN
 #define LS_LM1 KC_LCBR
-#define LS_LM0 LALT(KC_8) // SK_BLLT?
-#define LS_RM0 KC_PSLS // / // SK_IEXC
+#define LS_LM0 SK_BBLT // SK_BLLT?
+#define LS_RM0 KC_PSLS // /
 #define LS_RM1 RSFT_T(KC_PEQL) // RSFT_T(KC_PAST)
 #define LS_RM2 RGUI_T(KC_PAST) // RGUI_T(KC_PEQL)
 #define LS_RM3 RALT_T(KC_PPLS)
@@ -60,11 +60,11 @@ __ │    ·       ]       )        }        °     │ __  __   __  __  │    
 #define LS_RM5 KC_TRNS
 
 #define LS_LB5 KC_TRNS
-#define LS_LB4 LSA(KC_9) // · // KC_GT
+#define LS_LB4 SK_DEGR // °
 #define LS_LB3 KC_RBRC
 #define LS_LB2 KC_RPRN
 #define LS_LB1 KC_RCBR
-#define LS_LB0 LSA(KC_8)  // ° // LALT(KC_8) // SK_BLLT?
+#define LS_LB0 SK_SBLT  // ·
 #define LS_LBA KC_TRNS
 #define LS_LBB KC_TRNS
 #define LS_RBB KC_TRNS
@@ -85,9 +85,9 @@ __ │    ·       ]       )        }        °     │ __  __   __  __  │    
 #define LS_LHA KC_VOLD
 #define LS_RHA KC_VOLU
 #define LS_RH0 KC_VOLU   // also right encoder hat switch
-#define LS_RH1 KC_UNDS // _ // LALT(KC_9) // ª
-#define LS_RH2 SK_IEXC // ¡ // LSA(KC_8)  // °
-#define LS_RH3 LALT(KC_9) // ª // LSA(KC_9) // ·
+#define LS_RH1 KC_UNDS // _ 
+#define LS_RH2 SK_IEXC // ¡
+#define LS_RH3 SK_IQUE // ¿
 #define LS_RH4 SK_WORDPRV // also right encoder CCW
 #define LS_RH5 SK_WORDNXT // also right encoder CW
 
