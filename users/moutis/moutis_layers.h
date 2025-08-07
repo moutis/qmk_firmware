@@ -24,6 +24,7 @@
 // RH5, RH4 are also Right encoder CCW, CW
 
 /*  L_SYM Symbols and punctuation (Some via SemKeys/unicode for platform independance)
+ *  left paired symbols are "linger keys" via hold taps. Tap for left, hold for pair with insertion point between
    ╭────────────────────────────────────────────╮                  ╭──────────────────────────────────────────╮
 __ │    Z       Q       ¶        †        ‡     │                  │     ¢        $       €       £       ¥   │ __
 __ │    §       [       (        {        •     |                  |     /        =       *       +       -   │ __
@@ -143,8 +144,8 @@ __ │    ·       ]       )        }        °     │ __  __   __  __  │    
 #define LF_RB4 KC_EQL
 #define LF_RB5 RGB_HUD
 
-#define LF_LH5 KC_TRNS // also left encoder CCW
-#define LF_LH4 KC_TRNS // also left encoder CW
+#define LF_LH5 KC_F23 // also left encoder CCW
+#define LF_LH4 KC_F24 // also left encoder CW
 #define LF_LH3 KC_TRNS
 #define LF_LH2 KC_SCLN
 #define LF_LH1 TG(L_NUM)

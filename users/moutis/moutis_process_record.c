@@ -383,12 +383,14 @@ goto_linger_and_return: // ##Warning
                 return_state = false; // stop processing this record.
                 break;
                 
+#ifdef INCLUDE_SK_Lux
             case SK_Lux: // SINCE MAC IS MY LAYOUT DEFAULT switch to linux
                 user_config.OSIndex = OS_Lux; // for Linux Semkeys
 //                process_magic(QK_MAGIC_SWAP_CTL_GUI); // tell QMK to swap ctrl/gui
                 keymap_config.swap_lctl_lgui = keymap_config.swap_rctl_rgui = true;
                 return_state = false; // stop processing this record.
                 goto storeSettings;
+#endif
            case SK_Win: // SINCE MAC IS MY LAYOUT DEFAULT switch to windows
                 user_config.OSIndex = OS_Win; // for Windows Semkeys
 //                process_magic(QK_MAGIC_SWAP_CTL_GUI); // tell QMK to swap ctrl/gui

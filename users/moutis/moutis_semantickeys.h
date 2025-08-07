@@ -53,14 +53,13 @@ enum my_keycodes {
     SK_SWRD, // select current word
     SK_CLOZ, // close
     SK_QUIT, // quit
-    SK_FIND, // find
     SK_NEW, // new
     SK_OPEN, // open
+    SK_FIND, // find
     SK_FAGN, // find again
     SK_SCAP, // screen capture to clipboard
     SK_SCLP, // selection capture to clipboard
     SK_SRCH, // platform search (siri/cortana, etc.)
-//    SK_DEL,   // Delete char right of cursor
     SK_DELWDL, // Delete word left of cursor
     SK_DELWDR, // Delete word right of cursor
     SK_DELLNL, // Delete line left of cursor
@@ -89,10 +88,18 @@ enum my_keycodes {
     SK_IEXC, // ¡ Inverted exclamation mark
     SK_ELPS, // … Elipsis
     SK_PARA, // ¶ Paragraph symbol
+    SK_NDSH, // — N-Dash
     SK_MDSH, // — M-Dash
     SK_DCRS, // ‡ Double Cross
     SK_SCRS, // † Single Cross
+    SK_SBLT, // · Small Bullet
     SK_BBLT, // • Bold Bullet
+    SK_DEGR, // ° DEGREE
+    SK_GTEQ, // ≥ Greater Than or Equal to
+    SK_LTEQ, // ≤ Less Than or Equal to
+    SK_NOTEQ, // ≠ NOT Equal to
+    SK_APPROXEQ, // ≈ APPROX Equal to
+    SK_OMEGA, // Ω OMEGA
         // Currency
     SK_CENT, // ¢
     SK_EURO, // €
@@ -101,7 +108,6 @@ enum my_keycodes {
         // Quotations
     SK_SQUL, // ’ Left single quote (linger for paired)
     SK_SQUR, // ’ Right single quote
-//    SK_SDQU, // " straight double-quote character (custom so we can manipulate it?)
     SK_SDQL, // “ Left double quote (linger for paired)
     SK_SDQR, // ” Right double quote
     SK_FDQL, // « Left double French quote (linger for paired)
@@ -152,10 +158,6 @@ enum my_keycodes {
 #define last_Semkey SemKeys_COUNT
 
 #define is_SemKey(sk) ((sk > (uint16_t)first_SemKey) && (sk < (uint16_t)last_Semkey))
-
-#define tap_SemKey(sk) tap_code16(SemKeys_t[sk - SK_KILL][user_config.OSIndex])
-#define register_SemKey(sk) register_code16(SemKeys_t[sk - SK_KILL][user_config.OSIndex])
-#define unregister_SemKey(sk) unregister_code16(SemKeys_t[sk - SK_KILL][user_config.OSIndex])
 
 #define linger_SemKey(sk) {register_code16(SemKeys_t[sk - SK_KILL][user_config.OSIndex]);linger_key = sk;linger_timer = state_reset_timer = timer_read();}
 #define unlinger_SemKey(sk) {unregister_code16(SemKeys_t[linger_key - SK_KILL][user_config.OSIndex]);linger_key = 0;}
