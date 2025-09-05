@@ -48,7 +48,7 @@
 #define HD_DQUO KC_DQUO // KC_DQUO or SK_SDQU
 #define HD_SLSH KC_SLSH
 #define HD_DOT  KC_DOT
-#define HD_COMM KC_COMM
+#define HD_COMM LT(L_FUN, KC_COMM)
 
 // Now let's place these HD keycodes on the keymap
 // for variation independent spatial referencing by key position
@@ -161,26 +161,25 @@
 // the above combos may compete for the same locations,
 // we'll define them all here.
 //
-#define HD_new_keys   HD_LB0, HD_LM0    // new -- Since cmd/ctrl is on middle
-#define HD_open_keys  HD_RB0, HD_RM0    // open -- these must be 2 handed, so combo
-#define HD_close_keys HD_RT0, HD_RM0    // close -- not strictly necessary?
-#define HD_quit_keys  HD_LT0, HD_LM0    // quit -- because q is on symbol layer
-#define HD_find_keys  HD_LM4, HD_LM0    // find selection
-#define HD_sall_keys  HD_LB4, HD_LB1    // select all
-#define HD_swrd_keys  HD_LB4, HD_LB0    // select word
-#define HD_undo_keys  HD_LB4, HD_LB3    // undo
+#define HD_new_keys   HD_LB0, HD_LM0   // new -- Since cmd/ctrl is on middle
+#define HD_open_keys  HD_RB0, HD_RM0   // open -- these must be 2 handed, so combo
+#define HD_close_keys HD_RT0, HD_RM0   // close -- not strictly necessary?
+#define HD_quit_keys  HD_LT0, HD_LM0   // quit -- because q is on symbol layer
+#define HD_find_keys  HD_LM4, HD_LM0   // find selection
+#define HD_sall_keys  HD_LB4, HD_LB1   // select all
+#define HD_swrd_keys  HD_LB4, HD_LB0   // select word
+#define HD_undo_keys  HD_LB4, HD_LB3   // undo
 #define HD_redo_keys  HD_LB4, HD_LB3, HD_LB2   // redo
-#define HD_copy_keys  HD_LB3, HD_LB2    // copy (hold for cut)
-#define HD_pste_keys  HD_LB2, HD_LB1    // paste (hold for paste-match)
+#define HD_copy_keys  HD_LB3, HD_LB2   // copy (hold for cut)
+#define HD_pste_keys  HD_LB2, HD_LB1   // paste (hold for paste-match)
 
 #define HD_tab_keys  HD_LT4, HD_LT3     // tab
 #define HD_stab_keys HD_LT4, HD_LT3, HD_LT2  // Shift-tab
 #define HD_spc_keys  HD_LM1, HD_LM0     // SPACE
 #define HD_ent_keys  HD_LB0, HD_LB1     // ENTER
 #define HD_ent2_keys HD_LB0, HD_LB1, HD_LB2 // hard-ENTER/page break
-#define APPMENU_keys  HD_LT1, HD_LT0    // APPMENU
-#define APPMENU_nav_keys  LN_LT1, LN_LT0 // APPMENU
-#define H_l_num_keys HD_LH1, HD_RH1     // toggle nav/num layer
+#define APPMENU_keys  HD_LT1, HD_LT0  // APPMENU
+#define APPMENU_nav_keys  LN_LT1, LN_LT0  // APPMENU
 
 // TEXT ENTRY - off map standard alphas (also on Layer L_SYM @ Z=LT4 & Q=LT3)
 //

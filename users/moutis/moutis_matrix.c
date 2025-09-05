@@ -45,12 +45,10 @@ void matrix_scan_user(void) {
                 case KC_Q: // already "Q" has been sent; if lingered, add "u"
                     tap_code(KC_U);
                     break;
-#ifdef ADAPT_SHIFT  // pseudo-adaptive comma-shift uses 2x ADAPTIVE_TERM, so pre-evaluated
                 case KC_COMM: //
-                    tap_code(KC_BSPC);
-                    register_code(KC_CAPS);
+                    tap_code(KC_SPACE);
                     break;
-#endif
+
                 case KC_LPRN: //
                     tap_code16(KC_RPRN);
                     tap_code16(KC_LEFT);

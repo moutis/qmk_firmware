@@ -57,11 +57,6 @@ case KC_QUOT:
              send_string("org");
              return_state = false; // done.
              break;
-         case KC_SLSH: // roll for ¿
-             tap_code(KC_BSPC);
-             tap_SemKey(SK_IQUE); //
-             return_state = false; // done.
-             break;
 #ifndef ADAPT_H // alternate way to handle the AU/EO SFBs
          case KC_A: //
              tap_code(KC_U); // "A'" yields "AU"
@@ -90,11 +85,6 @@ case HD_MAGIC:  // default is KC_HASH "#"
     break;
     return_state = false; // presume we do something.
     switch (prior_keycode) {
-        case KC_SLSH: // roll for ¡
-            tap_code(KC_BSPC);
-            tap_SemKey(SK_IEXC); //
-            return_state = false; // done.
-            break;
     #ifdef A_MAGIC
         case KC_A: //
             tap_code(KC_BSPC); // and may have been lowercase

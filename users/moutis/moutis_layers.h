@@ -28,8 +28,8 @@
    ╭────────────────────────────────────────────╮                  ╭──────────────────────────────────────────╮
 __ │    Z       Q       ¶        †        ‡     │                  │     ¢        $       €       £       ¥   │ __
 __ │    §       [       (        {        •     |                  |     /        =       *       +       -   │ __
-__ │    °      ]       )        }         ·     │ __  __   __  __  │     ^        |       &       <       >   │ __
-   ╰──────────────────╮ VolD   D_WordL  D_WordR │ --           __  │     _        ¡       ¿     ╭─────────────╯
+__ │    ·       ]       )        }        °     │ __  __   __  __  │     ^        |       &       <       >   │ __
+   ╰──────────────────╮ VolD   D_WordL  D_WordR │ --           __  │     _        ¡       ª     ╭─────────────╯
    KC_PGDN   KC_PGUP  ╰─────────────────────────╯                  ╰────────────────────────────╯ SK_WORDPRV  SK_WORDNXT
 */
 
@@ -51,8 +51,8 @@ __ │    °      ]       )        }         ·     │ __  __   __  __  │    
 #define LS_LM3 KC_LBRC
 #define LS_LM2 KC_LPRN
 #define LS_LM1 KC_LCBR
-#define LS_LM0 SK_BBLT // SK_BLLT?
-#define LS_RM0 KC_PSLS // /
+#define LS_LM0 LALT(KC_8) // SK_BLLT?
+#define LS_RM0 KC_PSLS // / // SK_IEXC
 #define LS_RM1 RSFT_T(KC_PEQL) // RSFT_T(KC_PAST)
 #define LS_RM2 RGUI_T(KC_PAST) // RGUI_T(KC_PEQL)
 #define LS_RM3 RALT_T(KC_PPLS)
@@ -60,11 +60,11 @@ __ │    °      ]       )        }         ·     │ __  __   __  __  │    
 #define LS_RM5 KC_TRNS
 
 #define LS_LB5 KC_TRNS
-#define LS_LB4 SK_DEGR // °
+#define LS_LB4 LSA(KC_9) // · // KC_GT
 #define LS_LB3 KC_RBRC
 #define LS_LB2 KC_RPRN
 #define LS_LB1 KC_RCBR
-#define LS_LB0 SK_SBLT  // ·
+#define LS_LB0 LSA(KC_8)  // ° // LALT(KC_8) // SK_BLLT?
 #define LS_LBA KC_TRNS
 #define LS_LBB KC_TRNS
 #define LS_RBB KC_TRNS
@@ -85,9 +85,9 @@ __ │    °      ]       )        }         ·     │ __  __   __  __  │    
 #define LS_LHA KC_VOLD
 #define LS_RHA KC_VOLU
 #define LS_RH0 KC_VOLU   // also right encoder hat switch
-#define LS_RH1 KC_UNDS // _ 
-#define LS_RH2 SK_IEXC // ¡
-#define LS_RH3 SK_IQUE // ¿
+#define LS_RH1 KC_UNDS // _ // LALT(KC_9) // ª
+#define LS_RH2 SK_IEXC // ¡ // LSA(KC_8)  // °
+#define LS_RH3 LALT(KC_9) // ª // LSA(KC_9) // ·
 #define LS_RH4 SK_WORDPRV // also right encoder CCW
 #define LS_RH5 SK_WORDNXT // also right encoder CW
 
@@ -300,8 +300,8 @@ __ │   UNDO     CUT     COPY    PSTE    FAGN  │ ESC TAB   __  __ │  DOCEND
 /*   L_CFG Keyboard Configuration (left) and Media Settings (right)
          ╭───────────────────────────────────────────────╮                            ╭────────────────────────────────────────────────╮
       __ │  SK_Lux  SK_Win  SK_Mac  QK_RBT      SK_KILL  │                            │ SK_ZOOMRST KC_NUM  KC_EJCT KC_LALT (C(A(del))) │ RGB_MOD
- RGB_VAI │  HD_AKTg L_0     L_1     KC_VOLU     KC_BRIU  |                            | SK_ZOOMOUT KC_MPRV KC_MUTE KC_MNXT EE_CLR      │ RGB_SAI
- RGB_HUI │  QK_BOOT AG_SWAP AG_NORM KC_VOLD     KC_BRID  │ RGB_VAD  __    __  RGB_SAD │ SK_ZOOMIN  KC_MRWD KC_MPLY KC_MFFD QK_BOOT     │ RGB_HUD
+ RGB_VAI │  HD_AKTg L_0     L_1     KC_VOLU     KC_BRIU  |                            | SK_ZOOMOUT KC_MPRV KC_MUTE KC_MNXT KC_T        │ RGB_SAI
+ RGB_HUI │  QK_BOOT AG_SWAP AG_NORM KC_VOLD     KC_BRID  │ RGB_VAD  __    __  RGB_SAD │ SK_ZOOMIN  KC_MRWD KC_MPLY KC_MFFD EE_CLR      │ RGB_HUD
          ╰──────────────────╮ __    SK_ZOOMOUT SK_ZOOMIN │ __                     __  │ SK_ZOOMIN  SK_ZOOMOUT  --  ╭───────────────────╯
                     __   __ ╰────────────────────────────╯                            ╰────────────────────────────╯   __     __
 */
@@ -321,20 +321,15 @@ __ │   UNDO     CUT     COPY    PSTE    FAGN  │ ESC TAB   __  __ │  DOCEND
  
 #define LC_LM5 RGB_VAI
 #define LC_LM4 HD_AdaptKeyToggle
-#ifdef HD_L_QWERTY
 #define LC_LM3 HD_L_QWERTY
 #define LC_LM2 HD_L_ALPHA
-#else  // Only one base alpha, so no switch base layer
-#define LC_LM3 KC_NO
-#define LC_LM2 KC_NO
-#endif
 #define LC_LM1 KC_VOLU
 #define LC_LM0 KC_BRIU
 #define LC_RM0 SK_ZOOMOUT
 #define LC_RM1 KC_MPRV
 #define LC_RM2 KC_MUTE
 #define LC_RM3 KC_MNXT
-#define LC_RM4 EE_CLR
+#define LC_RM4 KC_T
 #define LC_RM5 RGB_SAI
  
 #define LC_LB5 RGB_HUI
@@ -351,7 +346,7 @@ __ │   UNDO     CUT     COPY    PSTE    FAGN  │ ESC TAB   __  __ │  DOCEND
 #define LC_RB1 KC_MRWD
 #define LC_RB2 KC_MPLY
 #define LC_RB3 KC_MFFD
-#define LC_RB4 QK_BOOT
+#define LC_RB4 KC_NO
 #define LC_RB5 RGB_HUD
 
 #define LC_LH5 KC_F13 // also left encoder CCW (remap on host)
