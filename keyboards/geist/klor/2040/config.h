@@ -3,7 +3,7 @@
 // here you find only RP2040 specific configurations
 
 #pragma once
-#include "config_common.h"
+//#include "config_common.h"
 
 // ┌─────────────────────────────────────────────────┐
 // │ a u d i o                                       │
