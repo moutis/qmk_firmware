@@ -12,6 +12,8 @@
 //#define PRODUCT         HD-Kyria
 //#endif
 
+//#define OLED_DRIVER_ENABLE
+
 #ifdef OLED_DRIVER_ENABLE
   #define OLED_DISPLAY_128X64
     #ifdef OLED_TIMEOUT

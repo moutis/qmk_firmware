@@ -39,7 +39,6 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
 //        switch (((keycode >= SAFE_RANGE) && (keycode <= SemKeys_COUNT)) ? (keycode) : (keycode & QK_BASIC_MAX)) { // only handling normal, SHFT or ALT cases.
 
     switch (keycode) { // process ignoring multi-function keys & shift state?
-
 /*
 // Left hand adaptives (most are single-handed neighbor fingers, bc speed, dexterity limits)
 */
@@ -66,10 +65,18 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     }
             }
             break;
+        case KC_E: // AH is just 10% more common than AE
+            switch (prior_keycode) {
+                case KC_A: //
+                    tap_code(KC_U); // AU is 8.6x more common than AE
+                    return_state = false; // done.
+                    break;
+            }
+            break;
         case KC_F:
             switch (prior_keycode) {
                 case KC_D: // eliminate DV SFB
-                    tap_code(KC_V);  // DF = DV (DV is 5.8x more common than DF)
+                    tap_code(KC_V);
                     return_state = false; // done.
                     break;
                 case KC_P: // avoid row step (PS is 36x more common than PF)
@@ -102,26 +109,62 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     break;
             }
             break;
+#ifndef ADAPT_H // if not using the default
+        case KC_H: // H precedes a vowel vastly more often than it follows (thanks, Ancient Greek!) so adaptive H is a sort of Magic Key
+            switch (prior_keycode) { // maybe OK? What about xxR? resulting in a SFB on thumb?
+                case KC_E: // these EO/OE adaptives are of questionable value
+                    tap_code(KC_O); // "EH" yields "EO" (1.75:1)
+                    return_state = false; // done.
+                    break;
+                case KC_O:
+                    tap_code(KC_E); // "OH" yields "OE" (almost 1:1, but eliminates an SFB?)
+                    return_state = false; // done.
+                    break;
+                case KC_U: //
+                     tap_code(KC_A); // "UH" yields "UA" (126x more common)
+                    return_state = false; // done.
+                    break;
+                case KC_Y:
+                    tap_code(KC_I); // "YH" basically never occurs, so turn this SFB into a step
+                    return_state = false; // done.
+                    break;
+            }
+            break;
+ #endif // ADAPT_H
+
+
         case KC_J:
             switch (prior_keycode) {
                 case KC_G: // 99.7% of GT are followed by H
                     send_string("th"); // as in "length"
                     return_state = false; // done.
                     break;
-                case KC_M: // Eliminate MN SFB
-                    tap_code(KC_L); // MJ = ML (43.43    126965511)
+                case KC_M: // Eliminate ML SFB (ML is 43.43x more common than MJ)
+                case KC_W: // Eliminate WL scissor (WL is 468x more common than WJ)
+                    tap_code(KC_L); //
                     return_state = false; // done.
                     break;
-                case KC_V: // Eliminate VL Scissor
-                case KC_W: // Eliminate WL scissor
-                    tap_code(KC_L); // WJ = wl (WL is 468x more common than WJ)
+                case KC_A: //
+                    tap_code(KC_U); // "AJ" yields "AU"
                     return_state = false; // done.
                     break;
+                case KC_E: // 
+                    tap_code(KC_O); // "EJ" yields "EO"
+                    return_state = false; // done.
+                    break;
+                case KC_O:
+                    tap_code(KC_E); // "OJ" yields "OE"
+                    return_state = false; // done.
+                    break;
+                case KC_U: //
+                     tap_code(KC_A); // "UJ" yields "UA"
+                    return_state = false; // done.
+                    break;
+
             }
             break;
-            // remedy ring-index split by shifting fingering
             // Since the hand is already displaced to reach the inner column,
-            // pull the L over with alternate fingering to avoid the stretch.
+            // pull the L over with alternate fingering to avoid the lateral stretch.
         case KC_K:
             switch (prior_keycode) {
                 case KC_D: // eliminate index-middle stretch with alt fingering
@@ -221,7 +264,8 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
         case KC_V: // remedy inner column split by shifting fingering
             switch (prior_keycode) {
 
-                case KC_T: // DK = LK
+                case KC_T: // TK/DK/GK = LK ()
+                case KC_G: //
                     tap_code(KC_BSPC);
                     tap_code(KC_L);
                     break; // and let current keycode send normally
@@ -239,28 +283,23 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                         return_state = false; // done.
                         break;
                     } // drop through!
+                case KC_W: // WW doesn't exist, so to permit PP after M...
                 case KC_X: // pull up P (W becomes P after X to set up "xp"+l)
                     tap_code(KC_P); // pull up P from bottom row.
                     return_state = false; // done.
                     break;
-#ifdef RP2040 // hitting AVR limits
                 case KC_N: // avoid SFB (NL is 10x more common than NW)
                     tap_code(KC_L);
                     return_state = false; // done.
                     break;
-#endif
             }
             break;
         case KC_X:
             switch (prior_keycode) {
-                case KC_B:  // eliminate BH SFB. (transliterated languages)
-                     tap_code(KC_H); // "BH" is 37x more frequent than "BX" in English.
-                     return_state = false; // done.
-                     break;
-                case KC_D:  // eliminate DV SFB.
-                     tap_code(KC_J); // "DJ" is 103x more frequent than "DX"
-                     return_state = false; // done.
-                     break;
+                case KC_D: // eliminate DJ SFB.
+                    tap_code(KC_J); // "DJ" is 103x more frequent than "DX"
+                    return_state = false; // done.
+                    break;
                 case KC_G: // eliminate GT SFB.
                     tap_code(KC_T); // "GT" is 778x more frequent than "GX"
                     return_state = false; // done.
@@ -269,17 +308,16 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     tap_code(KC_L); // "ML" is 129x more frequent than "MX"
                     return_state = false; // done.
                     break;
-                case KC_W:  // eliminate WS scissor.
-                     tap_code(KC_S);  // "WS" is 6566x more frequent than "WX" in English.
-                     return_state = false; // done.
-                     break;
+               case KC_W:  // eliminate WS scissor.
+                    tap_code(KC_S); //
+                    return_state = false; // done.
+                    break;
             }
             break;
-
 /*
 // right hand adaptives
 */
-        /*
+/*
         case KC_B:
             switch (prior_keycode) {
                 case KC_Y: // avoid ring->pinky scissor
@@ -288,7 +326,7 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     break; // process the B normally
             }
             break;
-         */
+*/
 #include "adapt_h.c" // the common vowel block adaptives (esp. for AU SFB)
 
 #if defined (HD_MAGIC) || defined (HD_MAGIC_A) || defined (HD_MAGIC_B)

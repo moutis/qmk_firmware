@@ -10,7 +10,7 @@
  Phase 1: simple 1:1 keystroke mapping
    complete.
  
- Phase 2: Requires w/Sevanteri's early combos.
+ Phase 2: Requires w/Sevanteri's early combos. (>QMK 14.0)
  Integrate all combo and keymap processing so they both queue
  SemKeys to be handled in process_record_user, reducing the code
  and simplifying maintenance.
@@ -24,10 +24,17 @@
  
  */
 
-
+/*
+ * Semantic key codes are just extended range QMK keycodes
+ *
+ * First of the extended range codes are those I use
+ * internally to control keyboard settings.
+ */
 enum my_keycodes {
     HD_AdaptKeyToggle = SAFE_RANGE, // Adaptive Keys Toggle on/off
+#ifdef L_QWERTY
     HD_L_QWERTY, // base layer switch
+#endif
     HD_L_ALPHA,
 #ifdef RGBLIGHT_ENABLE  // backlight/underglow
     HD_RGB_sat_up, // Sat +
@@ -35,129 +42,145 @@ enum my_keycodes {
     HD_RGB_hue_up, // Hue +
     HD_RGB_hue_dn, // Hue +
 #endif
-    SK_Mac,
-    SK_Win,
-    SK_Lux,
-    // Semantic Keys (keystrokes handled by process_semkey() for platform independence)
-    SK_KILL, // SK_KILL must be the first of contiguous block of SKs
-    SK_HENK,  // kana (others)
-    SK_MHEN, // eisuu (others)
-    SK_HENT, // Hard-Enter
-    SK_UNDO, // undo
-    SK_REDO, // redo
-    SK_CUT, // cut
-    SK_COPY, // copy
-    SK_PSTE, // paste
-    SK_PSTM, // paste_match
-    SK_SALL, // select all
-    SK_SWRD, // select current word
-    SK_CLOZ, // close
-    SK_QUIT, // quit
-    SK_FIND, // find
-    SK_NEW, // new
-    SK_OPEN, // open
-    SK_FAGN, // find again
-    SK_SCAP, // screen capture to clipboard
-    SK_SCLP, // selection capture to clipboard
-    SK_SRCH, // platform search (siri/cortana, etc.)
-    SK_DELWDL, // Delete word left of cursor
-    SK_DELWDR, // Delete word right of cursor
-    SK_DELLNL, // Delete line left of cursor
-    SK_DELLNR, // Delete line right of cursor
-
+        // Semantic Keys (keystrokes handled by process_semkey() for platform independence)
+        // these are "semantic" keys that don't leave the keyboard
+        // so they don't need to be translated for the host.
+    SK_Mac,     //  mac (using ABC-Extended keyboard)
+    SK_Win,     //  windows (using US-Intl keyboard)
+    SK_Lux,     //  linux
+        // the rest of these semantic keys do need to be translated.
+        // everything from SK_KILL on has SemKeys_t table entry.
+        // System-wide controls
+    SK_KILL,    // SK_KILL must be the first of contiguous block of SKs
+    SK_HENK,    // kana
+    SK_MHEN,    // eisuu
+    SK_DKT8,    // speech to text
+    SK_AIVC,    // AI voice control (mac Siri/Win cortana)
+        // extended characters/ editing commands
+    SK_HENT,    // Hard-Enter
+    SK_UNDO,    // undo
+    SK_REDO,    // redo
+    SK_CUT,     // cut
+    SK_COPY,    // copy
+    SK_PSTE,    // paste
+    SK_PSTM,    // paste_match
+    SK_SALL,    // select all
+    SK_SWRD,    // select current word
+    SK_CLOZ,    // close
+    SK_QUIT,    // quit
+    SK_NEW,     // new
+    SK_OPEN,    // open
+    SK_FIND,    // find
+    SK_FAGN,    // find again
+    SK_SCAP,    // screen capture to clipboard
+    SK_SCLP,    // selection capture to clipboard
+    SK_SRCH,    // platform search (siri/cortana, etc.)
+    SK_DELWDL,  // Delete word left of cursor
+    SK_DELWDR,  // Delete word right of cursor
+    SK_DELLNL,  // Delete line left of cursor
+    SK_DELLNR,  // Delete line right of cursor
+        // extended navigation
     SK_WORDPRV, // WORD LEFT
     SK_WORDNXT, // WORD RIGHT
-    SK_DOCBEG, // Go to start of document
-    SK_DOCEND, // Go to end of document
+    SK_DOCBEG,  // Go to start of document
+    SK_DOCEND,  // Go to end of document
     SK_LINEBEG, // Go to beg of line
     SK_LINEEND, // Go to end of line
     SK_PARAPRV, // Go to previous paragraph
     SK_PARANXT, // Go to next paragraph
     SK_HISTPRV, // BROWSER BACK
     SK_HISTNXT, // BROWSER FWD
-    SK_ZOOMIN, // ZOOM IN
+    SK_ZOOMIN,  // ZOOM IN
     SK_ZOOMOUT, // ZOOM OUT
     SK_ZOOMRST, // ZOOM RESET
-    SK_APPNXT, // APP switcher Next (last used)
-    SK_APPPRV, // APP switcher Prev (least recently used)
-    SK_WINNXT, // Window/tab switcher Next
-    SK_WINPRV, // Window/tab switcher Prev
-        // Punctuation
-    SK_SECT, // § Section symbol
-    SK_ENYE, // ñ/Ñ ENYE
-    SK_IEXC, // ¡ Inverted exclamation mark
-    SK_ELPS, // … Elipsis
-    SK_PARA, // ¶ Paragraph symbol
-    SK_NDSH, // — N-Dash
-    SK_MDSH, // — M-Dash
-    SK_DCRS, // ‡ Double Cross
-    SK_SCRS, // † Single Cross
-    SK_BBLT, // • Bold Bullet
-    SK_GTEQ, // ≥ Greater Than or Equal to
-    SK_LTEQ, // ≤ Less Than or Equal to
-    SK_NOTEQ, // ≠ NOT Equal to
-    SK_APPROXEQ, // ≈ APPROX Equal to
-    SK_OMEGA, // Ω OMEGA
-    SK_DEGR, // ° DEGREE
+    SK_APPNXT,  // APP switcher Next (last used)
+    SK_APPPRV,  // APP switcher Prev (least recently used)
+    SK_WINNXT,  // Window/tab switcher Next
+    SK_WINPRV,  // Window/tab switcher Prev
+        // Punctuation & typography
+    SK_NDSH,    // — N-Dash
+    SK_MDSH,    // — M-Dash
+    SK_ELPS,    // … Elipsis
+    SK_SCRS,    // † Single Cross
+    SK_DCRS,    // ‡ Double Cross
+    SK_BBLT,    // • Bold Bullet
+    SK_SBLT,    // · Small Bullet
+    SK_PARA,    // ¶ Paragraph symbol
+    SK_SECT,    // § Section symbol
+        // Number & Math symbols
+    SK_PERM,    // ‰ Per Mille
+    SK_DEGR,    // ° DEGREE
+    SK_GTEQ,    // ≥ Greater Than or Equal to
+    SK_LTEQ,    // ≤ Less Than or Equal to
+    SK_PLMN,    // ± Plus/Minus
+    SK_DIV,     // ÷ Divide symbol
+    SK_FRAC,    // ⁄ Fraction "Solidus" symbol
+    SK_NOTEQ,   // ≠ NOT Equal to
+    SK_APXEQ,   // ≈ APPROX Equal to
+    SK_OMEGA,   // Ω OMEGA
         // Currency
-    SK_CENT, // ¢
-    SK_EURO, // €
-    SK_BPND, // £
-    SK_JPY,  // ¥
+    SK_EURO,    // €
+    SK_CENT,    // ¢
+    SK_BPND,    // £
+    SK_JPY,     // ¥
+    SK_No,      // № ordinal number symbol
         // Quotations
-    SK_SQUL, // ’ Left single quote (linger for paired)
-    SK_SQUR, // ’ Right single quote
-    SK_SDQL, // “ Left double quote (linger for paired)
-    SK_SDQR, // ” Right double quote
-    SK_FDQL, // « Left double French quote (linger for paired)
-    SK_FDQR, // » Right double French quote
-    SK_FSQL, // ‹ Left single French quote (linger for paired)
-    SK_FSQR, // › Right single French quote
-    SK_DKT8, // speech to text
-    SK_AIVC, // AI voice control (mac Siri/Win cortana)
-    SemKeys_COUNT, // end of SemKeys
-
-
+    SK_SQUL,    // ’ Left single quote (linger for paired)
+    SK_SQUR,    // ’ Right single quote
+    SK_SDQL,    // “ Left double quote (linger for paired)
+    SK_SDQR,    // ” Right double quote
+    SK_FDQL,    // « Left double French quote (linger for paired)
+    SK_FDQR,    // » Right double French quote
+    SK_FSQL,    // ‹ Left single French quote (linger for paired)
+    SK_FSQR,    // › Right single French quote
+    SK_IQUE,    // ¿ Spanish inverted Question Mark
+    SK_IEXC,    // ¡ Spanish inverted Exclamation Mark
+        // Composed letters with diacritics
+    SK_ENYE,    // ñ/Ñ ENYE
 /* Eventually…these should be handled as SemKeys with BCD & Alt-gr for Windows?
-   HD_aumlt,
-   HD_amacr,
-   HD_aacut,
-   HD_acrcm,
-   HD_agrav,
+    HD_aumlt,
+    HD_amacr,
+    HD_aacut,
+    HD_acrcm,
+    HD_agrav,
 
-   HD_eumlt,
-   HD_emacr,
-   HD_eacut,
-   HD_ecrcm,
-   HD_egrav,
+    HD_eumlt,
+    HD_emacr,
+    HD_eacut,
+    HD_ecrcm,
+    HD_egrav,
 
-   HD_iumlt,
-   HD_imacr,
-   HD_iacut,
-   HD_icrcm,
-   HD_igrav,
+    HD_iumlt,
+    HD_imacr,
+    HD_iacut,
+    HD_icrcm,
+    HD_igrav,
 
-   HD_oumlt,
-   HD_omacr,
-   HD_oacut,
-   HD_ocrcm,
-   HD_ograv,
+    HD_oumlt,
+    HD_omacr,
+    HD_oacut,
+    HD_ocrcm,
+    HD_ograv,
 
-   HD_uumlt,
-   HD_umacr,
-   HD_uacut,
-   HD_ucrcm,
-   HD_ugrav
+    HD_uumlt,
+    HD_umacr,
+    HD_uacut,
+    HD_ucrcm,
+    HD_ugrav,
 */
+    SK_end, // end of SemKeys
+
 };
 
-#define L_BASELAYER HD_L_QWERTY
 
-#define first_SemKey SK_KILL
-#define last_Semkey SemKeys_COUNT
+#define SK_beg SK_KILL
+#define SK_count (SK_end - SK_beg)
+#define SK_ndx(sk) (sk - SK_beg)
 
-#define is_SemKey(sk) ((sk > (uint16_t)first_SemKey) && (sk < (uint16_t)last_Semkey))
+#define is_SemKey(sk) ((sk >= (uint16_t)(SK_beg)) && (sk < (uint16_t)SK_end))
 
-#define linger_SemKey(sk) {register_code16(SemKeys_t[sk - SK_KILL][user_config.OSIndex]);linger_key = sk;linger_timer = state_reset_timer = timer_read();}
-#define unlinger_SemKey(sk) {unregister_code16(SemKeys_t[linger_key - SK_KILL][user_config.OSIndex]);linger_key = 0;}
+#define get_SemKeyCode(sk) (SemKeys_t[SK_ndx(sk)][user_config.OSIndex])
+
+#define linger_SemKey(sk) {register_SemKey(sk);linger_key = sk;linger_timer = state_reset_timer = timer_read();}
+#define unlinger_SemKey(sk) {unregister_SemKey(linger_key);linger_key = 0;}
 

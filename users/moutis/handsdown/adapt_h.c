@@ -9,15 +9,23 @@
 #ifdef ADAPT_H
 /*
  * H is a "Magic" adaptive key, depending on the preceding alphas
+ *
+ * Alternatively, the HD_MAGIC_A/HD_MAGIC_B may work better? They are
+ * typically assigned to a thumb position (bspc/enter), so have no
+ * conflict with other alphas. The use of the thumb may be less intuitive
+ * and thus require more training. BSPC/ENTER are used because they tend
+ * to have a brief pause before, so they may co-exist well.
  */
        case KC_H: // H precedes a vowel much more often than it follows (thanks, Ancient Greek!) so adaptive H is a sort of Magic Key
            switch (prior_keycode) { // maybe OK? What about xxR? resulting in a SFB on thumb?
 #if !defined(ADAPT_AE_AU) && !defined(DE_ADAPTIVES) // AU is really common it German (and influences EN/FR)
+/* This one doesn't work bc AH is more common than AE…so use "A'" instead
                case KC_A: // AE is a fraction less common (8x), but the EAE trill may be harder than EAH.
                    tap_code(KC_U); // "AH" yields "AU" (7x more common)
                    return_state = false; // done.
                    break;
-#endif // ADAPT_AE_AU or !DE_ADAPTIVES
+*/
+ #endif // ADAPT_AE_AU or !DE_ADAPTIVES
                case KC_U: //
                     tap_code(KC_A); // "UH" yields "UA" (126x more common)
                    return_state = false; // done.

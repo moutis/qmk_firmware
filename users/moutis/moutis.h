@@ -10,6 +10,51 @@
     #include "split_util.h"
 #endif
 
+typedef union {
+    uint32_t raw;
+    struct {
+        uint8_t OSIndex; // index of platforms (0=mac, 1=win, 2=lux)? // used by semantickeys
+        bool AdaptiveKeys; // Adaptive Keys On? (and advanced combos)
+    };
+} user_config_t; // used for persistent memory of settings (only 16 bytes avail on AVR?)
+
+typedef struct {
+    bool linger;
+    uint32_t plain;
+    uint32_t shift;
+    uint32_t alt;
+    uint32_t altshift;
+} modmorph_t;
+
+
+// enum my_layers for layout layers
+enum my_layers {// must be difined before semantickeys.h
+//    L_QWERTY,   // QWERTY compatibility layer
+    L_HD,       // Hands Down Alpha layer
+    L_SYM,      // symbols, punctuation, off-map alphas
+    L_FUN,      // function (left) & number rows (right)
+    L_NUM,      // navpad (left) & numpad (right)
+    L_NAV,      // meta keys (left) & nav pad (right)
+    L_CFG,      // Media/Consumer controls; Keyboard settings
+    L_count
+};
+#ifdef L_QWERTY
+#define L_BASELAYER HD_L_QWERTY
+#else
+#define L_BASELAYER HD_L_ALPHA
+#endif
+
+enum OS_Platform { // Used for platform support via SemKeys
+    OS_Mac,     // Mac with ANSI_US_EXTENDED layout
+//    OS_iOS,     // iOS?
+    OS_Win,     // Win with default English/ANSI layout?
+#ifdef INCLUDE_SK_Lux
+    OS_Lux,     // Linux (Gnome?/KDE?/Boox Android?)
+#endif
+//    OS_And,     // Android (flavors?)
+    OS_count
+};
+
 #ifdef RGBLIGHT_ENABLE
 //Following line allows macro to read current RGB settings
 extern rgblight_config_t rgblight_config;
@@ -41,6 +86,8 @@ extern rgblight_config_t rgblight_config;
     #define RGBLIGHT_VAL_STEP 4
 #endif
 
+#include "moutis_semantickeys.h"
+
 //
 // which HD alpha variation are we using?
 //
@@ -55,7 +102,6 @@ extern rgblight_config_t rgblight_config;
 //
 // nu = neu (no thumb alpha)    * does not use thumb
 // au = gold (T on thumb)       * most inward rolling
-// ag = silver (L on thumb)       * LOW sfbs, but high repeat on thumb
 // bz = bronze (H on thumb)     * lightest thumb use w/H-digraph combos
 // cr = chromium (C on thumb)   * RSNT typically doesn't use H-digraph combos
 // cs = cesium (C on thumb)     * lowest scissors, – lowest thumb w/o H-digraph combos
@@ -76,8 +122,10 @@ extern rgblight_config_t rgblight_config;
 //
 //
 #include HD_CONFIG // definitions for the Alpha layer and mnemonic combos
+
 //
 // definitions for all the other layers not dependent on the alpha layout.
+//
 #include "moutis_layers.h"
 
 #define LINGER_TIME TAPPING_TERM * 1.2 // how long to hold before a time-depentant behavior begins
@@ -89,12 +137,16 @@ extern rgblight_config_t rgblight_config;
 #define ADAPTIVE_ENABLE
 #define ADAPT_SHIFT KC_COMM // keycode to precede alpha for one-shot shift (leader)
 #define ADAPT_H // eliminate SFBs AU/UA;EO/OE;LN;MN;NN using H (instead of ')
-#define ADAPT_AE_AU // Use AE->AU (instead of AH->AU, AH is somewhat common)
+//#define ADAPT_AE_AU // Use AE->AU (instead of AH->AU, AH is somewhat common)
 //#define FR_ADAPTIVES // eliminate 'h SFB for French
 //#define DE_ADAPTIVES // alternate AU SFB treatment for German (same as ADAPT_AE_AU)
 #define HD_MAGIC HD_HASH // generic MAGIC_KEY (I use for text macros)
+
+// 
 //#define HD_MAGIC_A KC_ENT // MAGIC_KEY dependent on alpha (vowel hand?)
-#define HD_MAGIC_B KC_BSPC // MAGIC_KEY dependent on alpha (consonant hand?)
+//#define HD_MAGIC_B KC_BSPC // MAGIC_KEY dependent on alpha (consonant hand?)
+
+
 
 #ifdef COMBO_HOLD
     #undef ADAPTIVE_TERM
@@ -122,50 +174,21 @@ extern rgblight_config_t rgblight_config;
 // Perhaps simply redefining these in the xx-config.h
 // to override these defs would be the right approach?
 //
-#define DQUO_S  KC_GT // KC_RBRC // ] (via Double quote shifted)
-#define SQUO_S  KC_LT // KC_LBRC // [ (via Single quote shifted)
-#define JRQU KC_RBRC //  「 (via " in Japanese mode)
-#define JLQU KC_LBRC //  」 (via ' in Japanese mode)
+#define DQUO_S  KC_GT // >
+#define DQUO_A  A(S(KC_BSLS)) // »
+#define DQUO_SA A(S(KC_4)) // ›
+#define SQUO_S  KC_LT // <
+#define SQUO_A  A(KC_BSLS) // «
+#define SQUO_SA A(S(KC_3)) // ‹
 
+#define JLQU KC_LBRC //  「 (via " in Japanese mode)
+#define JRQU KC_RBRC //  」 (via ' in Japanese mode)
 
-typedef union {
-    uint32_t raw;
-    struct {
-        uint8_t OSIndex; // index of platforms (0=mac, 1=win, 2=lux)? // used by semantickeys
-        bool AdaptiveKeys; // Adaptive Keys On? (and advanced combos)
-    };
-} user_config_t; // used for persistent memory of settings (only 16 bytes avail on AVR?)
+#define tap_HDkey(kc) ({is_SemKey(kc) ? tap_SemKey(kc) : tap_code16(kc);})
+#define register_HDkey(kc) ({is_SemKey(kc) ? register_SemKey(kc) : register_code16(kc);})
+#define unregister_HDkey(kc) ({is_SemKey(kc) ? unregister_SemKey(kc) : unregister_code16(kc);})
 
-
-// enum my_layers for layout layers
-enum my_layers {// must be difined before semantickeys.h
-    L_QWERTY,   // 0 - QWERTY compatibility layer
-    L_HD,       // 1 - Hands Down Alpha layer
-    L_SYM,      // 2 - symbols, punctuation, off-map alphas
-    L_FUN,      // 3 - function & number rows
-    L_NUM,      // 4 - numpad (right); navpad (left)
-    L_NAV,      // 5 - nav pad (right); meta keys (left)
-    L_CFG,      // 6 - Media/Consumer controls; Keyboard settings
-    L_count
-};
-
-enum OS_Platform { // Used for platform support via SemKeys
-    OS_Mac,     // Mac with ANSI_US_EXTENDED layout
-//    OS_iOS,     // iOS?
-    OS_Win,     // Win with default English/ANSI layout?
-    OS_Lux,     // Linux (Gnome?/KDE?/Boox Android?)
-//    OS_And,     // Android (flavors?)
-    OS_count
-};
-
-#include "moutis_semantickeys.h"
-
-#define tap_HDkey(kc) {is_SemKey(kc) ? tap_SemKey(kc) : tap_code16(kc);}
-#define register_HDkey(kc) {is_SemKey(kc) ? register_SemKey(kc) : register_code16(kc);}
-#define unregister_HDkey(kc) {is_SemKey(kc) ? unregister_SemKey(kc) : unregister_code16(kc);}
-
-#define register_linger_key(kc) {register_HDkey(kc);linger_key = kc;linger_timer = timer_read();}
-#define unregister_linger_key() {unregister_HDkey(linger_key) ;linger_key = 0;}
-
+#define register_linger_key(kc) ({register_HDkey(kc);linger_key = kc;linger_timer = timer_read();})
+#define unregister_linger_key() ({unregister_HDkey(linger_key) ;linger_key = 0;})
 
 void matrix_scan_user_process_combo(void);

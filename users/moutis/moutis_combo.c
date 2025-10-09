@@ -122,7 +122,6 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
                 combo_on = combo_index; // may add "e" in matrix_scan_user_process_combo
                 break;
             case HC_GRV:
-//                tap_code16(A(KC_NUBS)); // this should use semkeys
                 tap_code16(A(KC_GRAVE)); // this should use semkeys
                 combo_on = combo_index; // may add "e" in matrix_scan_user_process_combo
                 break;
@@ -196,7 +195,7 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
                 break;
 */
             case HC_NDSH: // delay action until key-up (outside of delay block)
-//                register_code16(A(KC_MINS));  // should be a semkey
+//                register_SemKey(SK_NDSH);  // should be a semkey
                 combo_on = combo_index; // hold to replace with m-dash
                 break;
 
@@ -593,7 +592,7 @@ ADD_HERE:
                     tap_code16(KC_COLN); //
                     break;
                 case HC_NDSH: // Send N-Dash if not held.
-                    tap_code16(A(KC_MINS));  // this should use semkeys
+                    tap_SemKey(SK_NDSH);  // – N dash
                     break;
 
                 case PC_DASH:
@@ -764,10 +763,10 @@ void matrix_scan_user_process_combo() {  // called from matrix_scan_user if comb
 #endif // EN_HDIGRAPH_COMBOS
 
                 case HC_AT:
-                    send_string(At_ComboHeld);
+                    tap_SemKey(SK_No); // ordinal number symbol
                     break;
                 case HC_COLN: // held, so …
-                    tap_code16(A(KC_SCLN)); // (this could use semkeys)
+                    tap_SemKey(SK_ELPS); //
                     break;
                 case HC_OE:
                 case HC_Q:
@@ -777,7 +776,7 @@ void matrix_scan_user_process_combo() {  // called from matrix_scan_user if comb
                     tap_code16(KC_PERC); // Held, so send % (instead of =)
                     break;
                 case HC_NDSH: // Held, so send M-Dash (instead of N-Dash).
-                    tap_code16(A(S(KC_MINS)));  // this should use semkeys
+                    tap_SemKey(SK_MDSH);  // M-Dash
                     break;
 
                 case PC_STAB:
@@ -805,35 +804,35 @@ void matrix_scan_user_process_combo() {  // called from matrix_scan_user if comb
                     tap_code16(KC_TILD);
                     break;
                 case PC_DASH:
-                    tap_code16(A(KC_MINS)); // this should use semkeys
+                    tap_SemKey(SK_NDSH); // –
                     break;
 //                case HC_ELIP:
                 case PC_ELIP:
-                    tap_code16(A(KC_SCLN)); // this should use semkeys
+                    tap_SemKey(SK_ELPS); // …
                     break;
                 case PC_EURO:
-                    tap_code16(A(S(KC_2))); // this should use semkeys
+                    tap_SemKey(SK_EURO); // €
                     break;
                 case PC_CENT:
-                    tap_code16(A(KC_4)); // this should use semkeys
+                    tap_SemKey(SK_CENT); // ¢
                     break;
                 case PC_JYEN:
-                    tap_code16(A(KC_Y)); // this should use semkeys
+                    tap_SemKey(SK_JPY); // ¥
                     break;
                 case PC_BPND:
-                    tap_code16(A(KC_3)); // this should use semkeys
+                    tap_SemKey(SK_BPND); // £
                     break;
                 case PC_NEQL:
-                    tap_code16(A(KC_EQL)); // this should use semkeys
+                    tap_SemKey(SK_NOTEQ); // ≠
                     break;
                 case PC_DIV:
-                    tap_code16(A(KC_SLSH)); // this should use semkeys
+                    tap_SemKey(SK_DIV); // ÷
                     break;
                 case PC_PLMN:
-                    tap_code16(A(S(KC_EQL))); // this should use semkeys
+                    tap_SemKey(SK_PLMN); // ±
                     break;
                 case PC_DEG:
-                    tap_code16(A(KC_0)); // this should use semkeys
+                    tap_SemKey(SK_DEGR); // º
                     break;
 
 
@@ -892,7 +891,7 @@ void matrix_scan_user_process_combo() {  // called from matrix_scan_user if comb
                     tap_code16(KC_C); // this should use semkeys? ç
                     break;
                 case HC_ENYE:
-                    tap_code16(KC_N); // this should use semkeys? ñ
+                    tap_SemKey(SK_ENYE); //
                     break;
 
                     
