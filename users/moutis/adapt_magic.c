@@ -41,10 +41,6 @@ case KC_DOT:
     break;
 case KC_DQUO:
     switch (prior_keycode) {
-        case KC_DOT:
-            send_string("edu");
-            return_state = false; // done.
-            break;
         case KC_SLSH: // /" => ?
             tap_code(KC_BSPC);
             tap_code16(KC_QUES);
@@ -54,7 +50,7 @@ case KC_DQUO:
 case KC_QUOT:
      switch (prior_keycode) {
          case KC_DOT:
-             send_string("org");
+             send_string("edu");
              return_state = false; // done.
              break;
          case KC_SLSH: // roll for ¿
@@ -94,6 +90,10 @@ case HD_MAGIC:  // default is KC_HASH "#"
     break;
     return_state = false; // presume we do something.
     switch (prior_keycode) {
+        case KC_DOT: // roll for ".org"
+            send_string("org");
+            return_state = false; // done.
+            break;
         case KC_SLSH: // roll for ¡
             tap_code(KC_BSPC);
             tap_SemKey(SK_IEXC); //

@@ -36,6 +36,7 @@
 #define RightComboHeldJ "migikombochouosi"
 #endif
 
+#define HC_L1_KC KC_Z
 
 enum my_combos {
     FC_ESC, // ESCape SIMPLE COMBO must be first (used as FALSE for combo_on)

@@ -68,7 +68,17 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
                 tap_code16(KC_U); //
                 combo_on = combo_index; // if held, delete the 'u' in matrix_scan_user_process_combo
                 break;
-                
+            case HC_L1: //
+#ifdef JP_MODE_ENABLE
+                if (!IS_ENGLISH_MODE) { // not in English mode?
+                    tap_code(KC_J); //
+                    break;
+                }
+#endif // JP_MODE_ENABLE
+                register_code(HC_L1_KC); //
+                combo_on = combo_index; // hold in matrix_scan_user_process_combo
+                break;
+
 /*
  * H digraphs here
  */
@@ -111,6 +121,12 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
                 combo_on = combo_index; // if held, check in matrix_scan_user_process_combo
                 break;
             case HC_Ph:
+#ifdef JP_MODE_ENABLE
+                if (!IS_ENGLISH_MODE) { // not in English mode?
+                    SEND_STRING("xtu");  // sokuonn "っ"
+                    break;
+                }
+#endif // JP_MODE_ENABLE
                 tap_code(KC_P); // send "P" honoring caps
                 combo_on = combo_index; // if held, check in matrix_scan_user_process_combo
                 break;
@@ -213,13 +229,6 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
                 combo_on = combo_index; // may add "'ve " if held
                 break;
             case HC_Id:
-#ifdef JP_MODE_ENABLE
-                if (!IS_ENGLISH_MODE) { // if in Japanese mode
-                    send_string("dhi");  // でぃ
-                    break;
-                }
-#endif // JP_MODE_ENABLE
-
             case HC_Ill:
             case HC_Im:
             case HC_Iv:
@@ -671,6 +680,9 @@ ADD_HERE:
 #endif
                     tap_code(KC_SPC); // add space after a composed pronoun
                     combo_on = 0;  // done w/these shenanigans
+                    break;
+                case HC_L1: //
+                    unregister_code(HC_L1_KC); //
                     break;
                 case HC_Q: //
                     unregister_code16(KC_Q); //

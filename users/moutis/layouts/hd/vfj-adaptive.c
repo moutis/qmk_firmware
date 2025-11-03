@@ -81,8 +81,8 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
             break;
         case KC_F:
             switch (prior_keycode) {
-                case KC_D: // eliminate DV SFB
-                    tap_code(KC_V);
+                case KC_D: // eliminate DJ SFB
+                    tap_code(KC_J);
                     return_state = false; // done.
                     break;
                 case KC_P: // avoid row step (PS is 36x more common than PF)
@@ -297,8 +297,8 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
             break;
         case KC_X:
             switch (prior_keycode) {
-                case KC_D: // eliminate DJ SFB.
-                    tap_code(KC_J); // "DJ" is 103x more frequent than "DX"
+                case KC_D: // eliminate DV SFB-scissor.
+                    tap_code(KC_V); //
                     return_state = false; // done.
                     break;
                 case KC_G: // eliminate GT SFB.

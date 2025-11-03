@@ -335,7 +335,7 @@ combo_t key_combos[] = {
     [HC_STAB] = COMBO(Hstab_combo, S(KC_TAB)),
 
     [HC_Q] = COMBO_ACTION(H_Q_combo),
-    [HC_L1] = COMBO(H_L1_combo, HD_L1),
+    [HC_L1] = COMBO_ACTION(H_L1_combo),
 //    [HC_L2] = COMBO(H_L2_combo, HD_L2),
 //    [HC_L3] = COMBO(H_L3_combo, HD_L3),
     [HC_Ch] = COMBO_ACTION(H_Ch_combo),
