@@ -109,7 +109,7 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     break;
             }
             break;
-#ifndef ADAPT_H // if not using the default
+#ifdef ADAPT_H // if not using the default
         case KC_H: // H precedes a vowel vastly more often than it follows (thanks, Ancient Greek!) so adaptive H is a sort of Magic Key
             switch (prior_keycode) { // maybe OK? What about xxR? resulting in a SFB on thumb?
                 case KC_E: // these EO/OE adaptives are of questionable value
@@ -144,6 +144,7 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     tap_code(KC_L); //
                     return_state = false; // done.
                     break;
+#ifdef ADAPT_J // if not using the default
                 case KC_A: //
                     tap_code(KC_U); // "AJ" yields "AU"
                     return_state = false; // done.
@@ -160,6 +161,7 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                      tap_code(KC_A); // "UJ" yields "UA"
                     return_state = false; // done.
                     break;
+#endif // ADAPT_J
 
             }
             break;

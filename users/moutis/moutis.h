@@ -126,7 +126,8 @@ extern rgblight_config_t rgblight_config;
 // Adaptive (or MAGIC) keys are like a QMK Leader Key, but after (Adaptive Trailer)
 #define ADAPTIVE_ENABLE
 #define ADAPT_SHIFT KC_COMM // keycode to precede alpha for one-shot shift (leader)
-#define ADAPT_H // eliminate SFBs AU/UA;EO/OE;LN;MN;NN using H (instead of ')
+//#define ADAPT_H // eliminate SFBs AU/UA;EO/OE;LN;MN;NN using H
+#define ADAPT_J // eliminate SFBs AU/UA;EO/OE;LN;MN;NN using J
 //#define ADAPT_AE_AU // Use AE->AU (instead of AH->AU, AH is somewhat common)
 //#define FR_ADAPTIVES // eliminate 'h SFB for French
 //#define DE_ADAPTIVES // alternate AU SFB treatment for German (same as ADAPT_AE_AU)
