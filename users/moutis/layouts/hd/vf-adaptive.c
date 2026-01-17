@@ -118,7 +118,7 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     return_state = false; // done.
                     break;
 /*
-                case KC_M: // Eliminate ML SFB
+                case KC_M: // Eliminate ML SFB (using MV instead)
                      tap_code(KC_L); // "MH" yields "ML" (7x more common)
                     return_state = false; // done.
                     break;
