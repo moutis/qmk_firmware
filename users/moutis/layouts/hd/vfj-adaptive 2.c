@@ -308,8 +308,8 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     tap_code(KC_T); // "GT" is 778x more frequent than "GX"
                     return_state = false; // done.
                     break;
-                case KC_M:  // eliminate ML SFB.
-                    tap_code(KC_L); // "ML" is 129x more frequent than "MX"
+                case KC_M:  // eliminate MN SFB.
+                    tap_code(KC_N); // "MN" is 248x more frequent than "MX"
                     return_state = false; // done.
                     break;
                case KC_W:  // eliminate WS scissor.
