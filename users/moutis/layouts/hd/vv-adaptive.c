@@ -242,20 +242,19 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     break;
             }
             break;
-
+        case KC_Y:
+            switch (prior_keycode) {
+                case KC_Y: // "YY" basically never occurs, so double-tap YY = YI instead of row change
+                    tap_code(KC_I); // 191x
+                    return_state = false; // done.
+                    break;
+            }
+            break;
 
 /*
 // right hand adaptives
 */
             
-        case KC_P:
-            switch (prior_keycode) {
-                case KC_Y: //
-                    tap_code(KC_I); // YP = YI (eliminate SFB on ring finger YI is 37x YF)
-                    return_state = false; // done.
-                break;
-            }
-            break;
         case KC_B:
               switch (prior_keycode) {
                   case KC_DOT:

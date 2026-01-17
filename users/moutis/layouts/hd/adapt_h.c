@@ -70,6 +70,10 @@
                    tap_code(KC_QUOT); // YH => Y' (pull down to reduce ring-pinky T-B scissor)
                    break;
 #endif // FR_ADAPTIVES
+               case KC_Y:
+                   tap_code(KC_QUOT); // "YH" basically never occurs, so turn this grotesque ring-pinky scissor into a "baby's" step
+                   return_state = false; // done.
+                   break;
            }
            break;
 #endif // ADAPT_H

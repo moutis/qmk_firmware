@@ -275,19 +275,19 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     break;
             }
             break;
+        case KC_Y:
+            switch (prior_keycode) {
+                case KC_Y: // "YY" basically never occurs, so double-tap YY = YI instead of row change
+                    tap_code(KC_I); // 191x
+                    return_state = false; // done.
+                    break;
+            }
+            break;
 
 /*
 // right hand adaptives
 */
             
-        case KC_F:
-            switch (prior_keycode) { // IF is much more common than IY, so optimizing
-                case KC_Y: // YF = YI (eliminate SFB on ring finger)
-                    tap_code(KC_I); // (YI is 37x more common)
-                    return_state = false; // done.
-                    break;
-            }
-            break;
 
 #include "adapt_h.c" // the common vowel block adaptives (esp. for AU SFB)
 

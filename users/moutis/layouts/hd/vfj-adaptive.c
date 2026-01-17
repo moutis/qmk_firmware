@@ -113,7 +113,7 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     break;
             }
             break;
-#ifdef ADAPT_H // if not using the default
+#ifndef ADAPT_H // if not using the default
         case KC_H: // H precedes a vowel vastly more often than it follows (thanks, Ancient Greek!) so adaptive H is a sort of Magic Key
             switch (prior_keycode) { // maybe OK? What about xxR? resulting in a SFB on thumb?
                 case KC_E: // these EO/OE adaptives are of questionable value
@@ -126,10 +126,6 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     break;
                 case KC_U: //
                      tap_code(KC_A); // "UH" yields "UA" (126x more common)
-                    return_state = false; // done.
-                    break;
-                case KC_Y:
-                    tap_code(KC_I); // "YH" basically never occurs, so turn this SFB into a step
                     return_state = false; // done.
                     break;
             }
@@ -187,7 +183,6 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
         case KC_M: // M becomes L (pull up "L" to same row)
             switch (prior_keycode) {
                 case KC_G: // pull up "L" (GL is 5x more common than GM)
-                case KC_X: // pull up "L" (XL is 1.5x more common than XM)
                 case KC_C: // step for upper column pref (CL is 7.6x more common than CM)
                     tap_code(KC_L);  // pull up "L" (PL is 15x more common than PM)
                     return_state = false; // done.
@@ -206,6 +201,9 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                             break;
                     }
                     break;
+                case KC_X: //
+                    tap_code(KC_N);  //
+                    return_state = false; // done.
             }
             break;
             // If not using H-digraph combos, consider this adaptive solution?
@@ -318,18 +316,16 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     break;
             }
             break;
-/*
-// right hand adaptives
-*/
-/*
-        case KC_B:
+        case KC_Y:
             switch (prior_keycode) {
-                case KC_Y: // avoid ring->pinky scissor
-                    tap_code(KC_BSPC);
-                    tap_code(KC_I); // IB is 21x more common than YB
-                    break; // process the B normally
+                case KC_Y: // "YY" basically never occurs, so double-tap YY = YI instead of row change
+                    tap_code(KC_I); // 191x
+                    return_state = false; // done.
+                    break;
             }
             break;
+/*
+// right hand adaptives
 */
 #include "adapt_h.c" // the common vowel block adaptives (esp. for AU SFB)
 
