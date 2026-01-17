@@ -98,6 +98,32 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     break;
             }
             break;
+
+#ifndef ADAPT_H // if not using the default
+        case KC_H: // H precedes a vowel vastly more often than it follows (thanks, Ancient Greek!) so adaptive H is a sort of Magic Key
+            switch (prior_keycode) { // maybe OK? What about xxR? resulting in a SFB on thumb?
+                case KC_L: // Eliminate NN SFB
+                     tap_code(KC_N); // "LH" yields "LN" (4.8x more common)
+                    return_state = false; // done.
+                    break;
+/*
+                case KC_M: // Eliminate ML SFB
+                     tap_code(KC_L); // "MH" yields "ML" (7x more common)
+                    return_state = false; // done.
+                    break;
+*/
+                case KC_N: // Eliminate NL SFB
+                     tap_code(KC_L); // "NH" yields "NL" (2.6x more common)
+                    return_state = false; // done.
+                    break;
+                case KC_U: // Eliminate UA SFB
+                     tap_code(KC_A); // "UH" yields "UA" (126x more common)
+                    return_state = false; // done.
+                    break;
+            }
+            break;
+ #endif // ADAPT_H
+
         case KC_J:
             switch (prior_keycode) {
                 case KC_G: // 99.7% of GT are followed by H
