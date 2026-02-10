@@ -389,12 +389,6 @@ goto_register_key_trap_and_return: // ##Warning
                     return_state = false; // done.
                 }
                 break;
-            case KC_J: // J if English, x if Japanese mode
-                if (!IS_ENGLISH_MODE) {
-                    register_code(KC_X);
-                    return_state = false; // done.
-                }
-                break;
             case KC_L: // L if English, ん if Japanese mode
                 if (!IS_ENGLISH_MODE) {
                     tap_code(KC_N);
@@ -504,12 +498,6 @@ storeSettings:
                 if (!IS_ENGLISH_MODE) {
                     unregister_code(KC_Z);
                     return_state = false; // stop processing this record.
-                }
-                break;
-            case KC_J: // J if English, x if Japanese mode
-                if (!IS_ENGLISH_MODE) {
-                    unregister_code(KC_X);
-                    return_state = false; // done.
                 }
                 break;
 

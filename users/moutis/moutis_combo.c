@@ -71,7 +71,7 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
             case HC_L1: //
 #ifdef JP_MODE_ENABLE
                 if (!IS_ENGLISH_MODE) { // not in English mode?
-                    tap_code(KC_J); //
+                    SEND_STRING("xtu");  // sokuonn "っ"
                     break;
                 }
 #endif // JP_MODE_ENABLE
@@ -123,7 +123,7 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
             case HC_Ph:
 #ifdef JP_MODE_ENABLE
                 if (!IS_ENGLISH_MODE) { // not in English mode?
-                    SEND_STRING("xtu");  // sokuonn "っ"
+                    tap_code(KC_X); //
                     break;
                 }
 #endif // JP_MODE_ENABLE
