@@ -5,18 +5,18 @@
  Tailored for HD Vibranium-fj (vfj)
 
  This VF-J variant tries to make more of a "magic" adaptive-key out of J.
- As a magic key, it ends up associating with more consonants, resulting in many more
+ As a magic key, J ends up associating with more consonants, resulting in many more
  neighbor bigrams, scissors, etc. Most of these are on the FPLD (bottom row) along with
  R on the thumb, so moving the J to the bottom so there reduces scissoring top-thumb
- stretching. AU, is often followed by L or R, especially. aug/aum is the drawback here.
- The J also addresses some of my "Japanese mode" relocating of keys.
+ stretching. AU is often followed by L or R, especially, so same row. aug/aum is the drawback here.
+ The J also addresses some of my "Japanese mode" relocation of keys.
 
  NOTE: assumed dual-function keys (MOD_TAP, LAYER_TAP) have already been handled AND
     FILTERED OUT! The combos handler will have already taken out combo candidates,
     which have a shorter keydown threshhold (COMBO_TERM).
  
  */
-//    Base (alpha) Layer  Hands Down Vibranium-vf (HRMs /+ thumb mods)
+//    Base (alpha) Layer  Hands Down Vibranium-vfj (HRMs /+ thumb mods)
 //      ╭─────────────────────╮                 ╭─────────────────────╮
 // esc  │  X   W   M   G   V  │ L_CFG     L_NUM │  #$  .:  /*  "[  '] │ LANG2/henk
 // tab  │  S   C   N   T   K  | (             ) |  ,;   A   E   I   H │ LANG1/mhen
@@ -121,18 +121,20 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                      tap_code(KC_N); // "LH" yields "LN" (4.8x more common)
                     return_state = false; // done.
                     break;
-/*
-                case KC_M: // Eliminate ML SFB (using MV instead)
-                     tap_code(KC_L); // "MH" yields "ML" (7x more common)
+                case KC_M: // Eliminate MN SFB
+                     tap_code(KC_N); // "MH" yields "MN" (15x more common)
                     return_state = false; // done.
                     break;
-*/
                 case KC_N: // Eliminate NL SFB
                      tap_code(KC_L); // "NH" yields "NL" (2.6x more common)
                     return_state = false; // done.
                     break;
                 case KC_U: // Eliminate UA SFB
                      tap_code(KC_A); // "UH" yields "UA" (126x more common)
+                    return_state = false; // done.
+                    break;
+                case KC_V: // Eliminate VL split scissor
+                     tap_code(KC_L); // "VH" yields "VL" (??x more common)
                     return_state = false; // done.
                     break;
             }
@@ -143,7 +145,8 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
         case KC_J: // Maybe not surprising that J doesn't appear after vowels often.
             switch (prior_keycode) {
                 case KC_A: //
-                    tap_code(KC_U); // "AJ" yields "AU"
+                    // tap_code(KC_U); // "AJ" yields "AU"
+                    tap_code(KC_E); // "AJ" yields "AE"
                     return_state = false; // done.
                     break;
                 case KC_E: //
@@ -230,7 +233,7 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
 #else
         case KC_N: // N becomes H (for H-Digraph rolls)
             switch (prior_keycode) {
-                case KC_T: // "TION" is 58x more common than "TN"
+                case KC_T: // tn = "TION" (58x more common than "TN")
                     send_string("ion");
                     return_state = false; // done.
                     break;
@@ -313,8 +316,8 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     tap_code(KC_T); // "GT" is 778x more frequent than "GX"
                     return_state = false; // done.
                     break;
-                case KC_M:  // eliminate MN SFB.
-                    tap_code(KC_N); // "MN" is 248x more frequent than "MX"
+                case KC_M:  // pull up F to eliminate mid-pinky cross-jump.
+                    tap_code(KC_F); // "MF" is 107x more frequent than "MX"
                     return_state = false; // done.
                     break;
                case KC_W:  // eliminate WS scissor.

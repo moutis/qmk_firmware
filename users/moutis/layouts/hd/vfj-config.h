@@ -212,8 +212,8 @@
 #define HD_Sch_keys HD_LM4, HD_LM3, HD_LM2 // TYPE "Sch"
 
 // Should we put all the diacritic keys here?
-// or get keep them all in the common area (if they all share
-// HD Neu vowel block)?
+// or get keep them all in the common area
+// (even if they all share the HD Neu vowel block?)
 #define HD_OE_lig_keys HD_RM2, HD_RB2 // Œ
 #define HD_AE_lig_keys HD_RM1, HD_RB1 // Æ
 
@@ -228,6 +228,7 @@
 #define HD_Iv_keys    HD_I, HD_V  // TYPE "I've "
 
 #ifdef EN_PRONOUN_COMBOS_ALL // Admittedly of questionable value
+#define HD_you_keys   HD_Y, HD_O, HD_U  // TYPE "you"
 #define HD_youd_keys  HD_Y, HD_D  // TYPE "you'd" + 've
 #define HD_youll_keys HD_Y, HD_L  // TYPE "you'll" + 've
 #define HD_youre_keys HD_Y, HD_F  // TYPE "you're"
@@ -253,10 +254,9 @@
 #define HD_weve_keys  HD_X, HD_J  // TYPE "we've"
 #endif // EN_W_PRONOUNS
 
-#endif // EN_PRONOUNS_ALL
-#endif // EN_PRONOUNS // the entirely unnecessary pronoun combo shenanigans
-
-
+#endif // EN_PRONOUN_COMBOS_ALL
+#endif // EN_PRONOUN_COMBOS
+// end of the entirely unnecessary pronoun combo shenanigans
 
 #ifdef JP_MODE_ENABLE
 #ifdef JP_YOUON_COMBOS
@@ -269,6 +269,9 @@
 // There is also risk of conflict with spatial any phonetically/mnemonically coded combos.
 //
 // Major (high frequency) Japanese contracted sounds
+#define JP_ya_keys HD_RB3, HD_RM1 // ゃ
+#define JP_yu_keys HD_RB3, HD_RB1 //　ゅ
+#define JP_yo_keys HD_RB3, HD_RB2 //　ょ
 #define JP_kya_keys HD_LM0, HD_RM1 // きゃ
 #define JP_kyu_keys HD_LM0, HD_RB1 //　きゅ
 #define JP_kyo_keys HD_LM0, HD_RB2 //　きょ
@@ -316,10 +319,10 @@
 //#define JP_fye_keys HD_RM4, HD_RB1 //　ふぇ
 //#define JP_fyo_keys HD_RM4, HD_RB2 //　ふぉ
 
-#define JP_bya_keys HD_RB4, HD_RM1 // びゃ
-#define JP_byu_keys HD_RB4, HD_RB1 //　びゅ  conflicts with diacritic?
+#define JP_bya_keys HD_RB4, HD_RM1 //　びゃ
+#define JP_byu_keys HD_RB4, HD_RB1 //　びゅ  conflicts with diacritic ~?
 #define JP_byo_keys HD_RB4, HD_RB2 //　びょ
-#define JP_mya_keys HD_LT2, HD_RM1 // みゃ
+#define JP_mya_keys HD_LT2, HD_RM1 //　みゃ
 #define JP_myu_keys HD_LT2, HD_RB1 //　みゅ
 #define JP_myo_keys HD_LT2, HD_RB2 //　みょ
 #define JP_rya_keys HD_LH1, HD_RM1 // りゃ
