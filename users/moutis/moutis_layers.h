@@ -26,8 +26,8 @@
 /*  L_SYM Symbols and punctuation (Some via SemKeys/unicode for platform independance)
    ╭────────────────────────────────────────────╮                  ╭──────────────────────────────────────────╮
 __ │    Z       Q       ¶        †        ‡     │                  │     ¢        $       €       £       ¥   │ __
-__ │    §       [       (        {        •     |                  |     /        =       *       +       -   │ __
-__ │    °      ]       )        }         ·     │ __  __   __  __  │     ^        |       &       <       >   │ __
+__ │    §       {       (        [        •     |                  |     /        =       *       +       -   │ __
+__ │    °       }       )        ]        ·     │ __  __   __  __  │     ^        |       &       <       >   │ __
    ╰──────────────────╮ VolD   D_WordL  D_WordR │ --           __  │     _        ¡       ¿     ╭─────────────╯
    KC_PGDN   KC_PGUP  ╰─────────────────────────╯                  ╰────────────────────────────╯ SK_WORDPRV  SK_WORDNXT
 */
@@ -47,9 +47,9 @@ __ │    °      ]       )        }         ·     │ __  __   __  __  │    
 
 #define LS_LM5 KC_TRNS
 #define LS_LM4 SK_SECT // §
-#define LS_LM3 KC_LBRC
+#define LS_LM3 KC_LCBR
 #define LS_LM2 KC_LPRN
-#define LS_LM1 KC_LCBR
+#define LS_LM1 KC_LBRC
 #define LS_LM0 SK_BBLT // SK_BLLT?
 #define LS_RM0 KC_PSLS // /
 #define LS_RM1 RSFT_T(KC_PEQL) // RSFT_T(KC_PAST)
@@ -60,15 +60,15 @@ __ │    °      ]       )        }         ·     │ __  __   __  __  │    
 
 #define LS_LB5 KC_TRNS
 #define LS_LB4 SK_DEGR // °
-#define LS_LB3 KC_RBRC
+#define LS_LB3 KC_RCBR
 #define LS_LB2 KC_RPRN
-#define LS_LB1 KC_RCBR
+#define LS_LB1 KC_RBRC
 #define LS_LB0 SK_SBLT  // ·
 #define LS_LBA KC_TRNS
 #define LS_LBB KC_TRNS
 #define LS_RBB KC_TRNS
 #define LS_RBA KC_TRNS
-#define LS_RB0 KC_CIRC // ^ // KC_UNDS
+#define LS_RB0 KC_CIRC // ^
 #define LS_RB1 KC_PIPE // |
 #define LS_RB2 KC_AMPR
 #define LS_RB3 KC_LT // KC_CIRC

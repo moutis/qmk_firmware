@@ -33,7 +33,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         (timer_elapsed(prior_keydown) <= ADAPTIVE_TERM * 4) &&  // use large threshold?
         ((keycode & QK_BASIC_MAX) >= KC_A) &&  // followed by any alpha?
         ((keycode & QK_BASIC_MAX) <= KC_Z)) {
-            tap_code(KC_BSPC); // get rid of ADAPT_SHIFT
+            tap_code(KC_BSPC); // get rid of ADAPT_SHIFT letter
             tap_code16(S(keycode & QK_BASIC_MAX)); // send cap letter
             preprior_keycode = linger_key = 0; // reset other states.
             prior_keycode = keycode; // this keycode is stripped of mods+taps
